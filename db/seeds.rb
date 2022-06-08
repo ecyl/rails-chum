@@ -27,6 +27,14 @@ puts "Creating users..."
     password: "12345678"
   )
   user.save!
+
+  5.times do
+    notification = Notification.new(
+      content: Faker::Quote.yoda,
+    )
+    user.notifications << notification
+    notification.save!
+  end
 end
 
 users = User.all
@@ -73,6 +81,19 @@ puts "Creating itineraries..."
   #assign chatroom to itinerary
   itinerary.chatroom = chatroom
   itinerary.save!
+
+  # assign group users to chatroom
+  interested_users.each { |person| chatroom.users << person}
+  chatroom.users << organiser
+  chatroom.save!
+
+  # populate chatroom with some messages
+  5.times do
+    message = Message.new(
+      content: Faker::TvShows::StrangerThings.quote
+    )
+  end
+
   # assign itinerary_users
     # every interested_user thats not organiser is a member
   interested_users.each do |person|
@@ -96,13 +117,20 @@ puts "Creating itineraries..."
     )
     event.itinerary = itinerary
     event.save!
+  end
 
+  5.times do
+    announcement = Announcement.new(
+      content: Faker::TvShows::GameOfThrones.quote
+    )
+    itinerary.announcements << announcement
+    announcement.save!
   end
 
 end
+puts "Each itinerary created with existing chatroom, some announcements, some events. Criteria not assigned yet though (TODO)."
 
-
-
+puts "Creating chatrooms"
 
 
 puts "Creating criteria..."

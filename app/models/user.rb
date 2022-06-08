@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :notifications
   has_many :messages
 
+  has_many :user_chatrooms
   has_many :chatrooms, through: :user_chatrooms
 
   has_many :itinerary_users
