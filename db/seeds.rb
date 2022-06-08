@@ -92,6 +92,9 @@ puts "Creating itineraries..."
     message = Message.new(
       content: Faker::TvShows::StrangerThings.quote
     )
+    message.chatroom = chatroom
+    message.user = organiser
+    message.save!
   end
 
   # assign itinerary_users
@@ -130,7 +133,6 @@ puts "Creating itineraries..."
 end
 puts "Each itinerary created with existing chatroom, some announcements, some events. Criteria not assigned yet though (TODO)."
 
-puts "Creating chatrooms"
 
 
 puts "Creating criteria..."
@@ -168,11 +170,11 @@ fifth_criterium = Criterium.new(
 )
 fourth_criterium.save!
 
-# create itinerary_criteria
-# Itinerary.all.each do |it|
-#   itinerary_criterium = ItineraryCriterium.new
-#   itinerary_criterium.itinerary = it
-#   binding.pry
-#   itinerary_criterium.criterium = Criterium.all.sample
-#   itinerary_criterium.save!
-# end
+create itinerary_criteria
+Itinerary.all.each do |it|
+  itinerary_criterium = ItineraryCriterium.new
+  itinerary_criterium.itinerary = it
+  binding.pry
+  itinerary_criterium.criterium = Criterium.all.sample
+  itinerary_criterium.save!
+end
