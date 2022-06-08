@@ -48,7 +48,6 @@ LOCATION_STRING = ["10 Bayfront Ave, Singapore 018956", "313 Somerset Road",
 # 10 itineraries
 puts "Creating itineraries..."
 10.times do
-
   # create chatroom that comes with the itinerary
   chatroom = Chatroom.new(
     name: Faker::Lorem.word
@@ -62,11 +61,27 @@ puts "Creating itineraries..."
     title: "A great time in #{Faker::Nation.capital_city}",
     participant_limit: (2..8).to_a.sample,
     description: Faker::Company.catch_phrase,
-    deadline: random_start_date - (3..10).to_a.sample
+    deadline: random_start_date - (5..10).to_a.sample
   )
 
+  # assign organiser
+  random_num = (2..10).to_a.sample
+  interested_users = User.all.sample(random_num)
+  organiser = interested_users.pop # length - 1 due to pop
+  itinerary.user = organiser
+
+  #assign chatroom to itinerary
   itinerary.chatroom = chatroom
-  itinerary.user = User.all.sample
+  itinerary.save!
+  # assign itinerary_users
+    # every interested_user thats not organiser is a member
+  interested_users.each do |person|
+    new = ItineraryUser.new
+    new.itinerary = itinerary
+    new.user = person
+    new.save!
+  end
+
   itinerary.save!
 
 
@@ -76,11 +91,60 @@ puts "Creating itineraries..."
       description: Faker::Company.catch_phrase,
       date_start: random_start_date,
       date_end: random_end_date,
-      location: LOCATION_STRING.sample,
+      location: LOCATION_STRING.sample, # PROBLEM: my location is not a subset of itnerary title now
       cost: (50..1000).to_a.sample
     )
     event.itinerary = itinerary
     event.save!
 
   end
+
 end
+
+
+
+
+
+puts "Creating criteria..."
+# creating itinerary_criteria – 1a) only women 1b) only men 2a) 20-30 y/o 2b) 30-40 y/o 2c) > 40 y/o
+first_criterium = Criterium.new(
+  title: "only women",
+  restricted_gender: "F"
+)
+first_criterium.save!
+
+second_criterium = Criterium.new(
+  title: "only men",
+  restricted_gender: "M"
+)
+second_criterium.save!
+
+third_criterium = Criterium.new(
+  title: "20–30 year olds",
+  min_age: 20,
+  max_age: 30
+)
+third_criterium.save!
+
+fourth_criterium = Criterium.new(
+  title: "30-40 year olds",
+  min_age: 30,
+  max_age: 40
+)
+fourth_criterium.save!
+
+fifth_criterium = Criterium.new(
+  title: ">40 year old",
+  min_age: 0,
+  max_age: 40
+)
+fourth_criterium.save!
+
+# create itinerary_criteria
+# Itinerary.all.each do |it|
+#   itinerary_criterium = ItineraryCriterium.new
+#   itinerary_criterium.itinerary = it
+#   binding.pry
+#   itinerary_criterium.criterium = Criterium.all.sample
+#   itinerary_criterium.save!
+# end
