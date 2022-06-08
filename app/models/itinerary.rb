@@ -1,4 +1,4 @@
 class Itinerary < ApplicationRecord
-  belongs_to :organiser
+  belongs_to :user
   belongs_to :chatroom
 end
