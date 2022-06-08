@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'notifications/show'
+  get 'notifications/index'
+  get 'messages/create'
+  get 'announcements/create'
+  get 'chatroom/show'
+  get 'chatroom/create'
+  get 'itineraries/index'
+  get 'itineraries/new'
+  get 'itineraries/create'
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
