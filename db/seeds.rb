@@ -17,7 +17,7 @@ UserChatroom.destroy_all
 puts "Creating users..."
 
 # 10 users
-11.times do
+10.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
