@@ -1,5 +1,5 @@
-<h1>Test</h1>
+<h1>List of trips for location</h1>
 
 <% @itineraries.each do |itinerary| %>
-  <p><%= itinerary.title %></p>
+  <p><%= link_to itinerary.title, itinerary_path(itinerary) %></p>
 <% end %>
