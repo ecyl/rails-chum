@@ -1,29 +1,31 @@
-<div class="navbar navbar-expand-sm navbar-light bg-light">
-  <div class="container-fluid">
-    <!-- Logo -->
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png", height: "40px" %>
-    <% end %>
+<!-- Logged-in -->
+<% if user_signed_in? %>
+  <div class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png", height: "40px" %>
+      <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <div class="d-flex justify-content-between">
-        <!-- Navlinks for logged-in user -->
-        <% if user_signed_in? %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- Navlinks for logged-in user -->
           <li class="nav-item">
             <%= link_to "ITINERARIES", itineraries_path, class: "nav-link" %>
           </li>
+        </ul>
 
-          <!-- User dropdown -->
-          <li class="nav-itemdropdown">
+        <!-- User dropdown -->
+        <div class="navbar-nav ms-auto d-flex">
             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <span class="username-display"><%= current_user.first_name %></span>
             </a>
+
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <li>
                 <div class="dropdown-item-text">
@@ -39,79 +41,12 @@
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
-          </li>
-         <!-- Navlinks for not logged-in user -->
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "ITINERARIES", itineraries_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-<% if user_signed_in? %>
-  <div class="navbar navbar-expand-sm navbar-light bg-light">
-    <div class="container-fluid">
-      <!-- Logo -->
-      <%= link_to root_path, class: "navbar-brand" do %>
-        <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png", height: "40px" %>
-      <% end %>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          <div class="d-flex justify-content-between">
-          <!-- Navlinks for logged-in user -->
-            <li class="nav-item">
-              <%= link_to "ITINERARIES", itineraries_path, class: "nav-link" %>
-            </li>
-
-            <!-- User dropdown -->
-            <li class="nav-itemdropdown">
-              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                <span class="username-display"><%= current_user.first_name %></span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li>
-                  <div class="dropdown-item-text">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                      <p><strong>Hello, <%= current_user.first_name %></strong></p>
-                      <p><%= current_user.email %></p>
-                    </div>
-                  </div>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-                <li><%= link_to "My Trips", "#", class: "dropdown-item" %></li>
-                <li><%= link_to "My Messages", "#", class: "dropdown-item" %></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
-              </ul>
-            </li>
-          </div>
-        </ul>
+        </div>
       </div>
     </div>
   </div>
 
-
+<!-- Not Logged-in -->
 <% else %>
   <div class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container-fluid">
@@ -125,8 +60,8 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navlinks for not logged-in user -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <!-- Navlinks for not logged-in user -->
           <li class="nav-item">
             <%= link_to "ITINERARIES", itineraries_path, class: "nav-link" %>
           </li>
@@ -135,58 +70,7 @@
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
         </div>
-
       </div>
     </div>
   </div>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="#"><img src="/images/MarkupTag-white-logo.png" alt="Logo" class="img-fluid" /></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        View More
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Web Development</a></li>
-                        <li><a class="dropdown-item" href="#">Web Designing</a></li>
-                        <li><a class="dropdown-item" href="#">Android Development</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
-                </li>
-            </ul>
-            <div class="d-flex">
-                <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Our Products
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">Product One</a></li>
-                        <li><a class="dropdown-item" href="#">Product Two</a></li>
-                        <li><a class="dropdown-item" href="#">Product Three</a></li>
-                    </ul>
-                </div>
-                <button class="btn btn-light ms-3">Login</button>
-            </div>
-        </div>
-    </div>
-</nav>
-
 <% end %>
