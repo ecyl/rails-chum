@@ -9,11 +9,14 @@ class Itinerary < ApplicationRecord
   has_many :users, through: :itinerary_users
 
   has_many :itinerary_restrictions, dependent: :destroy
-  has_many :restrictions, through: :itinerary_criterium
+  has_many :restrictions, through: :itinerary_restrictions
 
   # Validations
   validates :title, presence: true
+  validates :participant_limit, presence: true
   # validates :location, presence: true
   validates :deadline, presence: true
   validates :chatroom_id, presence: true
+
+  has_one_attached :photo
 end
