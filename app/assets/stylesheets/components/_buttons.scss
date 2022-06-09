@@ -1,11 +1,19 @@
 .btn-orange {
-  background-color: orange;
+  background-color: $orange;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 40px;
   border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn-orange:hover {
+  background-color: #ff8a2b;
+  color: white;
 }
 
 .btn-orange.big {
@@ -24,5 +32,4 @@
 .btn-orange.rounded {
   width: 300px;
   border-radius: 15px !important;
-
 }
