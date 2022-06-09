@@ -1,4 +1,5 @@
 class ItinerariesController < ApplicationController
+  before_action :set_itinerary, only: :show
   def index
     @itineraries = Itinerary.all
   end
@@ -6,13 +7,16 @@ class ItinerariesController < ApplicationController
   def new
   end
 
+  def show
+    @itinerary
+  end
+
   def create
   end
 
   private
 
-  def itinerary_params
-    params.require(:itinerary).permit(:title, :participant_limit, :description,
-                                      :deadline, :finalised, :user_id, :chatroom_id)
+  def set_itinerary
+    @itinerary = Itinerary.find(params[:id])
   end
 end
