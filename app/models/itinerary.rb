@@ -1,21 +1,15 @@
 class Itinerary < ApplicationRecord
   belongs_to :user
   belongs_to :chatroom
-<<<<<<< HEAD
 
   has_many :events
   has_many :announcements
-
-  has_many :itinerary_criteria
-  has_many :criteria, through: :itinerary_criteria
 
   has_many :itinerary_users
   has_many :users, through: :itinerary_users
-=======
-  has_many :events
-  has_many :users, through: :itinerary_users
+
+  has_many :itinerary_criteria
   has_many :criteria, through: :itinerary_criterium
-  has_many :announcements
 
   # Validations
   validates :title, presence: true
@@ -25,5 +19,4 @@ class Itinerary < ApplicationRecord
   validates :cost, numericality: { only_integer: true, greater_than: 0 }
   validates :deadline, presence: true
   validates :chatroom_id, presence: true
->>>>>>> master
 end
