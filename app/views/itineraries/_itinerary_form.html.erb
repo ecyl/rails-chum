@@ -1,0 +1,16 @@
+<div class="my-3">
+  <h1 class="form-header text-center">Create a new itinerary</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <%= simple_form_for(itinerary) do |f| %>
+          <%= f.input :title %>
+          <%= f.input :participant_limit %>
+          <%= f.input :description %>
+          <%= f.input :deadline %>
+          <%= f.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
