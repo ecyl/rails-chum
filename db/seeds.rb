@@ -115,7 +115,7 @@ puts "Creating itineraries..."
       date_start: random_start_date,
       date_end: random_end_date,
       location: LOCATION_STRING.sample, # PROBLEM: my location is not a subset of itnerary title now
-      cost: (50.00..1000.00).to_a.sample
+      cost: (50..1000).to_a.sample
     )
     event.itinerary = itinerary
     event.save!
@@ -169,7 +169,7 @@ fifth_criterium = Criterium.new(
 )
 fourth_criterium.save!
 
-create itinerary_criteria
+# create itinerary_criteria
 Itinerary.all.each do |it|
   itinerary_criterium = ItineraryCriterium.new
   itinerary_criterium.itinerary = it
