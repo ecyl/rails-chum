@@ -177,3 +177,5 @@ Itinerary.all.each do |it|
   itinerary_restriction.restriction = Restriction.all.sample
   itinerary_restriction.save!
 end
+
+puts "Done with all models"
