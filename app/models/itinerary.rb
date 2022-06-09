@@ -17,4 +17,6 @@ class Itinerary < ApplicationRecord
   # validates :location, presence: true
   validates :deadline, presence: true
   validates :chatroom_id, presence: true
+
+  has_one_attached :photo
 end

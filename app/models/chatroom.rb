@@ -1,4 +1,5 @@
 class Chatroom < ApplicationRecord
+  has_one :itinerary
   has_many :messages, dependent: :destroy
 
   has_many :user_chatrooms, dependent: :destroy
