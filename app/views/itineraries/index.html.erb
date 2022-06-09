@@ -1,7 +1,5 @@
-<h1>Itineraries</h1>
+<h1>List of trips for location</h1>
 
 <% @itineraries.each do |itinerary| %>
-  <p><%= itinerary.title %></p>
-  <p><%= itinerary.description %></p>
-  <p><%= itinerary.location %></p>
+  <p><%= link_to itinerary.title, itinerary_path(itinerary) %></p>
 <% end %>
