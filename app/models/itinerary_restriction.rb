@@ -1,0 +1,2 @@
+class ItineraryRestriction < ApplicationRecord
+end
