@@ -1,6 +1,41 @@
-<%= raise %>
-<div class="banner">
-  <div class="banner-text">
-    Adventure to Venice
+<%= render 'itineraries_banner', title: @itinerary.title %>
+
+<%# Change the values once we figure out how to link %>
+<div class="itinerary-bar">
+  <div class="itinerary-key-details">
+    <div class="dates">
+      <p><strong>Trip dates: </strong>23/2/22 - 3/3/22</p>
+    </div>
+
+    <p>|</p>
+
+    <div class="budget">
+      <p><strong>Budget:</strong> $400</p>
+    </div>
+
+    <p>|</p>
+
+    <div class="count-restrictions">
+      <p><strong>Travelers:</strong> 3/5</p>
+    </div>
+  </div>
+</div>
+
+<div class="itinerary-body d-flex mt-4">
+  <div class="itinerary-main col-6 mx-auto">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled">Disabled</a>
+      </li>
+    </ul>
   </div>
 </div>
