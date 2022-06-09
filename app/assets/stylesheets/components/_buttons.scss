@@ -1,0 +1,28 @@
+.btn-orange {
+  background-color: orange;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.btn-orange.big {
+  width: 350px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.btn-orange.medium {
+  width: 200px;
+}
+
+.btn-orange.normal {
+  width: 100px;
+}
+
+.btn-orange.rounded {
+  width: 300px;
+  border-radius: 15px !important;
+
+}
