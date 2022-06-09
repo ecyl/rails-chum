@@ -4,11 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :notifications
-  has_many :messages
+  has_many :notifications, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   has_many :itinerary_users
-  has_many :itineraries, through: :itinerary_users
+  has_many :itineraries, through: :itinerary_users, dependent: :destroy
   has_many :user_chatrooms
 
   validates :email, presence: true, uniqueness: true

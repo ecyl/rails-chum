@@ -61,8 +61,13 @@ ActiveRecord::Schema.define(version: 2022_06_09_053341) do
     t.integer "min_age"
     t.integer "max_age"
     t.string "restricted_gender"
+    t.text "description"
+    t.bigint "itinerary_id", null: false
+    t.bigint "restriction_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["itinerary_id"], name: "index_itinerary_restrictions_on_itinerary_id"
+    t.index ["restriction_id"], name: "index_itinerary_restrictions_on_restriction_id"
   end
 
   create_table "itinerary_users", force: :cascade do |t|
@@ -133,6 +138,8 @@ ActiveRecord::Schema.define(version: 2022_06_09_053341) do
   add_foreign_key "events", "itineraries"
   add_foreign_key "itineraries", "chatrooms"
   add_foreign_key "itineraries", "users"
+  add_foreign_key "itinerary_restrictions", "itineraries"
+  add_foreign_key "itinerary_restrictions", "restrictions"
   add_foreign_key "itinerary_users", "itineraries"
   add_foreign_key "itinerary_users", "users"
   add_foreign_key "messages", "chatrooms"

@@ -134,46 +134,48 @@ puts "Each itinerary created with existing chatroom, some announcements, some ev
 
 
 
-# puts "Creating criteria..."
-# # creating itinerary_criteria – 1a) only women 1b) only men 2a) 20-30 y/o 2b) 30-40 y/o 2c) > 40 y/o
-# first_criterium = Criterium.new(
-#   title: "only women",
-#   restricted_gender: "F"
-# )
-# first_criterium.save!
+puts "Creating restrictions..."
+# creating itinerary_criteria – 1a) only women 1b) only men 2a) 20-30 y/o 2b) 30-40 y/o 2c) > 40 y/o
+first_restriction = Restriction.new(
+  title: "only women",
+  restricted_gender: "F"
+)
+first_restriction.save!
 
-# second_criterium = Criterium.new(
-#   title: "only men",
-#   restricted_gender: "M"
-# )
-# second_criterium.save!
+second_restriction  = Restriction.new(
+  title: "only men",
+  restricted_gender: "M"
+)
+second_restriction.save!
 
-# third_criterium = Criterium.new(
-#   title: "20–30 year olds",
-#   min_age: 20,
-#   max_age: 30
-# )
-# third_criterium.save!
+third_restriction = Restriction.new(
+  title: "20–30 year olds",
+  min_age: 20,
+  max_age: 30
+)
+third_restriction.save!
 
-# fourth_criterium = Criterium.new(
-#   title: "30-40 year olds",
-#   min_age: 30,
-#   max_age: 40
-# )
-# fourth_criterium.save!
+fourth_restriction = Restriction.new(
+  title: "30-40 year olds",
+  min_age: 30,
+  max_age: 40
+)
+fourth_restriction.save!
 
-# fifth_criterium = Criterium.new(
-#   title: ">40 year old",
-#   min_age: 0,
-#   max_age: 40
-# )
-# fourth_criterium.save!
+fifth_restriction = Restriction.new(
+  title: ">40 year old",
+  min_age: 0,
+  max_age: 40
+)
+fifth_restriction.save!
 
-# # create itinerary_criteria
-# Itinerary.all.each do |it|
-#   itinerary_criterium = ItineraryCriterium.new
-#   itinerary_criterium.itinerary = it
-#   binding.pry
-#   itinerary_criterium.criterium = Criterium.all.sample
-#   itinerary_criterium.save!
-# end
+# create itinerary_criteria
+Itinerary.all.each do |it|
+  itinerary_restriction = ItineraryRestriction.new
+  itinerary_restriction.description = Faker::Lorem.sentence(word_count: 20)
+  itinerary_restriction.itinerary = it
+  itinerary_restriction.restriction = Restriction.all.sample
+  itinerary_restriction.save!
+end
+
+puts "Done with all models"
