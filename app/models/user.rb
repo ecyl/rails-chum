@@ -6,8 +6,10 @@ class User < ApplicationRecord
 
   has_many :notifications
   has_many :messages
-  has_many :user_chatrooms
+
   has_many :itinerary_users
+  has_many :itineraries, through: :itinerary_users
+  has_many :user_chatrooms
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
