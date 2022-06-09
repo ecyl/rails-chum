@@ -1,5 +1,7 @@
-<h1>Test</h1>
+<h1>Itineraries</h1>
 
 <% @itineraries.each do |itinerary| %>
   <p><%= itinerary.title %></p>
+  <p><%= itinerary.description %></p>
+  <p><%= itinerary.location %></p>
 <% end %>
