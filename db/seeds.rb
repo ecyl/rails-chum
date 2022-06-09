@@ -6,7 +6,7 @@ User.destroy_all
 Itinerary.destroy_all
 Event.destroy_all
 ItineraryUser.destroy_all
-ItineraryCriterium.destroy_all
+ItineraryCriteria.destroy_all
 Criterium.destroy_all
 Announcement.destroy_all
 Notification.destroy_all
@@ -105,7 +105,6 @@ puts "Creating itineraries..."
     new.user = person
     new.save!
   end
-
   itinerary.save!
 
 
@@ -170,7 +169,7 @@ fifth_criterium = Criterium.new(
 )
 fourth_criterium.save!
 
-create itinerary_criteria
+# create itinerary_criteria
 Itinerary.all.each do |it|
   itinerary_criterium = ItineraryCriterium.new
   itinerary_criterium.itinerary = it
