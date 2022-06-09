@@ -9,7 +9,7 @@ class CreateItineraryRestrictions < ActiveRecord::Migration[6.1]
 
       t.text :description
       t.references :itinerary, null: false, foreign_key: true
-      t.references :restrictions, null: false, foreign_key: true
+      t.references :restriction, null: false, foreign_key: true
 
       t.timestamps
     end
