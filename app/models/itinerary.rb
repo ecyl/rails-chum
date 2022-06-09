@@ -1,10 +1,15 @@
 class Itinerary < ApplicationRecord
-  belongs_to :organiser
+  belongs_to :user
   belongs_to :chatroom
+
   has_many :events
-  has_many :users, through: :itinerary_users
-  has_many :criteria, through: :itinerary_criterium
   has_many :announcements
+
+  has_many :itinerary_users
+  has_many :users, through: :itinerary_users
+
+  has_many :itinerary_criteria
+  has_many :criteria, through: :itinerary_criterium
 
   # Validations
   validates :title, presence: true
