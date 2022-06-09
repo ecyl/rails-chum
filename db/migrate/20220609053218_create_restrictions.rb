@@ -1,6 +1,6 @@
-class CreateCriteria < ActiveRecord::Migration[6.1]
+class CreateRestrictions < ActiveRecord::Migration[6.1]
   def change
-    create_table :criteria do |t|
+    create_table :restrictions do |t|
       t.string :title
       t.integer :min_age
       t.integer :max_age
