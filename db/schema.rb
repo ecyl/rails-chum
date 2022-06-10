@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_09_091751) do
+ActiveRecord::Schema.define(version: 2022_06_10_035638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2022_06_09_091751) do
     t.bigint "chatroom_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "destination"
     t.index ["chatroom_id"], name: "index_itineraries_on_chatroom_id"
     t.index ["user_id"], name: "index_itineraries_on_user_id"
   end
