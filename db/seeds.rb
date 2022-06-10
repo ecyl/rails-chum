@@ -73,17 +73,21 @@ puts "Creating itineraries..."
   )
 
   # assign organiser
-  random_num = (2..10).to_a.sample
+  random_num = (3..10).to_a.sample
   interested_users = User.all.sample(random_num)
   organiser = interested_users.pop # length - 1 due to pop
   itinerary.user = organiser
+
+  accepted_user = interested_users.pop
+  pending_users = interested_users
 
   #assign chatroom to itinerary
   itinerary.chatroom = chatroom
   itinerary.save!
 
-  # assign group users to chatroom
-  interested_users.each { |person| chatroom.users << person}
+  # assign accepted users to chatroom
+  # accepted_users.each { |person| chatroom.users << person}
+  chatroom.users << accepted_user
   chatroom.users << organiser
   chatroom.save!
 
