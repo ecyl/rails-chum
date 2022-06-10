@@ -1,0 +1,23 @@
+.border-black {
+  border: 1px solid rgba(black, 0.15);
+  border-radius: 8px;
+  margin: 1rem;
+}
+
+.text-xl {
+  font-size: 45px;
+  font-weight: 600;
+}
+
+.text-m {
+  font-size: 20px;
+}
+
+.bg-platinum {
+  background-color: $platinum;
+}
+
+// #current-travelers {
+//   height: 30vh;
+//   width: 100vw;
+// }
