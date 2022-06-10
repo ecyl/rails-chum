@@ -11,6 +11,11 @@
   transition: background-color 0.2s;
 }
 
+.btn-orange a {
+  text-decoration: none;
+  color: white;
+}
+
 .btn-orange:hover {
   background-color: #ff8a2b;
   color: white;
@@ -32,4 +37,8 @@
 .btn-orange.rounded {
   width: 300px;
   border-radius: 15px !important;
+}
+
+.btn.orange.tall {
+  height: 60px;
 }

@@ -13,22 +13,31 @@ class ItinerariesController < ApplicationController
   end
 
   def create
-    @itinerary.Itinerary.new(itinerary_params)
-    @itinerary.user = current_user
-    @itinerary.chatroom = Chatroom.new
+    Itinerary.transaction do
+      @itinerary = Itinerary.new(itinerary_params)
+      @itinerary.user = current_user
 
-    if @itinerary.save
+      @chatroom ||= Chatroom.new
+      @itinerary.chatroom = @chatroom
+
+      @chatroom.users << current_user
+      # @chatroom_user = @chatroom.user_chatrooms.build(user: @itinerary.user)
+      @chatroom.save!
+
+      @itinerary.save!
       redirect_to itinerary_path(@itinerary)
-    else
-      render :new
     end
+  rescue ActiveRecord::RecordInvalid
+    render :new
   end
+
+
 
   private
 
   def itinerary_params
     params.require(:itinerary).permit(:title, :participant_limit, :description,
-                                      :deadline, :finalised)
+                                      :deadline, :finalised, :photo)
   end
 
 
