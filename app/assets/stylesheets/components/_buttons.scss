@@ -1,3 +1,4 @@
+//Orange Buttons//
 .btn-orange {
   background-color: $orange;
   color: white;
@@ -48,6 +49,12 @@
 .btn-platinum {
   background-color: $platinum;
   color: $blue;
+
+//Black Buttons//
+.btn-black {
+  background-color: $jet;
+  color: white;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,4 +72,36 @@
 
 .btn-platinum.normal {
   width: 100px;
+}
+  
+.btn-black a {
+  text-decoration: none;
+  color: white;
+}
+
+.btn-black:hover {
+  background-color: grey;
+  color: white;
+}
+
+.btn-black.big {
+  width: 350px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.btn-black.medium {
+  width: 200px;
+}
+
+.btn-black.normal {
+  width: 100px;
+}
+
+.btn-black.rounded {
+  width: 300px;
+  border-radius: 15px !important;
+}
+
+.btn.black.tall {
+  height: 60px;
 }

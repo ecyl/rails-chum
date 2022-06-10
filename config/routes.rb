@@ -18,12 +18,11 @@ Rails.application.routes.draw do
     # #confirm method
   end
 
-  resources :chatrooms do
-    resources :messages
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
   end
 
   resources :users, only: [:show]
-
 
   # resources :itinerary_users, only: --> accept/reject
 end
