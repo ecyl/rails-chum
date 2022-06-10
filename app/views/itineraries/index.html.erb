@@ -13,12 +13,14 @@
   <!-- Itinerary cards -->
   <div class="row">
     <% @itineraries.each do |itinerary| %>
-      <div class="col-12 col-sm-6 col-md-4">
+      <div class="col-12 col-sm-6 col-md-4 mb-4">
         <div class="card-trip">
           <!-- Image -->
           <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
           <!-- Info -->
-          <div>
+          <div class="card-trip-infos">
+            <div class="favorite-btn"><i class="far fa-heart"></i></div>
+            <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
             <h2><%= link_to itinerary.title, itinerary_path(itinerary) %></h2>
             <p><%= itinerary.description %></p>
           </div>
