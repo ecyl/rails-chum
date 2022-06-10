@@ -8,6 +8,7 @@ class ItinerariesController < ApplicationController
     @itineraries = policy_scope(Itinerary).order(created_at: :desc)
   end
 
+
   def show
     @itinerary
   end

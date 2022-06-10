@@ -1,0 +1,69 @@
+
+<div class="nav-tabs">
+  <nav>
+    <div class="nav nav-tabs" role="tablist">
+      <button class="nav-link active" id="itinerary-overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab"
+       type="button" role="tab" aria-controls="overview-tab" aria-selected="true">Overview</button>
+      <button class="nav-link" id="itinerary-calendar-tab" data-bs-toggle="tab" data-bs-target="#calendar-tab"
+       type="button" role="tab" aria-controls="calendar-tab" aria-selected="false">Calendar</button>
+      <button class="nav-link" id="itinerary-members-tab" data-bs-toggle="tab" data-bs-target="#members-tab"
+       type="button" role="tab" aria-controls="members-tab" aria-selected="false">Members</button>
+      <button class="nav-link" id="itinerary-announcements-tab" data-bs-toggle="tab" data-bs-target="#announcements-tab"
+       type="button" role="tab" aria-controls="announcements-tab" aria-selected="false">Announcements</button>
+    </div>
+  </nav>
+
+  <div class="tab-content" id="tab-content">
+    <div class="tab-pane fade show active p-3" id="overview-tab" role="tabpanel" aria-labelledby="itinerary-overview-tab">
+
+    <%# Overview information. Nested within is an accordion and each item displays an event %>
+      <div class="overview-container">
+        <h2 class="mt-2">Itinerary</h2>
+        <div class="overview-basic-info mt-5">
+          <strong><p>Description</p></strong>
+          <p><%= @itinerary.description %></p>
+        </div>
+      </div>
+
+        <%# Beginning of accordion %>
+        <div class="overview-accordion col-6"> <%# Accordion container %>
+          <div class="accordion" id="accordionExample">
+            <% @itinerary.events.each do |event| %>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <%= event.date_start %> <%# INSERT EVENT CARD HERE %>
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <%= event.title %>
+                    <%= event.description %>
+                  </div>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div> <%# End of accordion %>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="tab-pane fade p-3" id="calendar-tab" role="tabpanel" aria-labelledby="itinerary-calendar-tab">
+      <h2>Testing meep</h2>
+      <p>Peanut face</p>
+    </div>
+
+    <div class="tab-pane fade p-3" id="members-tab" role="tabpanel" aria-labelledby="itinerary-members-tab">
+      <h2>Testing b;ehg</h2>
+      <p>bika</p>
+    </div>
+
+    <div class="tab-pane fade p-3" id="announcements-tab" role="tabpanel" aria-labelledby="itinerary-announcements-tab">
+      <h2>Announcement bla</h2>
+      <p>chickenf eet</p>
+    </div>
+  </div>
+
+</div>
