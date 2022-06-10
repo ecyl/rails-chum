@@ -11,10 +11,10 @@
   </div>
 
   <!-- Itinerary cards -->
-  <div class="row">
+  <div class="row mt-5">
     <% @itineraries.each do |itinerary| %>
       <div class="col-12 col-sm-6 col-md-4 mb-4">
-        <div class="card-trip">
+        <div class="card card-trip">
           <!-- Image -->
           <% if itinerary.photo.attached? %>
             <%= cl_image_path itinerary.photo.key %>
@@ -25,10 +25,22 @@
           <!-- Info -->
           <div class="card-trip-infos">
             <div class="favorite-btn"><i class="far fa-heart"></i></div>
-            <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
-            <h2><%= itinerary.title %></h2>
-            <p><%= itinerary.description %></p>
-            <%= link_to "Details", itinerary_path(itinerary), class:"btn-black" %>
+            <!-- card text desc -->
+            <div class="d-flex align-items-center w-100">
+              <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
+              <div class="mx-3">
+                <h2><%= itinerary.title %></h2>
+                <p>by <%= itinerary.user.first_name %> <%= itinerary.user.last_name %></p>
+              </div>
+            </div>
+            <div class="card-trip-desc-container">
+              <p><%= itinerary.description %></p>
+            </div>
+
+            <div class="d-flex justify-content-end w-100">
+              <%= link_to "Details", itinerary_path(itinerary), class:"btn-black align-right" %>
+            </div>
+
           </div>
         </div>
       </div>
