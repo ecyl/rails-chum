@@ -5,7 +5,7 @@
       <div class="container m-3 d-flex justify-content-start align-items-center">
         <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="p-2">
-          <p class="text-xl">Organised by: <br>Raymond</p>
+          <p class="text-xl">Organised by: <br><%= organiser %></p>
           <i class="fa-solid fa-location-dot"></i>
           <span>Singapore</span>
         </div>
@@ -31,11 +31,19 @@
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-large m-4", 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
 
+          <%# only display users where status: pending %>
+          <% pending_users.where(status:"pending").each do |p_user| %>
+            <%= "name: #{p_user.user.first_name}" %>
+            <%= link_to "accept", accept_itinerary_user_path(p_user), method: :patch %>
+            <%= link_to "reject", reject_itinerary_user_path(p_user), method: :patch %>
+          <% end %>
         </div>
 
+        <%# accept or reject %>
       </div>
     </div>
   </div>
+
 
   <%# card 3: Requests %>
 </div>

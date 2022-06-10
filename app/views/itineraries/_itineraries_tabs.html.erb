@@ -45,7 +45,8 @@
 
 
     <div data-itinerary-tabs-target="tabThree tab" class="tab-content">
-      <%= render "tab_member" %>
+      <% organiser_name = "#{@organiser.first_name} #{@organiser.last_name}"  %>
+    <%= render "tab_member", organiser: organiser_name, pending_users: @pending_users %>
     </div>
 
 

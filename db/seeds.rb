@@ -88,6 +88,13 @@ puts "Creating itineraries..."
   accepted_user = interested_users.pop
   pending_users = interested_users # default value of itinerary_user is pending
 
+  pending_users.each do |person|
+    new = ItineraryUser.new
+    new.itinerary = itinerary
+    new.user = person
+    new.save!
+  end
+
   # interested_users.each do |person|
   #   new = ItineraryUser.new
   #   new.itinerary = itinerary

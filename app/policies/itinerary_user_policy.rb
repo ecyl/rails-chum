@@ -15,10 +15,10 @@ class ItineraryUserPolicy < ApplicationPolicy
   end
 
   def accept?
-    record.user == @itinerary.user
+    record.itinerary.user == user
   end
 
   def decline?
-    record.user == @itinerary.user
+    record.itinerary.user == user
   end
 end

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     # #confirm method
 
     # accept and reject actions
+  end
+
+  resources :itinerary_users, only: [] do
     member do
       patch :accept
       patch :reject

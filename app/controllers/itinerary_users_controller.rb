@@ -3,13 +3,21 @@ class ItineraryUsersController < ApplicationController
   before_action :find_itinerary, only: [:new, :create]
 
   def accept
-    @itinerary_user.status == "accepted"
-    authorize @itinerary # pass into policy for authorization
+    @itinerary_user.status = "accepted"
+    @itinerary = find_itinerary_by_assocation
+
+    if @itinerary_user.save
+      redirect_to itinerary_path(@itinerary)
+    else
+      redirect_to itinerary_path(@itinerary)
+    end
+    authorize @itinerary_user  # look for ItineraryUserPolicy class
   end
 
   def reject
-    @itinerary_user.status == "rejected"
-    authorize @itinerary
+    @itinerary_user.status = "rejected"
+    @itinerary = find_itinerary_by_assocation
+    authorize @itinerary_user  # look for ItineraryUserPolicy class
   end
 
   def new
@@ -38,6 +46,10 @@ class ItineraryUsersController < ApplicationController
 
   def find_itinerary
     @itinerary = Itinerary.find(params[:itinerary_id])
+  end
+
+  def find_itinerary_by_assocation
+    @itinerary = @itinerary_user.itinerary
   end
 
   def itinerary_user_params
