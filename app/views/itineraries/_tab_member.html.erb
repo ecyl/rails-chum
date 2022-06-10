@@ -22,28 +22,40 @@
     </div>
   </div>
   <%# card 2: Current travelers%>
+
   <div class="container d-flex mx-auto">
-    <div class="bg-platinum d-flex justify-content-center align-items-center" >
-      <p class='text-center'>Current travellers in this trip</p>
-      <div>
-        <div>
-          <%= link_to '#' do %>
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-large m-4", 'aria-haspopup': true, 'aria-expanded': false %>
-          <% end %>
-
-          <%# only display users where status: pending %>
-          <% pending_users.where(status:"pending").each do |p_user| %>
-            <%= "name: #{p_user.user.first_name}" %>
-            <%= link_to "accept", accept_itinerary_user_path(p_user), method: :patch %>
-            <%= link_to "reject", reject_itinerary_user_path(p_user), method: :patch %>
-          <% end %>
-        </div>
-
-        <%# accept or reject %>
+  <div class="container bg-platinum">
+    <h5 class="text-center">Current travelers in this trip</p>
+    <div class='container-avatars'>
+      <div class="rayan">
+        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-large" alt="">
+        <p>Rayan</p>
+      </div>
+      <div class="germaine">
+        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-large" alt="">
+        <p>Germaine</p>
+      </div>
+      <div class="helen">
+        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-large" alt="">
+        <p>Germaine</p>
+      </div>
+      <div class="helen">
+        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-large" alt="">
+        <p>Germaine</p>
+      </div>
+      <div class="helen">
+        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-large" alt="">
+        <p>Germaine</p>
       </div>
     </div>
   </div>
-
+  </div>
 
   <%# card 3: Requests %>
 </div>
+
+          <%# pending_users.where(status:"pending").each do |p_user| %>
+            <%# "name: #{p_user.user.first_name}" %>
+            <%# link_to "accept", accept_itinerary_user_path(p_user), method: :patch %>
+            <%# link_to "reject", reject_itinerary_user_path(p_user), method: :patch %>
+          <%# end %>
