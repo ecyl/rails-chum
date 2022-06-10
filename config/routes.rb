@@ -16,6 +16,12 @@ Rails.application.routes.draw do
     resources :announcements, only: [ :new, :create, :show ]
     resources :itinerary_users, only: [:new, :create]
     # #confirm method
+
+    # accept and reject actions
+    member do
+      patch :accept
+      patch :reject
+    end
   end
 
   resources :chatrooms, only: :show do

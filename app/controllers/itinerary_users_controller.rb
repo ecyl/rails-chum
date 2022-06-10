@@ -3,9 +3,13 @@ class ItineraryUsersController < ApplicationController
   before_action :find_itinerary, only: [:new, :create]
 
   def accept
+    @itinerary_user.status == "accepted"
+    authorize @itinerary # pass into policy for authorization
   end
 
   def reject
+    @itinerary_user.status == "rejected"
+    authorize @itinerary
   end
 
   def new
@@ -23,8 +27,6 @@ class ItineraryUsersController < ApplicationController
     else
       render :new
     end
-
-
     authorize @itinerary_user
   end
 

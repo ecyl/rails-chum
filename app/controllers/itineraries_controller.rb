@@ -11,6 +11,16 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary
+    @markers = @itinerary.events.geocoded.map do |location|
+      {
+        lat: location.latitude,
+        lng: location.longitude
+      }
+    end
+
+    # to get users interested to join itinerary
+    @pending_users = find_pending_users
+    @accepted_users = find_accepted_users
   end
 
   def new
@@ -34,6 +44,7 @@ class ItinerariesController < ApplicationController
       @itinerary.save!
       redirect_to itinerary_path(@itinerary)
     end
+    authorize @itinerary
   rescue ActiveRecord::RecordInvalid
     render :new
   end
@@ -49,5 +60,15 @@ class ItinerariesController < ApplicationController
   def set_itinerary
     @itinerary = Itinerary.find(params[:id])
     authorize @itinerary
+  end
+
+  def find_pending_users
+    @itinarary = set_itinerary
+    @pending_users = @itinerary.itinerary_users.where(status: "pending")
+  end
+
+  def find_accepted_users
+    @itinarary = set_itinerary
+    @accepted_users = @itinerary.itinerary_users.where(status: "accepted")
   end
 end

@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :itinerary_users
   has_many :itineraries, through: :itinerary_users, dependent: :destroy
   has_many :user_chatrooms
+  has_many :chatrooms, through: :user_chatrooms, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
