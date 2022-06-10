@@ -1,12 +1,1 @@
-<div class="black-overlay">
-    <div class="m-auto">
-      <div class="popup-blue my-auto">
-        <h3 class="text-white mb-5">Send a request to join this trip</h3>
-          <%= simple_form_for([@itinerary, @itinerary_user]) do |f| %>
-            <%= f.input :message, label: "Send the organizer a message", label_html:{ class: "text-white mb-3" } %>
-            <%= f.button :submit, class:"btn-platinum btn-platinum-normal mt-5"%>
-
-          <% end %>
-      </div>
-    </div>
-</div>
+<%= render "follower_request", itinerary: @itinerary, itinerary_user: @itinerary_user %>

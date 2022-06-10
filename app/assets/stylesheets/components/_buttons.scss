@@ -49,12 +49,12 @@
 .btn-platinum {
   background-color: $platinum;
   color: $blue;
+}
 
 //Black Buttons//
 .btn-black {
   background-color: $jet;
   color: white;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,7 +73,7 @@
 .btn-platinum.normal {
   width: 100px;
 }
-  
+
 .btn-black a {
   text-decoration: none;
   color: white;
