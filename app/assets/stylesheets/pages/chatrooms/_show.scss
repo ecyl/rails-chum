@@ -5,7 +5,7 @@
 }
 
 .title {
-  margin: 16px;
+  margin: 24px;
 }
 
 .chatroom-summary {
@@ -15,6 +15,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+.chatroom-summary-private {
+  flex: 0 0 50%;
 }
 
 .container-chatroom {
