@@ -1,5 +1,30 @@
-<h1>List of trips for location</h1>
+<div class="container bg-white my-5 p-4">
+  <!-- Header & back link to homepage -->
+  <div class="row my-3">
+    <div class="col-12 text-center" style="position: relative">
+      <div class="d-flex align-items-center mb-3" style= "position: absolute; top:0; left: 5;">
+        <i class="fas fa-chevron-left"></i>
+        <%= link_to "Back", root_path, class: "text-decoration-none black-link" %>
+      </div>
+      <h1><strong>All Trips</strong></h1>
+    </div>
+  </div>
 
-<% @itineraries.each do |itinerary| %>
-  <p><%= link_to itinerary.title, itinerary_path(itinerary) %></p>
-<% end %>
+  <!-- Itinerary cards -->
+  <div class="row">
+    <% @itineraries.each do |itinerary| %>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="card-trip">
+          <!-- Image -->
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <!-- Info -->
+          <div>
+            <h2><%= link_to itinerary.title, itinerary_path(itinerary) %></h2>
+            <p><%= itinerary.description %></p>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
