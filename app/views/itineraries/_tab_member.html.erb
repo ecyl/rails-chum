@@ -1,8 +1,8 @@
 <div class="container d-flex justify-content-center">
 
 <%# card 1: Who organised it %>
-<div class="container border-black d-flex justify-content-between">
-  <div class="container m-3 d-flex justify-content-center align-items-center">
+<div class="container border-black d-flex">
+  <div class="container m-3 d-flex justify-content-start align-items-center">
     <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
     <div class="p-2">
       <p class="text-xl">Organised by: <br>Raymond</p>
@@ -11,8 +11,14 @@
     </div>
   </div>
 
-  <p>test</p>
-  <p>test</p>
+  <div class="p-3 d-flex align-items-center">
+    <div>
+      <p><strong>Languages: </strong>English, French</p>
+      <p><strong>Response time: </strong>English, French</p>
+      <%= link_to "Find out more about me", '#', class: "btn-black rounded" %>
+      <%= link_to "Send message", '#', class: "btn-black rounded mt-3" %>
+    </div>
+  </div>
 </div>
 <%# card 2: Current travelers%>
 <%# card 3: Requests %>
