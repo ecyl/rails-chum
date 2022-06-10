@@ -44,10 +44,17 @@
   height: 60px;
 }
 
+// platinum buttons
+
+.btn-platinum {
+  background-color: $platinum;
+  color: $blue;
+
 //Black Buttons//
 .btn-black {
   background-color: $jet;
   color: white;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,6 +65,15 @@
   transition: background-color 0.2s;
 }
 
+.btn-platinum:hover {
+  background-color: #bebebe;
+  color: $blue;
+}
+
+.btn-platinum.normal {
+  width: 100px;
+}
+  
 .btn-black a {
   text-decoration: none;
   color: white;

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :itineraries do
     resources :events, only: [ :new, :create, :show ]
     resources :announcements, only: [ :new, :create, :show ]
-    resources :itinerary_users, only: [:create]
+    resources :itinerary_users, only: [:new, :create]
     # #confirm method
   end
 
