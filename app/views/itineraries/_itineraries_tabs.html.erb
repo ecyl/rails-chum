@@ -1,69 +1,40 @@
+<div class="tabs" data-controller="itinerary-tabs">
+  <div class="tabs-head">
+    <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle 1 active">Overview</span>
+    <span data-tab="tabTwoTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle 2">Calendar</span>
+    <span data-tab="tabThreeTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle 3">Members</span>
+    <span data-tab="tabFourTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle 4">Announcements</span>
+  </div>
 
-<div class="nav-tabs">
-  <nav>
-    <div class="nav nav-tabs" role="tablist">
-      <button class="nav-link active" id="itinerary-overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab"
-       type="button" role="tab" aria-controls="overview-tab" aria-selected="true">Overview</button>
-      <button class="nav-link" id="itinerary-calendar-tab" data-bs-toggle="tab" data-bs-target="#calendar-tab"
-       type="button" role="tab" aria-controls="calendar-tab" aria-selected="false">Calendar</button>
-      <button class="nav-link" id="itinerary-members-tab" data-bs-toggle="tab" data-bs-target="#members-tab"
-       type="button" role="tab" aria-controls="members-tab" aria-selected="false">Members</button>
-      <button class="nav-link" id="itinerary-announcements-tab" data-bs-toggle="tab" data-bs-target="#announcements-tab"
-       type="button" role="tab" aria-controls="announcements-tab" aria-selected="false">Announcements</button>
-    </div>
-  </nav>
-
-  <div class="tab-content" id="tab-content">
-    <div class="tab-pane fade show active p-3" id="overview-tab" role="tabpanel" aria-labelledby="itinerary-overview-tab">
-
-    <%# Overview information. Nested within is an accordion and each item displays an event %>
-      <div class="overview-container">
-        <h2 class="mt-2">Itinerary</h2>
-        <div class="overview-basic-info mt-5">
-          <strong><p>Description</p></strong>
-          <p><%= @itinerary.description %></p>
-        </div>
-      </div>
-
-        <%# Beginning of accordion %>
-        <div class="overview-accordion col-6"> <%# Accordion container %>
-          <div class="accordion" id="accordionExample">
-            <% @itinerary.events.each do |event| %>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <%= event.date_start %> <%# INSERT EVENT CARD HERE %>
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <%= event.title %>
-                    <%= event.description %>
-                  </div>
-                </div>
-            </div>
-            </div>
+  <div class="tabs-body">
+    <div data-itinerary-tabs-target="tabOne tab"  class="tab-content 1-content active">
+      <div class="contents">
+        <h4>Itinerary</h4>
+        <p><strong>Description</strong></p>
+        <p class="mb-3"><%= @itinerary.description %></p>
+        <% if @itinerary.events.nil? %>
+          <div class="empty">
+            <p>Oops. You have no events yet</p>
+            <%= link_to 'Add an event', new_itinerary_event_path(@itinerary), class: "btn-orange medium mt-3"%>
           </div>
-        </div> <%# End of accordion %>
+        <% else %>
+          <%= render 'itinerary_accordion', itinerary: @itinerary %>
         <% end %>
-
       </div>
     </div>
 
-    <div class="tab-pane fade p-3" id="calendar-tab" role="tabpanel" aria-labelledby="itinerary-calendar-tab">
-      <h2>Testing meep</h2>
-      <p>Peanut face</p>
+
+
+    <div data-itinerary-tabs-target="tabTwo tab" class="tab-content 2-content">
+      <p>Testing 2</p>
+    </div>
+    <div data-itinerary-tabs-target="tabThree tab" class="tab-content 3-content">
+      <p>Testing 3</p>
+    </div>
+    <div data-itinerary-tabs-target="tabFour tab" class="tab-content 4-content">
+      <p>Testing 4</p>
     </div>
 
-    <div class="tab-pane fade p-3" id="members-tab" role="tabpanel" aria-labelledby="itinerary-members-tab">
-      <h2>Testing b;ehg</h2>
-      <p>bika</p>
-    </div>
-
-    <div class="tab-pane fade p-3" id="announcements-tab" role="tabpanel" aria-labelledby="itinerary-announcements-tab">
-      <h2>Announcement bla</h2>
-      <p>chickenf eet</p>
-    </div>
   </div>
 
 </div>
