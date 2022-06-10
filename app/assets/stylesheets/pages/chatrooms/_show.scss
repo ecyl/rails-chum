@@ -4,19 +4,22 @@
   justify-content: center;
 }
 
+.title {
+  margin: 16px;
+}
+
 .chatroom-summary {
-  left: 274px;
-  top: 271px;
   border: 1px solid #646363;
   border-radius: 8px;
   padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .container-chatroom {
   width: 736px;
   height: auto;
-  left: 274px;
-  top: 271px;
   border: 1px solid #646363;
   border-left: 0;
   border-radius: 8px;
@@ -24,6 +27,9 @@
 
 .chatroom-name {
   padding: 16px;
+}
+
+.center {
   text-align: center;
 }
 

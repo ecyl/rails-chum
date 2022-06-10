@@ -1,3 +1,7 @@
+<div class="title center">
+  <h1>My Messages</h1>
+</div>
+
 <div class="chatroom">
     <%# side bar to show the chats %>
     <div class="chatroom-summary">
@@ -7,6 +11,9 @@
 
       <div class="chatroom-summary-group">
         <h2>Group Chats</h2>
+        <ul>
+        <li><%= @chatroom.name %></li>
+        </ul>
       </div>
     </div>
     <%# chatrooms %>
@@ -14,7 +21,7 @@
     data-controller="chatroom-subscription"
     data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
     >
-    <h2 class="chatroom-name"><%= @chatroom.name %></h2>
+    <h2 class="chatroom-name center"><%= @chatroom.name %></h2>
 
       <div class="messages" data-chatroom-subscription-target="messages">
       <% @chatroom.messages.each do |message| %>
