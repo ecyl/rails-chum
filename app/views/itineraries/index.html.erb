@@ -16,7 +16,12 @@
       <div class="col-12 col-sm-6 col-md-4 mb-4">
         <div class="card-trip">
           <!-- Image -->
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <% if itinerary.photo.attached? %>
+            <%= cl_image_path itinerary.photo.key %>
+          <% else %>
+            <!-- TODO: This needs to match the itinerary banner image in the show page -->
+            <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
+          <% end %>
           <!-- Info -->
           <div class="card-trip-infos">
             <div class="favorite-btn"><i class="far fa-heart"></i></div>
