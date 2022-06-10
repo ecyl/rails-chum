@@ -13,4 +13,12 @@ class ItineraryUserPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def accept?
+    record.user == @itinerary.user
+  end
+
+  def decline?
+    record.user == @itinerary.user
+  end
 end

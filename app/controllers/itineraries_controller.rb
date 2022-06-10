@@ -17,6 +17,10 @@ class ItinerariesController < ApplicationController
         lng: location.longitude
       }
     end
+
+    # to get users interested to join itinerary
+    @pending_users = find_pending_users
+    @accepted_users = find_accepted_users
   end
 
   def new
@@ -55,5 +59,15 @@ class ItinerariesController < ApplicationController
   def set_itinerary
     @itinerary = Itinerary.find(params[:id])
     authorize @itinerary
+  end
+
+  def find_pending_users
+    @itinarary = set_itinerary
+    @pending_users = @itinerary.itinerary_users.where(status: "pending")
+  end
+
+  def find_accepted_users
+    @itinarary = set_itinerary
+    @accepted_users = @itinerary.itinerary_users.where(status: "accepted")
   end
 end
