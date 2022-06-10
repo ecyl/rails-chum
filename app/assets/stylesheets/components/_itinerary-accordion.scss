@@ -1,0 +1,9 @@
+.accordion-button {
+  color: white;
+  background-color: $crimson;
+}
+
+.accordion-button.collapsed {
+  background-color: $crimson;
+  color: white;
+}

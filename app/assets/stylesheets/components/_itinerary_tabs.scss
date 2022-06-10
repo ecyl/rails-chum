@@ -41,11 +41,17 @@
 
 .contents {
   padding: 30px;
+  display: flex;
+  flex-direction: column;
 
   p {
     margin-top: 10px;
     margin-bottom: 0;
   }
+}
+
+.itinerary-events {
+  display: flex;
 }
 
 

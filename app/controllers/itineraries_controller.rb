@@ -11,6 +11,12 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary
+    @markers = @itinerary.events.geocoded.map do |location|
+      {
+        lat: location.latitude,
+        lng: location.longitude
+      }
+    end
   end
 
   def new
