@@ -6,10 +6,13 @@ export default class extends Controller {
   }
 
   updateNavbar() {
-    if (window.scrollY >= window.innerHeight) {
-      this.element.classList.add("navbar-chum-black")
-    } else {
-      this.element.classList.remove("navbar-chum-black")
+    // Check if at homepage
+    if (window.location.pathname === "/") {
+      if (window.scrollY >= window.innerHeight) {
+        this.element.classList.add("navbar-chum-black")
+      } else {
+        this.element.classList.remove("navbar-chum-black")
+      }
     }
   }
 }

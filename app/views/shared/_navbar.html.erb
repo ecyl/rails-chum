@@ -1,6 +1,6 @@
 <!-- Logged-in -->
 <% if user_signed_in? %>
-  <div class="navbar navbar-expand-sm navbar-light fixed-top navbar-chum" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
+  <div class="navbar navbar-expand-sm navbar-light fixed-top <%= "navbar-chum-black" unless request.path == '/' %>" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
     <div class="container-fluid">
       <!-- Logo -->
       <%= link_to root_path, class: "navbar-brand" do %>
@@ -55,7 +55,7 @@
 
 <!-- Not Logged-in -->
 <% else %>
-  <div class="navbar navbar-expand-sm navbar-light fixed-top navbar-chum" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
+  <div class="navbar navbar-expand-sm navbar-light fixed-top <%= "navbar-chum-black" unless request.path == '/' %>" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
     <div class="container-fluid">
       <!-- Logo -->
       <%= link_to root_path, class: "navbar-brand" do %>
