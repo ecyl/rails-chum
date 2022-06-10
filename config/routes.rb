@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     # #confirm method
   end
 
-  resources :chatrooms do
+  resources :chatrooms, only: :show do
     resources :messages
   end
 
