@@ -1,0 +1,10 @@
+.home-banner {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('https://source.unsplash.com/zGhDVMgmjIU');
+  background-size: cover;
+  background-position: bottom center;
+  top: 10px;
+  height: 100vh;
+  color: $black;
+  text-align: center;
+  padding-top: 40vh;
+}

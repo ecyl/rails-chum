@@ -14,16 +14,15 @@ Rails.application.routes.draw do
   resources :itineraries do
     resources :events, only: [ :new, :create, :show ]
     resources :announcements, only: [ :new, :create, :show ]
-    resources :itinerary_users, only: [:create]
+    resources :itinerary_users, only: [:new, :create]
     # #confirm method
   end
 
-  resources :chatrooms do
-    resources :messages
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
   end
 
   resources :users, only: [:show]
-
 
   # resources :itinerary_users, only: --> accept/reject
 end
