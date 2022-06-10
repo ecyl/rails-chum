@@ -44,7 +44,7 @@
               </li>
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "My Trips", "#", class: "dropdown-item" %></li>
-              <li><%= link_to "My Messages", "#", class: "dropdown-item" %></li>
+              <li><%= link_to "My Messages", chatroom_path(current_user.user_chatrooms), class: "dropdown-item" %></li>
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
