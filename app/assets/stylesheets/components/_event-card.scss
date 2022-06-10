@@ -1,6 +1,8 @@
 .event-card {
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 20px;
+  padding: 5px;
 
 }
 
@@ -10,4 +12,8 @@
   height: 200px;
   width: 280px;
   padding: 10px;
+}
+
+.event.info {
+  font-size: small;
 }
