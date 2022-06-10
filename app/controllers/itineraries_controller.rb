@@ -44,6 +44,7 @@ class ItinerariesController < ApplicationController
       @itinerary.save!
       redirect_to itinerary_path(@itinerary)
     end
+    authorize @itinerary
   rescue ActiveRecord::RecordInvalid
     render :new
   end
