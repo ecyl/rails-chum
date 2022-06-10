@@ -78,8 +78,7 @@ puts "Creating itineraries..."
   organiser = interested_users.pop # length - 1 due to pop
   itinerary.user = organiser
 
-  accepted_user = interested_users.pop
-  pending_users = interested_users
+
 
   #assign chatroom to itinerary
   itinerary.chatroom = chatroom
@@ -87,6 +86,23 @@ puts "Creating itineraries..."
 
   # assign accepted users to chatroom
   # accepted_users.each { |person| chatroom.users << person}
+  accepted_user = interested_users.pop
+  pending_users = interested_users # default value of itinerary_user is pending
+
+  # interested_users.each do |person|
+  #   new = ItineraryUser.new
+  #   new.itinerary = itinerary
+  #   new.user = person
+  #   new.save!
+  # end
+  new = ItineraryUser.new
+  new.itinerary = itinerary
+  new.status = "accepted"
+  new.user = accepted_user
+  new.save!
+
+  itinerary.save!
+
   chatroom.users << accepted_user
   chatroom.users << organiser
   chatroom.save!
@@ -103,13 +119,9 @@ puts "Creating itineraries..."
 
   # assign itinerary_users
     # every interested_user thats not organiser is a member
-  interested_users.each do |person|
-    new = ItineraryUser.new
-    new.itinerary = itinerary
-    new.user = person
-    new.save!
-  end
-  itinerary.save!
+
+
+
 
 
   3.times do
@@ -134,9 +146,6 @@ puts "Creating itineraries..."
   end
 
 end
-puts "Each itinerary created with existing chatroom, some announcements, some events. Criteria not assigned yet though (TODO)."
-
-
 
 puts "Creating restrictions..."
 # creating itinerary_criteria – 1a) only women 1b) only men 2a) 20-30 y/o 2b) 30-40 y/o 2c) > 40 y/o

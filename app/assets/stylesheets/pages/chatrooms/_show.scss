@@ -1,0 +1,38 @@
+.container-chatroom {
+  margin: 93px auto;
+  width: 736px;
+  height: auto;
+  left: 274px;
+  top: 271px;
+  border: 1px solid #646363;
+  border-radius: 20px;
+}
+
+.chatroom-name {
+  padding: 16px;
+  text-align: center;
+}
+
+.messages {
+  padding: 32px;
+  padding-bottom: 0px;
+}
+
+.message-sender {
+  text-align: right;
+}
+
+.message-input {
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 16px;
+  border-top: 1px solid #646363;
+}
+
+form {
+  gap: 8px;
+}
+
+.btn-black.normal {
+  height: 62px;
+}

@@ -15,7 +15,6 @@
   <body class="<%= "nav-offset" unless request.path == '/' %>">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-
     <%= yield %>
   </body>
 </html>
