@@ -1,15 +1,39 @@
+.chatroom {
+  display: flex;
+  margin: 32px;
+  justify-content: center;
+}
+
+.title {
+  margin: 24px;
+}
+
+.chatroom-summary {
+  border: 1px solid #646363;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.chatroom-summary-private {
+  flex: 0 0 50%;
+}
+
 .container-chatroom {
-  margin: 93px auto;
   width: 736px;
   height: auto;
-  left: 274px;
-  top: 271px;
   border: 1px solid #646363;
-  border-radius: 20px;
+  border-left: 0;
+  border-radius: 8px;
 }
 
 .chatroom-name {
   padding: 16px;
+}
+
+.center {
   text-align: center;
 }
 
