@@ -1,5 +1,5 @@
 
-<div class="container chatroom">
+<div class="container-chatroom">
   <h1>#<%= @chatroom.name %></h1>
 
   <div class="messages">
@@ -12,9 +12,8 @@
         <p><%= message.content %></p>
       </div>
     <% end %>
-  </div>
 
-  <%= simple_form_for [@chatroom, @message],
+      <%= simple_form_for [@chatroom, @message],
   remote: true,
   html: {class: "d-flex"} do |f|
   %>
@@ -25,4 +24,5 @@
   %>
   <%= f.submit "Send", class: "btn btn-primary" %>
   <% end %>
+  </div>
 </div>
