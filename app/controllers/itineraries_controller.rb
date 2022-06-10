@@ -11,6 +11,12 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary
+    @markers = @itinerary.events.geocoded.map do |location|
+      {
+        lat: location.latitude,
+        lng: location.longitude
+      }
+    end
 
     # to get users interested to join itinerary
     @pending_users = find_pending_users
