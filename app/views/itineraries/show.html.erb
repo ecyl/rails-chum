@@ -23,19 +23,6 @@
 
 <div class="itinerary-body d-flex mt-4">
   <div class="itinerary-main col-6 mx-auto">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled">Disabled</a>
-      </li>
-    </ul>
+    <%= render 'itineraries_tabs', itinerary: @itinerary %>
   </div>
 </div>

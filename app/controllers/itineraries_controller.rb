@@ -4,9 +4,6 @@ class ItinerariesController < ApplicationController
     @itineraries = Itinerary.all
   end
 
-  def show
-  end
-
   def new
     @itinerary = Itinerary.new
   end
