@@ -1,9 +1,62 @@
-.nav-tabs > button {
-  color: #333533;
+// .nav-tabs > button {
+//   color: #333533;
 
+// }
+
+// .nav-tabs > button:hover {
+//   color: $orange;
+
+// }
+
+
+.tabs-head {
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }
 
-.nav-tabs > button:hover {
-  color: $orange;
+.tabs_toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
 
+.tabs_toggle.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: $alabaster;
+  font-weight: bold;
+}
+
+.tab-content.active {
+  display: contents;
+}
+
+.tab-content {
+  display: none;
+}
+
+.contents {
+  padding: 30px;
+
+  p {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}
+
+
+// For the empty events
+.empty {
+  height: 300px;
+  width: 400px;
+  margin-top: 10px;
+  background-color: $alabaster;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
