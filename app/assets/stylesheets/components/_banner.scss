@@ -1,0 +1,29 @@
+.home-banner {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('https://source.unsplash.com/zGhDVMgmjIU');
+  background-size: cover;
+  background-position: center center;
+  top: 10px;
+  height: 100vh;
+  color: $black;
+  // text-align: center;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  padding-top: 20vh;
+}
+
+.home-banner h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.banner-text {
+  text-align: center;
+  width: 50vw;
+}
+
+.banner-text p {
+  font-weight: 600;
+  color: $jet;
+}
