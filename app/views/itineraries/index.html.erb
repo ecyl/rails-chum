@@ -17,7 +17,8 @@
         <div class="card card-trip">
           <!-- Image -->
           <% if itinerary.photo.attached? %>
-            <%= cl_image_path itinerary.photo.key %>
+            <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
+            <%#<%= cl_image_path itinerary.photo.key %>
           <% else %>
             <!-- TODO: This needs to match the itinerary banner image in the show page -->
             <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
