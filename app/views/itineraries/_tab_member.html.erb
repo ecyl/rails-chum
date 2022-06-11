@@ -27,23 +27,13 @@
   <div class="container bg-platinum">
     <h4 class="text-center mt-5">Current travelers in this trip</p>
     <div class='flex-container-around wrap mt-5'>
-      <div class="rayan">
-        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar-xl avatar-margin-bottom" alt="">
-        <p><u><small>Rayan</small></u></p>
-      </div>
-
-      <div class="helen">
-        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar-xl avatar-margin-bottom" alt="">
-        <p><u><small>Rayan</small></u></p>
-      </div>
-      <div class="helen">
-        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar-xl avatar-margin-bottom" alt="">
-        <p><u><small>Rayan</small></u></p>
-      </div>
-      <div class="helen">
-        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-xl avatar-margin-bottom" alt="">
-        <p><u><small>Rayan</small></u></p>
-      </div>
+      <% accepted_users.each do |itinerary_user| %>
+        <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
+        <div class="rayan">
+          <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar-xl avatar-margin-bottom" alt="">
+          <p><u><small><%= fname %></small></u></p>
+        </div>
+      <% end %>
     </div>
   </div>
   </div>
