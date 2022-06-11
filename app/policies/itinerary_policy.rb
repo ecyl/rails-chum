@@ -17,4 +17,8 @@ class ItineraryPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def finalise?
+    record.user == user
+  end
 end

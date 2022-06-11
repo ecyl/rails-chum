@@ -93,6 +93,7 @@ puts "Creating itineraries..."
     new = ItineraryUser.new
     new.itinerary = itinerary
     new.user = person
+    new.message = Faker::Books::Dune.quote
     new.save!
   end
 

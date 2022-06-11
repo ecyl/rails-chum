@@ -1,5 +1,5 @@
 class ItinerariesController < ApplicationController
-  before_action :set_itinerary, only: :show
+  before_action :set_itinerary, only: [:show, :confirm, :finalise]
   def index
     # @itineraries = Itinerary.all
 
@@ -47,6 +47,19 @@ class ItinerariesController < ApplicationController
     authorize @itinerary
   rescue ActiveRecord::RecordInvalid
     render :new
+  end
+
+  def finalise
+    # PATCH action to update finalised => true
+    @itinerary.finalised = true
+
+    if @itinerary.save
+      # insert flash confirmation
+      redirect_to itinerary_path(@itinerary), notice: "The itinerary is finalised"
+    else
+      # insert flash confirmation
+      redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to finalise"
+    end
   end
 
   private

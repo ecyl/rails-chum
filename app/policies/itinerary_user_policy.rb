@@ -18,7 +18,7 @@ class ItineraryUserPolicy < ApplicationPolicy
     record.itinerary.user == user
   end
 
-  def decline?
+  def reject?
     record.itinerary.user == user
   end
 end
