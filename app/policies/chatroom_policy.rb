@@ -9,4 +9,8 @@ class ChatroomPolicy < ApplicationPolicy
   def show?
     return true
   end
+
+  def new?
+    return true
+  end
 end

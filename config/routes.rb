@@ -27,8 +27,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chatrooms, only: [ :index, :show, :new, :create ] do
+  # to allow users to check on all of their chatrooms
+  resources :chatrooms, only: [ :index, :show ] do
     resources :messages, only: :create
+  end
+
+  # to allow for the follower to start a chat with the organiser
+  resources :itineraries, only: :show do
+    resources :chatrooms, only: [ :new, :create ]
   end
 
   resources :users, only: [:show]
