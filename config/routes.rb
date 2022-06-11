@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   # to allow users to check on all of their chatrooms
-  resources :chatrooms, only: [ :index, :show ] do
+  resources :chatrooms, only: [ :index, :show, :create ] do
     resources :messages, only: :create
   end
 

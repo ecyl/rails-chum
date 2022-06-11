@@ -8,6 +8,7 @@ class ChatroomsController < ApplicationController
     @message = Message.new
   end
 
+  # creating new chats from itinerary show
   def new
     itinerary = Itinerary.find(params[:itinerary_id])
     # find the organiser
@@ -18,10 +19,20 @@ class ChatroomsController < ApplicationController
 
   def create
     @chatroom = authorize Chatroom.new(chatroom_params)
+
+    # assign chatroom to current user
+    @chatroom.users << current_user
+
+    if @chatroom.save
+      redirect_to chatroom_path(@chatroom)
+    else
+      render :new
+    end
   end
 
   private
-  def chatroom_param
 
+  def chatroom_params
+    params.require(:chatroom).permit(:name)
   end
 end
