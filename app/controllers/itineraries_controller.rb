@@ -1,5 +1,5 @@
 class ItinerariesController < ApplicationController
-  before_action :set_itinerary, only: [:show, :confirm]
+  before_action :set_itinerary, only: [:show, :confirm, :finalise]
   def index
     # @itineraries = Itinerary.all
 
@@ -49,7 +49,7 @@ class ItinerariesController < ApplicationController
     render :new
   end
 
-  def finalise!
+  def finalise
     # PATCH action to update finalised => true
     @itinerary.finalised = true
 
