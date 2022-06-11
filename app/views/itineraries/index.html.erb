@@ -7,7 +7,7 @@
   </div>
 
   <!-- Search form -->
-  <div class="search-container">
+  <div class="search-container" data-controller="search-itineraries">
     <div class="search-itineraries-card">
       <p>Where do you want to go?</p>
       <%= form_with url:"", method: :get, html: { class: 'itineraries-search-bar mb-4' } do |f| %>
