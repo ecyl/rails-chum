@@ -17,6 +17,7 @@
           <p class="text-m"><strong>Response time: </strong>English, French</p>
           <%= link_to "Find out more about me", '#', class: "btn-black rounded" %>
           <%= link_to "Send message", new_itinerary_chatroom_path(params[:id]), class: "btn-black rounded mt-3" %>
+          <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-black rounded mt-3" %>
         </div>
       </div>
     </div>
@@ -26,12 +27,12 @@
   <div class="container d-flex mx-auto">
   <div class="container bg-platinum">
     <h4 class="text-center mt-5" id='current-travellers-text'>Current travelers in this trip</h4>
-    <div class='flex-container-around wrap mt-3'>
+    <div class='flex-container-around wrap mt-4'>
       <% accepted_users.each do |itinerary_user| %>
         <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
         <div class="rayan">
           <div class='d-flex justify-content-center'>
-            <%= image_tag("https://kitt.lewagon.com/placeholder/users/rayjosong" ,class: "avatar-xl avatar-margin-bottom") %>
+            <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}" ,class: "avatar-xl avatar-margin-bottom") %>
           </div>
           <p class='text-center'><u><%= fname %></u></p>
         </div>
@@ -65,8 +66,13 @@
               <% end %>
               <%# side-by-side: buttons %>
               <div class="d-flex justify-content-center mx-5 p-3">
-                <i id="btn-accept" class="fa-solid fa-square-check"></i>
-                <i id="btn-reject" class="fa-solid fa-square-xmark mx-3"></i>
+                <%= link_to accept_itinerary_user_path(p_user), method: :patch do %>
+                  <i id="btn-accept" class="fa-solid fa-square-check"></i>
+                <% end %>
+
+                <%= link_to reject_itinerary_user_path(p_user), method: :patch do%>
+                  <i id="btn-reject" class="fa-solid fa-square-xmark mx-3"></i>
+                <% end %>
               </div>
             </div>
 
