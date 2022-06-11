@@ -12,7 +12,7 @@
           <div class="chatroom-summary-group">
             <h2>Group Chats</h2>
             <ul id="chat-names" data-chatroom-summary-target="results">
-            <li><%= chatroom.name %></li>
+            <li><%= link_to chatroom.name, chatroom_path(chatroom.id) %></li>
             </ul>
           </div>
         <% else %>
