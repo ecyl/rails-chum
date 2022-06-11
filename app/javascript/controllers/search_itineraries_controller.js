@@ -11,6 +11,15 @@ export default class extends Controller {
   }
 
   update(e) {
-    console.log("An ajax request will be here");
+    // AJAX request to update list based on search query
+    const query = `${this.inputTarget.value}`
+    const url = `${this.formTarget.action}?query=${query}`
+    fetch(url, { headers: { "Accept": "text/plain" } })
+    .then(response => response.text())
+    .then(data => {
+      console.log(data);
+      this.listTarget.outerHTML = data;
+    })
+
   }
 }
