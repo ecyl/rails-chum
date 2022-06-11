@@ -1,22 +1,25 @@
 <div class="container bg-white my-5 p-4">
   <!-- Header & back link to homepage -->
   <div class="row my-3">
-    <div class="col-12">
+    <div class="col-12 text-center">
       <h1><strong>All Trips</strong></h1>
     </div>
   </div>
 
   <!-- Search form -->
-  <div class="search-itineraries">
-    <p>Where do you want to go?</p>
-    <%= form_with url:"", method: :get, html: { class: 'mb-4' } do |f| %>
-      <%= f.text_field :query,
-                        class: "form-control",
-                        placeholder: "Type a destination...",
-                        value: params[:query]
-                         %>
-    <% end %>
+  <div class="search-container">
+    <div class="search-itineraries-card">
+      <p>Where do you want to go?</p>
+      <%= form_with url:"", method: :get, html: { class: 'itineraries-search-bar mb-4' } do |f| %>
+        <%= f.text_field :query,
+                          class: "form-control",
+                          placeholder: "Type a destination...",
+                          value: params[:query]
+                          %>
+      <% end %>
+    </div>
   </div>
+
 
   <!-- Itinerary cards -->
   <div class="row mt-5">
