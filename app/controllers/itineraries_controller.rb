@@ -8,7 +8,6 @@ class ItinerariesController < ApplicationController
     @itineraries = policy_scope(Itinerary).order(created_at: :desc)
   end
 
-
   def show
     @itinerary
     @markers = @itinerary.events.geocoded.map do |location|
@@ -19,6 +18,7 @@ class ItinerariesController < ApplicationController
     end
 
     # to get users interested to join itinerary
+    @organiser = @itinerary.user
     @pending_users = find_pending_users
     @accepted_users = find_accepted_users
   end
@@ -55,7 +55,6 @@ class ItinerariesController < ApplicationController
     params.require(:itinerary).permit(:title, :participant_limit, :description,
                                       :deadline, :finalised, :photo)
   end
-
 
   def set_itinerary
     @itinerary = Itinerary.find(params[:id])
