@@ -3,20 +3,24 @@
 </div>
 
 <div class="chat-summary d-flex col-6 mx-auto">
-  <div class="group-messages">
+  <div class="message-group">
     <h3>Group Messages</h3>
       <% @chatrooms.each do |chatroom| %>
         <% if chatroom.itinerary %>
-        <li><%= link_to chatroom.name, chatroom_path(chatroom) %></li>
+        <div class="chat-links">
+          <%= link_to chatroom.name, chatroom_path(chatroom) %>
+        </div>
         <% end %>
       <% end %>
   </div>
 
-  <div class="direct-messages">
+  <div class="message-group">
   <h3>Direct Messages</h3>
     <% @chatrooms.each do |chatroom| %>
       <% if chatroom.itinerary == nil %>
-        <li><%= link_to chatroom.name, chatroom_path(chatroom) %></li>
+        <div class="chat-links">
+          <%= link_to chatroom.name, chatroom_path(chatroom) %>
+        </div>
       <% end %>
     <% end %>
   </div>
