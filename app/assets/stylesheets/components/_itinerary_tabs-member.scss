@@ -1,4 +1,4 @@
-.border-black {
+.border-black-large {
   border: 1px solid rgba(black, 0.15);
   border-radius: 8px;
   margin: 1rem;
@@ -15,9 +15,34 @@
 
 .bg-platinum {
   background-color: $platinum;
+  border-radius: 8px;
+  margin: 1rem;
 }
 
+.bg-white {
+  background-color: white;
+}
 // #current-travelers {
 //   height: 30vh;
 //   width: 100vw;
 // }
+
+.flex-container-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+#request-message {
+  display: flex;
+  justify-content: start;
+}
+
+.border-black {
+  border: 1px solid rgba(black, 0.15);
+  border-radius: 8px;
+  margin: 1rem;
+}
