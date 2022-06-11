@@ -10,53 +10,60 @@
   <div class="search-container" data-controller="search-itineraries">
     <div class="search-itineraries-card">
       <p>Where do you want to go?</p>
-      <%= form_with url:"", method: :get, html: { class: 'itineraries-search-bar mb-4' } do |f| %>
+      <%= form_with url:"", method: :get, html: { class: 'itineraries-search-bar mb-4',
+      data: { search_itineraries_target: 'form' } } do |f| %>
         <%= f.text_field :query,
                           class: "form-control",
                           placeholder: "Type a destination...",
-                          value: params[:query]
+                          value: params[:query],
+                          data: {
+                            search_itineraries_target: 'input'
+                          }
                           %>
       <% end %>
     </div>
-  </div>
 
+    <!-- Itinerary cards -->
+    <div data-search-itineraries-target = "list">
+      <div class="row mt-5">
+        <% @itineraries.each do |itinerary| %>
+          <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="card card-trip">
+              <!-- Image -->
+              <% if itinerary.photo.attached? %>
+                <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
+                <%#<%= cl_image_path itinerary.photo.key %>
+              <% else %>
+                <!-- TODO: This needs to match the itinerary banner image in the show page -->
+                <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
+              <% end %>
+              <!-- Info -->
+              <div class="card-trip-infos">
+                <div class="favorite-btn"><i class="far fa-heart"></i></div>
+                <!-- card text desc -->
+                <div class="d-flex align-items-center w-100">
+                  <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
+                  <div class="mx-3">
+                    <h2><%= itinerary.title %></h2>
+                    <p>by <%= itinerary.user.first_name %> <%= itinerary.user.last_name %></p>
+                  </div>
+                </div>
+                <div class="card-trip-desc-container">
+                  <p><%= itinerary.description %></p>
+                </div>
 
-  <!-- Itinerary cards -->
-  <div class="row mt-5">
-    <% @itineraries.each do |itinerary| %>
-      <div class="col-12 col-sm-6 col-md-4 mb-4">
-        <div class="card card-trip">
-          <!-- Image -->
-          <% if itinerary.photo.attached? %>
-            <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
-            <%#<%= cl_image_path itinerary.photo.key %>
-          <% else %>
-            <!-- TODO: This needs to match the itinerary banner image in the show page -->
-            <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
-          <% end %>
-          <!-- Info -->
-          <div class="card-trip-infos">
-            <div class="favorite-btn"><i class="far fa-heart"></i></div>
-            <!-- card text desc -->
-            <div class="d-flex align-items-center w-100">
-              <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
-              <div class="mx-3">
-                <h2><%= itinerary.title %></h2>
-                <p>by <%= itinerary.user.first_name %> <%= itinerary.user.last_name %></p>
+                <div class="d-flex justify-content-end w-100">
+                  <%= link_to "Details", itinerary_path(itinerary), class:"btn-black align-right" %>
+                </div>
+
               </div>
             </div>
-            <div class="card-trip-desc-container">
-              <p><%= itinerary.description %></p>
-            </div>
-
-            <div class="d-flex justify-content-end w-100">
-              <%= link_to "Details", itinerary_path(itinerary), class:"btn-black align-right" %>
-            </div>
-
           </div>
-        </div>
-      </div>
 
-    <% end %>
+        <% end %>
+      </div>
+    </div>
+
   </div>
-</div>
+
+  </div>
