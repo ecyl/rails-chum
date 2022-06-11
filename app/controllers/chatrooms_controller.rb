@@ -1,8 +1,6 @@
 class ChatroomsController < ApplicationController
   def index
     @chatrooms = policy_scope(Chatroom).where(id: current_user.chatroom_ids)
-    # find itineraries created by current user or joined by current user
-    @itineraries = current_user.itineraries
   end
 
   def show
@@ -22,7 +20,7 @@ class ChatroomsController < ApplicationController
   def create
     @chatroom = authorize Chatroom.new(chatroom_params)
 
-    # assign chatroom to current user
+    # assign chatroom to current user (sender)
     @chatroom.users << current_user
 
     if @chatroom.save
