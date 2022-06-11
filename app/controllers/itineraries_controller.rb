@@ -49,7 +49,7 @@ class ItinerariesController < ApplicationController
     render :new
   end
 
-  def confirm
+  def finalise!
     # PATCH action to update finalised => true
     @itinerary.finalised = true
 

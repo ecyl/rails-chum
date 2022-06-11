@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     resources :announcements, only: [ :new, :create, :show ]
     resources :itinerary_users, only: [:new, :create]
     # #confirm method
-
+    member do
+      patch :finalise
+    end
     # accept and reject actions
   end
 
