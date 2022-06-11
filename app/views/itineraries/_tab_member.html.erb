@@ -1,11 +1,11 @@
 <div class="d-flex flex-column">
   <%# card 1: Who organised it %>
   <div class="container d-flex mx-auto">
-    <div class="container border-black d-flex">
+    <div class="container border-black-large d-flex">
       <div class="container m-3 d-flex justify-content-start align-items-center">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="p-2">
-          <p class="text-xl">Organised by: <br>Raymond</p>
+          <p class="text-xl">Organised by: <br><%= organiser %></p>
           <i class="fa-solid fa-location-dot"></i>
           <span>Singapore</span>
         </div>
@@ -22,20 +22,52 @@
     </div>
   </div>
   <%# card 2: Current travelers%>
+
   <div class="container d-flex mx-auto">
-    <div class="bg-platinum d-flex justify-content-center align-items-center" >
-      <p class='text-center'>Current travellers in this trip</p>
-      <div>
-        <div>
-          <%= link_to '#' do %>
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-large m-4", 'aria-haspopup': true, 'aria-expanded': false %>
-          <% end %>
-
+  <div class="container bg-platinum">
+    <h4 class="text-center mt-5">Current travelers in this trip</p>
+    <div class='flex-container-around wrap mt-5'>
+      <% accepted_users.each do |itinerary_user| %>
+        <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
+        <div class="rayan">
+          <%= image_tag("https://kitt.lewagon.com/placeholder/users/rayjosong" ,class: "avatar-xl avatar-margin-bottom") %>
+          <p><u><small><%= fname %></small></u></p>
         </div>
-
-      </div>
+      <% end %>
     </div>
+  </div>
   </div>
 
   <%# card 3: Requests %>
+  <div class="container d-flex mx-auto">
+    <div class="container bg-platinum">
+      <%# each instance of request %>
+      <div class="container bg-white my-3">
+        <%# side-by-side: avatar, name & message %>
+        <div id='request-message' class='p-4'>
+          <div class="d-flex flex-column">
+            <%= image_tag("https://kitt.lewagon.com/placeholder/users/ecyl", class: "avatar-larger mb-3") %>
+            <p class="text-center">Eunice</p>
+          </div>
+
+          <div>
+            <p class="border-black p-2">Hi everyone! Hope I can join you all on this trip. You guys are really cool and I want to be part of you</p>
+          </div>
+          <%# side-by-side: buttons %>
+          <div class="d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-square-check"></i>
+            <i class="fa-solid fa-square-xmark"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
 </div>
+
+          <%# pending_users.where(status:"pending").each do |p_user| %>
+            <%# "name: #{p_user.user.first_name}" %>
+            <%# link_to "accept", accept_itinerary_user_path(p_user), method: :patch %>
+            <%# link_to "reject", reject_itinerary_user_path(p_user), method: :patch %>
+          <%# end %>

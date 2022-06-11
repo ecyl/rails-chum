@@ -1,4 +1,6 @@
 require 'faker'
+require 'json'
+require 'open-uri'
 
 puts "Cleaning database..."
 User.destroy_all
@@ -37,7 +39,6 @@ puts "Creating users..."
 end
 
 users = User.all
-
 
 
 puts "Creating events..."
@@ -87,6 +88,13 @@ puts "Creating itineraries..."
   # accepted_users.each { |person| chatroom.users << person}
   accepted_user = interested_users.pop
   pending_users = interested_users # default value of itinerary_user is pending
+
+  pending_users.each do |person|
+    new = ItineraryUser.new
+    new.itinerary = itinerary
+    new.user = person
+    new.save!
+  end
 
   # interested_users.each do |person|
   #   new = ItineraryUser.new
