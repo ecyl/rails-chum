@@ -1,0 +1,16 @@
+<div class="title center">
+  <h1>Start a new conversation with <%= @organiser_details.first_name %></h1>
+</div>
+
+<%# to create and be redirect to show %>
+<div class="container">
+  <div class="row">
+    <%= simple_form_for @chatroom do |f|%>
+    <%= f.input :name,
+    label: "Name of your chat",
+    placeholder: "Title of your chat, think creative!"
+    %>
+    <%= f.submit "Start", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
