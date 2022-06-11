@@ -58,7 +58,7 @@ class ItinerariesController < ApplicationController
       redirect_to itinerary_path(@itinerary), notice: "The itinerary is finalised"
     else
       # insert flash confirmation
-      redirect_to itinerary_path(@itinerary)
+      redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to finalise"
     end
   end
 

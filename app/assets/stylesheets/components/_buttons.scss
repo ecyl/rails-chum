@@ -107,3 +107,33 @@
 .btn.black.tall {
   height: 60px;
 }
+
+// Crimson buttons
+
+.btn-crimson {
+  background-color: $crimson;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn-crimson:hover {
+  background-color: #ff8a2b;
+  color: white;
+}
+
+.btn-crimson.rounded {
+  width: 300px;
+  border-radius: 15px !important;
+}
+
+// .btn-crimson-large {
+//   width: 350px;
+//   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+// }
