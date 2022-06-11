@@ -3,7 +3,7 @@
   <div class="container d-flex mx-auto">
     <div class="container border-black d-flex">
       <div class="container m-3 d-flex justify-content-start align-items-center">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="p-2">
           <p class="text-xl">Organised by: <br><%= organiser %></p>
           <i class="fa-solid fa-location-dot"></i>
@@ -25,30 +25,46 @@
 
   <div class="container d-flex mx-auto">
   <div class="container bg-platinum">
-    <h5 class="text-center">Current travelers in this trip</p>
-    <div class='flex-container-around wrap'>
+    <h4 class="text-center mt-5">Current travelers in this trip</p>
+    <div class='flex-container-around wrap mt-5'>
       <div class="rayan">
-        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-large" alt="">
-        <p>Rayan</p>
+        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar-xl avatar-margin-bottom" alt="">
+        <p><u><small>Rayan</small></u></p>
       </div>
 
       <div class="helen">
-        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-large" alt="">
-        <p>Germaine</p>
+        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar-xl avatar-margin-bottom" alt="">
+        <p><u><small>Rayan</small></u></p>
       </div>
       <div class="helen">
-        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-large" alt="">
-        <p>Germaine</p>
+        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar-xl avatar-margin-bottom" alt="">
+        <p><u><small>Rayan</small></u></p>
       </div>
       <div class="helen">
-        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-large" alt="">
-        <p>Germaine</p>
+        <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar avatar-xl avatar-margin-bottom" alt="">
+        <p><u><small>Rayan</small></u></p>
       </div>
     </div>
   </div>
   </div>
 
   <%# card 3: Requests %>
+  <div class="container d-flex mx-auto">
+    <div class="container bg-platinum">
+      <%# each instance of request %>
+      <div class="container bg-white my-3">
+        <%# side-by-side: avatar, name & message %>
+        <div class="d-flex justify-space-around">
+
+          <div></div>
+        </div>
+        <%# side-by-side: buttons %>
+        <div></div>
+
+      </div>
+
+    </div>
+  </div>
 </div>
 
           <%# pending_users.where(status:"pending").each do |p_user| %>
