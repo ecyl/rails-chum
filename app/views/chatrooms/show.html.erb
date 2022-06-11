@@ -2,8 +2,27 @@
   <h1>Your chatroom: <%= @chatroom.name %></h1>
 </div>
 
-<%# chatrooms %>
-<div class="chatbox col-6 mx-auto">
+
+<div class="chatbox d-flex col-6 mx-auto">
+  <%# group chat details %>
+  <div class="chatroom-details">
+    <h3><%= @chatroom.itinerary.title %></h3>
+    <br>
+
+    <h3>Organiser</h3>
+    <%= @organiser.first_name %>
+    <br>
+
+    <h3>Members</h3>
+    <% @chatroom.users.each do |user| %>
+    <%# to list one the members %>
+      <% if user.id != @organiser.id %>
+      <li><%= user.first_name %></li>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%# chatrooms %>
   <div class="container-chatroom"
     data-controller="chatroom-subscription"
     data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
