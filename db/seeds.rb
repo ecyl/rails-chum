@@ -1,4 +1,6 @@
 require 'faker'
+require 'json'
+require 'open-uri'
 
 puts "Cleaning database..."
 User.destroy_all
@@ -37,7 +39,6 @@ puts "Creating users..."
 end
 
 users = User.all
-
 
 
 puts "Creating events..."

@@ -24,8 +24,11 @@
 //   width: 100vw;
 // }
 
-.container-avatars {
+.flex-container-around {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+}
+
+.wrap {
   flex-wrap: wrap;
 }
