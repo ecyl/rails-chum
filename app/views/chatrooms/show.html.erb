@@ -1,27 +1,49 @@
-<div class="container-chatroom"
+<div class="title center">
+  <h1>My Messages</h1>
+</div>
+
+<div class="chatroom">
+    <%# side bar to show the chats %>
+    <div class="chatroom-summary">
+      <div class="chatroom-summary-private">
+        <h2>Direct Messages</h2>
+      </div>
+
+      <div class="chatroom-summary-group">
+        <h2>Group Chats</h2>
+        <ul>
+        <li><%= @chatroom.name %></li>
+        </ul>
+      </div>
+    </div>
+    <%# chatrooms %>
+    <div class="container-chatroom"
     data-controller="chatroom-subscription"
     data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
->
-  <h1 class="chatroom-name">#<%= @chatroom.name %></h1>
+    >
+    <h2 class="chatroom-name center"><%= @chatroom.name %></h2>
 
-  <div class="messages" data-chatroom-subscription-target="messages">
-    <% @chatroom.messages.each do |message| %>
+      <div class="messages" data-chatroom-subscription-target="messages">
+      <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>
-    <% end %>
-  </div>
+      <% end %>
+      </div>
 
-  <div class="message-input">
-    <%= simple_form_for [@chatroom, @message],
-      remote: true,
-      html: {data: {action: "ajax:success->chatroom-subscription#resetForm"},
-            class: "d-flex"} do |f|
-    %>
-    <%= f.input :content,
-                label: false,
-                placeholder: "Message ##{@chatroom.name}",
-                wrapper_html: {class: "flex-grow-1"}
-    %>
-    <%= f.submit "Send", class: "btn-black normal" %>
-    <% end %>
-  </div>
+      <div class="message-input">
+        <%= simple_form_for [@chatroom, @message],
+        remote: true,
+        html: {data: {action: "ajax:success->chatroom-subscription#resetForm"},
+        class: "d-flex"} do |f|
+        %>
+
+        <%= f.input :content,
+        label: false,
+        placeholder: "Message ##{@chatroom.name}",
+        wrapper_html: {class: "flex-grow-1"}
+        %>
+
+        <%= f.submit "Send", class: "btn-black normal" %>
+        <% end %>
+      </div>
+    </div>
 </div>
