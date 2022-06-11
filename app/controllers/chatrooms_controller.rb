@@ -9,10 +9,19 @@ class ChatroomsController < ApplicationController
   end
 
   def new
+    itinerary = Itinerary.find(params[:itinerary_id])
+    # find the organiser
+    organiser_id = itinerary.user_id
+    @organiser_details = User.find(organiser_id)
     @chatroom = authorize Chatroom.new
   end
 
   def create
-    @chatroom = Chatroom.new
+    @chatroom = authorize Chatroom.new(chatroom_params)
+  end
+
+  private
+  def chatroom_param
+
   end
 end
