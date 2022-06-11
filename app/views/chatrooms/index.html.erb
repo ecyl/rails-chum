@@ -2,27 +2,28 @@
   <h1>My Messages</h1>
 </div>
 
-<div class="chatroom">
-    <%# side bar to show the chats %>
-    <div class="chatroom-summary" data-controller="chatroom-summary">
-      <%# reiterating through chatrooms to split into private chat and itinerary chats %>
+<div class="chat-summary d-flex col-6 mx-auto">
+  <div class="message-group">
+    <h3>Group Messages</h3>
       <% @chatrooms.each do |chatroom| %>
-        <%# check if the chatroom is tied to an itinerary (it will be a group chat) %>
         <% if chatroom.itinerary %>
-          <div class="chatroom-summary-group">
-            <h2>Group Chats</h2>
-            <ul id="chat-names" data-chatroom-summary-target="results">
-            <li><%= link_to chatroom.name, chatroom_path(chatroom.id) %></li>
-            </ul>
-          </div>
-        <% else %>
-          <div class="chatroom-summary-private">
-            <h2>Direct Messages</h2>
-            <ul>
-              <li><%= chatroom.name %></li>
-            </ul>
-          </div>
+        <div class="chat-links">
+          Itinerary Title: <%= chatroom.itinerary.title %>
+          <br>
+          Chatroom: <%= link_to chatroom.name, chatroom_path(chatroom) %>
+        </div>
         <% end %>
       <% end %>
-    </div>
+  </div>
+
+  <div class="message-group">
+  <h3>Direct Messages</h3>
+    <% @chatrooms.each do |chatroom| %>
+      <% if chatroom.itinerary == nil %>
+        <div class="chat-links">
+          <%= link_to chatroom.name, chatroom_path(chatroom) %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
