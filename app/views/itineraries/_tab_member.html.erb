@@ -25,13 +25,15 @@
 
   <div class="container d-flex mx-auto">
   <div class="container bg-platinum">
-    <h4 class="text-center mt-5">Current travelers in this trip</p>
-    <div class='flex-container-around wrap mt-5'>
+    <h4 class="text-center mt-5" id='current-travellers-text'>Current travelers in this trip</h4>
+    <div class='flex-container-around wrap mt-3'>
       <% accepted_users.each do |itinerary_user| %>
         <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
         <div class="rayan">
-          <%= image_tag("https://kitt.lewagon.com/placeholder/users/rayjosong" ,class: "avatar-xl avatar-margin-bottom") %>
-          <p><u><small><%= fname %></small></u></p>
+          <div class='d-flex justify-content-center'>
+            <%= image_tag("https://kitt.lewagon.com/placeholder/users/rayjosong" ,class: "avatar-xl avatar-margin-bottom") %>
+          </div>
+          <p class='text-center'><u><%= fname %></u></p>
         </div>
       <% end %>
     </div>
@@ -39,31 +41,42 @@
   </div>
 
   <%# card 3: Requests %>
-  <div class="container d-flex mx-auto">
-    <div class="container bg-platinum">
-      <%# each instance of request %>
-      <div class="container bg-white my-3">
-        <%# side-by-side: avatar, name & message %>
-        <div id='request-message' class='p-4'>
-          <div class="d-flex flex-column">
-            <%= image_tag("https://kitt.lewagon.com/placeholder/users/ecyl", class: "avatar-larger mb-3") %>
-            <p class="text-center">Eunice</p>
-          </div>
 
-          <div>
-            <p class="border-black p-2">Hi everyone! Hope I can join you all on this trip. You guys are really cool and I want to be part of you</p>
+  <% unless pending_users.count.zero? %>
+    <div class="container d-flex mx-auto">
+      <div class="container bg-platinum">
+        <% pending_users.each do |p_user| %>
+          <div class="container bg-white my-3">
+            <%# side-by-side: avatar, name & message %>
+            <div id='request-message' class='p-4'>
+              <div id='avatar-name' class="d-flex flex-column">
+                <% fname = "#{p_user.user.first_name} #{p_user.user.last_name}" %>
+                <div class="d-flex justify-content-center">
+                  <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}", class: "avatar-larger mb-3") %>
+                </div>
+                <p class="text-center"><%=fname %></p>
+              </div>
+              <% unless p_user.message.nil? %>
+                <div>
+                  <p class="border-black p-2 mt-1">
+                    <%= p_user.message %>
+                  </p>
+                </div>
+              <% end %>
+              <%# side-by-side: buttons %>
+              <div class="d-flex justify-content-center mx-5 p-3">
+                <i id="btn-accept" class="fa-solid fa-square-check"></i>
+                <i id="btn-reject" class="fa-solid fa-square-xmark mx-3"></i>
+              </div>
+            </div>
+
           </div>
-          <%# side-by-side: buttons %>
-          <div class="d-flex justify-content-center align-items-center">
-            <i class="fa-solid fa-square-check"></i>
-            <i class="fa-solid fa-square-xmark"></i>
-          </div>
-        </div>
+        <% end %>
+        <%# each instance of request %>
 
       </div>
-
     </div>
-  </div>
+  <% end %>
 </div>
 
           <%# pending_users.where(status:"pending").each do |p_user| %>
