@@ -8,6 +8,8 @@
       <% @chatrooms.each do |chatroom| %>
         <% if chatroom.itinerary %>
         <div class="chat-links">
+          Itinerary Title: <%= chatroom.itinerary.title %>
+          <br>
           <%= link_to chatroom.name, chatroom_path(chatroom) %>
         </div>
         <% end %>
