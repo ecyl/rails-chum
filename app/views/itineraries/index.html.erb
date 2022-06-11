@@ -17,7 +17,8 @@
                           placeholder: "Type a destination...",
                           value: params[:query],
                           data: {
-                            search_itineraries_target: 'input'
+                            search_itineraries_target: 'input',
+                            action: 'keyup->search-itineraries#update'
                           }
                           %>
       <% end %>
