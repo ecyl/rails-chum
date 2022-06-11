@@ -1,6 +1,8 @@
 class ChatroomsController < ApplicationController
   def index
     @chatrooms = policy_scope(Chatroom).where(id: current_user.chatroom_ids)
+    # find itineraries created by current user or joined by current user
+    @itineraries = current_user.itineraries
   end
 
   def show
