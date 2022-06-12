@@ -9,7 +9,6 @@ class ItinerariesController < ApplicationController
   end
 
   def show
-    @itinerary
     @markers = @itinerary.events.geocoded.map do |location|
       {
         lat: location.latitude,
