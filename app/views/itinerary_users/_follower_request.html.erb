@@ -1,10 +1,10 @@
 <div class="black-overlay">
     <div class="m-auto">
       <div class="popup-blue my-auto">
-        <h3 class="text-white mb-5">Send a request to join this trip</h3>
+        <h3 class="text-white" style="margin-bottom: 2rem;">Send a request to join this trip</h3>
           <%= simple_form_for([itinerary, itinerary_user]) do |f| %>
-            <%= f.input :message, label: "Send the organizer a message", label_html:{ class: "text-white mb-3" } %>
-            <%= f.button :submit, class:"btn-platinum btn-platinum-normal mt-4"%>
+            <%= f.input :message, label: "Send the organizer a message", label_html:{ class: "text-white mb-3" }, placeholder: "I would like to join because..." %>
+            <%= f.button :submit, "Send request", class:"p-2 btn-platinum-request long btn-padding-small text-center"%>
           <% end %>
       </div>
     </div>
