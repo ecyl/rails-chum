@@ -27,17 +27,22 @@
   <div class="container d-flex mx-auto">
   <div class="container bg-platinum">
     <h4 class="text-center mt-5" id='current-travellers-text'>Current travelers in this trip</h4>
-    <div class='flex-container-around wrap mt-4'>
-      <% accepted_users.each do |itinerary_user| %>
-        <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
-        <div class="rayan">
-          <div class='d-flex justify-content-center'>
-            <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}" ,class: "avatar-xl avatar-margin-bottom") %>
+
+    <% if @itinerary.itinerary_users.empty? %>
+      <p class='text-center m-3'>There are currently no travellers on this trip. Send a request to join now!</p>
+    <% else %>
+      <div class='flex-container-around wrap mt-4'>
+        <% accepted_users.each do |itinerary_user| %>
+          <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
+          <div class="rayan">
+            <div class='d-flex justify-content-center'>
+              <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}" ,class: "avatar-xl avatar-margin-bottom") %>
+            </div>
+            <p class='text-center'><u><%= fname %></u></p>
           </div>
-          <p class='text-center'><u><%= fname %></u></p>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   </div>
 

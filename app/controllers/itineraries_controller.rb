@@ -30,9 +30,23 @@ class ItinerariesController < ApplicationController
     @pending_users = find_pending_users
     @accepted_users = find_accepted_users
 
-    # for annoucements
+    # for announcements
     @itinerary = Itinerary.find(params[:id])
     @announcement = Announcement.new
+
+    # Group events according to date
+    @cost = 0
+    @events = {}
+    @itinerary.events.each do |event|
+      @cost += event.cost
+      start = event.date_start.to_date
+      if @events.key?(start)
+        @events[start] << event
+      else
+        @events[start] = [event]
+      end
+    end
+    @events = @events.sort.to_h
   end
 
   def new
@@ -78,7 +92,7 @@ class ItinerariesController < ApplicationController
 
   def itinerary_params
     params.require(:itinerary).permit(:title, :participant_limit, :description,
-                                      :deadline, :finalised, :photo)
+                                      :deadline, :finalised, :photo, :destination)
   end
 
   def set_itinerary

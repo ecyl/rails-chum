@@ -7,8 +7,8 @@
     <span data-tab="tabFourTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Announcements</span>
     <span style="margin-left:auto;" class="d-flex align-items-center p-auto ">
 
-      <% unless current_user == @organiser && @itinerary.finalised == true %>
-        <%= link_to "Finalise participants", finalise_itinerary_path(@itinerary), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn-crimson medium rounded mt-3 mx-3"%>
+      <% if current_user == @organiser && @itinerary.finalised == true %>
+        <%= link_to "Finalise trip", finalise_itinerary_path(@itinerary), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn-crimson medium rounded mt-3 mx-3" %>
       <% else %>
         <%# link_to "Finalise participants", '#', method: :patch, disabled: true, class: "btn-crimson medium rounded mt-3 mx-3 transparent-btn"%>
 
@@ -34,14 +34,14 @@
               <%= link_to 'Add an event', new_itinerary_event_path(@itinerary), class: "btn-orange medium mt-3"%>
             </div>
             <div class="map ms-4 p-3 col-6">
-              <div style="width: 100%; height: 700px;"
+              <div style="width: 100%; height: 800px;"
                 data-controller="mapbox"
                 data-mapbox-markers-value="<%= @markers.to_json %>"
                 data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
             </div>
           <% else %>
             <%= render 'itinerary_accordion', itinerary: @itinerary %>
-            <div class="map p-3 ms-4" style="width: 100%; height: 700px;"
+            <div class="map p-3 ms-4" style="width: 100%; height: 800px;"
               data-controller="mapbox"
               data-mapbox-markers-value="<%= @markers.to_json %>"
               data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
