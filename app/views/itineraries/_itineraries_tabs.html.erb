@@ -75,43 +75,21 @@
                       <span>The organizer has yet to make any announcements. Stay tuned!</span>
                     </div>
                   </div>
-                  <!-- Form to write an announcement -->
-                  <%= simple_form_for([ @itinerary, @announcement ], remote: true, data: { insert_announcements_target: "form", action: "submit->insert-announcements#send" }) do |f| %>
-                    <%= f.input :content, label: "Say something to the group: ", placeholder: "E.g. Hi all, let's meet up at..", as: :text %>
-                    <%= f.button :submit, 'Send', class: "btn-black normal" %>
-                  <% end %>
+                  <!-- Form to write an announcement: TODO: visible to only organiser -->
+                  <%= render 'announcements/form', itinerary: @itinerary, announcement: @announcement %>
                 <% else %>
                   <% @itinerary.announcements.each do |announcement| %>
-                    <div class="announcement-card">
-                      <div class="d-flex align-items-center">
-                        <!-- Avatar -->
-                        <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
-                        <!-- Organizer's name -->
-                        <p class="mb-0 mx-3"><strong><%= @organiser.first_name %> <%= @organiser.last_name %></strong></p>
-                      </div>
-                      <!-- Annoucement content -->
-                      <div class="announcement-content">
-                        <p class="mb-0"><%= announcement.content %></p>
-                      </div>
-                    </div>
+                    <%= render 'announcement', announcement: announcement %>
                   <% end %>
-                  <!-- Form to write an announcement -->
-                  <%= simple_form_for([ @itinerary, @announcement ], remote: true, data: { insert_announcements_target: "form", action: "submit->insert-announcements#send" }) do |f| %>
-                    <%= f.input :content, label: "Say something to the group: ", placeholder: "E.g. Hi all, let's meet up at..", as: :text %>
-                    <%= f.button :submit, 'Send', class: "btn-black normal" %>
-                  <% end %>
+                  <!-- Form to write an announcement: TODO: visible to only organiser -->
+                  <%= render 'announcements/form', itinerary: @itinerary, announcement: @announcement %>
+
                 <% end %>
               </div>
-
             </div>
           </div>
-
         </div>
       </div>
-
-
     </div>
-
   </div>
-
 </div>
