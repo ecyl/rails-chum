@@ -74,7 +74,7 @@ class ItinerariesController < ApplicationController
 
   def itinerary_params
     params.require(:itinerary).permit(:title, :participant_limit, :description,
-                                      :deadline, :finalised, :photo)
+                                      :deadline, :finalised, :photo, :destination)
   end
 
   def set_itinerary

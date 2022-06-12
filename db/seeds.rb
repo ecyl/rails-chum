@@ -46,7 +46,7 @@ COST_ARRAY = [50, 58, 68, 120, 150, 200, 347, 430, 500]
 
 # itinerary.title, itinerary.description
 
-def create_one_itinerary(itinerary_title, itinerary_description, region, date_start)
+def create_one_itinerary(itinerary_title, itinerary_description, destination, date_start)
   puts "–––––––––––––––––––––––––– CREATING NEW ITINERARY FLOW ––––––––––––––––––––––––––"
   # ––––– USER –––––
   # create users
@@ -82,7 +82,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, region, date_st
     title: itinerary_title,
     participant_limit: accepted_users.size + 3,
     description: itinerary_description,
-    region: "Singapore",
+    destination: "Singapore",
     finalised: false,
     deadline: date_start - 10
   )
@@ -145,7 +145,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, region, date_st
 
   # ––––– EVENTS (one itinerary has many events) –––––
 
-  case region
+  case destination
   when "Singapore"
     sampled_location = SINGAPORE_LOCATIONS.sample(5)
   when "Korea"
@@ -178,7 +178,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, region, date_st
     description: "Fugiat inventore esse temporibus, aliquam voluptas nostrum! Odit voluptatem illo dolorum obcaecati, molestias accusamus dolor maxime perferendis!",
     cost: COST_ARRAY.sample,
     location: sampled_location[1],
-    title: "Beautiful night in #{region}",
+    title: "Beautiful night in #{destination}",
     date_start: Faker::Time.between_dates(from: date_start + 1, to: date_start + 1, period: :night),
     date_end: Faker::Time.between_dates(from: date_start + 1, to: date_start + 2, period: :morning)
   )
@@ -190,7 +190,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, region, date_st
     description: "Aliquam voluptas nostrum! Odit voluptatem illo dolorum obcaecati, molestias accusamus dolor maxime perferendis!",
     cost: COST_ARRAY.sample,
     location: sampled_location[2],
-    title: "Superb afternoon in #{region}",
+    title: "Superb afternoon in #{destination}",
     date_start: Faker::Time.between_dates(from: date_start + 2 , to: date_start + 2, period: :afternoon),
     date_end: Faker::Time.between_dates(from: date_start + 2, to: date_start + 2, period: :night)
   )
@@ -202,7 +202,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, region, date_st
     description: "No more lame lorems!",
     cost: COST_ARRAY.sample,
     location: sampled_location[3],
-    title: "Awesome supper in #{region}",
+    title: "Awesome supper in #{destination}",
     date_start: Faker::Time.between_dates(from: date_start + 3, to: date_start + 3, period: :night),
     date_end: Faker::Time.between_dates(from: date_start + 4, to: date_start + 4, period: :morning)
   )
@@ -227,7 +227,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, region, date_st
     puts "–––––––––––––––––––––––––– ITINERARY FLOW COMPLETED ––––––––––––––––––––––––––"
 end
 
-# def create_one_itinerary(itinerary_title, itinerary_description, region, date_start)
+# def create_one_itinerary(itinerary_title, itinerary_description, destination, date_start)
 first_date = DateTime.now
 second_date = DateTime.new(2022, 7, 3)
 third_date = DateTime.new(2022, 7, 20)
@@ -271,7 +271,7 @@ bika_iti = Itinerary.new(
   participant_limit: 5,
   description: 'Follow bika around town for a walky walk.',
   deadline: '2022-06-30',
-  region: "Singapore"
+  destination: "Singapore"
 )
 bika_iti.user = bika
 bika_iti.chatroom = bika_chat
