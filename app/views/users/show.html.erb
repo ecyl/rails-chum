@@ -5,8 +5,8 @@
       <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="p-2">
           <p class="text-xl"><%= @user.first_name + " " + @user.last_name %></p>
-          <p class="text-m"><%= @user.age %></p>
-          <p class="text-m"><%= @user.gender %></p>
+          <p class="text-m">Age: <%= @user.age %></p>
+          <p class="text-m">Gender: <%= @user.gender %></p>
           <i class="fa-solid fa-location-dot"></i>
           <span>Singapore</span>
         </div>
@@ -17,7 +17,10 @@
         <p class="text-m"><strong>Languages: </strong>English, French</p>
         <p class="text-m"><strong>Response Rate: </strong>100%</p>
         <p class="text-m"><strong>Response Time: </strong>Within an hour</p>
-        <%= link_to "Send message", "#", class: "btn-black rounded mt-3 fa-solid fa-message" %>
+        <button class="btn-black rounded d-flex">
+          <i class="fa-solid fa-message"></i>
+          <span><%= link_to "Send message", "#"%></span>
+        </button>
       </div>
     </div>
   </div>
