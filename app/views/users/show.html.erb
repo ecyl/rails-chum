@@ -5,6 +5,8 @@
       <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="p-2">
           <p class="text-xl"><%= @user.first_name + " " + @user.last_name %></p>
+          <p class="text-m"><%= @user.age %></p>
+          <p class="text-m"><%= @user.gender %></p>
           <i class="fa-solid fa-location-dot"></i>
           <span>Singapore</span>
         </div>
@@ -22,17 +24,18 @@
 
 <%# profile body %>
 <div class="container d-flex mx-auto">
-  <div class="row col-6 border-black-large">
-    <div class="m-3 justify-content-start align-items-center">
+  <div class="row col-6">
     <h3>About Me</h3>
     <p>Hello! I love travelling and meeting new people.</p>
-    </div>
   </div>
 
-    <div class="row col-6 border-black-large">
-    <div class="m-3 justify-content-start align-items-center">
+  <div class="row col-6">
     <h3>Places I've travelled to</h3>
-    <p> </p>
-    </div>
+    <ol>
+      <li>Tokyo</li>
+      <li>Berlin</li>
+      <li>Moscow</li>
+      <li>Nairobi</li>
+    </ol>
   </div>
 </div>
