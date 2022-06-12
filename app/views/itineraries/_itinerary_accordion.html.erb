@@ -1,24 +1,73 @@
 <div class="accordion col-6" id="accordionExample">
 
-  <% @itinerary.events.each_with_index do |event, index| %>
+  <% @events.each do |key, values| %>
+    <% first = @events.keys[0] %>
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button <%= event.id == @itinerary.events.first.id ? "" : "collapsed" %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= event.id %>" aria-expanded="true" aria-controls="collapse<%= event.id %>">
-          <%= event.title %>
+        <button class="accordion-button <%= key == first ? "" : "collapsed" %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= key %>" aria-expanded="true" aria-controls="collapse<%= key %>">
+          <%= key.strftime("%A") %>, <%= key %>
         </button>
       </h2>
-      <div id="collapse<%= event.id %>" class="accordion-collapse collapse<%= event.id == @itinerary.events.first.id ? "show" : "" %>" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <div class="event-card">
-              <%= image_tag asset_path('event-image.jpg'), class: "event-image"%>
+      <% values.each do |event| %>
+        <div id="collapse<%= key %>" class="accordion-collapse collapse<%= key == first ? "show" : "" %>" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="event-card">
+                <%= image_tag asset_path('event-image.jpg'), class: "event-image"%>
 
-              <div class="event-info mt-3">
-                <strong><%= event.description %></strong>
+                <div class="event-info mt-3">
+                  <strong><p><%= event.date_start.strftime("%I:00%P") %> - <%= event.date_end.strftime("%I:00%P") %></p></strong>
+                  <p><%= event.title %></p>
+
+                  <button type="button" class=" details-btn btn-black normal" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-weight:500;">
+                    Details
+                  </button>
+                </div>
+
+                <%# Display modal %>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <%= image_tag asset_path('event-image.jpg'), class: "modal-image" %>
+                        <div class="modal-event-details ps-3">
+                          <p><%= event.date_start.strftime("%A") %>, <%= event.date_start.strftime("%w %b %Y") %></p>
+                          <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 700;"><%= event.title %></h5>
+                        </div>
+                      </div>
+                      <div class="modal-body">
+                        <div class="modal-event-address-time">
+                          <div class="event-address">
+                            <strong><p>Address: <%= event.location %></p></strong>
+                          </div>
+
+                          <div class="event-time">
+                            <strong><p>Start Time: <%= event.date_start.strftime("%I %M %P") %></p></strong>
+                            <strong><p>End Time: <%= event.date_end.strftime("%I %M %P") %></p></strong>
+                          </div>
+                        </div>
+
+                        <div class="modal-event-description">
+                          <div class="description">
+                            <strong><p>Description:</p></strong>
+                            <p><%= event.description %></p>
+                          </div>
+
+                          <div class="timezone">
+                            <p><%= event.date_start.strftime("%Z") %> <%= event.date_start %></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-
-            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
 
     </div>
   <% end %>

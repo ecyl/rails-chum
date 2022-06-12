@@ -20,6 +20,19 @@ class ItinerariesController < ApplicationController
     @organiser = @itinerary.user
     @pending_users = find_pending_users
     @accepted_users = find_accepted_users
+
+    # Group events according to date
+    @cost = 0
+    @events = {}
+    @itinerary.events.each do |event|
+      @cost += event.cost
+      start = event.date_start.to_date
+      if @events.key?(start)
+        @events[start] << event
+      else
+        @events[start] = [event]
+      end
+    end
   end
 
   def new
