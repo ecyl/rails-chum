@@ -68,39 +68,40 @@
         <div class="row">
           <div class="col-12">
             <div data-controller="insert-announcements">
-              <% if @itinerary.announcements.blank? %>
-                <div class="announcement-card">
-                  <div class="d-flex justify-content-center align-items-center">
-                    <span>The organizer has yet to make any announcements. Stay tuned!</span>
-                  </div>
-                </div>
-                <!-- Form to write an announcement -->
-                <%= simple_form_for([ @itinerary, @announcement ], remote: true) do |f| %>
-                  <%= f.input :content, label: "Say something to the group: ", placeholder: "E.g. Hi all, let's meet up at..", as: :text %>
-                  <%= f.button :submit, 'Send', class: "btn-black normal" %>
-                <% end %>
-              <% else %>
-                <% @itinerary.announcements.each do |announcement| %>
+              <div data-insert-announcements-target="items">
+                 <% if @itinerary.announcements.blank? %>
                   <div class="announcement-card">
-                    <div class="d-flex align-items-center">
-                      <!-- Avatar -->
-                      <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
-                      <!-- Organizer's name -->
-                      <p class="mb-0 mx-3"><strong><%= @organiser.first_name %> <%= @organiser.last_name %></strong></p>
-                    </div>
-                    <!-- Annoucement content -->
-                    <div class="announcement-content">
-                      <p class="mb-0"><%= announcement.content %></p>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <span>The organizer has yet to make any announcements. Stay tuned!</span>
                     </div>
                   </div>
+                  <!-- Form to write an announcement -->
+                  <%= simple_form_for([ @itinerary, @announcement ], remote: true, data: { insert_announcements_target: "form" }) do |f| %>
+                    <%= f.input :content, label: "Say something to the group: ", placeholder: "E.g. Hi all, let's meet up at..", as: :text %>
+                    <%= f.button :submit, 'Send', class: "btn-black normal" %>
+                  <% end %>
+                <% else %>
+                  <% @itinerary.announcements.each do |announcement| %>
+                    <div class="announcement-card">
+                      <div class="d-flex align-items-center">
+                        <!-- Avatar -->
+                        <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
+                        <!-- Organizer's name -->
+                        <p class="mb-0 mx-3"><strong><%= @organiser.first_name %> <%= @organiser.last_name %></strong></p>
+                      </div>
+                      <!-- Annoucement content -->
+                      <div class="announcement-content">
+                        <p class="mb-0"><%= announcement.content %></p>
+                      </div>
+                    </div>
+                  <% end %>
+                  <!-- Form to write an announcement -->
+                  <%= simple_form_for([ @itinerary, @announcement ], remote: true, data: { insert_announcements_target: "form" }) do |f| %>
+                    <%= f.input :content, label: "Say something to the group: ", placeholder: "E.g. Hi all, let's meet up at..", as: :text %>
+                    <%= f.button :submit, 'Send', class: "btn-black normal" %>
+                  <% end %>
                 <% end %>
-                <!-- Form to write an announcement -->
-                <%= simple_form_for([ @itinerary, @announcement ], remote: true) do |f| %>
-                  <%= f.input :content, label: "Say something to the group: ", placeholder: "E.g. Hi all, let's meet up at..", as: :text %>
-                  <%= f.button :submit, 'Send', class: "btn-black normal" %>
-                <% end %>
-              <% end %>
-
+              </div>
 
             </div>
           </div>

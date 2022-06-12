@@ -1,9 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = []
+  static targets = ["items", "form"]
 
   connect() {
-    console.log("insert announcements controller now connected");
+    // console.log("insert announcements controller now connected");
+    console.log(this.element)
+    console.log(this.itemsTarget)
+    console.log(this.formTarget)
   }
 }
