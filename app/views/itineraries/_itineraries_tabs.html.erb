@@ -1,4 +1,4 @@
-<div class="tabs" data-controller="itinerary-tabs">
+<div class="tabs bg-white" data-controller="itinerary-tabs">
 
   <div class="tabs-head">
     <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle active">Overview</span>
@@ -63,7 +63,32 @@
 
 
     <div data-itinerary-tabs-target="tabFour tab" class="tab-content">
-      <h3>ANNOUNCEMENTS</h3>
+      <div class="container announcements-container m-5">
+        <h3 class="mb-3">Announcements</h3>
+        <div class="row">
+          <div class="col-12">
+            <div class="announcement-card">
+              <div class="d-flex align-items-center">
+                <!-- Avatar -->
+                <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
+                <!-- Organizer's name -->
+                <p class="mb-0 mx-3"><strong><%= @organiser.first_name %> <%= @organiser.last_name %></strong></p>
+              </div>
+              <!-- Annoucement content -->
+              <div class="announcement-content">
+                <p class="mb-0">
+                  Hi all, let's have a lunch meet up in about 3 weeks from now to know each other better.
+                  Look out for futher announcements here for where we will meet.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
     </div>
 
   </div>
