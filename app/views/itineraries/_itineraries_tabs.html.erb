@@ -1,9 +1,15 @@
 <div class="tabs" data-controller="itinerary-tabs">
-  <div class="tabs-head">
-    <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle active">Overview</span>
-    <span data-tab="tabTwoTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Calendar</span>
-    <span data-tab="tabThreeTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Members</span>
-    <span data-tab="tabFourTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Announcements</span>
+  <div class="tab-header">
+    <div class="tabs-head">
+      <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle active">Overview</span>
+      <span data-tab="tabTwoTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Calendar</span>
+      <span data-tab="tabThreeTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Members</span>
+      <span data-tab="tabFourTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Announcements</span>
+    </div>
+
+    <% if @itinerary.user.id == current_user.id %>
+      <%= link_to 'Add event', new_itinerary_event_path(@itinerary), class: "btn-orange medium me-4" %>
+    <% end %>
   </div>
 
   <div class="tabs-body">

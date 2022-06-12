@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'events/create'
+  get 'events/new'
   get 'notifications/show'
   get 'notifications/index'
   get 'messages/create'

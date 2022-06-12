@@ -73,3 +73,8 @@
   align-items: center;
   flex-direction: column;
 }
+
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+}
