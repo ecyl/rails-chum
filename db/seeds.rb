@@ -205,6 +205,7 @@
 require 'faker'
 require 'json'
 require 'open-uri'
+require 'date'
 
 puts "Cleaning database..."
 User.destroy_all
@@ -229,18 +230,28 @@ GROUP_CHATROOM_MESSAGES = ["We are going to grab some ramen before the event. Fe
                           "It seems like it's going to rain... Is the event still on?",\
                           "Hi everyone! I'm super excited for the trip.", \
                           "Hi everyone! Glad to meet all of you. Do remember to bring a jacket as it will be cold",
-                          "Anyone has mints?"]
+                          "Anyone has mints?", "Remember to bring a jacket guys.", "I'm hungry, is anyone else hungry too?", "Actually I'm starting to miss home..."]
 
 SINGAPORE_LOCATIONS = ["Marina Bay Sands", "Bugis Street", "Changi Jewel", "Sentosa", "Esplanade", "Tampines Mall", "Nex", "Sungei Buloh Wetland Reserve"]
 
 KOREA_LOCATIONS = ["Gyeongbokgung Palace", "N Seoul Tower", "Lotte World", "Everland", "Myeong-Dong", "Haeundae Beach", "Jagalchi Market", "Nami Island", "Korean Folk Village", "Bukhansan"]
 
+THAILAND_LOCATIONS = ["Khao Sok National Park", "Khao Yai National Park", "Phitsanulok", "Koh Samet", "Chiang Mai"]
+
+NEWYORK_LOCATIONS = ["Statue of Liberty", "Central Park", "Rockefeller Center", "Metropolitan Museum of Art", "Empire State Building"]
+
+FRANCE_LOCATIONS = ["The Charming Countryside of Provence", "Colmar", "The Côte d'Azur", "Mont Saint-Michel in Normandy", "Saint-Jean-de-Luz"]
+
+SWITZERLAND_LOCATIONS = ["The Matterhorn", "Jungfraujoch", "Interlaken", "Lucerne", "Lake Geneva", "Davos", "Lake Lugana"]
+
+JAPAN_LOCATIONS = ["Mount Fuji", "Imperial Tokyo", "Hiroshima Peace Memorial Park", "Koyasan Okunoin", "Osaka Castle"]
+
 COST_ARRAY = [50, 58, 68, 120, 150, 200, 347, 430, 500]
 
 # itinerary.title, itinerary.description
 
-def create_one_itinerary(itinerary_title, itinerary_description, date_start)
-
+def create_one_itinerary(itinerary_title, itinerary_description, region, date_start)
+  puts "–––––––––––––––––––––––––– CREATING NEW ITINERARY FLOW ––––––––––––––––––––––––––"
   # ––––– USER –––––
   # create users
   current_iti_users = []
@@ -269,7 +280,6 @@ def create_one_itinerary(itinerary_title, itinerary_description, date_start)
   end
 
   pending_users = current_iti_users
-
   # ––––– ITINERARIES –––––
   # itinearies -> must have chatroom & organiser
   itinerary = Itinerary.new(
@@ -278,7 +288,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, date_start)
     description: itinerary_description,
     region: "Singapore",
     finalised: false,
-    deadline: Faker::Date.forward(days: 50)
+    deadline: date_start - 10
   )
 
   puts "creating chatroom for current itinerary"
@@ -338,21 +348,78 @@ def create_one_itinerary(itinerary_title, itinerary_description, date_start)
   # save itinerary -> append events to each itinerary
 
   # ––––– EVENTS (one itinerary has many events) –––––
-  # sampled_korea_location = KOREA_LOCATIONS.sample(5)
-  # 5.times do
-  #   event = Event.new(
-  #     cost: COST_ARRAY.sample,
-  #     location: sampled_korea_location.sample,
-  #     title: "A fabulous time",
-  #     date_start: ,
-  #     date_end:
-  #   )
-  # end
+
+  case region
+  when "Singapore"
+    sampled_location = SINGAPORE_LOCATIONS.sample(5)
+  when "Korea"
+    sampled_location = KOREA_LOCATIONS.sample(5)
+  when "Thailand"
+    sampled_location = THAILAND_LOCATIONS.sample(5)
+  when "New York"
+    sampled_location = NEWYORK_LOCATIONS.sample(5)
+  when "France"
+    sampled_location = FRANCE_LOCATIONS.sample(5)
+  when "Switzerland"
+    sampled_location = SWITZERLAND_LOCATIONS.sample(5)
+  when "Japan"
+    sampled_location = JAPAN_LOCATIONS.sample(5)
+  end
+
+  # –––––––––––––– CREATE 5 EVENTS ––––––––––––––
+  first_event = Event.new(
+    description: "Doloribus architecto dicta aliquid soluta ab voluptatum fugit omnis, explicabo eaque dolor consequatur fugiat inventore esse temporibus, aliquam voluptas nostrum! Odit voluptatem illo dolorum obcaecati, molestias accusamus dolor maxime perferendis!",
+    cost: COST_ARRAY.sample,
+    location: sampled_location[0],
+    title: "A fabulous time",
+    date_start: date_start,
+    date_end: date_start + 1
+  )
+  first_event.itinerary = itinerary
+  first_event.save!
+
+  second_event = Event.new(
+    description: "Fugiat inventore esse temporibus, aliquam voluptas nostrum! Odit voluptatem illo dolorum obcaecati, molestias accusamus dolor maxime perferendis!",
+    cost: COST_ARRAY.sample,
+    location: sampled_location[1],
+    title: "Beautiful night in #{region}",
+    date_start: Faker::Time.between_dates(from: date_start + 1, to: date_start + 1, period: :night),
+    date_end: Faker::Time.between_dates(from: date_start + 1, to: date_start + 2, period: :morning)
+  )
+
+  second_event.itinerary = itinerary
+  second_event.save!
+
+  third_event = Event.new(
+    description: "Aliquam voluptas nostrum! Odit voluptatem illo dolorum obcaecati, molestias accusamus dolor maxime perferendis!",
+    cost: COST_ARRAY.sample,
+    location: sampled_location[2],
+    title: "Superb afternoon in #{region}",
+    date_start: Faker::Time.between_dates(from: date_start + 2 , to: date_start + 2, period: :afternoon),
+    date_end: Faker::Time.between_dates(from: date_start + 2, to: date_start + 2, period: :night)
+  )
+
+  third_event.itinerary = itinerary
+  third_event.save!
+
+  fourth_event = Event.new(
+    description: "No more lame lorems!",
+    cost: COST_ARRAY.sample,
+    location: sampled_location[3],
+    title: "Awesome supper in #{region}",
+    date_start: Faker::Time.between_dates(from: date_start + 3, to: date_start + 3, period: :night),
+    date_end: Faker::Time.between_dates(from: date_start + 4, to: date_start + 4, period: :morning)
+  )
+
+  fourth_event.itinerary = itinerary
+  fourth_event.save!
+
+  # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx EVENTS DONE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
   # ––––– ANNOUNCEMENTS (one itinerary has many announcements) –––––
   puts "creating a lame announcement for itinerary"
   announcement = Announcement.new(
-    content: "Hello everyone! Really good to have you here"
+    content: "Hello everyone! Hope you are excited as I am...... Or am I the only one excited? Hola at me if you need anything!"
   )
   announcement.itinerary = itinerary
   announcement.save!
@@ -361,7 +428,76 @@ def create_one_itinerary(itinerary_title, itinerary_description, date_start)
 
     # ITINERARY_RESTRCTIONS: write a short description
 
-  puts "current itinerary flow completed!"
+    puts "–––––––––––––––––––––––––– ITINERARY FLOW COMPLETED ––––––––––––––––––––––––––"
 end
 
-create_one_itinerary(1,2,3,4,5)
+# def create_one_itinerary(itinerary_title, itinerary_description, region, date_start)
+first_date = DateTime.now
+second_date = DateTime.new(2022, 7, 3)
+third_date = DateTime.new(2022, 7, 20)
+fourth_date = DateTime.new(2022, 8, 5)
+fifth_date = DateTime.new(2022, 9, 12)
+sixth_date = DateTime.new(2022, 10, 1)
+seventh_date = DateTime.new(2022, 10, 20)
+eighth_date = DateTime.new(2022, 11, 2)
+ninth_date = DateTime.new(2022, 12, 1)
+
+create_one_itinerary("Best trip ever",
+                    "We are going to have a breathtaking trip in Singapore. Come to enjoy a well-crafted route where we deep dive into exciting locations. Looking for like-minded people to join and have a great time together",
+                    "Singapore",
+                    first_date
+)
+
+create_one_itinerary("We are going on a magic schoolbus trip~",
+                    "Looking for great travel buddies? Come join us! Only looking for easy-going people.",
+                    "Korea",
+                    second_date
+)
+
+create_one_itinerary("Korea awesomeness!",
+                    "Only kpop lovers allowed ok?",
+                    "Korea",
+                    third_date
+)
+
+create_one_itinerary("Japan otakus unite!",
+                    "Only people who to cosplay are allowed ok?",
+                    "Japan",
+                    fourth_date
+)
+
+create_one_itinerary("$50 per meal country",
+                    "We can afford this cos we are rich!",
+                    "Switzerland",
+                    fifth_date
+)
+
+create_one_itinerary("Tu parle Francais?",
+                    "Rassemblant tous les francophones",
+                    "France",
+                    sixth_date
+)
+
+create_one_itinerary("Living the New York dream!",
+                    "Shall we also spend time to watch a New York Knicks game please?",
+                    "France",
+                    ninth_date
+)
+
+create_one_itinerary("Thailand rules!",
+                    "Spending more time in the outskirts of Thailand because Thailand is really great",
+                    "Thailand",
+                    seventh_date
+)
+
+create_one_itinerary("Women in Korea!",
+                    "Organising a girl-only trip, and since we're in Korea, let's dress up",
+                    "Korea",
+                    seventh_date
+)
+
+create_one_itinerary("Calling all oppa-wannabes!",
+                    "Organising a men-only trip, and since we're in Korea, let's look like real oppas",
+                    "Korea",
+                    ninth_date
+)
