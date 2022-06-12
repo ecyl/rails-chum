@@ -7,3 +7,21 @@
   background-color: $crimson;
   color: white;
 }
+
+
+.details-btn {
+  top: 60px;
+  position: relative;
+  left: 150px;
+}
+
+.modal-image {
+  width: 710px;
+  height: 360px;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
