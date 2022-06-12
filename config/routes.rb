@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   get 'notifications/show'
   get 'notifications/index'
-  get 'messages/create'
+  # get 'messages/create'
   get 'announcements/create'
-  get 'chatroom/show'
-  get 'chatroom/create'
+  # get 'chatroom/show'
+  # get 'chatroom/create'
   get 'itineraries/index'
   get 'itineraries/new'
   get 'itineraries/create'
