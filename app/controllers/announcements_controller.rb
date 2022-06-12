@@ -3,10 +3,15 @@ class AnnouncementsController < ApplicationController
     @itinerary = Itinerary.find(params[:itinerary_id])
     @announcement = Announcement.new(announcement_params)
     @itinerary.announcements << @announcement
-    if @announcement.save
-      redirect_to itinerary_path(@itinerary)
-    else
-      render 'itineraries/show'
+
+    respond_to do |format|
+      if @announcement.save
+        format.html { redirect_to itinerary_path(@itinerary) }
+        format.json # Follow the classic Rails flow and look for a create.json view
+      else
+        format.html { render "itineraries/show" }
+        format.json # Follow the classic Rails flow and look for a create.json view
+      end
     end
   end
 
