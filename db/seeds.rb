@@ -221,7 +221,21 @@ UserChatroom.destroy_all
 
 puts "Creating users..."
 
-REQUEST_MESSAGES = ["Pleae let me join!!!!", "I would love to join this trip, because there are a lot of like-minded people", "sounds like a really well-planned trip! please count me in!", "I'm a huge fan of your itineraries. Please let me join."]
+REQUEST_MESSAGES = ["Please let me join!!!!", \
+                    "I would love to join this trip, because there are a lot of like-minded people", \
+                    "Sounds like a really well-planned trip! please count me in!", "I'm a huge fan of your itineraries. Please let me join."]
+
+GROUP_CHATROOM_MESSAGES = ["We are going to grab some ramen before the event. Feel free to join us.", \
+                          "It seems like it's going to rain... Is the event still on?",\
+                          "Hi everyone! I'm super excited for the trip.", \
+                          "Hi everyone! Glad to meet all of you. Do remember to bring a jacket as it will be cold",
+                          "Anyone has mints?"]
+
+SINGAPORE_LOCATIONS = ["Marina Bay Sands", "Bugis Street", "Changi Jewel", "Sentosa", "Esplanade", "Tampines Mall", "Nex", "Sungei Buloh Wetland Reserve"]
+
+KOREA_LOCATIONS = ["Gyeongbokgung Palace", "N Seoul Tower", "Lotte World", "Everland", "Myeong-Dong", "Haeundae Beach", "Jagalchi Market", "Nami Island", "Korean Folk Village", "Bukhansan"]
+
+COST_ARRAY = [50, 58, 68, 120, 150, 200, 347, 430, 500]
 
 
 # ––––– USER –––––
@@ -260,7 +274,7 @@ itinerary = Itinerary.new(
   participant_limit: 5,
   description: "We are going to have a breathtaking trip to Rome. Come to enjoy a well-crafted route where we deep dive into exciting locations. Looking for like-minded people to join and have a great time together",
   finalised: false,
-  deadline: Faker::Date.forward(days: 100)
+  deadline: Faker::Date.forward(days: 50)
 )
 
 # ––––– CHATROOM (each chatroom has many messages) –––––
@@ -283,7 +297,7 @@ pending_users.each do |p_user|
   )
   itinerary_user.user = p_user
   itinerary_user.itinerary = itinerary
-  itinerary.save!
+  itinerary_user.save!
 end
 
 accepted_users.each do |a_user|
@@ -291,21 +305,41 @@ accepted_users.each do |a_user|
     status: "accepted",
     message: REQUEST_MESSAGES.sample
   )
+
   itinerary_user.user = a_user
   itinerary_user.itinerary = itinerary
-  itinerary.save!
+  itinerary_user.save!
+
+  # adding accepted members to chatroom
+  chatroom.users << a_user
+  chatroom.save!
 end
+
 
 # ––––– MESSAGES –––––
 
-# message = Messages.new(
-#   content:
+message = Messages.new(
+  content: GROUP_CHATROOM_MESSAGES.sample
+)
+message.user = accepted_users.sample
+message.save!
 
-# )
-# chatroom.messages << message
+chatroom.messages << message
+chatroom.save!
+
 # save itinerary -> append events to each itinerary
 
 # ––––– EVENTS (one itinerary has many events) –––––
+sampled_korea_location = KOREA_LOCATIONS.sample(5)
+5.times do
+  event = Event.new(
+    cost: COST_ARRAY.sample,
+    location: sampled_korea_location.sample,
+    title: "A fabulous time",
+    date_start: ,
+    date_end:
+  )
+end
 # ––––– ANNOUNCEMENTS (one itinerary has many announcements) –––––
 
 # ––––– RESTRICTIONS (one itinerary has many restrictions through itinerary_restrictions) –––––
