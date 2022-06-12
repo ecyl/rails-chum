@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    console.log("navbar_controller is now connected")
+    // console.log("navbar_controller is now connected")
   }
 
   updateNavbar() {
