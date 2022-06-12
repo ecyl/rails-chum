@@ -33,6 +33,7 @@ class ItinerariesController < ApplicationController
         @events[start] = [event]
       end
     end
+    @events = @events.sort.to_h
   end
 
   def new
