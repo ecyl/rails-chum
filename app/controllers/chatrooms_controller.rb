@@ -6,8 +6,10 @@ class ChatroomsController < ApplicationController
   def show
     @chatroom = authorize Chatroom.find(params[:id])
     @message = Message.new
-    organiser_id = @chatroom.itinerary.user_id
-    @organiser = User.find(organiser_id)
+    if @chatroom.itinerary
+      organiser_id = @chatroom.itinerary.user_id
+      @organiser = User.find(organiser_id)
+    end
   end
 
   # creating new chats from itinerary show
