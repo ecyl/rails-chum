@@ -239,7 +239,8 @@ COST_ARRAY = [50, 58, 68, 120, 150, 200, 347, 430, 500]
 
 # itinerary.title, itinerary.description
 
-def create_one_itinerary(itinerary_title, itinerary_description, deadline, date_start, date_end)
+def create_one_itinerary(itinerary_title, itinerary_description, date_start)
+
   # ––––– USER –––––
   # create users
   current_iti_users = []
@@ -272,9 +273,9 @@ def create_one_itinerary(itinerary_title, itinerary_description, deadline, date_
   # ––––– ITINERARIES –––––
   # itinearies -> must have chatroom & organiser
   itinerary = Itinerary.new(
-    title: "The royal route",
+    title: itinerary_title,
     participant_limit: accepted_users.size + 3,
-    description: "We are going to have a breathtaking trip to Rome. Come to enjoy a well-crafted route where we deep dive into exciting locations. Looking for like-minded people to join and have a great time together",
+    description: itinerary_description,
     region: "Singapore",
     finalised: false,
     deadline: Faker::Date.forward(days: 50)
@@ -333,34 +334,34 @@ def create_one_itinerary(itinerary_title, itinerary_description, deadline, date_
     chatroom.messages << message
     chatroom.save!
   end
+
+  # save itinerary -> append events to each itinerary
+
+  # ––––– EVENTS (one itinerary has many events) –––––
+  # sampled_korea_location = KOREA_LOCATIONS.sample(5)
+  # 5.times do
+  #   event = Event.new(
+  #     cost: COST_ARRAY.sample,
+  #     location: sampled_korea_location.sample,
+  #     title: "A fabulous time",
+  #     date_start: ,
+  #     date_end:
+  #   )
+  # end
+
+  # ––––– ANNOUNCEMENTS (one itinerary has many announcements) –––––
+  puts "creating a lame announcement for itinerary"
+  announcement = Announcement.new(
+    content: "Hello everyone! Really good to have you here"
+  )
+  announcement.itinerary = itinerary
+  announcement.save!
+
+  # ––––– RESTRICTIONS (one itinerary has many restrictions through itinerary_restrictions) –––––
+
+    # ITINERARY_RESTRCTIONS: write a short description
+
+  puts "current itinerary flow completed!"
 end
 
 create_one_itinerary(1,2,3,4,5)
-
-# save itinerary -> append events to each itinerary
-
-# ––––– EVENTS (one itinerary has many events) –––––
-# sampled_korea_location = KOREA_LOCATIONS.sample(5)
-# 5.times do
-#   event = Event.new(
-#     cost: COST_ARRAY.sample,
-#     location: sampled_korea_location.sample,
-#     title: "A fabulous time",
-#     date_start: ,
-#     date_end:
-#   )
-# end
-
-# ––––– ANNOUNCEMENTS (one itinerary has many announcements) –––––
-puts "creating a lame announcement for itinerary"
-announcement = Announcement.new(
-  content: "Hello everyone! Really good to have you here"
-)
-announcement.itinerary = itinerary
-announcement.save!
-
-# ––––– RESTRICTIONS (one itinerary has many restrictions through itinerary_restrictions) –––––
-
-  # ITINERARY_RESTRCTIONS: write a short description
-
-puts "current itinerary flow completed!"
