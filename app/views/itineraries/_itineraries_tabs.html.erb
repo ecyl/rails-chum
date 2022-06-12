@@ -73,6 +73,10 @@
                   <span>The organizer has yet to make any announcements. Stay tuned!</span>
                 </div>
               </div>
+              <%= simple_form_for([ @itinerary, @announcement ]) do |f| %>
+                <%= f.input :content, as: :text %>
+                <%= f.button :submit %>
+              <% end %>
             <% else %>
               <% @itinerary.announcements.each do |announcement| %>
                 <div class="announcement-card">
@@ -84,12 +88,14 @@
                   </div>
                   <!-- Annoucement content -->
                   <div class="announcement-content">
-                    <p class="mb-0">
-                      Hi all, let's have a lunch meet up in about 3 weeks from now to know each other better.
-                      Look out for futher announcements here for where we will meet.
-                    </p>
+                    <p class="mb-0"><%= announcement.content %></p>
                   </div>
                 </div>
+              <% end %>
+              <!-- Form to write an announcement -->
+              <%= simple_form_for([ @itinerary, @announcement ]) do |f| %>
+                <%= f.input :content, label: "Say something to the group: ",placeholder: "E.g. Hi all, let's meet up at..", as: :text %>
+                <%= f.button :submit, 'Send', class: "btn-black normal" %>
               <% end %>
             <% end %>
 

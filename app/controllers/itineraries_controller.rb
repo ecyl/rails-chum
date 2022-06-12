@@ -29,6 +29,10 @@ class ItinerariesController < ApplicationController
     @organiser = @itinerary.user
     @pending_users = find_pending_users
     @accepted_users = find_accepted_users
+
+    # for annoucements
+    @ritinerary = Itinerary.find(params[:id])
+    @announcement = Announcement.new
   end
 
   def new
