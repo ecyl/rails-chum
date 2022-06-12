@@ -31,7 +31,7 @@ class ItinerariesController < ApplicationController
     @accepted_users = find_accepted_users
 
     # for annoucements
-    @ritinerary = Itinerary.find(params[:id])
+    @itinerary = Itinerary.find(params[:id])
     @announcement = Announcement.new
   end
 

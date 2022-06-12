@@ -2,7 +2,7 @@ class AnnouncementsController < ApplicationController
   def create
     @itinerary = Itinerary.find(params[:itinerary_id])
     @announcement = Announcement.new(announcement_params)
-    @itinerary.annoucement = @announcement
+    @itinerary.announcements << @announcement
     if @announcement.save
       redirect_to itinerary_path(@itinerary)
     else
