@@ -16,12 +16,21 @@
 }
 
 .modal-image {
-  width: 710px;
-  height: 360px;
+  width: 745px;
+  height: 390px;
 }
 
 .modal-header {
   display: flex;
   flex-direction: column;
   align-items: left;
+}
+
+.modal-event-address-time {
+  display: flex;
+  justify-content: space-between;
+
+  .event-time {
+    margin-right: 30px;
+  }
 }
