@@ -237,6 +237,12 @@ KOREA_LOCATIONS = ["Gyeongbokgung Palace", "N Seoul Tower", "Lotte World", "Ever
 
 COST_ARRAY = [50, 58, 68, 120, 150, 200, 347, 430, 500]
 
+# itinerary.title, itinerary.description
+
+def create_one_itinerary(itinerary_title, itinerary_description, deadline, date_start, date_end)
+
+
+end
 
 # ––––– USER –––––
 # create users
@@ -256,6 +262,7 @@ end
 
 
 # assigning organisers, accepted users and pending users (TODO: assign itinerary_users)
+puts "assigning organisers, accepted users and pending users"
 organiser = current_iti_users.last
 current_iti_users.pop
 accepted_users = current_iti_users.sample(rand(current_iti_users.size)) # choose random number of accepted users
@@ -271,12 +278,14 @@ pending_users = current_iti_users
 # itinearies -> must have chatroom & organiser
 itinerary = Itinerary.new(
   title: "The royal route",
-  participant_limit: 5,
+  participant_limit: accepted_users.size + 3,
   description: "We are going to have a breathtaking trip to Rome. Come to enjoy a well-crafted route where we deep dive into exciting locations. Looking for like-minded people to join and have a great time together",
+  region: "Singapore",
   finalised: false,
   deadline: Faker::Date.forward(days: 50)
 )
 
+puts "creating chatroom for current itinerary"
 # ––––– CHATROOM (each chatroom has many messages) –––––
 # chatroom -> assign organiser to chatroom first
 chatroom = Chatroom.new(
@@ -317,31 +326,43 @@ end
 
 
 # ––––– MESSAGES –––––
+puts "creating messages within chatroom"
+5.times do
+  message = Message.new(
+    content: GROUP_CHATROOM_MESSAGES.sample
+  )
+  message.user = accepted_users.sample
+  message.chatroom = chatroom
+  message.save!
 
-message = Messages.new(
-  content: GROUP_CHATROOM_MESSAGES.sample
-)
-message.user = accepted_users.sample
-message.save!
-
-chatroom.messages << message
-chatroom.save!
+  chatroom.messages << message
+  chatroom.save!
+end
 
 # save itinerary -> append events to each itinerary
 
 # ––––– EVENTS (one itinerary has many events) –––––
-sampled_korea_location = KOREA_LOCATIONS.sample(5)
-5.times do
-  event = Event.new(
-    cost: COST_ARRAY.sample,
-    location: sampled_korea_location.sample,
-    title: "A fabulous time",
-    date_start: ,
-    date_end:
-  )
-end
+# sampled_korea_location = KOREA_LOCATIONS.sample(5)
+# 5.times do
+#   event = Event.new(
+#     cost: COST_ARRAY.sample,
+#     location: sampled_korea_location.sample,
+#     title: "A fabulous time",
+#     date_start: ,
+#     date_end:
+#   )
+# end
+
 # ––––– ANNOUNCEMENTS (one itinerary has many announcements) –––––
+puts "creating a lame announcement for itinerary"
+announcement = Announcement.new(
+  content: "Hello everyone! Really good to have you here"
+)
+announcement.itinerary = itinerary
+announcement.save!
 
 # ––––– RESTRICTIONS (one itinerary has many restrictions through itinerary_restrictions) –––––
 
   # ITINERARY_RESTRCTIONS: write a short description
+
+puts "current itinerary flow completed!"
