@@ -6,10 +6,18 @@ class ItinerariesController < ApplicationController
     # this line points to scope within itinerary_policy & takes the scope given
     # e.g. if it says scope.where(user: current_user) -> i can only get itinerary created by user
     @itineraries = policy_scope(Itinerary).order(created_at: :desc)
+
+    if params[:query].present?
+      @itineraries = @itineraries.where('title ILIKE ?', "%#{params[:query]}%")
+    end
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: 'itineraries/list', locals: { itineraries: @itineraries }, formats: [:html] }
+    end
   end
 
   def show
-    @itinerary
     @markers = @itinerary.events.geocoded.map do |location|
       {
         lat: location.latitude,

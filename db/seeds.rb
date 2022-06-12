@@ -446,6 +446,123 @@ create_one_itinerary("Best trip ever",
                     "We are going to have a breathtaking trip in Singapore. Come to enjoy a well-crafted route where we deep dive into exciting locations. Looking for like-minded people to join and have a great time together",
                     "Singapore",
                     first_date
+  
+puts "Creating bika test user"
+# Default user
+bika = User.new(
+  first_name: 'Bika',
+  last_name: 'Chu',
+  age: 28,
+  gender: 'M',
+  email: 'bika@gmail.com',
+  password: '12345678'
+)
+bika.save!
+5.times do
+  notification = Notification.new(
+    content: Faker::Quote.yoda
+  )
+  bika.notifications << notification
+  notification.save!
+end
+bika_chat = Chatroom.new(name: 'bikaTime')
+bika_chat.save!
+
+# bika's itinerary
+bika_iti = Itinerary.new(
+  title: 'Bika the dog wants to walk around Sydney',
+  participant_limit: 5,
+  description: 'Follow bika around town for a walky walk.',
+  deadline: '2022-06-30'
+)
+bika_iti.user = bika
+bika_iti.chatroom = bika_chat
+bika_iti.save!
+
+users = User.all.sample(5) # include interested users
+accepted_user = users.pop
+
+# Save pending and their status
+users.each do |person|
+  new = ItineraryUser.new
+  new.itinerary = bika_iti
+  new.user = person
+  new.save!
+end
+
+# Save accepted and their status
+new = ItineraryUser.new
+new.itinerary = bika_iti
+new.user = accepted_user
+new.save!
+
+bika_iti.save!
+
+bika_chat.users << accepted_user
+bika_chat.users << bika
+bika_chat.save!
+
+bika_event_1 = Event.new(
+  title: 'Bika walk',
+  description: Faker::TvShows::StrangerThings.quote,
+  date_start: DateTime.new(2022,6,15,8,10),
+  date_end: DateTime.new(2022,6,16,9,0),
+  location: 'Bondi beach',
+  cost: (50..1000).to_a.sample
+)
+bika_event_1.itinerary = bika_iti
+bika_event_1.save!
+
+bika_event_2 = Event.new(
+  title: 'Bika run',
+  description: Faker::TvShows::StrangerThings.quote,
+  date_start: DateTime.new(2022,6,15,10,15),
+  date_end: DateTime.new(2022,6,15,11,15),
+  location: 'Coogee beach',
+  cost: (50..1000).to_a.sample
+)
+bika_event_2.itinerary = bika_iti
+bika_event_2.save!
+
+bika_event_3 = Event.new(
+  title: 'Bika beg for food',
+  description: 'Fatso begs for dinner scraps',
+  date_start: DateTime.new(2022,6,15,12),
+  date_end: DateTime.new(2022,6,15,13),
+  location: 'Sydney opera house',
+  cost: (50..1000).to_a.sample
+)
+bika_event_3.itinerary = bika_iti
+bika_event_3.save!
+
+bika_event_4 = Event.new(
+  title: 'Bika is grumpy',
+  description: 'Needs a fat nap',
+  date_start: DateTime.new(2022,6,16,8),
+  date_end: DateTime.new(2022,6,16,9),
+  location: 'Royal Botanic Garden Syndey',
+  cost: (50..1000).to_a.sample
+)
+bika_event_4.itinerary = bika_iti
+bika_event_4.save!
+
+bika_final = Event.new(
+  title: 'Vecna please do not eat me',
+  description: 'Be running up that hill, be running up that building',
+  date_start: DateTime.new(2022,6,17,12),
+  date_end: DateTime.new(2022,6,17,15),
+  location: 'Sydney Zoo',
+  cost: (50..1000).to_a.sample
+)
+bika_final.itinerary = bika_iti
+bika_final.save!
+
+
+puts "Creating restrictions..."
+# creating itinerary_criteria – 1a) only women 1b) only men 2a) 20-30 y/o 2b) 30-40 y/o 2c) > 40 y/o
+first_restriction = Restriction.new(
+  title: "only women",
+  restricted_gender: "F"
 )
 
 create_one_itinerary("We are going on a magic schoolbus trip~",
