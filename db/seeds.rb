@@ -240,104 +240,102 @@ COST_ARRAY = [50, 58, 68, 120, 150, 200, 347, 430, 500]
 # itinerary.title, itinerary.description
 
 def create_one_itinerary(itinerary_title, itinerary_description, deadline, date_start, date_end)
+  # ––––– USER –––––
+  # create users
+  current_iti_users = []
+  10.times do
+    user = User.new(
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name ,
+      age: (18..65).to_a.sample,
+      gender: ["M","F"].sample,
+      email: Faker::Internet.email,
+      password: "12345678"
+    )
+    user.save!
+    current_iti_users << user
+  end
 
+  # assigning organisers, accepted users and pending users (TODO: assign itinerary_users)
+  puts "assigning organisers, accepted users and pending users"
+  organiser = current_iti_users.last
+  current_iti_users.pop
+  accepted_users = current_iti_users.sample(rand(current_iti_users.size)) # choose random number of accepted users
 
-end
+  # remove accepted users from array. Remaining array: pending_users
+  accepted_users.each do |accepted_user|
+    current_iti_users.delete(accepted_user)
+  end
 
-# ––––– USER –––––
-# create users
-current_iti_users = []
-10.times do
-  user = User.new(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name ,
-    age: (18..65).to_a.sample,
-    gender: ["M","F"].sample,
-    email: Faker::Internet.email,
-    password: "12345678"
-  )
-  user.save!
-  current_iti_users << user
-end
+  pending_users = current_iti_users
 
-
-# assigning organisers, accepted users and pending users (TODO: assign itinerary_users)
-puts "assigning organisers, accepted users and pending users"
-organiser = current_iti_users.last
-current_iti_users.pop
-accepted_users = current_iti_users.sample(rand(current_iti_users.size)) # choose random number of accepted users
-
-# remove accepted users from array. Remaining array: pending_users
-accepted_users.each do |accepted_user|
-  current_iti_users.delete(accepted_user)
-end
-
-pending_users = current_iti_users
-
-# ––––– ITINERARIES –––––
-# itinearies -> must have chatroom & organiser
-itinerary = Itinerary.new(
-  title: "The royal route",
-  participant_limit: accepted_users.size + 3,
-  description: "We are going to have a breathtaking trip to Rome. Come to enjoy a well-crafted route where we deep dive into exciting locations. Looking for like-minded people to join and have a great time together",
-  region: "Singapore",
-  finalised: false,
-  deadline: Faker::Date.forward(days: 50)
-)
-
-puts "creating chatroom for current itinerary"
-# ––––– CHATROOM (each chatroom has many messages) –––––
-# chatroom -> assign organiser to chatroom first
-chatroom = Chatroom.new(
-  name: itinerary.title
-)
-
-chatroom.save!
-
-itinerary.chatroom = chatroom
-itinerary.user = organiser
-itinerary.save! # I should be able to save now
-
-# --- CREATING ITINERARY USERS ---
-pending_users.each do |p_user|
-  itinerary_user = ItineraryUser.new(
-    status: "pending",
-    message: REQUEST_MESSAGES.sample
-  )
-  itinerary_user.user = p_user
-  itinerary_user.itinerary = itinerary
-  itinerary_user.save!
-end
-
-accepted_users.each do |a_user|
-  itinerary_user = ItineraryUser.new(
-    status: "accepted",
-    message: REQUEST_MESSAGES.sample
+  # ––––– ITINERARIES –––––
+  # itinearies -> must have chatroom & organiser
+  itinerary = Itinerary.new(
+    title: "The royal route",
+    participant_limit: accepted_users.size + 3,
+    description: "We are going to have a breathtaking trip to Rome. Come to enjoy a well-crafted route where we deep dive into exciting locations. Looking for like-minded people to join and have a great time together",
+    region: "Singapore",
+    finalised: false,
+    deadline: Faker::Date.forward(days: 50)
   )
 
-  itinerary_user.user = a_user
-  itinerary_user.itinerary = itinerary
-  itinerary_user.save!
+  puts "creating chatroom for current itinerary"
+  # ––––– CHATROOM (each chatroom has many messages) –––––
+  # chatroom -> assign organiser to chatroom first
+  chatroom = Chatroom.new(
+    name: itinerary.title
+  )
 
-  # adding accepted members to chatroom
-  chatroom.users << a_user
   chatroom.save!
+
+  itinerary.chatroom = chatroom
+  itinerary.user = organiser
+  itinerary.save! # I should be able to save now
+
+  # --- CREATING ITINERARY USERS ---
+  pending_users.each do |p_user|
+    itinerary_user = ItineraryUser.new(
+      status: "pending",
+      message: REQUEST_MESSAGES.sample
+    )
+    itinerary_user.user = p_user
+    itinerary_user.itinerary = itinerary
+    itinerary_user.save!
+  end
+
+  accepted_users.each do |a_user|
+    itinerary_user = ItineraryUser.new(
+      status: "accepted",
+      message: REQUEST_MESSAGES.sample
+    )
+
+    itinerary_user.user = a_user
+    itinerary_user.itinerary = itinerary
+    itinerary_user.save!
+
+    # adding accepted members to chatroom
+    chatroom.users << a_user
+    chatroom.save!
+  end
+
+
+  # ––––– MESSAGES –––––
+  puts "creating messages within chatroom"
+  5.times do
+    message = Message.new(
+      content: GROUP_CHATROOM_MESSAGES.sample
+    )
+    message.user = accepted_users.sample
+    message.chatroom = chatroom
+    message.save!
+
+    chatroom.messages << message
+    chatroom.save!
+  end
 end
 
-
-# ––––– MESSAGES –––––
-puts "creating messages within chatroom"
-5.times do
-  message = Message.new(
-    content: GROUP_CHATROOM_MESSAGES.sample
-  )
-  message.user = accepted_users.sample
-  message.chatroom = chatroom
-  message.save!
-
-  chatroom.messages << message
-  chatroom.save!
-end
+create_one_itinerary(1,2,3,4,5)
 
 # save itinerary -> append events to each itinerary
 
