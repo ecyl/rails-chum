@@ -67,27 +67,32 @@
         <h3 class="mb-3">Announcements</h3>
         <div class="row">
           <div class="col-12">
-            <div class="announcement-card d-none">
-              <div class="d-flex justify-content-center align-items-center">
-                <span>The organizer has yet to make any announcements. Stay tuned!</span>
+            <% if @itinerary.announcements.blank? %>
+              <div class="announcement-card">
+                <div class="d-flex justify-content-center align-items-center">
+                  <span>The organizer has yet to make any announcements. Stay tuned!</span>
+                </div>
               </div>
-            </div>
-            <div class="announcement-card">
-              <div class="d-flex align-items-center">
-                <!-- Avatar -->
-                <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
-                <!-- Organizer's name -->
-                <p class="mb-0 mx-3"><strong><%= @organiser.first_name %> <%= @organiser.last_name %></strong></p>
-              </div>
-              <!-- Annoucement content -->
-              <div class="announcement-content">
-                <p class="mb-0">
-                  Hi all, let's have a lunch meet up in about 3 weeks from now to know each other better.
-                  Look out for futher announcements here for where we will meet.
-                </p>
-              </div>
+            <% else %>
+              <% @itinerary.announcements.each do |announcement| %>
+                <div class="announcement-card">
+                  <div class="d-flex align-items-center">
+                    <!-- Avatar -->
+                    <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
+                    <!-- Organizer's name -->
+                    <p class="mb-0 mx-3"><strong><%= @organiser.first_name %> <%= @organiser.last_name %></strong></p>
+                  </div>
+                  <!-- Annoucement content -->
+                  <div class="announcement-content">
+                    <p class="mb-0">
+                      Hi all, let's have a lunch meet up in about 3 weeks from now to know each other better.
+                      Look out for futher announcements here for where we will meet.
+                    </p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
 
-            </div>
           </div>
 
         </div>
