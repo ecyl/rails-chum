@@ -16,7 +16,7 @@
     <p>|</p>
 
     <div class="count-restrictions">
-      <p><strong>Travelers:</strong> <%= @itinerary.users.count %>/<%= @itinerary.participant_limit %></p>
+      <p><strong>Travelers:</strong> <%= @itinerary.itinerary_users.where(status:"accepted").count %>/<%= @itinerary.participant_limit %></p>
     </div>
 
 
