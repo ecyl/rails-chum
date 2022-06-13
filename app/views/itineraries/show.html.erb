@@ -4,7 +4,7 @@
 <div class="itinerary-bar">
   <div class="itinerary-key-details">
     <div class="dates">
-      <p><strong>Trip dates:  </strong><%= @events.keys[0].strftime("%d %b %y") %> - <%= @events.keys[-1].strftime("%d %b %y") %></p>
+      <p><strong>Trip dates:  </strong><%# @events.keys[0].strftime("%d %b %y") %> - <%# @events.keys[-1].strftime("%d %b %y") %></p>
     </div>
 
     <p>|</p>
@@ -16,14 +16,23 @@
     <p>|</p>
 
     <div class="count-restrictions">
-      <p><strong>Travelers:</strong> <%= @itinerary.users.count %>/<%= @itinerary.participant_limit %></p>
+      <p><strong>Travelers:</strong> <%= @itinerary.itinerary_users.where(status:"accepted").count %>/<%= @itinerary.participant_limit %></p>
     </div>
 
+    <div id="finalise-btn" class="ml-auto">
+      <% if current_user == @organiser && @itinerary.finalised? != true %>
+        <%= link_to "Finalise trip", finalise_itinerary_path(@itinerary), method: :patch, data: { confirm: 'Are you sure that you want to finalise the trip? You will not be able to add anymore followers after this.' }, class: "btn-crimson short btn-height-small" %>
+      <% elsif current_user == @organiser && @itinerary.finalised? == true %>
+        <%= link_to "Trip finalised", 'javascript:void(0)', class: "btn-crimson short transparent-btn btn-height-small" %>
+
+        <%# how to show that trip is finalised? %>
+      <% end %>
+    </div>
 
   </div>
 </div>
 <div class="itinerary-body d-flex mt-4">
   <div class="itinerary-main col-10 mx-auto">
-    <%= render 'itineraries_tabs', itinerary: @itinerary %>
+    <%= render 'itineraries_tabs', itinerary: @itinerary, pending_users: @pending_users %>
   </div>
 </div>
