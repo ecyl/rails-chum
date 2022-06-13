@@ -42,19 +42,19 @@ GROUP_CHATROOM_MESSAGES = ["We are going to grab some ramen before the event. Fe
                           "Hi everyone! Glad to meet all of you. Do remember to bring a jacket as it will be cold",
                           "Anyone has mints?", "Remember to bring a jacket guys.", "I'm hungry, is anyone else hungry too?", "Actually I'm starting to miss home..."]
 
-SINGAPORE_LOCATIONS = ["Marina Bay Sands", "Bugis Street", "Changi Jewel", "Sentosa", "Esplanade", "Tampines Mall", "Nex", "Sungei Buloh Wetland Reserve"]
+SINGAPORE_LOCATIONS = ["Marina Bay Sands", "Bugis Street", "Jewel Changi", "Sentosa", "Esplanade", "Tampines Mall", "Nex", "Sungei Buloh Wetland Reserve"]
 
-KOREA_LOCATIONS = ["Gyeongbokgung Palace", "N Seoul Tower", "Lotte World", "Everland", "Myeong-Dong", "Haeundae Beach", "Jagalchi Market", "Nami Island", "Korean Folk Village", "Bukhansan"]
+KOREA_LOCATIONS = ["Busan", "N Seoul Tower", "Lotte World", "Everland", "Haeundae Beach", "Jagalchi Market", "Nami Island", "Korean Folk Village", "Jeju"]
 
-THAILAND_LOCATIONS = ["Khao Sok National Park", "Khao Yai National Park", "Phitsanulok", "Koh Samet", "Chiang Mai"]
+THAILAND_LOCATIONS = ["Khao Sok National Park", "Pratunam", "Koh Samet", "Chiang Mai", "Chatuchak", "Free Bird Cafe"]
 
 NEWYORK_LOCATIONS = ["Statue of Liberty", "Central Park", "Rockefeller Center", "Metropolitan Museum of Art", "Empire State Building"]
 
-FRANCE_LOCATIONS = ["The Charming Countryside of Provence", "Colmar", "The Côte d'Azur", "Mont Saint-Michel in Normandy", "Saint-Jean-de-Luz"]
+FRANCE_LOCATIONS = ["The Charming Countryside of Provence", "Colmar", "Normandy", "Louvre Museum", "Eiffel Tower", "Notre-Dame de Paris Cathedral"]
 
-SWITZERLAND_LOCATIONS = ["The Matterhorn", "Jungfraujoch", "Interlaken", "Lucerne", "Lake Geneva", "Davos", "Lake Lugana"]
+SWITZERLAND_LOCATIONS = ["Interlaken", "Lucerne", "Lake Geneva", "Davos", "Lake Lugana"]
 
-JAPAN_LOCATIONS = ["Mount Fuji", "Imperial Tokyo", "Hiroshima Peace Memorial Park", "Koyasan Okunoin", "Osaka Castle"]
+JAPAN_LOCATIONS = ["Mount Fuji", "Imperial Tokyo", "Hiroshima Peace Memorial Park", "Hokkaido", "Osaka Castle"]
 
 COST_ARRAY = [50, 58, 68, 120, 150, 200, 347, 430, 500]
 
@@ -245,7 +245,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
   first_event.itinerary = itinerary
   first_event.save!
   get_address(first_event)
-  binding.pry
+
 
   second_event_location = sampled_location[1]
   second_event = Event.new(
@@ -273,6 +273,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
 
   third_event.itinerary = itinerary
   third_event.save!
+  get_address(third_event)
 
   fourth_event_location = sampled_location[3]
   fourth_event = Event.new(
@@ -387,6 +388,7 @@ bika_event_1 = Event.new(
 )
 bika_event_1.itinerary = bika_iti
 bika_event_1.save!
+get_address(bika_event_1)
 
 bika_event_2 = Event.new(
   title: 'Bika run',
@@ -398,6 +400,7 @@ bika_event_2 = Event.new(
 )
 bika_event_2.itinerary = bika_iti
 bika_event_2.save!
+get_address(bika_event_2)
 
 bika_event_3 = Event.new(
   title: 'Bika beg for food',
@@ -409,17 +412,19 @@ bika_event_3 = Event.new(
 )
 bika_event_3.itinerary = bika_iti
 bika_event_3.save!
+get_address(bika_event_3)
 
 bika_event_4 = Event.new(
   title: 'Bika is grumpy',
   description: 'Needs a fat nap',
   date_start: DateTime.new(2022,6,16,8),
   date_end: DateTime.new(2022,6,16,9),
-  location: 'Royal Botanic Garden Syndey',
+  location: 'Royal Botanic Garden Sydney',
   cost: (50..1000).to_a.sample
 )
 bika_event_4.itinerary = bika_iti
 bika_event_4.save!
+get_address(bika_event_4)
 
 bika_final = Event.new(
   title: 'Vecna please do not eat me',
@@ -431,6 +436,7 @@ bika_final = Event.new(
 )
 bika_final.itinerary = bika_iti
 bika_final.save!
+get_address(bika_final)
 
 
 puts "Creating restrictions..."
