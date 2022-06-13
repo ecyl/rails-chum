@@ -37,7 +37,12 @@
             <div class="d-flex justify-content-end w-100">
               <%= link_to "Details", itinerary_path(itinerary), class:"btn-black align-right" %>
             </div>
-            
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
   <!-- Search form -->
   <div class="search-container" data-controller="search-itineraries">
     <div class="search-itineraries-card">
@@ -58,7 +63,7 @@
 
 
     <!-- Itinerary cards -->
-  <%= render 'list', itineries: @itineraries %>
+   <%= render 'list', itineries: @itineraries %>
 
   </div>
 </div>
