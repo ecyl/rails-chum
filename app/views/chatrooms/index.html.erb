@@ -2,8 +2,8 @@
   <h1>My Messages</h1>
 </div>
 
-<div class="chat-summary d-flex col-6 mx-auto">
-  <div class="message-group">
+<div class="chat-summary mx-auto col-3">
+  <div class="message-group col-6">
     <h3>Group Messages</h3>
       <% @chatrooms.each do |chatroom| %>
         <% if chatroom.itinerary %>
@@ -16,7 +16,7 @@
       <% end %>
   </div>
 
-  <div class="message-group">
+  <div class="message-group col-6 mt-3">
   <h3>Direct Messages</h3>
     <% @chatrooms.each do |chatroom| %>
       <% if chatroom.itinerary == nil %>
@@ -27,3 +27,7 @@
     <% end %>
   </div>
 </div>
+
+<% @chatrooms.each do |chatroom| %>
+  <%= render "chatbox", chatroom: chatroom %>
+<% end %>
