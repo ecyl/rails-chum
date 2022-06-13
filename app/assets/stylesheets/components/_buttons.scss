@@ -125,8 +125,10 @@
 .btn-crimson {
   background-color: $crimson;
   color: white;
-  padding: 8px;
-  margin: auto;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 40px;
   border-radius: 5px;
   text-decoration: none;
@@ -153,10 +155,18 @@
   width: 215px;
 }
 
+.btn-crimson.short {
+  width: 145px;
+}
+
 .transparent-btn {
   opacity: 0.5;
 }
 
 .btn-padding-small {
   padding: 1rem;
+}
+
+.btn-height-small {
+  height: 33px !important;
 }

@@ -21,9 +21,9 @@
 
     <div id="finalise-btn" class="ml-auto">
       <% if current_user == @organiser && @itinerary.finalised? != true %>
-        <%= link_to "Finalise trip", finalise_itinerary_path(@itinerary), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn-crimson medium mt-3 mx-3" %>
+        <%= link_to "Finalise trip", finalise_itinerary_path(@itinerary), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn-crimson short btn-height-small" %>
       <% elsif current_user == @organiser && @itinerary.finalised? == true %>
-        <%= link_to "Trip finalised", 'javascript:void(0)', disabled: true, class: "btn-crimson medium mt-3 mx-3 transparent-btn disabled", html_options: {disabled: true}%>
+        <%= link_to "Trip finalised", 'javascript:void(0)', class: "btn-crimson short transparent-btn btn-height-small" %>
 
         <%# how to show that trip is finalised? %>
       <% end %>
