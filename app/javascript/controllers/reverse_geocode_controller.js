@@ -1,12 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["address"]
+  static targets = ["address", "button"]
   connect() {
     console.log("Modal controller is connected")
   }
 
+  // getEventId() {
+  //   console.log(this.buttonTarget);
+  // }
+
   getAddress() {
+    console.log(this.buttonTarget);
+
+
+
     console.log(this.addressTarget)
     const coordinates = this.addressTarget.dataset['addressInfo'];
     const splitCoordinates = coordinates.split(/[\[\],]/);
