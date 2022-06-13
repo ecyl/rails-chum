@@ -1,27 +1,29 @@
 <%= render 'itineraries_banner', title: @itinerary.title %>
 
 <%# Change the values once we figure out how to link %>
-<div class="itinerary-bar">
-  <div class="itinerary-key-details">
-    <div class="dates">
-      <p><strong>Trip dates:  </strong><%= @events.keys[0].strftime("%d %b %y") %> - <%= @events.keys[-1].strftime("%d %b %y") %></p>
+<% unless @itinerary.events.length.zero? %>
+  <div class="itinerary-bar">
+    <div class="itinerary-key-details">
+      <div class="dates">
+        <p><strong>Trip dates:  </strong><%= @events.keys[0].strftime("%d %b %y") %> - <%= @events.keys[-1].strftime("%d %b %y") %></p>
+      </div>
+
+      <p>|</p>
+
+      <div class="budget">
+        <p><strong>Budget:</strong>  $<%= @itinerary.cost %></p>
+      </div>
+
+      <p>|</p>
+
+      <div class="count-restrictions">
+        <p><strong>Travelers:</strong> <%= @itinerary.users.count %>/<%= @itinerary.participant_limit %></p>
+      </div>
+
+
     </div>
-
-    <p>|</p>
-
-    <div class="budget">
-      <p><strong>Budget:</strong>  $<%= @cost %></p>
-    </div>
-
-    <p>|</p>
-
-    <div class="count-restrictions">
-      <p><strong>Travelers:</strong> <%= @itinerary.users.count %>/<%= @itinerary.participant_limit %></p>
-    </div>
-
-
   </div>
-</div>
+<% end %>
 <div class="itinerary-body d-flex mt-4">
   <div class="itinerary-main col-10 mx-auto">
     <%= render 'itineraries_tabs', itinerary: @itinerary %>
