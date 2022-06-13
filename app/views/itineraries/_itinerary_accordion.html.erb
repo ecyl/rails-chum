@@ -25,7 +25,7 @@
                 </button>
               </div>
               <%# Display modal %>
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-reverse-geocode-target="address" data-address-info="<%= [event.latitude, event.longitude] %>">
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-reverse-geocode-target="address" data-event-info="<%= event%>" data-address-info="<%= [event.latitude, event.longitude] %>">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
