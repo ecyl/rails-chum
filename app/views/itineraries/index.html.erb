@@ -6,6 +6,38 @@
     </div>
   </div>
 
+  <!-- Itinerary cards -->
+  <div class="row mt-5" data-controller="itinerary-card">
+    <% @itineraries.each do |itinerary| %>
+      <div class="col-12 col-sm-6 col-md-4 mb-4">
+        <div class="card card-trip" data-action="click->itinerary-card#clickCard" data-itinerary-card-target="card" data-itinerary-id="<%= itinerary.id%>">
+          <!-- Image -->
+          <% if itinerary.photo.attached? %>
+            <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
+            <%#<%= cl_image_path itinerary.photo.key %>
+          <% else %>
+            <!-- TODO: This needs to match the itinerary banner image in the show page -->
+            <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
+          <% end %>
+          <!-- Info -->
+          <div class="card-trip-infos">
+            <div class="favorite-btn"><i class="far fa-heart"></i></div>
+            <!-- card text desc -->
+            <div class="d-flex align-items-center w-100">
+              <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
+              <div class="mx-3">
+                <h2><%= itinerary.title %></h2>
+                <p>by <%= itinerary.user.first_name %> <%= itinerary.user.last_name %></p>
+              </div>
+            </div>
+            <div class="card-trip-desc-container">
+              <p><%= itinerary.description %></p>
+            </div>
+
+            <div class="d-flex justify-content-end w-100">
+              <%= link_to "Details", itinerary_path(itinerary), class:"btn-black align-right" %>
+            </div>
+            
   <!-- Search form -->
   <div class="search-container" data-controller="search-itineraries">
     <div class="search-itineraries-card">
@@ -23,6 +55,7 @@
                           %>
       <% end %>
     </div>
+
 
     <!-- Itinerary cards -->
   <%= render 'list', itineries: @itineraries %>
