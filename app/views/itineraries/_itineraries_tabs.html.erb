@@ -1,9 +1,16 @@
 <div class="tabs" data-controller="itinerary-tabs">
-  <div class="tabs-head">
-    <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle active">Overview</span>
-    <span data-tab="tabTwoTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Calendar</span>
-    <span data-tab="tabThreeTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Members</span>
-    <span data-tab="tabFourTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Announcements</span>
+  <div class="tab-header">
+    <div class="tabs-head">
+      <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle active">Overview</span>
+      <span data-tab="tabTwoTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Calendar</span>
+      <span data-tab="tabThreeTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Members</span>
+      <span data-tab="tabFourTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Announcements</span>
+    </div>
+
+    <% if @itinerary.user.id == current_user.id %>
+      <%= link_to 'Add event', new_itinerary_event_path(@itinerary), class: "btn-orange medium me-4" %>
+    <% end %>
+
   </div>
 
   <div class="tabs-body">
@@ -21,14 +28,14 @@
               <%= link_to 'Add an event', new_itinerary_event_path(@itinerary), class: "btn-orange medium mt-3"%>
             </div>
             <div class="map ms-4 p-3 col-6">
-              <div style="width: 100%; height: 700px;"
+              <div style="width: 100%; height: 800px;"
                 data-controller="mapbox"
                 data-mapbox-markers-value="<%= @markers.to_json %>"
                 data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
             </div>
           <% else %>
             <%= render 'itinerary_accordion', itinerary: @itinerary %>
-            <div class="map p-3 ms-4" style="width: 100%; height: 700px;"
+            <div class="map p-3 ms-4" style="width: 100%; height: 800px;"
               data-controller="mapbox"
               data-mapbox-markers-value="<%= @markers.to_json %>"
               data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
@@ -45,7 +52,7 @@
 
     <div data-itinerary-tabs-target="tabThree tab" class="tab-content">
       <% organiser_name = "#{@organiser.first_name} #{@organiser.last_name}"  %>
-    <%= render "tab_member", organiser: organiser_name, pending_users: @pending_users, accepted_users: @accepted_users %>
+    <%= render "tab_member", itinerary: @itinerary, organiser: @organiser, organiser_name: organiser_name, pending_users: @pending_users, accepted_users: @accepted_users %>
     </div>
 
 

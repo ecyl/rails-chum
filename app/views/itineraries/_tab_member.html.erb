@@ -1,11 +1,13 @@
-<div class="d-flex flex-column">
+
+
+<div class="d-flex flex-column position-absolute">
   <%# card 1: Who organised it %>
   <div class="container d-flex mx-auto">
     <div class="container border-black-large d-flex">
       <div class="container m-3 d-flex justify-content-start align-items-center">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/hahaha", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="p-2">
-          <p class="text-xl">Organised by: <br><%= organiser %></p>
+          <p class="text-xl">Organised by: <br><%= organiser_name %></p>
           <i class="fa-solid fa-location-dot"></i>
           <span>Singapore</span>
         </div>
@@ -13,10 +15,11 @@
 
       <div class="p-3 d-flex align-items-center">
         <div>
-          <p class="text-m"><strong>Languages: </strong>English, French</p>
+          <p class="text-m"><strong>Languages: </strong><%= @organiser.languages %></p>
           <p class="text-m"><strong>Response time: </strong>English, French</p>
-          <%= link_to "Find out more about me", '#', class: "btn-black rounded" %>
+          <%= link_to "Find out more about me", user_path(organiser.id), class: "btn-black rounded" %>
           <%= link_to "Send message", new_itinerary_chatroom_path(params[:id]), class: "btn-black rounded mt-3" %>
+          <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
         </div>
       </div>
     </div>
@@ -25,45 +28,70 @@
 
   <div class="container d-flex mx-auto">
   <div class="container bg-platinum">
-    <h4 class="text-center mt-5">Current travelers in this trip</p>
-    <div class='flex-container-around wrap mt-5'>
-      <% accepted_users.each do |itinerary_user| %>
-        <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
-        <div class="rayan">
-          <%= image_tag("https://kitt.lewagon.com/placeholder/users/rayjosong" ,class: "avatar-xl avatar-margin-bottom") %>
-          <p><u><small><%= fname %></small></u></p>
-        </div>
-      <% end %>
-    </div>
+    <h4 class="text-center mt-5" id='current-travellers-text'>Current travelers in this trip</h4>
+
+    <% if @itinerary.itinerary_users.empty? %>
+      <p class='text-center m-3'>There are currently no travellers on this trip. Send a request to join now!</p>
+    <% else %>
+      <div class='flex-container-around wrap mt-4'>
+        <% accepted_users.each do |itinerary_user| %>
+          <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
+          <div class="rayan">
+            <div class='d-flex justify-content-center'>
+              <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}" ,class: "avatar-xl avatar-margin-bottom") %>
+            </div>
+            <p class='text-center'><u><%= fname %></u></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   </div>
 
   <%# card 3: Requests %>
-  <div class="container d-flex mx-auto">
-    <div class="container bg-platinum">
-      <%# each instance of request %>
-      <div class="container bg-white my-3">
-        <%# side-by-side: avatar, name & message %>
-        <div id='request-message' class='p-4'>
-          <div class="d-flex flex-column">
-            <%= image_tag("https://kitt.lewagon.com/placeholder/users/ecyl", class: "avatar-larger mb-3") %>
-            <p class="text-center">Eunice</p>
-          </div>
+    <%# only show requests to organiser. %>
+    <% if current_user == organiser %>
+      <% unless pending_users.count.zero? %>
+        <div class="container d-flex mx-auto">
+          <div class="container bg-platinum">
+            <% pending_users.each do |p_user| %>
+              <div class="container bg-white my-3">
+                <%# side-by-side: avatar, name & message %>
+                <div id='request-message' class='p-4'>
+                  <div id='avatar-name' class="d-flex flex-column">
+                    <% fname = "#{p_user.user.first_name} #{p_user.user.last_name}" %>
+                    <div class="d-flex justify-content-center">
+                      <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}", class: "avatar-larger mb-3") %>
+                    </div>
+                    <p class="text-center"><%=fname %></p>
+                  </div>
+                  <% unless p_user.message.nil? %>
+                    <div>
+                      <p class="border-black p-2 mt-1">
+                        <%= p_user.message %>
+                      </p>
+                    </div>
+                  <% end %>
+                  <%# side-by-side: buttons %>
+                  <div class="d-flex justify-content-center mx-5 p-3">
+                    <%= link_to accept_itinerary_user_path(p_user), method: :patch do %>
+                      <i id="btn-accept" class="fa-solid fa-square-check"></i>
+                    <% end %>
 
-          <div>
-            <p class="border-black p-2">Hi everyone! Hope I can join you all on this trip. You guys are really cool and I want to be part of you</p>
-          </div>
-          <%# side-by-side: buttons %>
-          <div class="d-flex justify-content-center align-items-center">
-            <i class="fa-solid fa-square-check"></i>
-            <i class="fa-solid fa-square-xmark"></i>
+                    <%= link_to reject_itinerary_user_path(p_user), method: :patch do%>
+                      <i id="btn-reject" class="fa-solid fa-square-xmark mx-3"></i>
+                    <% end %>
+                  </div>
+                </div>
+
+              </div>
+            <% end %>
+            <%# each instance of request %>
+
           </div>
         </div>
-
-      </div>
-
-    </div>
-  </div>
+      <% end %>
+    <% end %>
 </div>
 
           <%# pending_users.where(status:"pending").each do |p_user| %>

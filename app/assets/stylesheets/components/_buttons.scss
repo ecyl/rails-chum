@@ -46,9 +46,30 @@
 
 // platinum buttons
 
-.btn-platinum {
+.btn-platinum-request {
   background-color: $platinum;
   color: $blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 47px;
+  border-radius: 5px;
+  padding: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn-platinum:hover {
+  background-color: #bebebe;
+  color: $blue;
+}
+
+.btn-platinum.normal {
+  width: 100px;
+}
+
+.btn-platinum.long {
+  width: 135px;
 }
 
 //Black Buttons//
@@ -65,15 +86,6 @@
   font-weight: bold;
   font-size: 16px;
   transition: background-color 0.2s;
-}
-
-.btn-platinum:hover {
-  background-color: #bebebe;
-  color: $blue;
-}
-
-.btn-platinum.normal {
-  width: 100px;
 }
 
 .btn-black a {
@@ -106,4 +118,45 @@
 
 .btn.black.tall {
   height: 60px;
+}
+
+// Crimson buttons
+
+.btn-crimson {
+  background-color: $crimson;
+  color: white;
+  padding: 10px;
+  margin: auto;
+  height: 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.btn-crimson:hover {
+  background-color: #6c1a15;
+  color: white;
+}
+
+.btn-crimson.long {
+  width: 300px;
+}
+
+.btn-crimson.rounded {
+  width: 300px;
+  border-radius: 15px !important;
+}
+
+.btn-crimson.medium {
+  width: 215px;
+}
+
+.transparent-btn {
+  opacity: 0.5;
+}
+
+.btn-padding-small {
+  padding: 1rem;
 }

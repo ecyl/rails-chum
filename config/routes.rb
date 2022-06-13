@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  get 'events/create'
+  get 'events/new'
   get 'notifications/show'
   get 'notifications/index'
-  get 'messages/create'
+  # get 'messages/create'
   get 'announcements/create'
-  get 'chatroom/show'
-  get 'chatroom/create'
+  # get 'chatroom/show'
+  # get 'chatroom/create'
   get 'itineraries/index'
   get 'itineraries/new'
   get 'itineraries/create'
@@ -16,7 +18,9 @@ Rails.application.routes.draw do
     resources :announcements, only: [ :new, :create, :show ]
     resources :itinerary_users, only: [:new, :create]
     # #confirm method
-
+    member do
+      patch :finalise
+    end
     # accept and reject actions
   end
 

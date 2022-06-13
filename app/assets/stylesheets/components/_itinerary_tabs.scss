@@ -8,11 +8,10 @@
 
 // }
 
-
 .tabs-head {
   display: flex;
-  justify-content: left;
-  align-items: center;
+  // justify-content: left;
+  // align-items: center;
 }
 
 .tabs_toggle {
@@ -61,7 +60,6 @@
   display: flex;
 }
 
-
 // For the empty events
 .empty {
   height: 300px;
@@ -72,4 +70,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.tab-header {
+  display: flex;
+  justify-content: space-between;
 }

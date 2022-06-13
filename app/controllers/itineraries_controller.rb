@@ -1,11 +1,20 @@
 class ItinerariesController < ApplicationController
-  before_action :set_itinerary, only: :show
+  before_action :set_itinerary, only: [:show, :confirm, :finalise]
   def index
     # @itineraries = Itinerary.all
 
     # this line points to scope within itinerary_policy & takes the scope given
     # e.g. if it says scope.where(user: current_user) -> i can only get itinerary created by user
     @itineraries = policy_scope(Itinerary).order(created_at: :desc)
+
+    if params[:query].present?
+      @itineraries = @itineraries.where('title ILIKE ?', "%#{params[:query]}%")
+    end
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: 'itineraries/list', locals: { itineraries: @itineraries }, formats: [:html] }
+    end
   end
 
   def show
@@ -15,6 +24,9 @@ class ItinerariesController < ApplicationController
         lng: location.longitude
       }
     end
+
+    # to send request for itinerary_user
+    @itinerary_user = ItineraryUser.new
 
     # to get users interested to join itinerary
     @organiser = @itinerary.user
@@ -62,11 +74,24 @@ class ItinerariesController < ApplicationController
     render :new
   end
 
+  def finalise
+    # PATCH action to update finalised => true
+    @itinerary.finalised = true
+
+    if @itinerary.save
+      # insert flash confirmation
+      redirect_to itinerary_path(@itinerary), notice: "The itinerary is finalised"
+    else
+      # insert flash confirmation
+      redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to finalise"
+    end
+  end
+
   private
 
   def itinerary_params
     params.require(:itinerary).permit(:title, :participant_limit, :description,
-                                      :deadline, :finalised, :photo)
+                                      :deadline, :finalised, :photo, :destination)
   end
 
   def set_itinerary

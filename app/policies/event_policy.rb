@@ -1,13 +1,9 @@
-class ItineraryPolicy < ApplicationPolicy
+class EventPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       scope.all
     end
-  end
-
-  def show?
-    true
   end
 
   def new?
@@ -16,9 +12,5 @@ class ItineraryPolicy < ApplicationPolicy
 
   def create?
     true
-  end
-
-  def finalise?
-    record.user == user
   end
 end

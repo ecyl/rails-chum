@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.chatbox {
+  justify-content: center;
+}
+
 .container-chatroom {
   width: 736px;
   background: #003249;
@@ -39,4 +43,6 @@ form {
 
 .btn-platinum {
   height: 62px;
+  border-radius: 8px;
+  border: none;
 }

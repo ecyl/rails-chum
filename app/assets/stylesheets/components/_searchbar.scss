@@ -1,0 +1,29 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-itineraries-card {
+  background: white;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 2px;
+  padding: 1rem;
+  width: 80%;
+}
+
+.search-itineraries-card input {
+  background-color: white;
+  border-radius: 2px;
+}
+
+.search-itineraries-card input:focus {
+  outline: none !important;
+  background-color: white;
+}
+
+.search-result-count {
+  font-weight: bold;
+}

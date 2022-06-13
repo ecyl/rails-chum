@@ -5,64 +5,65 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
         <button class="accordion-button <%= key == first ? "" : "collapsed" %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= key %>" aria-expanded="true" aria-controls="collapse<%= key %>">
-          <%= key.strftime("%A") %>, <%= key %>
+          <%= key.strftime("%A") %>, <%= key.strftime("%d %B %Y") %>
         </button>
       </h2>
       <% values.each do |event| %>
         <div id="collapse<%= key %>" class="accordion-collapse collapse<%= key == first ? "show" : "" %>" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            <div class="event-card">
-                <%= image_tag asset_path('event-image.jpg'), class: "event-image"%>
 
-                <div class="event-info mt-3">
-                  <strong><p><%= event.date_start.strftime("%I:00%P") %> - <%= event.date_end.strftime("%I:00%P") %></p></strong>
-                  <p><%= event.title %></p>
+            <%# CONTROLLER PLACED HERE %>
+            <div class="event-card" data-controller="reverse-geocode">
+              <%= image_tag asset_path('event-image.jpg'), class: "event-image"%>
 
-                  <button type="button" class=" details-btn btn-black normal" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-weight:500;">
-                    Details
-                  </button>
-                </div>
+              <div class="event-info mt-3">
+                <strong><p><%= event.date_start.strftime("%I:00%P") %> - <%= event.date_end.strftime("%I:00%P") %></p></strong>
+                <p><%= event.title %></p>
 
-                <%# Display modal %>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <%= image_tag asset_path('event-image.jpg'), class: "modal-image" %>
-                        <div class="modal-event-details ps-3">
-                          <p><%= event.date_start.strftime("%A") %>, <%= event.date_start.strftime("%w %b %Y") %></p>
-                          <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 700;"><%= event.title %></h5>
-                        </div>
+                <button data-reverse-geocode-target="button" data-event-id=<%= event.id %> data-action="click->reverse-geocode#getAddress" type="button" class=" details-btn btn-black normal" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-weight:500;">
+                  Details
+                </button>
+              </div>
+              <%# Display modal %>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-reverse-geocode-target="address" data-address-info="<%= [event.latitude, event.longitude] %>">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <%= image_tag asset_path('event-image.jpg'), class: "modal-image" %>
+                      <div class="modal-event-details ps-3">
+                        <p><%= event.date_start.strftime("%A") %>, <%= event.date_start.strftime("%w %b %Y") %></p>
+                        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 700;"><%= event.title %></h5>
                       </div>
-                      <div class="modal-body">
-                        <div class="modal-event-address-time">
-                          <div class="event-address">
-                            <strong><p>Address: <%= event.location %></p></strong>
-                          </div>
-
-                          <div class="event-time">
-                            <strong><p>Start Time: <%= event.date_start.strftime("%I %M %P") %></p></strong>
-                            <strong><p>End Time: <%= event.date_end.strftime("%I %M %P") %></p></strong>
-                          </div>
+                    </div>
+                    <div class="modal-body">
+                      <div class="modal-event-address-time">
+                        <div class="event-address">
+                          <strong>Address:</strong><p id="location-address"> <%= event.location %></p>
                         </div>
 
-                        <div class="modal-event-description">
-                          <div class="description">
-                            <strong><p>Description:</p></strong>
-                            <p><%= event.description %></p>
-                          </div>
-
-                          <div class="timezone">
-                            <p><%= event.date_start.strftime("%Z") %> <%= event.date_start %></p>
-                          </div>
+                        <div class="event-time">
+                          <p><strong>Start Time:</strong> <%= event.date_start.strftime("%I %M %P") %></p>
+                          <p><strong>End Time:</strong> <%= event.date_end.strftime("%I %M %P") %></p>
                         </div>
                       </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                      <div class="modal-event-description">
+                        <div class="description">
+                          <strong><p>Description:</p></strong>
+                          <p><%= event.description %></p>
+                        </div>
+
+                        <div class="timezone">
+                          <p><%= event.date_start.strftime("%Z") %> <%= event.date_start %></p>
+                        </div>
                       </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                   </div>
                 </div>
+              </div>
 
               </div>
           </div>
