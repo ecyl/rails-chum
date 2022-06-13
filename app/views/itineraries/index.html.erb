@@ -11,10 +11,10 @@
   </div>
 
   <!-- Itinerary cards -->
-  <div class="row mt-5">
+  <div class="row mt-5" data-controller="itinerary-card">
     <% @itineraries.each do |itinerary| %>
       <div class="col-12 col-sm-6 col-md-4 mb-4">
-        <div class="card card-trip">
+        <div class="card card-trip" data-action="click->itinerary-card#clickCard" data-itinerary-card-target="card" data-itinerary-id="<%= itinerary.id%>">
           <!-- Image -->
           <% if itinerary.photo.attached? %>
             <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
