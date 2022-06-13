@@ -37,11 +37,13 @@ Rails.application.routes.draw do
   end
 
   # to allow for the follower to start a chat with the organiser
-  resources :itineraries, only: :show do
-    resources :chatrooms, only: [ :new, :create ]
-  end
+  # resources :itineraries, only: :show do
+  #   resources :chatrooms, only: [ :new, :create ]
+  # # end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :chatrooms, only: :create
+  end
 
   # resources :itinerary_users, only: --> accept/reject
 end
