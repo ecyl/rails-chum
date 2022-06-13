@@ -1,4 +1,4 @@
-<div class="tabs" data-controller="itinerary-tabs">
+<div class="tabs bg-white" data-controller="itinerary-tabs">
   <div class="tab-header">
     <div class="tabs-head">
       <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle active">Overview</span>
@@ -57,9 +57,31 @@
 
 
     <div data-itinerary-tabs-target="tabFour tab" class="tab-content">
-      <h3>ANNOUNCEMENTS</h3>
+      <div class="container announcements-container m-5">
+        <h3 class="mb-3">Announcements</h3>
+        <div class="row">
+          <div class="col-12">
+            <div data-controller="insert-announcements" class="announcements-list">
+              <div data-insert-announcements-target="items">
+                 <% if @itinerary.announcements.blank? %>
+                    <div class="announcement-card">
+                      <div class="d-flex justify-content-center align-items-center">
+                        <span>The organizer has yet to make any announcements. Stay tuned!</span>
+                      </div>
+                    </div>
+                  <% else %>
+                    <% @itinerary.announcements.each do |announcement| %>
+                      <%= render 'announcement', announcement: announcement %>
+                    <% end %>
+
+                <% end %>
+              </div>
+              <!-- Form to write an announcement: TODO: visible to only organiser -->
+              <%= render 'announcements/form', itinerary: @itinerary, announcement: @announcement %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
-
 </div>

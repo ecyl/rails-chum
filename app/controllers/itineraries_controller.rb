@@ -33,6 +33,9 @@ class ItinerariesController < ApplicationController
     @pending_users = find_pending_users
     @accepted_users = find_accepted_users
 
+    # for announcements
+    @announcement = Announcement.new
+
     # Group events according to date
     @events = {}
     @itinerary.events.each do |event|
