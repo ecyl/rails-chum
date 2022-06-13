@@ -1,9 +1,11 @@
-<div class="d-flex flex-column">
+
+
+<div class="d-flex flex-column position-absolute">
   <%# card 1: Who organised it %>
   <div class="container d-flex mx-auto">
     <div class="container border-black-large d-flex">
       <div class="container m-3 d-flex justify-content-start align-items-center">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/hahaha", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="p-2">
           <p class="text-xl">Organised by: <br><%= organiser_name %></p>
           <i class="fa-solid fa-location-dot"></i>
@@ -13,11 +15,11 @@
 
       <div class="p-3 d-flex align-items-center">
         <div>
-          <p class="text-m"><strong>Languages: </strong>English, French</p>
+          <p class="text-m"><strong>Languages: </strong><%= @organiser.languages %></p>
           <p class="text-m"><strong>Response time: </strong>English, French</p>
           <%= link_to "Find out more about me", user_path(organiser.id), class: "btn-black rounded" %>
           <%= link_to "Send message", new_itinerary_chatroom_path(params[:id]), class: "btn-black rounded mt-3" %>
-          <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded mt-3" unless current_user == organiser%>
+          <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
         </div>
       </div>
     </div>

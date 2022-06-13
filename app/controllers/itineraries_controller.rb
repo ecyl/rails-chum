@@ -25,6 +25,9 @@ class ItinerariesController < ApplicationController
       }
     end
 
+    # to send request for itinerary_user
+    @itinerary_user = ItineraryUser.new
+
     # to get users interested to join itinerary
     @organiser = @itinerary.user
     @pending_users = find_pending_users
