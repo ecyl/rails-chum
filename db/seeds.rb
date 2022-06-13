@@ -44,6 +44,7 @@ JAPAN_LOCATIONS = ["Mount Fuji", "Imperial Tokyo", "Hiroshima Peace Memorial Par
 
 COST_ARRAY = [50, 58, 68, 120, 150, 200, 347, 430, 500]
 
+LANGUAGES = ['Chinese', 'Tagalog', 'Thai', 'Vietnamese', 'Indonesian', 'Korean', 'Japanese', 'French', 'German', 'Spanish', 'Latin', 'English']
 # itinerary.title, itinerary.description
 
 def create_one_itinerary(itinerary_title, itinerary_description, destination, date_start)
@@ -58,7 +59,8 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
       age: (18..65).to_a.sample,
       gender: ["M","F"].sample,
       email: Faker::Internet.email,
-      password: "12345678"
+      password: "12345678",
+      languages: "#{LANGUAGES.sample}, #{LANGUAGES.last}"
     )
     user.save!
     current_iti_users << user

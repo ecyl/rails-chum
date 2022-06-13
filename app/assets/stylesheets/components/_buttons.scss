@@ -125,17 +125,23 @@
 .btn-crimson {
   background-color: $crimson;
   color: white;
+  padding: 10px;
   margin: auto;
   height: 40px;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 16px;
   transition: background-color 0.2s;
 }
 
 .btn-crimson:hover {
   background-color: #6c1a15;
   color: white;
+}
+
+.btn-crimson.long {
+  width: 300px;
 }
 
 .btn-crimson.rounded {
