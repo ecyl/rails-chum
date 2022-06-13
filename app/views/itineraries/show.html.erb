@@ -1,23 +1,26 @@
 <%= render 'itineraries_banner', title: @itinerary.title %>
 
 <%# Change the values once we figure out how to link %>
-<div class="itinerary-bar">
-  <div class="itinerary-key-details">
-    <div class="dates">
-      <p><strong>Trip dates:  </strong><%# @events.keys[0].strftime("%d %b %y") %> - <%# @events.keys[-1].strftime("%d %b %y") %></p>
-    </div>
+<% unless @itinerary.events.length.zero? %>
+  <div class="itinerary-bar">
+    <div class="itinerary-key-details">
+      <div class="dates">
+        <p><strong>Trip dates:  </strong><%= @events.keys[0].strftime("%d %b %y") %> - <%= @events.keys[-1].strftime("%d %b %y") %></p>
+      </div>
 
-    <p>|</p>
+      <p>|</p>
 
-    <div class="budget">
-      <p><strong>Budget:</strong>  $<%= @cost %></p>
-    </div>
+      <div class="budget">
+        <p><strong>Budget:</strong>  $<%= @itinerary.cost %></p>
+      </div>
 
-    <p>|</p>
+      <p>|</p>
+
 
     <div class="count-restrictions">
       <p><strong>Travelers:</strong> <%= @itinerary.itinerary_users.where(status:"accepted").count %>/<%= @itinerary.participant_limit %></p>
     </div>
+
 
     <div id="finalise-btn" class="ml-auto">
       <% if current_user == @organiser && @itinerary.finalised? != true %>
@@ -29,8 +32,9 @@
       <% end %>
     </div>
 
+    </div>
   </div>
-</div>
+<% end %>
 <div class="itinerary-body d-flex mt-4">
   <div class="itinerary-main col-10 mx-auto">
     <%= render 'itineraries_tabs', itinerary: @itinerary, pending_users: @pending_users %>
