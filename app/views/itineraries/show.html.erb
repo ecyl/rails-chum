@@ -4,7 +4,7 @@
 <div class="itinerary-bar">
   <div class="itinerary-key-details">
     <div class="dates">
-      <p><strong>Trip dates:  </strong><%= @events.keys[0].strftime("%d %b %y") %> - <%= @events.keys[-1].strftime("%d %b %y") %></p>
+      <p><strong>Trip dates:  </strong><%# @events.keys[0].strftime("%d %b %y") %> - <%# @events.keys[-1].strftime("%d %b %y") %></p>
     </div>
 
     <p>|</p>
@@ -19,6 +19,15 @@
       <p><strong>Travelers:</strong> <%= @itinerary.itinerary_users.where(status:"accepted").count %>/<%= @itinerary.participant_limit %></p>
     </div>
 
+    <div id="finalise-btn" class="ml-auto">
+      <% if current_user == @organiser && @itinerary.finalised? != true %>
+        <%= link_to "Finalise trip", finalise_itinerary_path(@itinerary), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn-crimson medium mt-3 mx-3" %>
+      <% else %>
+        <%= link_to "Trip finalised", '#', method: :patch, disabled: true, class: "btn-crimson medium mt-3 mx-3 transparent-btn" %>
+
+        <%# how to show that trip is finalised? %>
+      <% end %>
+    </div>
 
   </div>
 </div>
