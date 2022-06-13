@@ -73,6 +73,11 @@
   padding: 32px
 }
 
+.announcements-list {
+  height: 400px;
+  overflow: scroll;
+}
+
 .announcement-card {
   background-color: #F5F5F5;
   border-radius: 2px;
