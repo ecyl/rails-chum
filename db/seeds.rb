@@ -259,7 +259,6 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
 
   second_event.itinerary = itinerary
   second_event.save!
-  get_address(second_event)
 
   third_event_location = sampled_location[2]
   third_event = Event.new(
@@ -273,7 +272,6 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
 
   third_event.itinerary = itinerary
   third_event.save!
-  get_address(third_event)
 
   fourth_event_location = sampled_location[3]
   fourth_event = Event.new(
