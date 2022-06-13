@@ -1,15 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["results"]
+  static targets = ["link"];
 
   connect() {
     console.log("chatroom summary controller connected")
   }
 
-  insertChatNames() {
-    const chatTag= `<li> <%= ${chatroom.name} %> </li>`
-    this.resultsTarget.insertAdjacentHTML("beforeend", chatTag)
+  show(event) {
+    console.log(this.linkTarget)
   }
-
 }
