@@ -25,6 +25,9 @@ class ItinerariesController < ApplicationController
       }
     end
 
+    # to send request for itinerary_user
+    @itinerary_user = ItineraryUser.new
+
     # to get users interested to join itinerary
     @organiser = @itinerary.user
     @pending_users = find_pending_users
@@ -34,10 +37,8 @@ class ItinerariesController < ApplicationController
     @announcement = Announcement.new
 
     # Group events according to date
-    @cost = 0
     @events = {}
     @itinerary.events.each do |event|
-      @cost += event.cost
       start = event.date_start.to_date
       if @events.key?(start)
         @events[start] << event

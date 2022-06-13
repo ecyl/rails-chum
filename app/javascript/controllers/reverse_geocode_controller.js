@@ -1,9 +1,17 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["address"]
+  static targets = ["address", "event"]
   connect() {
     console.log("Modal controller is connected")
+  }
+
+  // getEventId() {
+  //   console.log(this.buttonTarget);
+  // }
+
+  getEvent() {
+    console.log(this.eventTarget)
   }
 
   getAddress() {

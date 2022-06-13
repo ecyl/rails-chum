@@ -24,4 +24,9 @@ class Itinerary < ApplicationRecord
   def organiser
     user
   end
+
+  # Queries after start
+  def cost
+    events.pluck(:cost).sum
+  end
 end

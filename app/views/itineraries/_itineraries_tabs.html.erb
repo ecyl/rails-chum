@@ -1,21 +1,15 @@
 <div class="tabs bg-white" data-controller="itinerary-tabs">
+  <div class="tab-header">
+    <div class="tabs-head">
+      <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle active">Overview</span>
+      <span data-tab="tabTwoTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Calendar</span>
+      <span data-tab="tabThreeTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Members</span>
+      <span data-tab="tabFourTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Announcements</span>
+    </div>
 
-  <div class="tabs-head">
-    <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle active">Overview</span>
-    <span data-tab="tabTwoTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Calendar</span>
-    <span data-tab="tabThreeTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Members</span>
-    <span data-tab="tabFourTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Announcements</span>
-    <span style="margin-left:auto;" class="d-flex align-items-center p-auto ">
-
-      <% if current_user == @organiser && @itinerary.finalised == true %>
-        <%= link_to "Finalise trip", finalise_itinerary_path(@itinerary), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn-crimson medium rounded mt-3 mx-3" %>
-      <% else %>
-        <%# link_to "Finalise participants", '#', method: :patch, disabled: true, class: "btn-crimson medium rounded mt-3 mx-3 transparent-btn"%>
-
-        <%# how to show that trip is finalised? %>
-      <% end %>
-
-    </span>
+    <% if @itinerary.user.id == current_user.id %>
+      <%= link_to 'Add event', new_itinerary_event_path(@itinerary), class: "btn-orange medium me-4" %>
+    <% end %>
 
   </div>
 

@@ -18,6 +18,12 @@ UserChatroom.destroy_all
 
 puts "Creating users..."
 
+DESCRIPTION = [
+  "If you’re looking for the most balanced island in #{itinerary.destination} that’s blessed with natural beauty, outdoor fun, creature comforts, top-notch dining, and warm alohas, look no further. This is what a #{itinerary.destination} itinerary looks like which combines the top things to do with hidden gems all-in-one.",
+  "#{itinerary.destination} is one of the best hubs in the world. Whether you’re connecting through the city and have a 48 hour layover or if you’re using it as a launching pad, this is a guide on how to make the most of your time in #{itinerary.destination}."
+]
+
+
 REQUEST_MESSAGES = ["Please let me join!!!!", \
                     "I would love to join this trip, because there are a lot of like-minded people", \
                     "Sounds like a really well-planned trip! please count me in!", "I'm a huge fan of your itineraries. Please let me join."]
@@ -44,6 +50,7 @@ JAPAN_LOCATIONS = ["Mount Fuji", "Imperial Tokyo", "Hiroshima Peace Memorial Par
 
 COST_ARRAY = [50, 58, 68, 120, 150, 200, 347, 430, 500]
 
+LANGUAGES = ['Chinese', 'Tagalog', 'Thai', 'Vietnamese', 'Indonesian', 'Korean', 'Japanese', 'French', 'German', 'Spanish', 'Latin', 'English']
 # itinerary.title, itinerary.description
 
 def create_one_itinerary(itinerary_title, itinerary_description, destination, date_start)
@@ -58,7 +65,8 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
       age: (18..65).to_a.sample,
       gender: ["M","F"].sample,
       email: Faker::Internet.email,
-      password: "12345678"
+      password: "12345678",
+      languages: "#{LANGUAGES.sample}, #{LANGUAGES.last}"
     )
     user.save!
     current_iti_users << user
@@ -415,6 +423,24 @@ create_one_itinerary("Calling all oppa-wannabes!",
                     "Organising a men-only trip, and since we're in Korea, let's look like real oppas",
                     "Korea",
                     ninth_date
+)
+
+create_one_itinerary("Tour in Singapore",
+                    "Awesome time ahead",
+                    "Singapore",
+                    first_date
+)
+
+create_one_itinerary("Come join us in Singapore!",
+                    "Hopefully its not too hot.. haha",
+                    "Singapore",
+                    second_date
+)
+
+create_one_itinerary("Summer in Korea!",
+                    "Hopefully its not too hot.. haha",
+                    "Korea",
+                    first_date
 )
 
 

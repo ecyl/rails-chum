@@ -8,11 +8,15 @@
   color: white;
 }
 
+.event-card {
+  position: relative;
+}
+
 
 .details-btn {
-  top: 60px;
-  position: relative;
-  left: 150px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 }
 
 .modal-image {
