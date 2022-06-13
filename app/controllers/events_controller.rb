@@ -9,6 +9,17 @@ class EventsController < ApplicationController
     Event.transaction do
       @event = Event.new(event_params)
       @event.itinerary = @itinerary
+      # Call mapbox api for address
+      if @event.valid?
+        endpoint = 'mapbox.places'
+        longitude = @event.longitude
+        latitude = @event.latitude
+        url = "https://api.mapbox.com/geocoding/v5/#{endpoint}/#{longitude},#{latitude}.json?access_token=pk.eyJ1IjoiZ2VybWFpbmV3b25nZyIsImEiOiJjbDM4Y29vMngwMDlvM2ltZ3Eza3A0ano4In0.pI8jmt7xFxWsty2RwV2XLw"
+
+        mapbox_call = URI.open(url).read
+        address = JSON.parse(mapbox_call)['features'][1]['place_name'];
+        @event.address = address
+      end
       @event.save!
       redirect_to itinerary_path(@itinerary)
     end
