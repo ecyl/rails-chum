@@ -5,7 +5,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
         <button class="accordion-button <%= key == first ? "" : "collapsed" %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= key %>" aria-expanded="true" aria-controls="collapse<%= key %>">
-          <%= key.strftime("%A") %>, <%= key %>
+          <%= key.strftime("%A") %>, <%= key.strftime("%d %B %Y") %>
         </button>
       </h2>
       <% values.each do |event| %>
@@ -20,11 +20,10 @@
                 <strong><p><%= event.date_start.strftime("%I:00%P") %> - <%= event.date_end.strftime("%I:00%P") %></p></strong>
                 <p><%= event.title %></p>
 
-                <button data-action="click->reverse-geocode#getAddress" type="button" class=" details-btn btn-black normal" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-weight:500;">
+                <button data-reverse-geocode-target="button" data-event-id=<%= event.id %> data-action="click->reverse-geocode#getAddress" type="button" class=" details-btn btn-black normal" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-weight:500;">
                   Details
                 </button>
               </div>
-
               <%# Display modal %>
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-reverse-geocode-target="address" data-address-info="<%= [event.latitude, event.longitude] %>">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
