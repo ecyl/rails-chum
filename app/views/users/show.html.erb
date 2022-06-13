@@ -1,0 +1,57 @@
+<%# profile header %>
+<div class="container d-flex mx-auto">
+  <div class="container border-black-large d-flex">
+    <div class="container m-3 d-flex justify-content-start align-items-center">
+      <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
+        <div class="p-2">
+          <p class="text-xl"><%= @user.first_name + " " + @user.last_name %></p>
+          <p class="text-m">Age: <%= @user.age %></p>
+          <p class="text-m">Gender: <%= @user.gender %></p>
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Singapore</span>
+        </div>
+    </div>
+
+    <div class="p-3 d-flex align-items-center">
+      <div>
+        <p class="text-m"><strong>Languages: </strong>English, French</p>
+        <p class="text-m"><strong>Response Rate: </strong>100%</p>
+        <p class="text-m"><strong>Response Time: </strong>Within an hour</p>
+        <button class="btn-black rounded d-flex">
+          <i class="fa-solid fa-message"></i>
+          <span><%= link_to "Send message", "#"%></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# profile body %>
+<div class="profile-body container d-flex mx-auto">
+  <div class="row col-6 border-black p-3">
+    <h3>About Me</h3>
+    <p>Hello! I love travelling and meeting new people.</p>
+  </div>
+
+  <div class="row col-6 border-black p-3">
+    <h3>My Current Trips</h3>
+    <% if @user.itineraries.length != 0 %>
+      <% @user.itineraries.each do |itinerary| %>
+        <ul>
+          <li><%= itinerary.title %></li>
+        </ul>
+      <% end %>
+    <% else %>
+      <p><em>Oops there are currently no trips planned yet!</em></p>
+    <% end %>
+  </div>
+</div>
+
+<div class="container mx-auto border-black p-3">
+  <h3>Places I've Been</h3>
+    <div style="width: 100%; height: 600px;"
+          data-controller="mapbox"
+          data-mapbox-markers-value="<%= @markers.to_json %>"
+          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+</div>

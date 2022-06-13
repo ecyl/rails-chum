@@ -7,9 +7,9 @@ class ItineraryUsersController < ApplicationController
     @itinerary = find_itinerary_by_assocation
 
     if @itinerary_user.save
-      redirect_to itinerary_path(@itinerary)
+      redirect_to itinerary_path(@itinerary), notice: "The user is accepted."
     else
-      redirect_to itinerary_path(@itinerary)
+      redirect_to itinerary_path(@itinerary), notice: "Failed to accept user"
     end
     authorize @itinerary_user  # look for ItineraryUserPolicy class
   end
@@ -17,6 +17,13 @@ class ItineraryUsersController < ApplicationController
   def reject
     @itinerary_user.status = "rejected"
     @itinerary = find_itinerary_by_assocation
+
+    if @itinerary_user.save
+      redirect_to itinerary_path(@itinerary), notice: "The user is rejected."
+    else
+      redirect_to itinerary_path(@itinerary), notice: "Failed to reject user"
+    end
+
     authorize @itinerary_user  # look for ItineraryUserPolicy class
   end
 

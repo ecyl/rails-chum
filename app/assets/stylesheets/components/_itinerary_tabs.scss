@@ -8,11 +8,10 @@
 
 // }
 
-
 .tabs-head {
   display: flex;
-  justify-content: left;
-  align-items: center;
+  // justify-content: left;
+  // align-items: center;
 }
 
 .tabs_toggle {
@@ -60,7 +59,6 @@
 .itinerary-events {
   display: flex;
 }
-
 
 // For the empty events
 .empty {

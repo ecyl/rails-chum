@@ -5,6 +5,7 @@
       <div class="col-6 form-background-platinum p-5">
         <%= simple_form_for(itinerary) do |f| %>
           <%= f.input :title, label_html: { class: "label-bold"} %>
+          <%= f.input :destination, label_html: { class: "label-bold"}, hint: "Indicate where will you be heading to", hint_html: { class: "hint-text" } %>
           <%= f.input :photo, as: :file %>
           <%= f.input :participant_limit, label: "Followers Limit", label_html: { class: "label-bold"}, hint: 'Indicate the number of followers for your trip here', hint_html: { class: "hint-text" }  %>
           <%= f.input :description, as: :text, label_html: { class: "label-bold"}, hint: "Give a brief introduction about your itinerary", hint_html: { class: "hint-text" } %>
