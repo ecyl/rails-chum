@@ -20,4 +20,8 @@ class Itinerary < ApplicationRecord
   validates :destination, presence: true
 
   has_one_attached :photo
+
+  def organiser
+    user
+  end
 end

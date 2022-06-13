@@ -2,7 +2,7 @@ class AnnouncementsController < ApplicationController
   def create
     @itinerary = Itinerary.find(params[:itinerary_id])
     @announcement = Announcement.new(announcement_params)
-    @itinerary.announcements << @announcement
+    @announcement.itinerary = @itinerary
 
     respond_to do |format|
       if @announcement.save
@@ -13,6 +13,8 @@ class AnnouncementsController < ApplicationController
         format.json # Follow the classic Rails flow and look for a create.json view
       end
     end
+
+    authorize @announcement
   end
 
   private

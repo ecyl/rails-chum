@@ -1,5 +1,5 @@
  <!-- Form to write an announcement -->
-<%= simple_form_for([ itinerary, announcement ], remote: true, data: { insert_announcements_target: "form", action: "submit->insert-announcements#send" }) do |f| %>
+<%= simple_form_for([ itinerary, announcement ], data: { insert_announcements_target: "form", action: "submit->insert-announcements#send" }) do |f| %>
   <%= f.input :content, label: "Say something to the group: ", placeholder: "E.g. Hi all, let's meet up at..", as: :text %>
   <%= f.button :submit, 'Send', class: "btn-black normal" %>
 <% end %>

@@ -31,7 +31,6 @@ class ItinerariesController < ApplicationController
     @accepted_users = find_accepted_users
 
     # for announcements
-    @itinerary = Itinerary.find(params[:id])
     @announcement = Announcement.new
 
     # Group events according to date
