@@ -26,33 +26,30 @@ class ChatroomsController < ApplicationController
     # assign recipient and sender
     @recipient = User.find(params[:user_id])
     @sender = current_user
-
+    @chatroom = authorize Chatroom.new
     # get sender's chatrooms
     sender_chatrooms = @sender.chatrooms
 
     # iterate through sender's chatrooms
     sender_chatrooms.each do |chatroom|
-      chatroom.users.each do |user|
-        # check if there is already a chatroom between the sender and receiver
-        if user.id == @recipient.id
+      # check the private chatrooms # check if there is already a chatroom between the sender and receiver
+      if chatroom.users.length == 2 && chatroom.users.find(@recipient.id).present?
           # redirect to the chatroom path
-          redirect_to chatroom_path(chatroom)
-        else
-          # else create a new chatroom
-          @chatroom = authorize Chatroom.new
-          # add the current user and the recipient (whoever you are talking to) to the new chatroom
-          @chatroom.users << @recipient
-          @chatroom.users << @sender
-
-          if @chatroom.save
-            redirect_to chatroom_path(chatroom)
-          else
-            flash[:notice] = "There was a problem sending this message"
-            redirect_to chatroom_path(chatroom)
-          end
-
-        end
+        redirect_to chatroom_path(chatroom)
+        return
       end
+    end
+
+    # else create a new chatroom
+    # add the current user and the recipient (whoever you are talking to) to the new chatroom
+    @chatroom.users << @recipient
+    @chatroom.users << @sender
+
+    if @chatroom.save
+      redirect_to chatroom_path(chatroom)
+    else
+      flash[:notice] = "There was a problem sending this message"
+      redirect_to chatroom_path(chatroom)
     end
   end
 

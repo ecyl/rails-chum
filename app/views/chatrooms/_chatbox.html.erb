@@ -12,7 +12,7 @@
     </div>
 
     <div class="message-input">
-      <%= simple_form_for [@chatroom, @message],
+      <%= simple_form_for [chatroom, Message.new],
         remote: true,
         html: {data: {action: "ajax:success->chatroom-subscription#resetForm"},
         class: "d-flex"} do |f|
