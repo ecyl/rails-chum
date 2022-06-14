@@ -35,7 +35,6 @@ class ItineraryUsersController < ApplicationController
   def create
     @itinerary_user = ItineraryUser.new(itinerary_user_params)
     @itinerary_user.itinerary = @itinerary
-    @itinerary_user.status = "organiser"
     @itinerary_user.user = current_user
 
     if @itinerary_user.save!

@@ -74,6 +74,11 @@ class ItinerariesController < ApplicationController
     Itinerary.transaction do
       @itinerary = Itinerary.new(itinerary_params)
       @itinerary.user = current_user
+      @itinerary_user = ItineraryUser.new(
+        status: "organiser",
+      )
+      @itinerary_user.user = current_user
+      @itinerary_user.itinerary = @itinerary
 
       @chatroom ||= Chatroom.new
       @itinerary.chatroom = @chatroom
@@ -85,6 +90,8 @@ class ItinerariesController < ApplicationController
       @itinerary.save!
       redirect_to itinerary_path(@itinerary)
     end
+    @itinerary_user.save!
+    authorize @itinerary_user
     authorize @itinerary
   rescue ActiveRecord::RecordInvalid
     render :new
@@ -116,12 +123,12 @@ class ItinerariesController < ApplicationController
   end
 
   def find_pending_users
-    @itinarary = set_itinerary
+    @itinerary = set_itinerary
     @pending_users = @itinerary.itinerary_users.where(status: "pending")
   end
 
   def find_accepted_users
-    @itinarary = set_itinerary
+    @itinerary = set_itinerary
     @accepted_users = @itinerary.itinerary_users.where(status: "accepted")
   end
 
