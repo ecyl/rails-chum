@@ -102,6 +102,14 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
   itinerary.user = organiser
   itinerary.save! # I should be able to save now
 
+  # itinerary_user for organiser
+  organiser = ItineraryUser.new(
+    status: "organiser"
+  )
+
+  organiser.save!
+  chatroom.users << organiser
+
   # --- CREATING ITINERARY USERS ---
   pending_users.each do |p_user|
     itinerary_user = ItineraryUser.new(
