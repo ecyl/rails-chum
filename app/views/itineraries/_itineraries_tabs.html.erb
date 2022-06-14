@@ -7,7 +7,8 @@
       <span data-tab="tabFourTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Announcements</span>
     </div>
 
-    <% if @itinerary.user.id == current_user.id %>
+
+    <% if current_user == @itinerary.user %>
       <%= link_to 'Add event', new_itinerary_event_path(@itinerary), class: "btn-orange medium me-4" %>
     <% end %>
 
