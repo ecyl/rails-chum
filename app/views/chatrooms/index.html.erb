@@ -20,10 +20,17 @@
 
       <div class="message-group">
         <h3>Direct Messages</h3>
+        <% @sender = current_user %>
         <% @chatrooms.each do |chatroom| %>
           <% if chatroom.itinerary == nil %>
+            <%# to filter out recipient %>
+            <% chatroom.users.each do |user| %>
+              <% if user.id != @sender.id %>
+              <% @recipient = user %>
+              <% end %>
+            <% end %>
             <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
-              <%= link_to chatroom.name, chatroom_path(chatroom) %>
+              <%= link_to @recipient.first_name, chatroom_path(chatroom) %>
             </div>
           <% end %>
         <% end %>
