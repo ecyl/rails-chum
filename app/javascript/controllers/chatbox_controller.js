@@ -13,7 +13,7 @@ export default class extends Controller {
     // console.log(event.currentTarget.dataset)
     const chatboxId = event.currentTarget.dataset.chatboxId;
     // when a chatbox link is selected, hide all the boxes
-    console.log(this.boxTargets);
+    console.log(this.chatroomTargets);
 
     this.chatroomTargets.forEach((chatroom) => {
       chatroom.classList.remove('active')
