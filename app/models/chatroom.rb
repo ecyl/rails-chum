@@ -1,4 +1,8 @@
 class Chatroom < ApplicationRecord
+  # scope :direct_messages, ->(id) { joins(:itineraries).where.not(itineraries: { chatroom_id: id }) }
+
+  scope :private_chats, -> { where.not(id: Itinerary.pluck(:chatroom_id)) }
+
   has_one :itinerary
   has_many :messages, dependent: :destroy
 
