@@ -29,4 +29,8 @@ class Itinerary < ApplicationRecord
   def cost
     events.pluck(:cost).sum
   end
+
+  def accepted?(user)
+    self.users.include?(user)
+  end
 end
