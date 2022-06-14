@@ -18,5 +18,5 @@ class Event < ApplicationRecord
   #   self.itinerary.cost = self.itinerary.events.pluck(:cost).sum
   #   self.itinerary.save
   # end
-
+  has_one_attached :photo
 end

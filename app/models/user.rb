@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :user_chatrooms
   has_many :chatrooms, through: :user_chatrooms, dependent: :destroy
 
+  has_one_attached :photo
+
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
   validates :last_name, presence: true
