@@ -1,11 +1,13 @@
 .accordion-button {
-  color: white;
-  background-color: $crimson;
+  color: $jet;
+  background-color: #f4f4f4;
+  border: none;
 }
 
 .accordion-button.collapsed {
-  background-color: $crimson;
-  color: white;
+  background-color: #f4f4f4;
+  color: $jet;
+  border: none;
 }
 
 .event-card {
