@@ -8,7 +8,7 @@ class ItinerariesController < ApplicationController
     @itineraries = policy_scope(Itinerary).order(created_at: :desc)
 
     if params[:query].present?
-      @itineraries = @itineraries.where('title ILIKE ?', "%#{params[:query]}%")
+      @itineraries = @itineraries.where('destination ILIKE ?', "%#{params[:query]}%")
     end
 
     respond_to do |format|
