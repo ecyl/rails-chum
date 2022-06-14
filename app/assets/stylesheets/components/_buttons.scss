@@ -32,6 +32,27 @@
   font-weight: bold;
 }
 
+.btn-orange-medium-outline {
+  border: solid 1px $orange;
+  color: $orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 400;
+  transition: background-color 0.2s;
+  border-radius: 20px;
+  width: 150px;
+}
+
+.btn-orange-medium-outline:hover {
+  background-color: $orange;
+  color: $alabaster;
+  font-weight: bold;
+}
+
 .btn-orange a {
   text-decoration: none;
   color: white;

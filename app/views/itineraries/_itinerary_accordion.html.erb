@@ -22,9 +22,8 @@
               <div class="event-info mt-3">
                 <strong><p><%= event.date_start.strftime("%I:00%P") %> - <%= event.date_end.strftime("%I:00%P") %></p></strong>
                 <strong><p><%= event.location %></p></strong>
-                <p><%= event.title %></p>
 
-                <button data-reverse-geocode-target="button" data-event-id=<%= event.id %> data-action="click->reverse-geocode#getAddress" type="button" class=" details-btn btn-black normal" data-bs-toggle="modal" data-bs-target="#eventModal-<%= event.id %>" style="font-weight:500;">
+                <button data-reverse-geocode-target="button" data-event-id=<%= event.id %> data-action="click->reverse-geocode#getAddress" type="button" class=" btn-orange-medium-outline" data-bs-toggle="modal" data-bs-target="#eventModal-<%= event.id %>" style="font-weight:500;">
                   Details
                 </button>
               </div>
