@@ -11,6 +11,7 @@ class ItinerariesController < ApplicationController
 
     # navbar style
     @banner_navbar = true
+    @black_text_navbar = false
 
     if params[:query].present?
       @itineraries = @itineraries.where('destination ILIKE ?', "%#{params[:query]}%")
