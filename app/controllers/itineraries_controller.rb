@@ -9,6 +9,9 @@ class ItinerariesController < ApplicationController
     @itineraries = policy_scope(Itinerary).order(created_at: :desc)
     # @itineraries = Itinerary.where(user: @user).order(created_at: :desc)
 
+    # navbar style
+    @banner_navbar = true
+
     if params[:query].present?
       @itineraries = @itineraries.where('destination ILIKE ?', "%#{params[:query]}%")
     end
@@ -20,6 +23,7 @@ class ItinerariesController < ApplicationController
   end
 
   def show
+    @banner_navbar = true
     @markers = @itinerary.events.geocoded.map do |location|
       {
         lat: location.latitude,
@@ -55,6 +59,10 @@ class ItinerariesController < ApplicationController
   def new
     @itinerary = Itinerary.new
     authorize @itinerary
+
+    # navbar style
+    @banner_navbar = false
+    @static_navbar = true
   end
 
 
