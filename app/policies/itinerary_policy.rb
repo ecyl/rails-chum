@@ -8,7 +8,8 @@ class ItineraryPolicy < ApplicationPolicy
     end
 
     def resolve
-      @scope.where(user: @user)
+      # @scope.where(user: @user)
+      @scope.all
     end
   end
 
@@ -22,5 +23,9 @@ class ItineraryPolicy < ApplicationPolicy
 
   def create?
     true
+  end
+
+  def accepted?
+    @record.accepted?(@user)
   end
 end
