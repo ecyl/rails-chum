@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   def set_nav
     @static_navbar = false
     @banner_navbar = false
+    @black_text_navbar = true
   end
 
   private
