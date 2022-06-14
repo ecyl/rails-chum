@@ -13,7 +13,11 @@
           <div class="accordion-body">
             <%# CONTROLLER PLACED HERE %>
             <div class="event-card">
-              <%= image_tag asset_path('event-image.jpg'), class: "event-image"%>
+              <% if event.photo.attached? %>
+                <%= cl_image_tag event.photo.key, class: "event-image" %>
+              <% else %>
+                <img class="event-image" src="https://source.unsplash.com/random/?trip,<%= event.location %>" alt="event image">
+              <% end %>
 
               <div class="event-info mt-3">
                 <strong><p><%= event.date_start.strftime("%I:00%P") %> - <%= event.date_end.strftime("%I:00%P") %></p></strong>

@@ -1,6 +1,5 @@
 class ItinerariesController < ApplicationController
   before_action :set_itinerary, only: [:show, :confirm, :finalise]
-  # before_action :set_nav
 
   def index
     # @itineraries = Itinerary.all
@@ -8,6 +7,7 @@ class ItinerariesController < ApplicationController
     # this line points to scope within itinerary_policy & takes the scope given
     # e.g. if it says scope.where(user: current_user) -> i can only get itinerary created by user
     @itineraries = policy_scope(Itinerary).order(created_at: :desc)
+    # @itineraries = Itinerary.where(user: @user).order(created_at: :desc)
 
     # navbar style
     @banner_navbar = true
@@ -53,6 +53,7 @@ class ItinerariesController < ApplicationController
       end
     end
     @events = @events.sort.to_h
+    authorize @itinerary
   end
 
   def new
@@ -119,4 +120,10 @@ class ItinerariesController < ApplicationController
     @itinarary = set_itinerary
     @accepted_users = @itinerary.itinerary_users.where(status: "accepted")
   end
+
+  def accepted
+    false
+    # authorize @itinerary
+  end
+
 end

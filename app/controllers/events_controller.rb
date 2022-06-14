@@ -13,6 +13,9 @@ class EventsController < ApplicationController
     Event.transaction do
       @event = Event.new(event_params)
       @event.itinerary = @itinerary
+      location = @event.location
+      country = @itinerary.destination
+      @event.location = "#{location} #{country}"
       # Call mapbox api for address
       if @event.valid?
         endpoint = 'mapbox.places'
