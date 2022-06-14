@@ -1,6 +1,6 @@
 
 
-<div class="d-flex flex-column position-absolute">
+<div class="d-flex flex-column">
   <%# card 1: Who organised it %>
   <div class="container d-flex mx-auto">
     <div class="container border-black-large d-flex">
@@ -26,72 +26,11 @@
   </div>
   <%# card 2: Current travelers%>
 
-  <div class="container d-flex mx-auto">
-  <div class="container bg-platinum">
-    <h4 class="text-center mt-5" id='current-travellers-text'>Current travelers in this trip</h4>
-
-    <% if @itinerary.itinerary_users.empty? %>
-      <p class='text-center m-3'>There are currently no travellers on this trip. Send a request to join now!</p>
-    <% else %>
-      <div class='flex-container-around wrap mt-4'>
-        <% accepted_users.each do |itinerary_user| %>
-          <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
-          <div class="rayan">
-            <div class='d-flex justify-content-center'>
-              <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}" ,class: "avatar-xl avatar-margin-bottom") %>
-            </div>
-            <p class='text-center'><u><%= fname %></u></p>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  </div>
+  <%= render "current_travellers", itinerary: @itinerary, accepted_users: accepted_users %>
 
   <%# card 3: Requests %>
     <%# only show requests to organiser. %>
-    <% if current_user == organiser %>
-      <% unless pending_users.count.zero? %>
-        <div class="container d-flex mx-auto">
-          <div class="container bg-platinum">
-            <% pending_users.each do |p_user| %>
-              <div class="container bg-white my-3">
-                <%# side-by-side: avatar, name & message %>
-                <div id='request-message' class='p-4'>
-                  <div id='avatar-name' class="d-flex flex-column">
-                    <% fname = "#{p_user.user.first_name} #{p_user.user.last_name}" %>
-                    <div class="d-flex justify-content-center">
-                      <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}", class: "avatar-larger mb-3") %>
-                    </div>
-                    <p class="text-center"><%=fname %></p>
-                  </div>
-                  <% unless p_user.message.nil? %>
-                    <div>
-                      <p class="border-black p-2 mt-1">
-                        <%= p_user.message %>
-                      </p>
-                    </div>
-                  <% end %>
-                  <%# side-by-side: buttons %>
-                  <div class="d-flex justify-content-center mx-5 p-3">
-                    <%= link_to accept_itinerary_user_path(p_user), method: :patch do %>
-                      <i id="btn-accept" class="fa-solid fa-square-check"></i>
-                    <% end %>
-
-                    <%= link_to reject_itinerary_user_path(p_user), method: :patch do%>
-                      <i id="btn-reject" class="fa-solid fa-square-xmark mx-3"></i>
-                    <% end %>
-                  </div>
-                </div>
-
-              </div>
-            <% end %>
-            <%# each instance of request %>
-
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render "show_follower_requests", organiser: @organiser, pending_users: pending_users %>
 </div>
 
           <%# pending_users.where(status:"pending").each do |p_user| %>

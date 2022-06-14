@@ -126,7 +126,9 @@
   background-color: $crimson;
   color: white;
   padding: 10px;
-  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 40px;
   border-radius: 5px;
   text-decoration: none;
@@ -153,10 +155,46 @@
   width: 215px;
 }
 
+.btn-crimson.short {
+  width: 145px;
+}
+
 .transparent-btn {
   opacity: 0.5;
 }
 
 .btn-padding-small {
   padding: 1rem;
+}
+
+.btn-height-small {
+  height: 33px !important;
+}
+
+.accept-reject-btn {
+  background-color: $jet;
+  color: $platinum;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  text-decoration: none;
+}
+
+.accept-reject-btn.reject:hover {
+  background-color: #6c1a15;
+  color: white;
+  text-decoration: none;
+}
+
+.accept-reject-btn.accept:hover {
+  background-color: #2b6c15;
+  color: white;
+  text-decoration: none;
 }

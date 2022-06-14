@@ -42,7 +42,8 @@
     <div class="row" data-controller="itinerary-card">
       <% 3.times do |i| %>
         <div class="col-12 col-sm-6 col-md-4 mb-4">
-          <div class="card card-trip" data-action='click->itinerary-card#clickCard'data-itinerary-card-target="card" data-itinerary-id=<%= @itineraries[i].id %>>
+        <%= link_to itinerary_path(@itineraries[i]), class: "text-decoration-none" do %>
+          <div class="card card-trip" data-action='click->itinerary-card#clickCard' data-itinerary-card-target="card" data-itinerary-id="<%= @itineraries[i].id %>">
             <!-- Image -->
             <% if @itineraries[i].photo.attached? %>
               <img src="https://source.unsplash.com/random/406x246/?trip,<%= @itineraries[i].title %>" alt="itinerary image">
@@ -70,6 +71,7 @@
                 <%= link_to "Details", itinerary_path(@itineraries[i]), class:"btn-black align-right" %>
               </div>
             </div>
+            <% end %>
           </div>
         </div>
       <% end %>
