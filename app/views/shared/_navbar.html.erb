@@ -14,7 +14,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <!-- Navlinks for logged-in user -->
-          <li class="nav-item">
+          <li class="nav-item <%= 'nav-text-black' if @black_text_navbar %>">
             <%= link_to "ITINERARIES", itineraries_path, class: "nav-link" %>
           </li>
         </ul>
@@ -27,13 +27,13 @@
             </span>
 
             <!-- Avatar & name -->
-            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle <%= 'nav-text-black' if @black_text_navbar %>" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <% if current_user.photo.attached? %>
                 <%= cl_image_path current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% else %>
                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% end %>
-              <span class="username-display"><%= current_user.first_name %></span>
+              <span class="username-display <%= 'nav-text-black' if @black_text_navbar %>"><%= current_user.first_name %></span>
             </a>
 
             <!-- User dropdown -->
@@ -59,7 +59,7 @@
 
 <!-- Not Logged-in -->
 <% else %>
-  <div class="navbar navbar-expand-sm navbar-light fixed-top <%= "navbar-chum-white" unless request.path == '/' %>" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
+  <div class="navbar navbar-expand-sm navbar-light fixed-top <%= 'navbar-chum-white' unless @banner_navbar %> <%= 'static' if @static_navbar %>" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
     <div class="container-fluid">
       <!-- Logo -->
       <%= link_to root_path, class: "navbar-brand" do %>
@@ -73,13 +73,17 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Navlinks for not logged-in user -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <li class="nav-item <%= 'nav-text-black' if @black_text_navbar %>">
             <%= link_to "ITINERARIES", itineraries_path, class: "nav-link" %>
           </li>
         </ul>
         <div class="navbar-nav ms-auto d-flex">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+          <span class="<%= 'nav-text-black' if @black_text_navbar %>">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </span>
+          <span class="<%= 'nav-text-black' if @black_text_navbar %>">
+            <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+          </span>
         </div>
       </div>
     </div>

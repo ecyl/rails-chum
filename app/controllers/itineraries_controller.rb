@@ -23,7 +23,10 @@ class ItinerariesController < ApplicationController
   end
 
   def show
+    # navbar styles
     @banner_navbar = true
+    @black_text_navbar = false
+
     @markers = @itinerary.events.geocoded.map do |location|
       {
         lat: location.latitude,

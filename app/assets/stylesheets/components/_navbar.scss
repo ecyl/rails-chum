@@ -22,11 +22,19 @@
   transition: 0.5s background-color ease;
 }
 
-.navbar-chum-black {
-  background-color: $black;
+.nav-link {
+  color: white !important;
+  font-weight: bold;
+  font-size: 16px;
+}
 
-  .nav-link {
-    color: white !important;
+.nav-text-black {
+  color: $black !important;
+  font-weight: bold;
+  font-size: 16px;
+
+  a {
+    color: $black !important;
     font-weight: bold;
     font-size: 16px;
   }
