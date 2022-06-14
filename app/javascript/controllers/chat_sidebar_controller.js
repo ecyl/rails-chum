@@ -25,7 +25,6 @@ export default class extends Controller {
 
     const currentTab = this[event.currentTarget.dataset.tab];
     currentTab.classList.add("active");
-
   }
 
 }

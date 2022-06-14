@@ -31,7 +31,6 @@
       </div>
 
       <div class="tab-content" data-chat-sidebar-target="tabTwo tab">
-        <h3>Direct Messages</h3>
         <% @chatrooms.each do |chatroom| %>
           <% if chatroom.itinerary == nil %>
             <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
