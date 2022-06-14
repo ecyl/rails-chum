@@ -7,10 +7,11 @@ export default class extends Controller {
     console.log("itinerary card controller is connected");
   }
 
-  clickCard() {
-    console.log(this.cardTarget);
-    const card = this.cardTarget;
+  clickCard(e) {
+    e.preventDefault()
+    const card = e.currentTarget
     const itineraryId = card.dataset['itineraryId'];
+    // console.log(`itineraries/${itineraryId}`);
     window.location.href = `itineraries/${itineraryId}`;
   }
 }
