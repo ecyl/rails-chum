@@ -4,14 +4,15 @@ class ChatroomsController < ApplicationController
     @message = Message.new
   end
 
-  def show
-    @chatroom = authorize Chatroom.find(params[:id])
-    @message = Message.new
-    if @chatroom.itinerary
-      organiser_id = @chatroom.itinerary.user_id
-      @organiser = User.find(organiser_id)
-    end
-  end
+  # should not have the chatroom show anymore
+  # def show
+  #   @chatroom = authorize Chatroom.find(params[:id])
+  #   @message = Message.new
+  #   if @chatroom.itinerary
+  #     organiser_id = @chatroom.itinerary.user_id
+  #     @organiser = User.find(organiser_id)
+  #   end
+  # end
 
   # creating new chats from itinerary show
   # def new
@@ -35,7 +36,8 @@ class ChatroomsController < ApplicationController
       # check the private chatrooms # check if there is already a chatroom between the sender and receiver
       if chatroom.users.length == 2 && chatroom.user_chatrooms.where(user_id: @recipient.id).present?
           # redirect to the chatroom path
-        redirect_to chatroom_path(chatroom)
+          # should pass in an active chatroom parameter (the chatroom id)
+        redirect_to chatrooms_path(chatroom: chatroom.id)
         return
       end
     end
@@ -46,10 +48,10 @@ class ChatroomsController < ApplicationController
     @chatroom.users << @sender
 
     if @chatroom.save
-      redirect_to chatroom_path(@chatroom)
+      redirect_to chatrooms_path(chatroom: @chatroom.id)
     else
       flash[:notice] = "There was a problem sending this message"
-      redirect_to chatroom_path(@chatroom)
+      redirect_to chatrooms_path(chatroom: @chatroom.id)
     end
   end
 

@@ -32,7 +32,9 @@
 
     <div class="chatboxes">
       <% @chatrooms.each_with_index do |chatroom, index| %>
-        <%= render "chatbox", chatroom: chatroom, active: index.zero? %>
+        <%# this shows the first chatroom on the list, but we also want to check that the chatroom that it is being
+        redirected to from the chatroom controller becomes active %>
+        <%= render "chatbox", chatroom: chatroom, active: params[:chatroom].present? ? chatroom.id == params[:chatroom].to_i : index.zero? %>
       <% end %>
     </div>
   </div>
