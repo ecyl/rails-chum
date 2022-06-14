@@ -1,13 +1,26 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["link"];
+  static targets = ["chatroom"];
 
   connect() {
     console.log("chatroom summary controller connected")
   }
 
-  show(event) {
-    console.log(this.linkTarget)
+  displayChat(event) {
+    event.preventDefault();
+
+    // console.log(event.currentTarget.dataset)
+    const chatboxId = event.currentTarget.dataset.chatboxId;
+    console.log(chatboxId)
+    // when a chatbox link is selected, hide all the boxes
+    console.log(this.chatroomTarget);
+
+    this.chatroomTargets.forEach((chatroom) => {
+      chatroom.classList.remove('active')
+    })
+    // add an active class to the chatbox with the chatroom id
+    const chatroom = document.getElementById(chatboxId)
+    chatroom.classList.add('active')
   }
 }

@@ -33,7 +33,7 @@ class ChatroomsController < ApplicationController
     # iterate through sender's chatrooms
     sender_chatrooms.each do |chatroom|
       # check the private chatrooms # check if there is already a chatroom between the sender and receiver
-      if chatroom.users.length == 2 && chatroom.users.find(@recipient.id).present?
+      if chatroom.users.length == 2 && chatroom.user_chatrooms.where(user_id: @recipient.id).present?
           # redirect to the chatroom path
         redirect_to chatroom_path(chatroom)
         return
@@ -46,10 +46,10 @@ class ChatroomsController < ApplicationController
     @chatroom.users << @sender
 
     if @chatroom.save
-      redirect_to chatroom_path(chatroom)
+      redirect_to chatroom_path(@chatroom)
     else
       flash[:notice] = "There was a problem sending this message"
-      redirect_to chatroom_path(chatroom)
+      redirect_to chatroom_path(@chatroom)
     end
   end
 

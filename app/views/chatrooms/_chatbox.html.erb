@@ -1,7 +1,8 @@
  <%# chatrooms %>
-  <div class="container-chatroom col-6"
+  <div id="chatroom-<%= chatroom.id %>" class="chatroom <%= active ? "active" : "" %>"
     data-controller="chatroom-subscription"
     data-chatroom-subscription-chatroom-id-value="<%= chatroom.id %>"
+    data-chatbox-target="chatroom"
   >
     <div class="messages" data-chatroom-subscription-target="messages">
       <% chatroom.messages.each do |message| %>
