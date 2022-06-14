@@ -1,9 +1,9 @@
 <% if itinerary.photo.attached? %>
   <div class="itineraries-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path itinerary.photo.key %>);">
-    <h3><%= itinerary.title %></h3>
+    <h1><%= itinerary.destination %></h1>
   </div>
 <% else %>
   <div class="itineraries-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://source.unsplash.com/random/?trip,<%= itinerary.destination %>);">
-    <h3><%= itinerary.title %></h3>
+    <h1><%= itinerary.destination %></h1>
   </div>
 <% end %>
