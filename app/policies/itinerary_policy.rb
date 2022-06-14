@@ -1,8 +1,15 @@
 class ItineraryPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
     def resolve
-      scope.all
+      # @scope.where(user: @user)
+      @scope.all
     end
   end
 
@@ -18,7 +25,7 @@ class ItineraryPolicy < ApplicationPolicy
     true
   end
 
-  def finalise?
-    record.user == user
+  def accepted?
+    @record.accepted?(@user)
   end
 end

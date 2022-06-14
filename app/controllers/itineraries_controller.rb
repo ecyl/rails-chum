@@ -1,14 +1,16 @@
 class ItinerariesController < ApplicationController
   before_action :set_itinerary, only: [:show, :confirm, :finalise]
+
   def index
     # @itineraries = Itinerary.all
 
     # this line points to scope within itinerary_policy & takes the scope given
     # e.g. if it says scope.where(user: current_user) -> i can only get itinerary created by user
     @itineraries = policy_scope(Itinerary).order(created_at: :desc)
+    # @itineraries = Itinerary.where(user: @user).order(created_at: :desc)
 
     if params[:query].present?
-      @itineraries = @itineraries.where('title ILIKE ?', "%#{params[:query]}%")
+      @itineraries = @itineraries.where('destination ILIKE ?', "%#{params[:query]}%")
     end
 
     respond_to do |format|
@@ -33,11 +35,12 @@ class ItinerariesController < ApplicationController
     @pending_users = find_pending_users
     @accepted_users = find_accepted_users
 
+    # for announcements
+    @announcement = Announcement.new
+
     # Group events according to date
-    @cost = 0
     @events = {}
     @itinerary.events.each do |event|
-      @cost += event.cost
       start = event.date_start.to_date
       if @events.key?(start)
         @events[start] << event
@@ -46,6 +49,7 @@ class ItinerariesController < ApplicationController
       end
     end
     @events = @events.sort.to_h
+    authorize @itinerary
   end
 
   def new
@@ -108,4 +112,10 @@ class ItinerariesController < ApplicationController
     @itinarary = set_itinerary
     @accepted_users = @itinerary.itinerary_users.where(status: "accepted")
   end
+
+  def accepted
+    false
+    # authorize @itinerary
+  end
+
 end

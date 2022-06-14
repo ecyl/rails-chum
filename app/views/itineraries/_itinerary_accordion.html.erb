@@ -11,34 +11,38 @@
       <% values.each do |event| %>
         <div id="collapse<%= key %>" class="accordion-collapse collapse<%= key == first ? "show" : "" %>" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
           <div class="accordion-body">
-
             <%# CONTROLLER PLACED HERE %>
-            <div class="event-card" data-controller="reverse-geocode">
-              <%= image_tag asset_path('event-image.jpg'), class: "event-image"%>
+            <div class="event-card">
+              <% if event.photo.attached? %>
+                <%= cl_image_tag event.photo.key, class: "event-image" %>
+              <% else %>
+                <img class="event-image" src="https://source.unsplash.com/random/?trip,<%= event.location %>" alt="event image">
+              <% end %>
 
               <div class="event-info mt-3">
                 <strong><p><%= event.date_start.strftime("%I:00%P") %> - <%= event.date_end.strftime("%I:00%P") %></p></strong>
+                <strong><p><%= event.location %></p></strong>
                 <p><%= event.title %></p>
 
-                <button data-reverse-geocode-target="button" data-event-id=<%= event.id %> data-action="click->reverse-geocode#getAddress" type="button" class=" details-btn btn-black normal" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-weight:500;">
+                <button data-reverse-geocode-target="button" data-event-id=<%= event.id %> data-action="click->reverse-geocode#getAddress" type="button" class=" details-btn btn-black normal" data-bs-toggle="modal" data-bs-target="#eventModal-<%= event.id %>" style="font-weight:500;">
                   Details
                 </button>
               </div>
               <%# Display modal %>
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-reverse-geocode-target="address" data-event-info="<%= event%>" data-address-info="<%= [event.latitude, event.longitude] %>">
+              <div class="modal fade" id="eventModal-<%= event.id %>" tabindex="-1" aria-labelledby="eventModal-<%= event.id %>Label" aria-hidden="true"  data-reverse-geocode-target="address" data-event-info="<%= event%>" data-address-info="<%= [event.latitude, event.longitude] %>">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
                       <%= image_tag asset_path('event-image.jpg'), class: "modal-image" %>
                       <div class="modal-event-details ps-3">
                         <p><%= event.date_start.strftime("%A") %>, <%= event.date_start.strftime("%w %b %Y") %></p>
-                        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: 700;"><%= event.title %></h5>
+                        <h5 class="modal-title" id="eventModal-<%= event.id %>Label" style="font-weight: 700;"><%= event.title %></h5>
                       </div>
                     </div>
                     <div class="modal-body">
                       <div class="modal-event-address-time">
                         <div class="event-address">
-                          <strong>Address:</strong><p id="location-address"> <%= event.location %></p>
+                          <strong>Address:</strong><p id="location-address"> <%= event.address %></p>
                         </div>
 
                         <div class="event-time">

@@ -20,4 +20,17 @@ class Itinerary < ApplicationRecord
   validates :destination, presence: true
 
   has_one_attached :photo
+
+  def organiser
+    user
+  end
+
+  # Queries after start
+  def cost
+    events.pluck(:cost).sum
+  end
+
+  def accepted?(user)
+    users.include?(user)
+  end
 end

@@ -20,7 +20,6 @@
       </div>
     </div>
   </div>
-
   <!-- Some itineraries -->
   <div class="itineraries-container">
     <div class="row">
@@ -42,14 +41,15 @@
     <div class="row" data-controller="itinerary-card">
       <% 3.times do |i| %>
         <div class="col-12 col-sm-6 col-md-4 mb-4">
-          <div class="card card-trip" data-action='click->itinerary-card#clickCard'data-itinerary-card-target="card" data-itinerary-id=<%= @itineraries[i].id %>>
+        <%= link_to itinerary_path(@itineraries[i]), class: "text-decoration-none" do %>
+          <div class="card card-trip" data-action='click->itinerary-card#clickCard' data-itinerary-card-target="card" data-itinerary-id="<%= @itineraries[i].id %>">
             <!-- Image -->
             <% if @itineraries[i].photo.attached? %>
-              <img src="https://source.unsplash.com/random/406x246/?trip,<%= @itineraries[i].title %>" alt="itinerary image">
+              <%= cl_image_path @itineraries[i].photo.key %>
               <%#<%= cl_image_path itinerary.photo.key %>
             <% else %>
               <!-- TODO: This needs to match the itinerary banner image in the show page -->
-              <img src="https://source.unsplash.com/random/406x246/?trip,<%= @itineraries[i].title %>" alt="itinerary image">
+              <img src="https://source.unsplash.com/random/430x246/?trip,<%= @itineraries[i].title %>" alt="itinerary image">
             <% end %>
             <!-- Info -->
             <div class="card-trip-infos">
@@ -70,6 +70,7 @@
                 <%= link_to "Details", itinerary_path(@itineraries[i]), class:"btn-black align-right" %>
               </div>
             </div>
+            <% end %>
           </div>
         </div>
       <% end %>
