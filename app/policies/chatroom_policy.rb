@@ -7,7 +7,7 @@ class ChatroomPolicy < ApplicationPolicy
   end
 
   def show?
-    return true
+    user_is_chatroom_participant?
   end
 
   def new?
@@ -16,5 +16,11 @@ class ChatroomPolicy < ApplicationPolicy
 
   def create?
     return true
+  end
+
+  private
+
+  def user_is_chatroom_participant?
+    record.users.where(id: user.id).present?
   end
 end
