@@ -7,12 +7,18 @@
                 <%# side-by-side: avatar, name & message %>
                 <div id='request-message' class='p-4 d-flex'>
                   <div id='avatar-name' class="d-flex flex-column">
+
+                  <%# insert link_to to get p_user profile %>
                     <% fname = "#{p_user.user.first_name} #{p_user.user.last_name}" %>
-                    <div class="d-flex justify-content-center">
-                      <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}", class: "avatar-larger mb-3") %>
+                    <%= link_to user_path(p_user.user) do %>
+                      <div class="d-flex justify-content-center">
+                        <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}", class: "avatar-larger mb-3") %>
+                      </div>
+                      <p class="text-center"><%=fname %></p>
                     </div>
-                    <p class="text-center"><%=fname %></p>
-                  </div>
+                    <% end %>
+
+
                   <% unless p_user.message.nil? %>
                     <div class="position-relative">
                       <p class="border-black p-2 mt-1 width-long">
