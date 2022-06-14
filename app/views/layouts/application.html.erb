@@ -13,9 +13,10 @@
     <script src="https://kit.fontawesome.com/d356474729.js" crossorigin="anonymous"></script>
   </head>
 
-  <body class="<%= "nav-offset" unless request.path == '/' %>">
+  <body class="<%= "nav-offset" unless request.path == '/' && request.path == '/itineraries' %>">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
+    <%= request.path %>
     <%= yield %>
   </body>
 </html>
