@@ -7,7 +7,7 @@ export default class extends Controller {
 
   updateNavbar() {
     // Check if at homepage
-    if (window.location.pathname === "/" && window.location.pathname === "/itineraries") {
+    if (window.location.pathname === "/" || window.location.pathname === '/itineraries' ) {
       if (window.scrollY >= window.innerHeight) {
         this.element.classList.add("navbar-chum-white")
       } else {
