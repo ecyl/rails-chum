@@ -1,11 +1,16 @@
 class ItinerariesController < ApplicationController
   before_action :set_itinerary, only: [:show, :confirm, :finalise]
+  # before_action :set_nav
+
   def index
     # @itineraries = Itinerary.all
 
     # this line points to scope within itinerary_policy & takes the scope given
     # e.g. if it says scope.where(user: current_user) -> i can only get itinerary created by user
     @itineraries = policy_scope(Itinerary).order(created_at: :desc)
+
+    # navbar style
+    @banner_navbar = true
 
     if params[:query].present?
       @itineraries = @itineraries.where('destination ILIKE ?', "%#{params[:query]}%")
@@ -18,6 +23,7 @@ class ItinerariesController < ApplicationController
   end
 
   def show
+    @banner_navbar = true
     @markers = @itinerary.events.geocoded.map do |location|
       {
         lat: location.latitude,
@@ -52,6 +58,10 @@ class ItinerariesController < ApplicationController
   def new
     @itinerary = Itinerary.new
     authorize @itinerary
+
+    # navbar style
+    @banner_navbar = false
+    @static_navbar = true
   end
 
 

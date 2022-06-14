@@ -3,6 +3,10 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     authorize @event
+
+    # navbar styles
+    @banner_navbar = false
+    @static_navbar = true
   end
 
   def create
