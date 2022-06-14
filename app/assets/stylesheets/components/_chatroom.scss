@@ -90,6 +90,11 @@ a {
   font-size: 20px;
 }
 
+a:hover {
+  color: $orange;
+  font-size: 20px;
+}
+
 .avatar-bordered {
   width: 40px;
   border-radius: 50%;
