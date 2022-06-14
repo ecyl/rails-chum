@@ -30,6 +30,7 @@
               <% end %>
             <% end %>
             <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
+              <%# placeholder to show the avatar of the recipient %>
               <%= link_to @recipient.first_name, chatroom_path(chatroom) %>
             </div>
           <% end %>
