@@ -31,3 +31,15 @@
     font-size: 16px;
   }
 }
+
+.navbar-chum-white {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transition: 0.5s background-color ease;
+
+  .nav-link {
+    color: $black !important;
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
