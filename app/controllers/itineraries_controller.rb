@@ -47,6 +47,7 @@ class ItinerariesController < ApplicationController
       end
     end
     @events = @events.sort.to_h
+    authorize @itinerary
   end
 
   def new
