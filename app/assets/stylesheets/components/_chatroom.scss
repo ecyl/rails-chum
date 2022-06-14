@@ -35,6 +35,12 @@
     padding: 16px;
   };
 
+  .tab-content.active {
+    border: 3px solid #003249;
+    border-radius: 8px;
+    padding: 16px;
+  };
+
 }
 
 .chatboxes {
@@ -68,10 +74,11 @@
 }
 
 .chatroom {
-  background: #003249;
-  color: $platinum;
+  background: white;
+  color: $jet;
   border-radius: 8px;
   height: 100%;
+  box-shadow: #555555;
 
   .messages {
     padding: 32px;
@@ -90,6 +97,10 @@
   padding-right: 32px;
   padding-top: 16px;
   border-top: 1px solid $platinum;
+}
+
+.form-control {
+  border-radius: 8px;
 }
 
 form {

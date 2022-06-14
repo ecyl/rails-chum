@@ -4,44 +4,42 @@
   </div>
 
   <div class="chat-body" data-controller="chatbox">
-    <div class="chat-sidebar" >
-    <!-- added tabs to select to view all group chat or private chats in a side bar --->
+    <div class="chat-sidebar" data-controller="chat-sidebar" >
+      <!-- added tabs to select to view all group chat or private chats in a side bar --->
       <div class="tab-headers">
-        <ul class="list-inline tabs-underlined">
+        <ul class="list-inline tabs-underlined" data-chat-sidebar-target="tab">
           <li>
-            <a href="#" class="tab-underlined active">Group Chats</a>
+            <a href="#" data-tab="tabOneTarget" class="tab-underlined active" data-action="click->chat-sidebar#toggleTabs" data-chat-sidebar-target="tabHeader">Group Chats</a>
           </li>
           <li>
-            <a href="#" class="tab-underlined">Private Chats</a>
+            <a href="#" data-tab="tabTwoTarget" class="tab-underlined" data-action="click->chat-sidebar#toggleTabs" data-chat-sidebar-target="tabHeader">Private Chats</a>
           </li>
         </ul>
       </div>
 
-    <!-- tab contents --->
-      <div class="tab-content">
-        <h3>Group Messages</h3>
+      <!-- tab contents --->
+      <div class="tab-content active" data-chat-sidebar-target="tabOne tab">
+          <% @chatrooms.each do |chatroom| %>
+            <% if chatroom.itinerary %>
+            <div class="chat-links">
+              Itinerary Title: <%= chatroom.itinerary.title %>
+              <br>
+              Chatroom: <%= link_to chatroom.name, chatroom_path(chatroom) %>
+            </div>
+            <% end %>
+          <% end %>
+      </div>
+
+      <div class="tab-content" data-chat-sidebar-target="tabTwo tab">
+        <h3>Direct Messages</h3>
         <% @chatrooms.each do |chatroom| %>
-          <% if chatroom.itinerary %>
-          <div class="chat-links">
-            Itinerary Title: <%= chatroom.itinerary.title %>
-            <br>
-            Chatroom: <%= link_to chatroom.name, chatroom_path(chatroom) %>
-          </div>
+          <% if chatroom.itinerary == nil %>
+            <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
+              <%= link_to chatroom.name, chatroom_path(chatroom) %>
+            </div>
           <% end %>
         <% end %>
       </div>
-
-    <div class="tab-content">
-      <h3>Direct Messages</h3>
-      <% @chatrooms.each do |chatroom| %>
-        <% if chatroom.itinerary == nil %>
-          <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
-            <%= link_to chatroom.name, chatroom_path(chatroom) %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
 
     </div>
 
