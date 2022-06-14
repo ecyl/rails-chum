@@ -5,6 +5,7 @@ class Chatroom < ApplicationRecord
   has_many :user_chatrooms, dependent: :destroy
   has_many :users, through: :user_chatrooms
 
+
   def private?
     !itinerary_room?
   end
