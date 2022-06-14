@@ -19,7 +19,7 @@
         <p class="text-m"><strong>Response Time: </strong>Within an hour</p>
         <button class="btn-black rounded d-flex">
           <i class="fa-solid fa-message"></i>
-          <span><%= link_to "Send message", "#"%></span>
+          <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post %></span>
         </button>
       </div>
     </div>
