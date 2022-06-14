@@ -1,0 +1,84 @@
+.chat-body {
+  justify-content: space-evenly;
+  height: 80vh;
+  display: flex;
+}
+
+.chat-sidebar {
+  justify-content: space-between;
+  overflow-y: auto;
+  height: 100%;
+
+  .message-group {
+    border: 3px solid #003249;
+    border-radius: 8px;
+    padding: 16px;
+  };
+
+}
+
+.chatboxes {
+  flex-grow: 1;
+}
+
+
+.chat-links {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.chatroom {
+  display: none;
+}
+
+.chatroom.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 24px;
+}
+
+.center {
+  text-align: center;
+}
+
+.chatbox {
+  justify-content: center;
+}
+
+.chatroom {
+  background: #003249;
+  color: $platinum;
+  border-radius: 8px;
+  height: 100%;
+
+  .messages {
+    padding: 32px;
+    padding-bottom: 0px;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+}
+
+.message-sender {
+  text-align: right;
+}
+
+.message-input {
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 16px;
+  border-top: 1px solid $platinum;
+}
+
+form {
+  gap: 8px;
+}
+
+.btn-platinum {
+  height: 62px;
+  border-radius: 8px;
+  border: none;
+}
