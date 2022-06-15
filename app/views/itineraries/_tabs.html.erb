@@ -1,12 +1,13 @@
-<div class="tabs container col-8 mx-auto mt-4" data-controller="itinerary-tabs">
-  <div class="tabs-head">
-    <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle active">Overview</span>
-    <% if current_user == @itinerary.user %>
-      <span data-tab="tabTwoTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Announcements</span>
-    <% end %>
+<div class="tabs container col-8 mx-auto mt-4" data-controller="tabs">
+  <div class="tabs-head mb-4">
+    <span data-tabs-target="tabHeader" data-tab="one" data-action="click->tabs#toggleTab" class="tabs_toggle active">Overview</span>
+    <span data-tabs-target="tabHeader" data-tab="two" data-action="click->tabs#toggleTab" class="tabs_toggle">Announcement</span>
+    <span data-tabs-target="tabHeader" data-tab="three" data-action="click->tabs#toggleTab" class="tabs_toggle">Members</span>
   </div>
 
-  <div class="itinerary-body mt-5">
+
+<%# content %>
+  <div class="itinerary-body mt-5 tab-content active" data-tabs-target="one content">
 
     <%# SECTION ONE LOOK PROPERLY %>
     <div class="sections section-one">
@@ -96,5 +97,17 @@
       </div>
       </div>
 
+  </div>
+
+  <div class="tab-content" data-tabs-target="two content">
+    <div class="announcement-body">
+      <h3>TESTING</h3>
+    </div>
+  </div>
+
+
+  <div class="tab-content" data-tabs-target="three content">
+    <% organiser_name = "#{@organiser.first_name} #{@organiser.last_name}"  %>
+    <%= render "tab_member", itinerary: @itinerary, organiser: @organiser, organiser_name: organiser_name, pending_users: @pending_users, accepted_users: @accepted_users %>
   </div>
 </div>
