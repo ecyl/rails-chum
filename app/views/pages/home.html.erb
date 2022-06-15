@@ -93,6 +93,17 @@
                 <% end %>
               </div>
               <div class="black-overlay">
+                <div class="trip-card-content">
+                  <p><%= @itineraries[i].destination %></p>
+                  <h2><%= @itineraries[i].title %></h2>
+                  <p>by <%= @itineraries[i].user.first_name %> <%= @itineraries[i].user.last_name %></p>
+                  <p><%= @itineraries[i].events[0].date_start %></p>
+                  <p><%= @itineraries[i].events[-1].date_end %></p>
+                  <% budget = 0 %>
+                  <% @itineraries[i].events.each { |event| budget += event.cost }%>
+                  <p><%= budget %></p>
+                </div>
+
               </div>
             </div>
 
