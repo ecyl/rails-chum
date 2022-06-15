@@ -9,21 +9,26 @@
     <div class="search-container w-50">
       <div class="home-search-card">
         <p><strong>Hi, where do you want to go?</strong></p>
+        <hr class="text-muted">
 
-          <%= form_with url: itineraries_path, method: :get, html: { class: 'itineraries-search-bar mb-4 d-flex',
-          data: { search_itineraries_target: 'form' } } do |f| %>
+        <%= form_with url: itineraries_path, method: :get, html: { class: 'd-flex justify-content-between mb-3',
+        data: { search_itineraries_target: 'form' } } do |f| %>
+          <div class="d-flex flex-column">
+            <%= f.label :query, "Destination", class: "text-muted mb-2" %>
             <%= f.text_field :query,
                               class: "form-control",
                               placeholder: "Type a destination...",
                               value: params[:query],
                               data: {
                                 search_itineraries_target: 'input',
-                                action: 'keyup->search-itineraries#update'
                               }
                               %>
 
+          </div>
+          <div class="d-flex flex-column justify-content-end">
             <%= submit_tag "Search", class: "btn-orange normal" %>
-          <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
