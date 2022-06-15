@@ -14,7 +14,12 @@ export default class extends Controller {
         channel: "NotificationChannel",
         id: this.userIdValue,
       },
-      { received: (data) => console.log(data) }
+      {
+        received: (data) => {
+          console.log(data);
+          this.notificationsTarget.insertAdjacentHTML("beforeend", data);
+        },
+      }
     );
     console.log(
       `Subscribe to the notification page with for user ${this.userIdValue}`

@@ -4,8 +4,8 @@ class NotificationChannel < ApplicationCable::Channel
     # notification = Notification.find_by(recipient_id: current_user.id)
     recipient = User.find(params[:id]).id
     # stream_for current_user
-    # stream_from "#{current_user.id}"
-    stream_for recipient
+    stream_from "notifications-#{recipient}"
+    # stream_for recipient
   end
 
   def unsubscribed

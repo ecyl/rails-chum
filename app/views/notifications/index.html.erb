@@ -6,9 +6,7 @@
          data-notification-subscription-target="notifications"
         >Notifications</p>
             <% @notifications.each do |notification| %>
-              <p>
-                <%= notification.params[:message] %>
-              </p>
+                <%= render "notification", notification: notification.params[:message] %>
             <% end %>
       </div>
     </div>

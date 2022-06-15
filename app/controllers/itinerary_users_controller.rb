@@ -40,6 +40,7 @@ class ItineraryUsersController < ApplicationController
     @itinerary_user.user = current_user
 
     if @itinerary_user.save!
+      ActionCable.server.broadcast("notifications", "Hello banana lovers!")
       redirect_to itinerary_path(@itinerary)
     else
       render :new
@@ -72,7 +73,8 @@ class ItineraryUsersController < ApplicationController
 
       CommentNotification.with(
         message: "#{organiser_f_name} has accepted your request to join the itinerary #{@itinerary.title}",
-        notification_type: "accepted_message"
+        notification_type: "accepted_message",
+        id: @itinerary_user.user.id
       )
       .deliver(@itinerary_user.user)
     end
@@ -85,7 +87,8 @@ class ItineraryUsersController < ApplicationController
 
       CommentNotification.with(
         message: "#{organiser_f_name} has rejected your request to join the itinerary #{@itinerary.title}",
-        notification_type: "rejected_message"
+        notification_type: "rejected_message",
+        id: @itinerary_user.user.id
       )
       .deliver(@itinerary_user.user)
     end

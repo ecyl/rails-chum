@@ -7,15 +7,15 @@ class CommentNotification < Noticed::Base
   # Add your delivery methods
   #
   deliver_by :database
-  # deliver_by :action_cable, format: :action_cable_data, stream: :recipient_stream
-  deliver_by :stream, class: "DeliveryMethods::Stream"
+  # deliver_by :action_cable, channel: NotificationChannel, format: :action_cable_data, stream: :recipient_stream
+  # deliver_by :stream, class: "DeliveryMethods::Stream"
 
   def recipient_stream
-    recipient
+    "notifications"
   end
 
   def action_cable_data
-    { user_id: recipient.id, notification: self }
+    { user_id: recipient.id }
   end
 
   # deliver_by :email, mailer: "UserMailer"

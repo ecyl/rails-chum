@@ -10,7 +10,8 @@ class ItineraryUser < ApplicationRecord
       f_name = "#{self.user.first_name} #{self.user.last_name}"
       CommentNotification.with(
         message: "#{f_name} has requested to join your itinerary #{self.itinerary.title}",
-        notification_type: "new_pending"
+        notification_type: "new_pending",
+        id: itinerary.user.id
       ).deliver(self.itinerary.user)
 
     end
