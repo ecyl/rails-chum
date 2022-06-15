@@ -58,9 +58,9 @@
         </div>
 
          <%= simple_form_for([itinerary, itinerary_user]) do |f| %>
-            <%= f.input :message, label: "Send the organizer a message", label_html:{ class: "text-white mb-3" }, placeholder: "I would like to join because..." %>
+            <%= f.input :message, label: "Send the organizer a message", label_html:{ class: "text-white mb-1" }, placeholder: "I would like to join because..." %>
             <div class="d-flex">
-              <%= f.button :submit, "Send request", class:"p-2 btn-platinum-request long btn-padding-small text-center"%>
+              <%= f.button :submit, "Send request", class:"p-2 btn-orange-outline btn-padding-small text-center"%>
           </div>
           <% end %>
 
