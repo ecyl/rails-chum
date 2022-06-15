@@ -94,14 +94,31 @@
               </div>
               <div class="black-overlay">
                 <div class="trip-card-content">
-                  <p><%= @itineraries[i].destination %></p>
-                  <h2><%= @itineraries[i].title %></h2>
-                  <p>by <%= @itineraries[i].user.first_name %> <%= @itineraries[i].user.last_name %></p>
-                  <p><%= @itineraries[i].events[0].date_start %></p>
-                  <p><%= @itineraries[i].events[-1].date_end %></p>
-                  <% budget = 0 %>
-                  <% @itineraries[i].events.each { |event| budget += event.cost }%>
-                  <p><%= budget %></p>
+                  <div class="trip-card-destination">
+                    <p><%= @itineraries[i].destination %></p>
+                  </div>
+                  <div class="trip-card-title">
+                    <h2><%= @itineraries[i].title %></h2>
+                    <p>by <%= @itineraries[i].user.first_name %> <%= @itineraries[i].user.last_name %></p>
+                  </div>
+                  <div class="trip-card-specs">
+                    <div class="trip-card-dates">
+                      <div>
+                        <p class="trip-card-date-header">From</p>
+                        <p><%= @itineraries[i].events[0].date_start %></p>
+                      </div>
+                      <div>
+                        <p class="trip-card-date-header">To</p>
+                        <p><%= @itineraries[i].events[-1].date_end %></p>
+                      </div>
+                    </div>
+                    <% budget = 0 %>
+                    <% @itineraries[i].events.each { |event| budget += event.cost }%>
+                    <div class="trip-card-budget">
+                      <p class="trip-card-budget-header">Budget</p>
+                      <p>SGD <%= budget %></p>
+                    </div>
+                  </div>
                 </div>
 
               </div>
