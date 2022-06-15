@@ -14,11 +14,11 @@
       </div>
 
       <div class="p-3 d-flex align-items-center">
-        <div>
-          <p class="text-m"><strong>Languages: </strong><%= @organiser.languages %></p>
+        <div id="organiser-info">
+          <p id="languages" class="text-m"><strong>Languages: </strong><%= @organiser.languages %></p>
           <p class="text-m"><strong>Response time: </strong>English, French</p>
-          <%= link_to "Find out more about me", user_path(organiser.id), class: "btn-black rounded" unless current_user == organiser %>
-          <%= link_to "Send message", user_chatrooms_path(organiser.id), method: :post, class: "btn-black rounded mt-3" unless current_user == organiser %>
+          <%= link_to "Find out more about me", user_path(organiser.id), class: "btn-black-outline long" unless current_user == organiser %>
+          <%= link_to "Send message", user_chatrooms_path(organiser.id), method: :post, class: "btn-black-outline long mt-3" unless current_user == organiser %>
           <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
         </div>
       </div>
