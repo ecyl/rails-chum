@@ -1,7 +1,10 @@
 <div class="black-overlay" data-controller="follower-request-form">
     <div class="m-auto">
-      <div class="popup-blue my-auto">
-        <p class="text-white" style="margin-bottom: 2.3rem;">Notifications</p>
+      <div class="popup-blue my-auto" data-controller="notification-subscription"
+      data-notification-subscription-user-id-value="<%= @current_user.id %>" >
+        <p class="text-white notifications" style="margin-bottom: 2.3rem;"
+         data-notification-subscription-target="notifications"
+        >Notifications</p>
             <% @notifications.each do |notification| %>
               <p>
                 <%= notification.params[:message] %>

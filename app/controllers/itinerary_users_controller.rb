@@ -74,7 +74,7 @@ class ItineraryUsersController < ApplicationController
         message: "#{organiser_f_name} has accepted your request to join the itinerary #{@itinerary.title}",
         notification_type: "accepted_message"
       )
-      .deliver_later(@itinerary_user.user)
+      .deliver(@itinerary_user.user)
     end
   end
 
@@ -87,7 +87,7 @@ class ItineraryUsersController < ApplicationController
         message: "#{organiser_f_name} has rejected your request to join the itinerary #{@itinerary.title}",
         notification_type: "rejected_message"
       )
-      .deliver_later(@itinerary_user.user)
+      .deliver(@itinerary_user.user)
     end
   end
 end
