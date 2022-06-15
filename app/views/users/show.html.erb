@@ -19,9 +19,15 @@
         <div class="user-verification info">
           <i class="fa-solid fa-globe"></i> Organised 2 trips
         </div>
-
-        <div>
+        <div class="message">
+          <button class="btn-black rounded d-flex">
+          <i class="fa-solid fa-message"></i>
+          <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post %></span>
+          </button>
         </div>
+      </div>
+
+      <div class="line-break">
       </div>
     </div>
   </div>

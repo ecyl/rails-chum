@@ -19,6 +19,12 @@
   .user-avatar {
     margin-bottom: 32px;
   }
+
+  .btn-black {
+    width: 186px;
+    height: 40px;
+    gap: 8px;
+  }
 }
 
 .user-verification {
@@ -31,4 +37,16 @@
 
 .center {
   text-align: center;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+
+}
+
+.line-break {
+  border-bottom: 1px solid rgb(221, 221, 221);
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
