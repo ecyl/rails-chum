@@ -1,0 +1,38 @@
+<div class="simple-calendar">
+  <div class="calendar-heading">
+    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+    <% if calendar.number_of_weeks == 1 %>
+      <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %></span>
+    <% else %>
+      <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %> - <%= calendar.end_week %></span>
+    <% end %>
+    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+  </div>
+
+<%# Grid %>
+  <%# top row with the days %>
+  <% date_range.slice(0, 7).each do |day| %>
+    <span class="week-header"><%= t('date.abbr_day_names')[day.wday] %></span>
+  <% end %>
+  <%# left bar with the hours (first column of the grid) %>
+  <div class="calendar-time-sidebar">
+    <% (0..24).each do |hour| %>
+      <span><%= hour %></span>
+    <% end %>
+  </div>
+  <%# Populate the events inside, with the proper style to position in the row, col, with the proper span (duration) %>
+      <% date_range.each_slice(7) do |week| %>
+        <div class="itinerary-calendar">
+          <% week.each do |day| %>
+            <div class="calendar-day-wrapper">
+              <% sorted_events.fetch(day, []).each do |event| %>
+                <div class="event-card">
+                  <%= event.title %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+</div>

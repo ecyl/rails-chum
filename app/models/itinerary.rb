@@ -34,4 +34,8 @@ class Itinerary < ApplicationRecord
     self.users.include?(user)
     users.include?(user)
   end
+
+  def start_time
+    self.events.date_start
+  end
 end

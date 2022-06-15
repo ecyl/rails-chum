@@ -58,6 +58,8 @@ class ItinerariesController < ApplicationController
       end
     end
     @events = @events.sort.to_h
+
+    # For calendar
     authorize @itinerary
   end
 
