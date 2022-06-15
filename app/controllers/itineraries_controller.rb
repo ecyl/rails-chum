@@ -47,6 +47,7 @@ class ItinerariesController < ApplicationController
     @announcement = Announcement.new
 
     # Group events according to date
+    @first_event = @itinerary.events.first
     @events = {}
     @itinerary.events.each do |event|
       start = event.date_start.to_date
