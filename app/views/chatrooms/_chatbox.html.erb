@@ -3,6 +3,7 @@
     class="chatroom <%= active ? "active" : "" %>"
     data-chatbox-target="chatroom"
     data-controller="chatroom-subscription"
+    data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
     data-chatroom-subscription-chatroom-id-value="<%= chatroom.id %>"
   >
     <div class="messages" data-chatroom-subscription-target="messages">

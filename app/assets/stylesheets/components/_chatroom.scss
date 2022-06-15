@@ -15,8 +15,7 @@
     height: 50%;
     padding: 16px;
     overflow-y: auto;
-  };
-
+  }
 }
 
 .chatboxes {
@@ -63,8 +62,20 @@
   }
 }
 
+.sender-name {
+  display: none;
+}
+
 .message-sender {
   text-align: right;
+
+  .sender-name {
+    display: inline-block;
+  }
+
+  .receiver-name {
+    display: none;
+  }
 }
 
 .message-input {

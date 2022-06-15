@@ -45,8 +45,7 @@
           <div class="card card-trip" data-action='click->itinerary-card#clickCard' data-itinerary-card-target="card" data-itinerary-id="<%= @itineraries[i].id %>">
             <!-- Image -->
             <% if @itineraries[i].photo.attached? %>
-              <%= cl_image_path @itineraries[i].photo.key %>
-              <%#<%= cl_image_path itinerary.photo.key %>
+              <img class="itinerary-image" src="<%= cl_image_path @itineraries[i].photo.key %>" alt="itinerary image">
             <% else %>
               <!-- TODO: This needs to match the itinerary banner image in the show page -->
               <img src="https://source.unsplash.com/random/430x246/?trip,<%= @itineraries[i].title %>" alt="itinerary image">
