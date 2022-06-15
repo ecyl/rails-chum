@@ -19,4 +19,15 @@ class Event < ApplicationRecord
   #   self.itinerary.save
   # end
   has_one_attached :photo
+
+  after_commit :set_itinerary_dates
+
+  def set_itinerary_dates
+    self.itinerary.events.each do |event|
+      self.itinerary.start_date = self.date_start if self.date_start < self.itinerary.start_date
+      self.itinerary.end_date = self.date_end if self.date_end < self.itinerary.end_date
+    end
+
+    self.itinerary.save
+  end
 end

@@ -17,6 +17,11 @@ class ItinerariesController < ApplicationController
       @itineraries = @itineraries.where('destination ILIKE ?', "%#{params[:query]}%")
     end
 
+    # array of itineraries where start_date is > query
+    if params[:start_date].present?
+      @itineraries = @itineraries.where('start_date > ?', )
+    end
+
     respond_to do |format|
       format.html
       format.text { render partial: 'itineraries/list', locals: { itineraries: @itineraries }, formats: [:html] }
