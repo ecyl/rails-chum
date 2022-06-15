@@ -16,10 +16,11 @@
 
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
+
             <% @events.each do |date, events| %>
               <% events.each do |event| %>
                 <% if event.photo.attached? %>
-                  <% if events.first == event %>
+                  <% if @first_event == event %>
                     <div class="carousel-item active">
                       <img src="<%= cl_image_path(event.photo.key) %>" class="d-block w-100" alt="event-image">
                     </div>
@@ -29,7 +30,7 @@
                     </div>
                   <% end %>
                 <% else %>
-                  <% if events.first == event %>
+                  <% if @first_event == event %>
                     <div class="carousel-item active">
                       <img src="https://source.unsplash.com/random/?trip,<%= event.location %>" class="d-block w-100" alt="event-image">
                     </div>
