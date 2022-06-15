@@ -11,6 +11,12 @@
   margin-left: 30px;
 }
 
+.tabs_toggle {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .tabs_toggle.active {
   border-bottom: 2px solid black;
 }
@@ -42,7 +48,13 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+.tab-content.active {
+  display: contents;
+}
 
+.tab-content {
+  display: none;
+}
 
 
 
