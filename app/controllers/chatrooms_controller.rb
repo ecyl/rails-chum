@@ -4,25 +4,6 @@ class ChatroomsController < ApplicationController
     @message = Message.new
   end
 
-  # should not have the chatroom show anymore
-  # def show
-  #   @chatroom = authorize Chatroom.find(params[:id])
-  #   @message = Message.new
-  #   if @chatroom.itinerary
-  #     organiser_id = @chatroom.itinerary.user_id
-  #     @organiser = User.find(organiser_id)
-  #   end
-  # end
-
-  # creating new chats from itinerary show
-  # def new
-  #   itinerary = Itinerary.find(params[:itinerary_id])
-  #   # find the organiser
-  #   organiser_id = itinerary.user_id
-  #   @organiser_details = User.find(organiser_id)
-  #   @chatroom = authorize Chatroom.new
-  # end
-
   def create
     # assign recipient and sender
     @recipient = User.find(params[:user_id])
