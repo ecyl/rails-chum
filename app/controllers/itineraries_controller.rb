@@ -1,11 +1,17 @@
 class ItinerariesController < ApplicationController
   before_action :set_itinerary, only: [:show, :confirm, :finalise]
+
   def index
     # @itineraries = Itinerary.all
 
     # this line points to scope within itinerary_policy & takes the scope given
     # e.g. if it says scope.where(user: current_user) -> i can only get itinerary created by user
     @itineraries = policy_scope(Itinerary).order(created_at: :desc)
+    # @itineraries = Itinerary.where(user: @user).order(created_at: :desc)
+
+    # navbar style
+    @banner_navbar = true
+    @black_text_navbar = false
 
     if params[:query].present?
       @itineraries = @itineraries.where('destination ILIKE ?', "%#{params[:query]}%")
@@ -18,6 +24,10 @@ class ItinerariesController < ApplicationController
   end
 
   def show
+    # navbar styles
+    @banner_navbar = true
+    @black_text_navbar = false
+
     @markers = @itinerary.events.geocoded.map do |location|
       {
         lat: location.latitude,
@@ -48,11 +58,16 @@ class ItinerariesController < ApplicationController
       end
     end
     @events = @events.sort.to_h
+    authorize @itinerary
   end
 
   def new
     @itinerary = Itinerary.new
     authorize @itinerary
+
+    # navbar style
+    @banner_navbar = false
+    @static_navbar = true
   end
 
 
@@ -60,6 +75,11 @@ class ItinerariesController < ApplicationController
     Itinerary.transaction do
       @itinerary = Itinerary.new(itinerary_params)
       @itinerary.user = current_user
+      @itinerary_user = ItineraryUser.new(
+        status: "organiser",
+      )
+      @itinerary_user.user = current_user
+      @itinerary_user.itinerary = @itinerary
 
       @chatroom ||= Chatroom.new
       @itinerary.chatroom = @chatroom
@@ -71,6 +91,8 @@ class ItinerariesController < ApplicationController
       @itinerary.save!
       redirect_to itinerary_path(@itinerary)
     end
+    @itinerary_user.save!
+    authorize @itinerary_user
     authorize @itinerary
   rescue ActiveRecord::RecordInvalid
     render :new
@@ -102,12 +124,18 @@ class ItinerariesController < ApplicationController
   end
 
   def find_pending_users
-    @itinarary = set_itinerary
+    @itinerary = set_itinerary
     @pending_users = @itinerary.itinerary_users.where(status: "pending")
   end
 
   def find_accepted_users
-    @itinarary = set_itinerary
+    @itinerary = set_itinerary
     @accepted_users = @itinerary.itinerary_users.where(status: "accepted")
   end
+
+  def accepted
+    false
+    # authorize @itinerary
+  end
+
 end

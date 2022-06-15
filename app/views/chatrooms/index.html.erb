@@ -1,29 +1,50 @@
-<div class="title center">
-  <h1>My Messages</h1>
-</div>
-
-<div class="chat-summary d-flex col-6 mx-auto">
-  <div class="message-group">
-    <h3>Group Messages</h3>
-      <% @chatrooms.each do |chatroom| %>
-        <% if chatroom.itinerary %>
-        <div class="chat-links">
-          Itinerary Title: <%= chatroom.itinerary.title %>
-          <br>
-          Chatroom: <%= link_to chatroom.name, chatroom_path(chatroom) %>
-        </div>
-        <% end %>
-      <% end %>
+<div class="container">
+  <div class="title center">
+    <h1>My Messages</h1>
   </div>
 
-  <div class="message-group">
-  <h3>Direct Messages</h3>
-    <% @chatrooms.each do |chatroom| %>
-      <% if chatroom.itinerary == nil %>
-        <div class="chat-links">
-          <%= link_to chatroom.name, chatroom_path(chatroom) %>
-        </div>
+  <div class="chat-body" data-controller="chatbox" >
+    <div class="chat-sidebar" >
+      <div class="message-group">
+        <h3>Group Messages</h3>
+          <% @chatrooms.each do |chatroom| %>
+            <% if chatroom.itinerary %>
+            <div class="chat-links">
+              Itinerary Title: <%= chatroom.itinerary.title %>
+              <br>
+              Chatroom: <%= link_to chatroom.name, chatroom_path(chatroom) %>
+            </div>
+            <% end %>
+          <% end %>
+      </div>
+
+      <div class="message-group">
+        <h3>Direct Messages</h3>
+        <% @sender = current_user %>
+        <% @chatrooms.each do |chatroom| %>
+          <% if chatroom.itinerary == nil %>
+            <%# to filter out recipient %>
+            <% chatroom.users.each do |user| %>
+              <% if user.id != @sender.id %>
+              <% @recipient = user %>
+              <% end %>
+            <% end %>
+            <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
+              <%# placeholder to show the avatar of the recipient %>
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/krokrob", class: "avatar-bordered", alt: "avatar-bordered" %>
+              <%= link_to @recipient.first_name, chatroom_path(chatroom) %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="chatboxes">
+      <% @chatrooms.each_with_index do |chatroom, index| %>
+        <%# this shows the first chatroom on the list, but we also want to check that the chatroom that it is being
+        redirected to from the chatroom controller becomes active %>
+        <%= render "chatbox", chatroom: chatroom, active: params[:chatroom].present? ? chatroom.id == params[:chatroom].to_i : index.zero? %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  before_action :set_nav
   include Pundit
 
   # Pundit: white-list approach.
@@ -7,11 +8,17 @@ class ApplicationController < ActionController::Base
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   # Uncomment when you *really understand* Pundit!
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  # def user_not_authorized
-  #   flash[:alert] = "You are not authorized to perform this action."
-  #   redirect_to(root_path)
-  # end
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(root_path)
+  end
+
+  def set_nav
+    @static_navbar = false
+    @banner_navbar = false
+    @black_text_navbar = true
+  end
 
   private
 

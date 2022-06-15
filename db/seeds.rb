@@ -16,6 +16,54 @@ Chatroom.destroy_all
 Message.destroy_all
 UserChatroom.destroy_all
 
+# HARDCODE USERS
+
+raymond = User.new(
+  first_name: "Raymond",
+  last_name: "Ong",
+  email: "raymondong@gmail.com",
+  password: 12345678,
+  age: 18,
+  gender: "M",
+  languages: "English, Chinese, French"
+)
+raymond.save!
+
+eunice = User.new(
+  first_name: "Eunice",
+  last_name: "Chin",
+  email: "ecyl@gmail.com",
+  age: 21,
+  gender: "F",
+  password: 12345678,
+  languages: "Nonsense, English, basic Chinese"
+)
+eunice.save!
+
+helen = User.new(
+  first_name: "Helen",
+  last_name: "Tan",
+  email: "helentan@gmail.com",
+  age: 21,
+  gender: "F",
+  password: 12345678,
+  languages: "English, Chinese, UIUX"
+)
+helen.save!
+
+germaine = User.new(
+  first_name: "Germaine",
+  last_name: "Wong",
+  email: "germainewong@gmail.com",
+  age: 21,
+  gender: "F",
+  password: 12345678,
+  languages: "English, limited Chinese, GenZ"
+)
+germaine.save!
+
+puts "Test user: Eunice, Helen, Germaine, Raymond created"
+
 def get_address(event)
   if event.valid?
     endpoint = 'mapbox.places'
@@ -170,6 +218,15 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
   itinerary.user = organiser
   itinerary.save! # I should be able to save now
 
+  # itinerary_user for organiser
+  organiser_chatroom = ItineraryUser.new(
+    status: "organiser"
+  )
+
+  organiser_chatroom.itinerary = itinerary
+  organiser_chatroom.user = organiser
+  organiser_chatroom.save!
+
   # --- CREATING ITINERARY USERS ---
   pending_users.each do |p_user|
     itinerary_user = ItineraryUser.new(
@@ -181,6 +238,8 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
     itinerary_user.save!
   end
 
+  # adding organiser + accepted_users into user_chatrooms
+  chatroom.users << organiser
   accepted_users.each do |a_user|
     itinerary_user = ItineraryUser.new(
       status: "accepted",
