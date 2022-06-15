@@ -1,3 +1,4 @@
+/*
 .card-trip {
   overflow: hidden;
   background: white;
@@ -75,6 +76,7 @@
   padding: 10px;
   margin: 10px 0;
 }
+*/
 
 .announcements-container {
   background-color: white;
@@ -102,4 +104,46 @@
   .announcement-content {
     margin-left: 56px;
   }
+}
+
+
+
+
+.trip-card {
+  width: 320px; /* Box dimensions */
+  height: 400px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  transition: all .5s ease;
+}
+
+.trip-card:hover{ /* Just for styling */
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  transform: translate3D(0,-1px,0) scale(1.03);
+}
+
+.trip-card-background {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center; /* vertical center */
+  width: 100%; /* Thumbnail dimensions. */
+  height: 100%; /*** Change the height to make the image smaller ***/
+  /* background-color: rgba(0,0,0,.2);  /* for debugging */
+}
+
+.trip-card-background > img{ /* Tip: use 1:1 ratio images */
+  height: 100%; /* or width when img.width > img.height */
+}
+
+.black-overlay {
+  width: 320px;
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 0;
 }
