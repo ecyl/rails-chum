@@ -1,7 +1,10 @@
-button {
-  gap: 8px;
+.container.user-profile {
+  display: flex;
 }
 
-.profile-body {
-  justify-content: space-evenly;
+.user-sidebar {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
 }
