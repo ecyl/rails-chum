@@ -4,18 +4,23 @@
     <%# user profile details %>
     <div class="profile-details">
       <%# avatar %>
-      <div class="user-avatar">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
-        <em>Update photo</em>
+      <div class="user-avatar center">
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar", 'aria-haspopup': true, 'aria-expanded': false %>
+        <div class="center">
+          <p><em>Update photo</em></p>
+        </div>
       </div>
 
       <%# verification information %>
-      <div class="user-verification-info">
-        <div class="user-reviews">
+      <div class="user-verification">
+        <div class="user-verification info">
           <i class="fa-solid fa-star"></i> 6 reviews
         </div>
-        <div class="organised-trips">
+        <div class="user-verification info">
           <i class="fa-solid fa-globe"></i> Organised 2 trips
+        </div>
+
+        <div>
         </div>
       </div>
     </div>

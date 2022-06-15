@@ -8,4 +8,27 @@
   flex-direction: column;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 12px;
+  padding: 24px;
+  width: 30%;
+
+  .avatar {
+    height: 128px;
+    width: 128px;
+  }
+
+  .user-avatar {
+    margin-bottom: 32px;
+  }
+}
+
+.user-verification {
+  font-size: 18px;
+
+  .info {
+    margin-bottom: 12px;
+  }
+}
+
+.center {
+  text-align: center;
 }
