@@ -1,6 +1,4 @@
 class ItineraryCalendar < SimpleCalendar::Calendar
-
-
   private
 
   def date_range

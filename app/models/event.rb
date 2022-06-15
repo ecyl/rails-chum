@@ -19,4 +19,8 @@ class Event < ApplicationRecord
   #   self.itinerary.save
   # end
   has_one_attached :photo
+
+  def duration
+    (date_end - date_start) / 3600
+  end
 end
