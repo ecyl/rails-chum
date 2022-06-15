@@ -303,7 +303,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
   )
   first_event.itinerary = itinerary
   first_event.save!
-  get_address(first_event)
+  # get_address(first_event)
 
 
   second_event_location = sampled_location[1]
@@ -445,7 +445,7 @@ bika_event_1 = Event.new(
 )
 bika_event_1.itinerary = bika_iti
 bika_event_1.save!
-get_address(bika_event_1)
+#get_address(bika_event_1)
 
 bika_event_2 = Event.new(
   title: 'Bika run',
@@ -457,7 +457,7 @@ bika_event_2 = Event.new(
 )
 bika_event_2.itinerary = bika_iti
 bika_event_2.save!
-get_address(bika_event_2)
+#get_address(bika_event_2)
 
 bika_event_3 = Event.new(
   title: 'Bika beg for food',
@@ -481,7 +481,7 @@ bika_event_4 = Event.new(
 )
 bika_event_4.itinerary = bika_iti
 bika_event_4.save!
-get_address(bika_event_4)
+#get_address(bika_event_4)
 
 bika_final = Event.new(
   title: 'Vecna please do not eat me',
@@ -493,7 +493,7 @@ bika_final = Event.new(
 )
 bika_final.itinerary = bika_iti
 bika_final.save!
-get_address(bika_final)
+#get_address(bika_final)
 
 
 puts "Creating restrictions..."

@@ -6,36 +6,42 @@
   <div class="chat-body" data-controller="chatbox" >
     <div class="chat-sidebar" >
       <div class="message-group">
-        <h3>Group Messages</h3>
+        <div class="message-group-title">
+          Group Messages
+        </div>
+        <div class="message-group-body">
           <% @chatrooms.each do |chatroom| %>
-            <% if chatroom.itinerary %>
-            <div class="chat-links">
-              Itinerary Title: <%= chatroom.itinerary.title %>
-              <br>
-              Chatroom: <%= link_to chatroom.name, chatroom_path(chatroom) %>
-            </div>
+              <% if chatroom.itinerary %>
+              <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
+                Itinerary: <%= link_to chatroom.itinerary.title, chatroom_path(chatroom) %>
+              </div>
+              <% end %>
             <% end %>
-          <% end %>
+        </div>
       </div>
 
       <div class="message-group">
-        <h3>Direct Messages</h3>
-        <% @sender = current_user %>
-        <% @chatrooms.each do |chatroom| %>
-          <% if chatroom.itinerary == nil %>
-            <%# to filter out recipient %>
-            <% chatroom.users.each do |user| %>
-              <% if user.id != @sender.id %>
-              <% @recipient = user %>
+        <div class="message-group-title">
+          Direct Messages
+        </div>
+        <div class="message-group-body">
+          <% @sender = current_user %>
+          <% @chatrooms.each do |chatroom| %>
+            <% if chatroom.itinerary == nil %>
+              <%# to filter out recipient %>
+              <% chatroom.users.each do |user| %>
+                <% if user.id != @sender.id %>
+                  <% @recipient = user %>
+                  <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
+                  <%# placeholder to show the avatar of the recipient %>
+                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/krokrob", class: "avatar-bordered", alt: "avatar-bordered" %>
+                  <%= link_to @recipient.first_name, chatroom_path(chatroom) %>
+                  </div>
+                <% end %>
               <% end %>
             <% end %>
-            <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
-              <%# placeholder to show the avatar of the recipient %>
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/krokrob", class: "avatar-bordered", alt: "avatar-bordered" %>
-              <%= link_to @recipient.first_name, chatroom_path(chatroom) %>
-            </div>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
 

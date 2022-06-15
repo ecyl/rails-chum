@@ -6,6 +6,24 @@
     data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
     data-chatroom-subscription-chatroom-id-value="<%= chatroom.id %>"
   >
+      <div class="chatroom-header">
+        <% if chatroom.itinerary %>
+        <%# to display itinerary titles on the chat %>
+          <strong>Itinerary: </strong><%= chatroom.itinerary.title %> ||
+            <strong>Members:</strong>
+            <% chatroom.users.each do |user| %>
+              <%= user.first_name %>
+            <% end %>
+        <% else chatroom.itinerary == nil %>
+        <%# to display the recipient's name %>
+          <% chatroom.users.each do |user| %>
+              <% if user.id != current_user.id %>
+              <strong>You are talking to:</strong> <% user.first_name %>
+              <% end %>
+            <% end %>
+        <% end %>
+      </div>
+
     <div class="messages" data-chatroom-subscription-target="messages">
       <% chatroom.messages.each do |message| %>
       <div class="message-content">
