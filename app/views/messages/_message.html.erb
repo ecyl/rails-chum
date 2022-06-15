@@ -1,22 +1,8 @@
-<div id="message-<%= message.id %>">
-  <% if message.user_id == current_user.id %>
-    <div class="message-sender">
-      <small>
-        <strong>Me</strong>
-          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-      </small>
+<div data-sender-id="<%= message.user.id %>" id="message-<%= message.id %>" class="<%= message.user_id == current_user.id ? "message-sender" : "" %>">
+  <small>
+    <strong><span class="sender-name">Me</span> <span class="receiver-name"><%= message.user.first_name %></span></strong>
+      <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+  </small>
 
-      <p><%= message.content %></p>
-    </div>
-
-  <% else %>
-    <div>
-      <small>
-        <strong><%= message.user.first_name %></strong>
-          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-      </small>
-
-      <p><%= message.content %></p>
-    </div>
-  <% end %>
+  <p><%= message.content %></p>
 </div>
