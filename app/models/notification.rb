@@ -1,3 +1,4 @@
 class Notification < ApplicationRecord
-  belongs_to :user
+  include Noticed::Model
+  belongs_to :recipient, polymorphic: true
 end

@@ -390,13 +390,13 @@ bika = User.new(
   password: '12345678'
 )
 bika.save!
-5.times do
-  notification = Notification.new(
-    content: Faker::Quote.yoda
-  )
-  bika.notifications << notification
-  notification.save!
-end
+# 5.times do
+#   notification = Notification.new(
+#     content: Faker::Quote.yoda
+#   )
+#   bika.notifications << notification
+#   notification.save!
+# end
 bika_chat = Chatroom.new(name: 'bikaTime')
 bika_chat.save!
 

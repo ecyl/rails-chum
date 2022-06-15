@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     # accept and reject actions
   end
 
+
   resources :itinerary_users, only: [] do
     member do
       patch :accept
