@@ -20,6 +20,14 @@
           <i class="fa-solid fa-globe"></i> Organised 2 trips
         </div>
       </div>
+
+      <%# Send message %>
+      <div class="message">
+        <button class="btn-black rounded d-flex">
+        <i class="fa-solid fa-message"></i>
+        <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post %></span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -29,7 +37,7 @@
     <div class="about-me">
       <%# Name %>
       <div class="about-me content">
-        <h3>Hi, I'm <%= @user.first_name %></h3>
+        <h2>Hi, I'm <%= @user.first_name %></h2>
       </div>
       <%# Age, Gender %>
       <div class="about-me content">
@@ -40,16 +48,16 @@
         <i class="fa-solid fa-house"></i>
         <span>Lives in Singapore</span>
       </div>
-      <%# Send message %>
-      <div class="about-me content">
-        <button class="btn-black rounded d-flex">
-        <i class="fa-solid fa-message"></i>
-        <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post %></span>
-        </button>
-      </div>
     </div>
 
     <div class="line-break">
+    </div>
+
+    <%# Some decription %>
+    <div class="user-description">
+      <div class="user-description-title">About Me:</div>
+      I love travelling and meeting new people. I also love food so, my trips are usually quite food-centered. <br>
+      I love blackpink as well
     </div>
 
   </div>
