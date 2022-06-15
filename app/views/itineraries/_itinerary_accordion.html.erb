@@ -1,5 +1,5 @@
-<div class="accordion col-6" id="accordionExample">
-
+<div class="accordion accordion-flush mt-4 col-6" id="accordionExample">
+  <strong><p>Itinerary</p></strong>
   <% @events.each do |key, values| %>
     <% first = @events.keys[0] %>
     <div class="accordion-item">
@@ -22,9 +22,8 @@
               <div class="event-info mt-3">
                 <strong><p><%= event.date_start.strftime("%I:00%P") %> - <%= event.date_end.strftime("%I:00%P") %></p></strong>
                 <strong><p><%= event.location %></p></strong>
-                <p><%= event.title %></p>
 
-                <button data-reverse-geocode-target="button" data-event-id=<%= event.id %> data-action="click->reverse-geocode#getAddress" type="button" class=" details-btn btn-black normal" data-bs-toggle="modal" data-bs-target="#eventModal-<%= event.id %>" style="font-weight:500;">
+                <button data-reverse-geocode-target="button" data-event-id=<%= event.id %> data-action="click->reverse-geocode#getAddress" type="button" class=" btn-orange-medium-outline" data-bs-toggle="modal" data-bs-target="#eventModal-<%= event.id %>" style="font-weight:500;">
                   Details
                 </button>
               </div>
@@ -33,7 +32,11 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <%= image_tag asset_path('event-image.jpg'), class: "modal-image" %>
+                      <% if event.photo.attached? %>
+                        <%= cl_image_tag event.photo.key, class: "modal-image" %>
+                      <% else %>
+                        <img class="modal-image" src="https://source.unsplash.com/random/?trip,<%= event.location %>" alt="modal image">
+                      <% end %>
                       <div class="modal-event-details ps-3">
                         <p><%= event.date_start.strftime("%A") %>, <%= event.date_start.strftime("%w %b %Y") %></p>
                         <h5 class="modal-title" id="eventModal-<%= event.id %>Label" style="font-weight: 700;"><%= event.title %></h5>

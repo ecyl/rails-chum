@@ -1,0 +1,99 @@
+<div class="tabs container col-8 mx-auto mt-4" data-controller="itinerary-tabs">
+  <div class="tabs-head">
+    <span data-tab="tabOneTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle active">Overview</span>
+    <% if current_user == @itinerary.user %>
+      <span data-tab="tabTwoTarget" data-itinerary-tabs-target="tabHeader" data-action="click->itinerary-tabs#toggleTab" class="tabs_toggle">Announcements</span>
+    <% end %>
+  </div>
+
+  <div class="itinerary-body mt-5">
+
+    <%# SECTION ONE LOOK PROPERLY %>
+    <div class="sections section-one">
+      <div class="trip-overview">
+        <h5>Trip overview</h5>
+        <p><%= @itinerary.description %></p>
+
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% @events.each do |date, events| %>
+              <% events.each do |event| %>
+                <% if event.photo.attached? %>
+                  <% if events.first == event %>
+                    <div class="carousel-item active">
+                      <img src="<%= cl_image_path(event.photo.key) %>" class="d-block w-100" alt="event-image">
+                    </div>
+                  <% else %>
+                    <div class="carousel-item">
+                      <img src="<%= cl_image_path(event.photo.key) %>" class="d-block w-100" alt="event-image">
+                    </div>
+                  <% end %>
+                <% else %>
+                  <% if events.first == event %>
+                    <div class="carousel-item active">
+                      <img src="https://source.unsplash.com/random/?trip,<%= event.location %>" class="d-block w-100" alt="event-image">
+                    </div>
+                  <% else %>
+                    <div class="carousel-item">
+                      <img src="https://source.unsplash.com/random/?trip,<%= event.location %>" class="d-block w-100" alt="event-image">
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+      <% if !@itinerary.events.length.zero? %>
+        <%# If event exists in itinerary %>
+        <div class="trip-key-details">
+          <strong><p class="mb-3">Trip details</p></strong>
+          <p><strong>Dates:</strong> <%= @events.keys.first.strftime("%d %b %Y") %> - <%= @events.keys.last.strftime("%d %b %Y") %></p>
+          <p><strong>Budget:</strong> $<%= @itinerary.cost %></p>
+          <p><strong>Participants: </strong><%= @itinerary.itinerary_users.where(status: "accepted").count + 1%>/<%= @itinerary.participant_limit %></p>
+          <%= link_to 'Request to join', new_itinerary_itinerary_user_path(@itinerary), class: "btn-orange-outline" %>
+          <%= link_to 'View organiser profile', user_path(@itinerary.user), class: "btn-orange-outline mt-4" %>
+        </div>
+      <% else %>
+        <%# Does not exist. Should be visible only for the itinerary creator when they first create itinerary %>
+        <div class="trip-key-details">
+          <strong><p>Oops. Looks like you have no events yet.</p></strong>
+          <%= link_to 'Add an event', new_itinerary_event_path(@itinerary), class: "btn-orange-outline" %>
+        </div>
+      <% end %>
+    </div>
+
+    <%# SECTION 2 OF PAGE %>
+    <div class="sections section-two mt-4">
+
+      <%# Accordion here %>
+      <%= render 'itinerary_accordion' %>
+
+      <%# Map here %>
+      <div class="map p-3 ms-4" style="width: 100%; height: 600px;"
+              data-controller="mapbox"
+              data-mapbox-markers-value="<%= @markers.to_json %>"
+              data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+
+    <%# SECTION 3 CALENDAR %>
+    <div class="sections sectionThree mt-5">
+      <div class="calendar">
+        <%= month_calendar do |date| %>
+          <%= date %>
+        <% end %>
+      </div>
+      </div>
+
+  </div>
+</div>

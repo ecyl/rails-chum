@@ -1,78 +1,141 @@
-// .nav-tabs > button {
-//   color: #333533;
-
-// }
-
-// .nav-tabs > button:hover {
-//   color: $orange;
-
-// }
-
 .tabs-head {
   display: flex;
-  // justify-content: left;
-  // align-items: center;
 }
 
 .tabs_toggle {
+  width: fit-content;
+  height: 30px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 10px;
-
-  &:hover {
-    cursor:pointer;
-  }
+  justify-content: center;
+  margin-left: 30px;
 }
 
 .tabs_toggle.active {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  font-weight: bold;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom: 1px solid #003153;
+  border-bottom: 2px solid black;
 }
 
-.tab-content.active {
-  display: contents;
-}
-
-.tab-content {
-  display: none;
-}
-
-.contents {
-  padding: 30px;
+.itinerary-body {
   display: flex;
   flex-direction: column;
-
-  p {
-    margin-top: 10px;
-    margin-bottom: 0;
-  }
 }
 
-.itinerary-events {
-  display: flex;
-}
-
-// For the empty events
-.empty {
-  height: 300px;
-  width: 400px;
-  margin-top: 10px;
-  background-color: $alabaster;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.tab-header {
+.sections {
   display: flex;
   justify-content: space-between;
 }
+
+.trip-overview {
+  width: 450px;
+  h5 {
+    text-decoration: underline;
+    font-style: italic;
+  }
+}
+
+.trip-key-details {
+  width: 450px;
+  height: 380px;
+  border-radius: 6px;
+  background-color: #FEFEFE;
+  padding: 40px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // .nav-tabs > button {
+// //   color: #333533;
+
+// // }
+
+// // .nav-tabs > button:hover {
+// //   color: $orange;
+
+// // }
+
+// .tabs-head {
+//   display: flex;
+//   // justify-content: left;
+//   // align-items: center;
+// }
+
+// .tabs_toggle {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 10px;
+
+//   &:hover {
+//     cursor:pointer;
+//   }
+// }
+
+// .tabs_toggle.active {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 10px;
+//   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+//   font-weight: bold;
+//   border-top-left-radius: 5px;
+//   border-top-right-radius: 5px;
+//   border-bottom: 1px solid #003153;
+// }
+
+// .tab-content.active {
+//   display: contents;
+// }
+
+// .tab-content {
+//   display: none;
+// }
+
+// .contents {
+//   padding: 30px;
+//   display: flex;
+//   flex-direction: column;
+
+//   p {
+//     margin-top: 10px;
+//     margin-bottom: 0;
+//   }
+// }
+
+// .itinerary-events {
+//   display: flex;
+// }
+
+// // For the empty events
+// .empty {
+//   height: 300px;
+//   width: 400px;
+//   margin-top: 10px;
+//   background-color: $alabaster;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+// }
+
+// .tab-header {
+//   display: flex;
+//   justify-content: space-between;
+// }

@@ -31,6 +31,7 @@ class Itinerary < ApplicationRecord
   end
 
   def accepted?(user)
+    self.users.include?(user)
     users.include?(user)
   end
 end
