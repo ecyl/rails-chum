@@ -1,7 +1,12 @@
-<h1>Notifications</h1>
-
-<ul>
-  <% @notifications.each do |notification| %>
-    <ul><%= notification %></ul>
-  <% end %>
-</ul>
+<div class="black-overlay" data-controller="follower-request-form">
+    <div class="m-auto">
+      <div class="popup-blue my-auto">
+        <p class="text-white" style="margin-bottom: 2.3rem;">Notifications</p>
+            <% @notifications.each do |notification| %>
+              <p>
+                <%= notification.params[:message] %>
+              </p>
+            <% end %>
+      </div>
+    </div>
+</div>

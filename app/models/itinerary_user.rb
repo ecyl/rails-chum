@@ -1,12 +1,18 @@
 class ItineraryUser < ApplicationRecord
   belongs_to :itinerary
   belongs_to :user
+  after_create_commit :notify_recipient
 
   private
 
   def notify_recipient
     if status == 'pending'
-      CommentNotification.with(message: "self").deliver_later(current_user)
+      f_name = "#{self.user.first_name} #{self.user.last_name}"
+      CommentNotification.with(
+        message: "#{f_name} has requested to join your itinerary #{self.itinerary.title}",
+        notification_type: "new_pending"
+      )
+      .deliver_later(self.itinerary.user)
     end
   end
 end

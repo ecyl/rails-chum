@@ -7,6 +7,7 @@ class ItineraryUsersController < ApplicationController
     @itinerary = find_itinerary_by_assocation
 
     if @itinerary_user.save
+      notify_recipient_accepted
       redirect_to itinerary_path(@itinerary), notice: "The user is accepted."
     else
       redirect_to itinerary_path(@itinerary), notice: "Failed to accept user"
@@ -61,5 +62,18 @@ class ItineraryUsersController < ApplicationController
 
   def itinerary_user_params
     params.require(:itinerary_user).permit(:message)
+  end
+
+  def notify_recipient_accepted
+    if @itinerary_user.status == 'accepted'
+      organiser = @itinerary_user.itinerary.user
+      organiser_f_name = "#{organiser.first_name} #{organiser.last_name}"
+
+      CommentNotification.with(
+        message: "#{organiser_f_name} has accepted your request to join the itinerary #{@itinerary.title}",
+        notification_type: "accepted_message"
+      )
+      .deliver_later(@itinerary_user.user)
+    end
   end
 end
