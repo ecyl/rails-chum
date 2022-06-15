@@ -12,7 +12,7 @@
         <div class="message-group-body">
           <% @chatrooms.each do |chatroom| %>
               <% if chatroom.itinerary %>
-              <div class="chat-links">
+              <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
                 Itinerary: <%= link_to chatroom.itinerary.title, chatroom_path(chatroom) %>
               </div>
               <% end %>
