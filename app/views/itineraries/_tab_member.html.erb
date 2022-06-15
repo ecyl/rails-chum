@@ -19,7 +19,14 @@
           <p class="text-m"><strong>Response time: </strong>English, French</p>
           <%= link_to "Find out more about me", user_path(organiser.id), class: "btn-black-outline long" unless current_user == organiser %>
           <%= link_to "Send message", user_chatrooms_path(organiser.id), method: :post, class: "btn-black-outline long mt-3" unless current_user == organiser %>
-          <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
+
+          <div id="request-join">
+            <button type="button" class="btn-crimson rounded long mt-3" data-bs-toggle="modal" data-bs-target="#requestModal">
+              Request to join
+            </button>
+          <%# <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
+          </div>
+
         </div>
       </div>
     </div>
@@ -38,3 +45,26 @@
             <%# link_to "accept", accept_itinerary_user_path(p_user), method: :patch %>
             <%# link_to "reject", reject_itinerary_user_path(p_user), method: :patch %>
           <%# end %>
+
+<!-- Modal -->
+<div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div id="modal-container" class="modal-content">
+      <div class="modal-body">
+        <div class="d-flex justify-content-between">
+          <h3 class="modal-title mt-2" id="requestModalTitle" style="font-weight: 500;">Send a request to join this trip</h3>
+            <button type="button" data-bs-dismiss="modal" class="btn-close mt-2" aria-label="Close">
+            </button>
+        </div>
+
+         <%= simple_form_for([itinerary, itinerary_user]) do |f| %>
+            <%= f.input :message, label: "Send the organizer a message", label_html:{ class: "text-white mb-3" }, placeholder: "I would like to join because..." %>
+            <div class="d-flex">
+              <%= f.button :submit, "Send request", class:"p-2 btn-platinum-request long btn-padding-small text-center"%>
+          </div>
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
