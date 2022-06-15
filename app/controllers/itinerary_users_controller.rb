@@ -20,6 +20,7 @@ class ItineraryUsersController < ApplicationController
     @itinerary = find_itinerary_by_assocation
 
     if @itinerary_user.save
+      notify_recipient_rejected
       redirect_to itinerary_path(@itinerary), notice: "The user is rejected."
     else
       redirect_to itinerary_path(@itinerary), notice: "Failed to reject user"
@@ -72,6 +73,19 @@ class ItineraryUsersController < ApplicationController
       CommentNotification.with(
         message: "#{organiser_f_name} has accepted your request to join the itinerary #{@itinerary.title}",
         notification_type: "accepted_message"
+      )
+      .deliver_later(@itinerary_user.user)
+    end
+  end
+
+  def notify_recipient_rejected
+    if @itinerary_user.status == 'rejected'
+      organiser = @itinerary_user.itinerary.user
+      organiser_f_name = "#{organiser.first_name} #{organiser.last_name}"
+
+      CommentNotification.with(
+        message: "#{organiser_f_name} has rejected your request to join the itinerary #{@itinerary.title}",
+        notification_type: "rejected_message"
       )
       .deliver_later(@itinerary_user.user)
     end
