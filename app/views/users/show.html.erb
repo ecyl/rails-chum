@@ -19,21 +19,38 @@
         <div class="user-verification info">
           <i class="fa-solid fa-globe"></i> Organised 2 trips
         </div>
-        <div class="message">
-          <button class="btn-black rounded d-flex">
-          <i class="fa-solid fa-message"></i>
-          <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post %></span>
-          </button>
-        </div>
-      </div>
-
-      <div class="line-break">
       </div>
     </div>
   </div>
 
   <%# content %>
   <div class="user-content">
-  test test
+    <%# About Me %>
+    <div class="about-me">
+      <%# Name %>
+      <div class="about-me content">
+        <h3>Hi, I'm <%= @user.first_name %></h3>
+      </div>
+      <%# Age, Gender %>
+      <div class="about-me content">
+        <span><%= @user.age %>, <%= @user.gender %></span>
+      </div>
+      <%# lives in XX %>
+      <div class="about-me content">
+        <i class="fa-solid fa-house"></i>
+        <span>Lives in Singapore</span>
+      </div>
+      <%# Send message %>
+      <div class="about-me content">
+        <button class="btn-black rounded d-flex">
+        <i class="fa-solid fa-message"></i>
+        <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post %></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="line-break">
+    </div>
+
   </div>
 </div>

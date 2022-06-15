@@ -20,11 +20,6 @@
     margin-bottom: 32px;
   }
 
-  .btn-black {
-    width: 186px;
-    height: 40px;
-    gap: 8px;
-  }
 }
 
 .user-verification {
@@ -35,14 +30,23 @@
   }
 }
 
+.user-content {
+  margin-left: 32px;
+  width: 70%;
+
+  .btn-black {
+    width: 186px;
+    height: 40px;
+    gap: 8px;
+  }
+
+}
 .center {
   text-align: center;
 }
 
-.message {
-  display: flex;
-  justify-content: center;
-
+.about-me.content {
+  margin-top: 12px;
 }
 
 .line-break {
