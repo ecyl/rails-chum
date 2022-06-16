@@ -1,7 +1,6 @@
 class NotificationsController < ApplicationController
-  def show
-  end
 
   def index
+    @notifications = Notification.find(params[:id]).order
   end
 end
