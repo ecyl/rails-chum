@@ -34,7 +34,6 @@
 .trip-overview {
   width: 450px;
   h5 {
-    text-decoration: underline;
     font-style: italic;
   }
 }
@@ -54,6 +53,10 @@
 
 .tab-content {
   display: none;
+}
+
+.fa-calendar {
+  font-size: large;
 }
 
 

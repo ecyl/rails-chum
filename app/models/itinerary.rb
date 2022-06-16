@@ -35,6 +35,11 @@ class Itinerary < ApplicationRecord
     users.include?(user)
   end
 
+
+  def start_time
+    self.events.date_start
+  end
+
   # start_date method to get start_date of itinerary, which is the start date of the 1st event
   # def start_date
   #   events.order(date_start: :asc).first.date_start
@@ -43,4 +48,5 @@ class Itinerary < ApplicationRecord
   # def end_date
   #   events.order(date_start: :desc).first.date_end
   # end
+
 end

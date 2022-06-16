@@ -1,0 +1,14 @@
+<% week = params[:week].present? ? params[:week].to_i : 1 %>
+
+<% sliced_events = sorted_events[(week - 1 * 7), (week * 7) - 1] %>
+<% raise %>
+Week <%= week %>
+<%= link_to "Previous", itinerary_path(2, week: week - 1) %>
+<%= link_to "Next", itinerary_path(2, week: week + 1) %>
+<% sorted_events.each do |day, events| %>
+  <%= day %>
+
+  <% events.each do |event| %>
+    <%= event.title %>
+  <% end %>
+<% end %>

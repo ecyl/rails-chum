@@ -56,9 +56,8 @@ class ItinerariesController < ApplicationController
     @announcement = Announcement.new
 
     # Group events according to date
-    @first_event = @itinerary.events.first
     @events = {}
-    @itinerary.events.each do |event|
+    @itinerary.events.order(date_start: :asc).each do |event|
       start = event.date_start.to_date
       if @events.key?(start)
         @events[start] << event
@@ -67,6 +66,11 @@ class ItinerariesController < ApplicationController
       end
     end
     @events = @events.sort.to_h
+
+    @first_event = @itinerary.events.order(date_start: :asc).first
+    @calendar_start_date = params[:start_date] || @first_event.date_start
+
+    # For calendar
     authorize @itinerary
   end
 
@@ -120,6 +124,7 @@ class ItinerariesController < ApplicationController
     end
   end
 
+
   def publish
        # PATCH action to update finalised => true
        @itinerary.published = true
@@ -131,6 +136,13 @@ class ItinerariesController < ApplicationController
          # insert flash confirmation
          redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to finalise"
        end
+
+  def mytrips
+    @itineraries = authorize Itinerary.all
+
+    # navbar style
+    @banner_navbar = false
+    @static_navbar = true
   end
 
   private

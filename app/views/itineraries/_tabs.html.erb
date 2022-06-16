@@ -1,7 +1,9 @@
-<div class="tabs container col-8 mx-auto mt-4" data-controller="tabs">
-  <div class="tabs-head mb-4">
+<div class="tabs container col-8 mx-auto mt-4 mb-5" data-controller="tabs">
+  <div class="tabs-head mb-5">
     <span data-tabs-target="tabHeader" data-tab="one" data-action="click->tabs#toggleTab" class="tabs_toggle active">Overview</span>
-    <span data-tabs-target="tabHeader" data-tab="two" data-action="click->tabs#toggleTab" class="tabs_toggle">Announcement</span>
+    <% if @itinerary.itinerary_users.where(status: "accepted").include?(current_user) %>
+      <span data-tabs-target="tabHeader" data-tab="two" data-action="click->tabs#toggleTab" class="tabs_toggle">Announcement</span>
+    <% end %>
     <span data-tabs-target="tabHeader" data-tab="three" data-action="click->tabs#toggleTab" class="tabs_toggle">Members</span>
   </div>
 
@@ -59,9 +61,11 @@
         <%# If event exists in itinerary %>
         <div class="trip-key-details">
           <strong><p class="mb-3">Trip details</p></strong>
-          <p><strong>Dates:</strong> <%= @events.keys.first.strftime("%d %b %Y") %> - <%= @events.keys.last.strftime("%d %b %Y") %></p>
-          <p><strong>Budget:</strong> $<%= @itinerary.cost %></p>
-          <p><strong>Participants: </strong><%= @itinerary.itinerary_users.where(status: "accepted").count + 1%>/<%= @itinerary.participant_limit + 1 %></p>
+
+          <p><strong><i class="fa-solid fa-calendar fa-lg"></i>&nbsp;&nbsp;  Dates:</strong> <%= @events.keys.first.strftime("%d %b %Y") %> - <%= @events.keys.last.strftime("%d %b %Y") %></p>
+          <p><strong><i class="fa-solid fa-sack-dollar fa-lg"></i></i>&nbsp;&nbsp; Budget:</strong> $<%= @itinerary.cost %></p>
+          <p><strong><i class="fa-solid fa-people-pulling fa-lg"></i>&nbsp;&nbsp; Participants: </strong><%= @itinerary.itinerary_users.where(status: "accepted").count + 1%>/<%= @itinerary.participant_limit %></p>
+
           <%= link_to 'Request to join', new_itinerary_itinerary_user_path(@itinerary), class: "btn-orange-outline" %>
           <%= link_to 'View organiser profile', user_path(@itinerary.user), class: "btn-orange-outline mt-4" %>
         </div>
@@ -89,11 +93,9 @@
     </div>
 
     <%# SECTION 3 CALENDAR %>
-    <div class="sections sectionThree mt-5">
-      <div class="calendar">
-        <%= month_calendar do |date| %>
-          <%= date %>
-        <% end %>
+    <div class="sections section-three mt-5">
+      <div class="calendar container mb-5">
+        <%= week_calendar(start_date: @calendar_start_date, events: @itinerary.events, attribute: :date_start, end_attribute: :date_end) {} %>
       </div>
       </div>
 
@@ -101,7 +103,31 @@
 
   <div class="tab-content" data-tabs-target="two content">
     <div class="announcement-body">
-      <h3>TESTING</h3>
+      <div class="container announcements-container m-5">
+        <h3 class="mb-3">Announcements</h3>
+        <div class="row">
+          <div class="col-12">
+            <div data-controller="insert-announcements" class="announcements-list">
+              <div data-insert-announcements-target="items">
+                 <% if @itinerary.announcements.blank? %>
+                    <div class="announcement-card">
+                      <div class="d-flex justify-content-center align-items-center">
+                        <span>The organizer has yet to make any announcements. Stay tuned!</span>
+                      </div>
+                    </div>
+                  <% else %>
+                    <% @itinerary.announcements.each do |announcement| %>
+                    <%= render 'announcement', announcement: announcement %>
+                  <% end %>
+
+                <% end %>
+              </div>
+              <!-- Form to write an announcement: TODO: visible to only organiser -->
+              <%= render 'announcements/form', itinerary: @itinerary, announcement: @announcement %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
