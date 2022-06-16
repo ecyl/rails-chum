@@ -108,6 +108,6 @@
 
   <div class="tab-content" data-tabs-target="three content">
     <% organiser_name = "#{@organiser.first_name} #{@organiser.last_name}"  %>
-    <%= render "tab_member", itinerary: @itinerary, organiser: @organiser, organiser_name: organiser_name, pending_users: @pending_users, accepted_users: @accepted_users %>
+    <%= render "tab_member", itinerary: @itinerary, itinerary_user: @itinerary_user, organiser: @organiser, organiser_name: organiser_name, pending_users: @pending_users, accepted_users: @accepted_users %>
   </div>
 </div>

@@ -1,7 +1,56 @@
-button {
-  gap: 8px;
+.container.user-profile {
+  display: flex;
+  margin-top: 100px;
 }
 
-.profile-body {
-  justify-content: space-evenly;
+.user-sidebar {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 24px;
+  width: 30%;
+
+  .avatar {
+    height: 128px;
+    width: 128px;
+  }
+
+  .user-avatar {
+    margin-bottom: 32px;
+  }
+
+}
+
+.user-verification {
+  font-size: 18px;
+
+  .info {
+    margin-bottom: 12px;
+  }
+}
+
+.user-content {
+  margin-left: 32px;
+  width: 70%;
+
+}
+
+.center {
+  text-align: center;
+}
+
+.about-me.content {
+  margin-top: 12px;
+}
+
+.line-break {
+  border-bottom: 1px solid rgb(221, 221, 221);
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.user-description-title {
+  font-size: 20px;
+  font-weight: bold;
 }

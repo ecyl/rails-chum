@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get 'events/create'
   get 'events/new'
   get 'notifications/show'
-  get 'notifications/index'
   # get 'messages/create'
   get 'announcements/create'
   # get 'chatroom/show'
@@ -31,19 +30,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications, only: :index
+
   # to allow users to check on all of their chatrooms
   resources :chatrooms, only: [ :index, :show, :create ] do
     resources :messages, only: :create
   end
 
-  # to allow for the follower to start a chat with the organiser
-  # resources :itineraries, only: :show do
-  #   resources :chatrooms, only: [ :new, :create ]
-  # # end
-
   resources :users, only: [:show] do
     resources :chatrooms, only: :create
+    resources :reviews, only: :create
   end
-
   # resources :itinerary_users, only: --> accept/reject
 end

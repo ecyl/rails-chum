@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_15_154337) do
+ActiveRecord::Schema.define(version: 2022_06_16_055204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2022_06_15_154337) do
     t.integer "participant_limit"
     t.text "description"
     t.datetime "deadline"
-    t.boolean "finalised"
+    t.boolean "published"
     t.bigint "user_id", null: false
     t.bigint "chatroom_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -129,10 +129,11 @@ ActiveRecord::Schema.define(version: 2022_06_15_154337) do
 
   create_table "notifications", force: :cascade do |t|
     t.text "content"
-    t.boolean "read"
+    t.boolean "read", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "notification_type"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -143,6 +144,14 @@ ActiveRecord::Schema.define(version: 2022_06_15_154337) do
     t.string "restricted_gender"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "user_chatrooms", force: :cascade do |t|
@@ -184,6 +193,7 @@ ActiveRecord::Schema.define(version: 2022_06_15_154337) do
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "reviews", "users"
   add_foreign_key "user_chatrooms", "chatrooms"
   add_foreign_key "user_chatrooms", "users"
 end
