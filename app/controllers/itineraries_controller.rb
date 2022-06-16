@@ -112,7 +112,7 @@ class ItinerariesController < ApplicationController
   end
 
   def mytrips
-    raise
+    @itineraries = authorize Itinerary.all
   end
 
   private

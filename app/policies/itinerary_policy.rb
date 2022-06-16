@@ -28,4 +28,8 @@ class ItineraryPolicy < ApplicationPolicy
   def accepted?
     @record.accepted?(@user)
   end
+
+  def mytrips?
+    true
+  end
 end
