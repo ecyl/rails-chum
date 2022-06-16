@@ -23,10 +23,7 @@
 
       <%# Send message %>
       <div class="message">
-        <button class="btn-black rounded d-flex">
-        <i class="fa-solid fa-message"></i>
-        <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post %></span>
-        </button>
+        <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post, class: "btn-black rounded mt-3"%></span>
       </div>
     </div>
   </div>
@@ -56,6 +53,17 @@
     <%# Some decription %>
     <div class="user-description">
       <div class="user-description-title">About Me:</div>
+      I love travelling and meeting new people. I also love food so, my trips are usually quite food-centered. <br>
+      I love blackpink as well
+    </div>
+
+    <div class="line-break">
+    </div>
+
+    <%# Reviews %>
+    <div class="user-reviews">
+      <div class="user-description-title"><i class="fa-solid fa-star"></i> 6 reviews</div>
+      <%# iterate through reviews %>
       I love travelling and meeting new people. I also love food so, my trips are usually quite food-centered. <br>
       I love blackpink as well
     </div>
