@@ -5,10 +5,38 @@
 
 <div class="container">
   <%# div - completed %>
-  <div class="section-header mt-3">
-    <h3>Completed</h3>
+  <div class="completed-trips">
+    <div class="section-header mt-3">
+      <h3>Completed</h3>
+    </div>
 
-  </div>
+    <div class="section-body">
+      <%# trip cards %>
+      <% @itineraries.each do |itinerary| %>
+        <div class="trip-card">
+            <!-- background image -->
+            <div class="trip-card-background">
+              <% if itinerary.photo.attached? %>
+                <img class="itinerary-image" src="<%= cl_image_path itinerary.photo.key %>" alt="itinerary image">
+              <% else %>
+                <!-- TODO: This needs to match the itinerary banner image in the show page -->
+                <img src="https://source.unsplash.com/random/430x246/?trip,<%= itinerary.title %>" alt="itinerary image">
+              <% end %>
+            </div>
+            <div class="black-overlay">
+              <div class="trip-card-content">
+                <%# itinerary title %>
+                <div class="trip-card-title">
+                  <h2><%= itinerary.title %></h2>
+                  <p>by <%= itinerary.user.first_name %> <%= itinerary.user.last_name %></p>
+                </div>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+
+
   <%# div - ongoing %>
   <%# div - organising %>
 
