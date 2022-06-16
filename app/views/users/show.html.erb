@@ -1,57 +1,72 @@
-<%# profile header %>
-<div class="container d-flex mx-auto">
-  <div class="container border-black-large d-flex">
-    <div class="container m-3 d-flex justify-content-start align-items-center">
-      <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
-        <div class="p-2">
-          <p class="text-xl"><%= @user.first_name + " " + @user.last_name %></p>
-          <p class="text-m">Age: <%= @user.age %></p>
-          <p class="text-m">Gender: <%= @user.gender %></p>
-          <i class="fa-solid fa-location-dot"></i>
-          <span>Singapore</span>
+<div class="container user-profile">
+  <%# sidebar %>
+  <div class="user-sidebar">
+    <%# user profile details %>
+    <div class="profile-details">
+      <%# avatar %>
+      <div class="user-avatar center">
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar", 'aria-haspopup': true, 'aria-expanded': false %>
+        <div class="center">
+          <p><em>Update photo</em></p>
         </div>
-    </div>
+      </div>
 
-    <div class="p-3 d-flex align-items-center">
-      <div>
-        <p class="text-m"><strong>Languages: </strong>English, French</p>
-        <p class="text-m"><strong>Response Rate: </strong>100%</p>
-        <p class="text-m"><strong>Response Time: </strong>Within an hour</p>
-        <button class="btn-black rounded d-flex">
-          <i class="fa-solid fa-message"></i>
-          <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post %></span>
-        </button>
+      <%# verification information %>
+      <div class="user-verification">
+        <div class="user-verification info">
+          <i class="fa-solid fa-star"></i> 6 reviews
+        </div>
+        <div class="user-verification info">
+          <i class="fa-solid fa-globe"></i> Organised 2 trips
+        </div>
+      </div>
+
+      <%# Send message %>
+      <div class="message">
+        <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post, class: "btn-black-outline long mt-3"%></span>
       </div>
     </div>
   </div>
-</div>
 
-<%# profile body %>
-<div class="profile-body container d-flex mx-auto">
-  <div class="row col-6 border-black p-3">
-    <h3>About Me</h3>
-    <p>Hello! I love travelling and meeting new people.</p>
-  </div>
-
-  <div class="row col-6 border-black p-3">
-    <h3>My Current Trips</h3>
-    <% if @user.itineraries.length != 0 %>
-      <% @user.itineraries.each do |itinerary| %>
-        <ul>
-          <li><%= itinerary.title %></li>
-        </ul>
-      <% end %>
-    <% else %>
-      <p><em>Oops there are currently no trips planned yet!</em></p>
-    <% end %>
-  </div>
-</div>
-
-<div class="container mx-auto border-black p-3">
-  <h3>Places I've Been</h3>
-    <div style="width: 100%; height: 600px;"
-          data-controller="mapbox"
-          data-mapbox-markers-value="<%= @markers.to_json %>"
-          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  <%# content %>
+  <div class="user-content">
+    <%# About Me %>
+    <div class="about-me">
+      <%# Name %>
+      <div class="about-me content">
+        <h2>Hi, I'm <%= @user.first_name %></h2>
+      </div>
+      <%# Age, Gender %>
+      <div class="about-me content">
+        <span><%= @user.age %>, <%= @user.gender %></span>
+      </div>
+      <%# lives in XX %>
+      <div class="about-me content">
+        <i class="fa-solid fa-house"></i>
+        <span>Lives in Singapore</span>
+      </div>
     </div>
+
+    <div class="line-break">
+    </div>
+
+    <%# Some decription %>
+    <div class="user-description">
+      <div class="user-description-title">About Me:</div>
+      I love travelling and meeting new people. I also love food so, my trips are usually quite food-centered. <br>
+      I love blackpink as well
+    </div>
+
+    <div class="line-break">
+    </div>
+
+    <%# Reviews %>
+    <div class="user-reviews">
+      <div class="user-description-title"><i class="fa-solid fa-star"></i> 6 reviews</div>
+      <%# iterate through reviews %>
+      I love travelling and meeting new people. I also love food so, my trips are usually quite food-centered. <br>
+      I love blackpink as well
+    </div>
+
+  </div>
 </div>
