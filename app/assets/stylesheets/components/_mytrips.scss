@@ -4,5 +4,12 @@
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
+
+
+    .trip-card:hover{ /* Just for styling */
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      transform: none;
+    }
   }
 }
