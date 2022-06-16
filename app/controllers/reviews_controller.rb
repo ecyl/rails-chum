@@ -9,7 +9,9 @@ class ReviewsController < ApplicationController
 
   def create
     @review = authorize Review.new(review_params)
-    @review.user = current_user
+    @sender = current_user
+    @review.user = @sender
+    @review.organiser_id = @organiser.id
 
     if @review.save
       redirect_to user_path(@organiser)
