@@ -23,6 +23,7 @@ class Event < ApplicationRecord
 
   def duration
     (date_end - date_start) / 3600
+  end
 
   after_commit :set_itinerary_dates
 
