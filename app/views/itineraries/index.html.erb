@@ -4,24 +4,43 @@
   <h1 class="all-trips-header">All Trips</h1>
 </div>
 
-<div class="container bg-white my-5 p-4">
-  <!-- Search form -->
-  <div class="search-container" data-controller="search-itineraries">
-    <div class="search-itineraries-card">
-      <p>Where do you want to go?</p>
-      <%= form_with url: itineraries_path, method: :get, html: { class: 'itineraries-search-bar mb-4',
+<div class="container bg-white p-4">
+
+  <div class="search-container">
+    <div class="home-search-card">
+      <p><strong>Hi, where do you want to go?</strong></p>
+      <hr class="text-muted">
+
+      <%= form_with url: itineraries_path, method: :get, html: { class: 'd-flex justify-content-between flex-wrap flex-md-nowrap mb-3',
       data: { search_itineraries_target: 'form' } } do |f| %>
-        <%= f.text_field :query,
-                          class: "form-control",
-                          placeholder: "Type a destination...",
-                          value: params[:query],
-                          data: {
-                            search_itineraries_target: 'input',
-                            action: 'keyup->search-itineraries#update'
-                          }
-                          %>
+        <div class="d-flex flex-column w-100">
+          <%= f.label :query, "Destination", class: "text-muted mb-2" %>
+          <%= f.text_field :query,
+                            class: "form-control",
+                            placeholder: "Type a country...",
+                            value: params[:query],
+                            data: {
+                              search_itineraries_target: 'destinationInput',
+                            }
+                            %>
+        </div>
+
+        <div class="d-flex flex-column w-100">
+          <%= f.label :start_date_query, "Start date", class: "text-muted mb-2" %>
+          <%= f.date_field :start_date_query, as: :string, required: false, input_html: {class: "datepicker" }, class: "date-input" %>
+        </div>
+
+        <div class="d-flex flex-column w-100">
+          <%= f.label :end_date_query, "End date", class: "text-muted mb-2" %>
+          <%= f.date_field :end_date_query, as: :string, required: false, input_html: {class: "datepicker"}, class: "date-input" %>
+        </div>
+
+        <div class="d-flex flex-column justify-content-end">
+          <%= submit_tag "Search", class: "btn-orange normal" %>
+        </div>
       <% end %>
     </div>
+  </div>
 
 
     <!-- Itinerary cards -->

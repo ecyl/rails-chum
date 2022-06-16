@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 2022_06_16_063205) do
     t.string "destination"
     t.float "latitude"
     t.float "longitude"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.index ["chatroom_id"], name: "index_itineraries_on_chatroom_id"
     t.index ["user_id"], name: "index_itineraries_on_user_id"
   end
