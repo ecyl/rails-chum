@@ -48,3 +48,19 @@
   font-weight: 600;
   letter-spacing: 1.5px;
 }
+
+.mytrips-banner {
+  background-image: url('https://source.unsplash.com/3OiYMgDKJ6k');
+  background-size: cover;
+  background-position: center center;
+  top: 10px;
+  height: 50vh;
+  color: $black;
+  // text-align: center;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  padding-top: 20vh;
+  margin-top: 69px;
+}

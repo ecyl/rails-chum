@@ -201,7 +201,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
     participant_limit: accepted_users.size + 3,
     description: description.sample,
     destination: destination,
-    finalised: false,
+    published: false,
     deadline: date_start - 10
   )
 
@@ -302,6 +302,7 @@ def create_one_itinerary(itinerary_title, itinerary_description, destination, da
     date_end: date_start + 1
   )
   first_event.itinerary = itinerary
+  itinerary.published = true
   first_event.save!
   # get_address(first_event)
 
