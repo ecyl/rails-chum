@@ -64,8 +64,13 @@
     <div class="user-reviews">
       <div class="user-description-title"><i class="fa-solid fa-star"></i> 6 reviews</div>
       <%# iterate through reviews %>
-      I love travelling and meeting new people. I also love food so, my trips are usually quite food-centered. <br>
-      I love blackpink as well
+      <% @user.reviews.each do |review| %>
+        <%# display the review content %>
+        <%= review.content %> <br>
+        <%# display the author of the review %>
+        <% sender = User.find(review.user_id) %>
+        <%= sender.first_name %>
+      <% end %>
     </div>
 
   </div>
