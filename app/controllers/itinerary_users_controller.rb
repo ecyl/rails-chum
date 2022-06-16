@@ -87,21 +87,25 @@ class ItineraryUsersController < ApplicationController
   def new_notification_request_status
     organiser = @itinerary_user.itinerary.user
     organiser_f_name = "#{organiser.first_name} #{organiser.last_name}"
+    @notification = Notification.new
     case @itinerary_user.status
     when "accepted"
-      @notification = Notification.new
       @notification.content = "#{organiser_f_name} has accepted your request to join the itinerary. Click to view"
       @notification.notification_type = "request_accepted"
       @notification.user = @itinerary_user.user
-      @notification.save
     when "rejected"
-      @notification = Notification.new
       organiser = @itinerary_user.itinerary.user
       organiser_f_name = "#{organiser.first_name} #{organiser.last_name}"
       @notification.content = "#{organiser_f_name} has rejected your request to join the itinerary."
       @notification.notification_type = "request_rejected"
       @notification.user = @itinerary_user.user
-      @notification.save!
+    end
+    if @notification.save
+      ActionCable.server.broadcast(
+        "notification-badge-#{@notification.user.id}",
+        render_to_string(partial:
+        "notifications/badge-number", locals: { user: @itinerary_user.user })
+      )
     end
   end
 end
