@@ -16,6 +16,7 @@
   height: 800px;
   width: 800px;
   border: 1px solid #DBDDE0;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   // justify-content: center;
   // align-items: center;
 }
@@ -54,4 +55,28 @@
   background-color: white;
   border-radius: 4px;
   box-shadow: 1px 10px 15px rgba(0,0,0,0.05);
+  background-color: #91EF8F;
+  border-radius: 4px;
+}
+
+.week-header {
+  border: 1px solid #DBDDE0;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-text  {
+  padding: 10px;
+  border: 1px solid #DBDDE0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hour-text {
+  border: 1px solid #DBDDE0;
+  display: flex;
+  justify-content: center;
 }

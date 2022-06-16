@@ -16,11 +16,12 @@
       <div class="week-headers">
         <% date_range.slice(0, 7).each do |day| %>
 
-          <div class="week-header"><%= t('date.abbr_day_names')[day.wday] %> - <%= day %></div>
+          <div class="week-header"><%= t('date.abbr_day_names')[day.wday] %> - <%= day.strftime("%d") %></div>
+
         <% end %>
       </div>
       <div class="calendar-time-sidebar">
-        <div>Time</div>
+        <div class="time-text">Time</div>
         <% (0..24).each do |hour| %>
           <div class="hour-text"><%= hour %></div>
         <% end %>
@@ -28,7 +29,13 @@
       <% week.each do |day| %>
         <div class="calendar-day-wrapper">
           <% sorted_events.fetch(day, []).each do |event| %>
-            <div class="event-block" style="grid-row: <%= event.date_start.hour + 1 %> / span <%= event.duration.ceil + event.date_start.hour + 1 >= 25 ? 24 - event.date_start.hour : event.duration.ceil %>;">
+            <% if event.date_start.hour < event.date_end.hour %>
+              <% time_block = (24 - event.date_start.hour) + event.date_end.hour %>
+              <div class="event-block" style="font-size: small; grid-row <%= event.date_start.hour %> / span <%= 24 - event.date_start.hour %>">
+                <%= event.title %>
+              </div>
+            <% end %>
+            <div class="event-block" style="font-size: small; grid-row: <%= event.date_start.hour + 1 %> / span <%= event.duration.ceil + event.date_start.hour + 1 >= 25 ? 24 - event.date_start.hour : event.duration.ceil %>;">
               <%= event.title %>
             </div>
           <% end %>
