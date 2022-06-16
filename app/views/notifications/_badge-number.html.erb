@@ -1,1 +1,1 @@
-<span id="notification-badges" class="position-absolute text-center ml-3" style="bottom:62px; right:48px;" data-notification-badge-subscription-target="badge"><%= current_user.notifications.where(read:false).count %></span>
+<span id="notification-badges" class="position-absolute text-center ml-3" style="bottom:62px; right:48px;" data-notification-badge-subscription-target="badge"><%= user.notifications.where(read:false).count %></span>

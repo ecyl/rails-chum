@@ -76,7 +76,7 @@ class ItineraryUsersController < ApplicationController
       ActionCable.server.broadcast(
         "notification-badge-#{@notification.user.id}",
         render_to_string(partial:
-        "notifications/badge-number", locals: { current_user: current_user})
+        "notifications/badge-number", locals: { user: @itinerary.user})
       )
     else
       flash[:alert] = "You have already indicated your interest to join the trip."

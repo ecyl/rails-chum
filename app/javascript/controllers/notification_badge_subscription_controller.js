@@ -14,10 +14,16 @@ export default class extends Controller {
         channel: "MyNotificationBadgeChannel",
         id: this.userIdValue,
       },
-
       {
-        received: (data) => console.log(data),
+        received: (data) => {
+          console.log("i am still receiving data");
+          this.#replaceBadgeNumber(data);
+        },
       }
     );
+  }
+
+  #replaceBadgeNumber(data) {
+    this.badgeTarget.outerHTML = data;
   }
 }
