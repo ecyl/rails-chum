@@ -23,11 +23,11 @@ class Event < ApplicationRecord
   after_commit :set_itinerary_dates
 
   def set_itinerary_dates
-    self.itinerary.events.each do |event|
-      self.itinerary.start_date = self.date_start if self.date_start < self.itinerary.start_date
-      self.itinerary.end_date = self.date_end if self.date_end < self.itinerary.end_date
+    itinerary.events.each do |event|
+      itinerary.start_date = date_start if itinerary.start_date.nil? || date_start < itinerary.start_date
+      itinerary.end_date = date_end if itinerary.end_date.nil? || date_end < itinerary.end_date
     end
 
-    self.itinerary.save
+    itinerary.save
   end
 end
