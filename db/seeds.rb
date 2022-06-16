@@ -575,7 +575,6 @@ create_one_itinerary("Summer in Korea!",
                     first_date
 )
 
-
 # require 'faker'
 # require 'json'
 # require 'open-uri'

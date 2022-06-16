@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2022_06_16_031912) do
+=======
+ActiveRecord::Schema.define(version: 2022_06_16_023131) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +148,14 @@ ActiveRecord::Schema.define(version: 2022_06_16_031912) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "user_chatrooms", force: :cascade do |t|
     t.bigint "chatroom_id", null: false
     t.bigint "user_id", null: false
@@ -183,6 +195,7 @@ ActiveRecord::Schema.define(version: 2022_06_16_031912) do
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "reviews", "users"
   add_foreign_key "user_chatrooms", "chatrooms"
   add_foreign_key "user_chatrooms", "users"
 end
