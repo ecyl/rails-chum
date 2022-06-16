@@ -21,9 +21,6 @@ class Event < ApplicationRecord
   has_one_attached :photo
 
 
-  def duration
-    (date_end - date_start) / 3600
-
   after_commit :set_itinerary_dates
 
   def set_itinerary_dates
