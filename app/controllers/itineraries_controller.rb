@@ -88,7 +88,7 @@ class ItinerariesController < ApplicationController
       @itinerary = Itinerary.new(itinerary_params)
       @itinerary.user = current_user
       @itinerary_user = ItineraryUser.new(
-        status: "organiser",
+        status: "organiser"
       )
       @itinerary_user.user = current_user
       @itinerary_user.itinerary = @itinerary
@@ -110,19 +110,6 @@ class ItinerariesController < ApplicationController
     render :new
   end
 
-  def finalise
-    # PATCH action to update finalised => true
-    @itinerary.finalised = true
-
-    if @itinerary.save
-      # insert flash confirmation
-      redirect_to itinerary_path(@itinerary), notice: "The itinerary is finalised"
-    else
-      # insert flash confirmation
-      redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to finalise"
-    end
-  end
-
   def publish
     # PATCH action to update finalised => true
     @itinerary.published = true
@@ -132,7 +119,7 @@ class ItinerariesController < ApplicationController
       redirect_to itinerary_path(@itinerary), notice: "The itinerary is published!"
     else
       # insert flash confirmation
-      redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to finalise"
+      redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to publish"
     end
   end
 

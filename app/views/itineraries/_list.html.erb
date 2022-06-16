@@ -9,7 +9,7 @@
 
     <!-- Itineraries cards -->
     <div class="row">
-      <% @itineraries.each do |itinerary| %>
+      <% @itineraries.where(published:true).each do |itinerary| %>
         <div class="col-12 col-md-4 mb-4">
           <%= link_to itinerary_path(itinerary), class: "text-decoration-none" do %>
 

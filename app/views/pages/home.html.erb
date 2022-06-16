@@ -35,62 +35,8 @@
 
     <!-- Itinerary cards -->
     <div class="row" data-controller="itinerary-card">
-      <% 6.times do |i| %>
-        <div class="col-12 col-md-4 mb-4">
-          <%= link_to itinerary_path(@itineraries[i]), class: "text-decoration-none" do %>
-
-            <div class="trip-card" data-action='click->itinerary-card#clickCard' data-itinerary-card-target="card" data-itinerary-id="<%= @itineraries[i].id %>">
-              <!-- background image -->
-              <div class="trip-card-background">
-                <% if @itineraries[i].photo.attached? %>
-                  <img class="itinerary-image" src="<%= cl_image_path @itineraries[i].photo.key %>" alt="itinerary image">
-                <% else %>
-                  <!-- TODO: This needs to match the itinerary banner image in the show page -->
-                  <img src="https://source.unsplash.com/random/430x246/?trip,<%= @itineraries[i].title %>" alt="itinerary image">
-                <% end %>
-              </div>
-              <div class="black-overlay">
-                <div class="trip-card-content">
-                  <div class="trip-card-destination">
-                    <p><%= @itineraries[i].destination %></p>
-                  </div>
-                  <div class="trip-card-title">
-                    <h2><%= @itineraries[i].title %></h2>
-                    <p>by <%= @itineraries[i].user.first_name %> <%= @itineraries[i].user.last_name %></p>
-                  </div>
-                  <div class="trip-card-specs">
-                    <div class="trip-card-dates">
-                      <div>
-                        <p class="trip-card-date-header">From</p>
-                          <% if @itineraries[i].events.count == 0 %>
-                            <p>TBC</p>
-                          <% else %>
-                            <p><%= @itineraries[i].events[0].date_start.strftime('%d %B %Y') %></p>
-                          <% end %>
-                      </div>
-                      <div>
-                        <p class="trip-card-date-header">To</p>
-                          <% if @itineraries[i].events.count == 0 %>
-                            <p>TBC</p>
-                          <% else %>
-                            <p><%= @itineraries[i].events[-1].date_end.strftime('%d %B %Y') %></p>
-                          <% end %>
-                      </div>
-                    </div>
-                    <% budget = 0 %>
-                    <% @itineraries[i].events.each { |event| budget += event.cost }%>
-                    <div class="trip-card-budget">
-                      <p class="trip-card-budget-header">Budget</p>
-                      <p>SGD <%= budget.round %></p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          <% end %>
-        </div>
+      <% @itineraries.where(published: true).order(created_at: :desc).first(6).each do |itinerary| %>
+        <%= render "cards", itinerary: itinerary %>
       <% end %>
     </div>
   </div>
