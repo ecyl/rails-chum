@@ -30,6 +30,9 @@
                   <h2><%= itinerary.title %></h2>
                   <p>by <%= itinerary.user.first_name %> <%= itinerary.user.last_name %></p>
                 </div>
+
+                <%# leave a review %>
+                <%= link_to "Leave a review", "#", method: :post, class: "btn-platinum-outline"%>
               </div>
             </div>
         </div>
