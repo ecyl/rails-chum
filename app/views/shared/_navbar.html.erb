@@ -37,7 +37,7 @@
             </a>
 
             <!-- User dropdown -->
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu dropdown-menu-end" data-controller="notification-badge-subscription" data-notification-badge-subscription-user-id-value="<%= current_user.id %>" aria-labelledby="navbarDropdown">
               <li>
                 <div class="dropdown-item-text">
                   <div class="d-flex flex-column justify-content-center align-items-center">
@@ -52,7 +52,7 @@
               <li>
                 <%= link_to notifications_path, class:"dropdown-item" do %>
                   <p class="position-relative m-0">My Notifications</p>
-                  <span id="notification-badges" class="position-absolute text-center ml-3" style="bottom:62px; right:48px;"><%= current_user.notifications.where(read:false).count %></span>
+                  <span id="notification-badges" class="position-absolute text-center ml-3" style="bottom:62px; right:48px;" data-notification-badge-subscription-target="badge"><%= current_user.notifications.where(read:false).count %></span>
                 <% end %>
               </li>
               <li><hr class="dropdown-divider"></li>

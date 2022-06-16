@@ -72,7 +72,16 @@ class ItineraryUsersController < ApplicationController
     @notification.content = "#{f_name} has requested to join your itinerary named '#{@itinerary_user.itinerary.title}'"
     @notification.notification_type = "new_pending"
     @notification.user = @itinerary.user
-    @notification.save!
+    if @notification.save
+      ActionCable.server.broadcast(
+        "notification-badge-#{@notification.user.id}",
+        render_to_string(partial:
+        "notifications/badge-number", locals: { current_user: current_user})
+      )
+    else
+      flash[:alert] = "You have already indicated your interest to join the trip."
+    end
+
   end
 
   def new_notification_request_status
