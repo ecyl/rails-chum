@@ -310,3 +310,27 @@
 .full-width {
   width: 100%;
 }
+
+
+// purple buttons
+
+.btn-purple-outline {
+  border: solid 3px $purple;
+  color: $purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: auto;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  padding: 0 24px;
+}
+
+.btn-purple-outline:hover {
+  background-color: $purple;
+  color: white;
+}

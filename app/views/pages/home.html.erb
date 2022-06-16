@@ -16,7 +16,7 @@
     </div>
   </div>
   <!-- Some itineraries -->
-  <div class="itineraries-container">
+  <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="section-header">
@@ -24,20 +24,22 @@
         </div>
       </div>
     </div>
+
     <div class="row mb-5">
       <div class="col-12 col-sm-9">
-        <p class="mb-0">Want someone to share the journey with? Checkout itineraries of upcoming trips.</p>
+        <p class="explore-iti-desc mb-0">Want someone to share the journey with? Checkout itineraries of upcoming trips.</p>
       </div>
-      <div class="col-12 col-sm-3">
-        <%= link_to "More", itineraries_path, class:"btn-black-outline" %>
+      <div class="col-12 col-sm-2">
+        <div><%= link_to "More", itineraries_path, class:"btn-purple-outline" %></div>
       </div>
     </div>
+  </div>
 
-    <!-- Itinerary cards -->
-    <div class="row" data-controller="itinerary-card">
+  <!-- Itinerary cards -->
+  <div class="container">
+    <div class="itineraries-container">
       <% @itineraries.where(published: true).order(created_at: :desc).first(6).each do |itinerary| %>
         <%= render "cards", itinerary: itinerary %>
       <% end %>
     </div>
-  </div>
 </div>
