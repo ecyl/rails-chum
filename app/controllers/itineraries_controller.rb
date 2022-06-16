@@ -1,5 +1,5 @@
 class ItinerariesController < ApplicationController
-  before_action :set_itinerary, only: [:show, :confirm, :finalise]
+  before_action :set_itinerary, only: [:show, :confirm, :finalise, :publish]
 
   def index
     # @itineraries = Itinerary.all
@@ -109,6 +109,19 @@ class ItinerariesController < ApplicationController
       # insert flash confirmation
       redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to finalise"
     end
+  end
+
+  def publish
+       # PATCH action to update finalised => true
+       @itinerary.published = true
+
+       if @itinerary.save
+         # insert flash confirmation
+         redirect_to itinerary_path(@itinerary), notice: "The itinerary is published!"
+       else
+         # insert flash confirmation
+         redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to finalise"
+       end
   end
 
   private

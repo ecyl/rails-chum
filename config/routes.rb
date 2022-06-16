@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     # #confirm method
     member do
       patch :finalise
+      patch :publish, only: [:publish]
     end
     # accept and reject actions
   end
