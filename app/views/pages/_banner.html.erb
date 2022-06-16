@@ -1,12 +1,10 @@
-<!-- Banner -->
-<div class="all-trips-banner">
-  <!-- Header -->
-  <h1 class="all-trips-header">All Trips</h1>
-</div>
+<div class="home-banner">
+  <h1><strong>Discover buddies for your next trip</strong></h1>
+  <div class="banner-text">
+    <p>Chum is an online service that connects travellers in Singapore before they hit the road.</p>
+  </div>
 
-<div class="container bg-white p-4">
-
-  <div class="search-container">
+  <div class="search-container" style="margin-top: 150px">
     <div class="home-search-card">
       <p><strong>Hi, where do you want to go?</strong></p>
       <hr class="text-muted">
@@ -27,7 +25,7 @@
 
         <div class="d-flex flex-column w-100">
           <%= f.label :start_date_query, "Start date", class: "text-muted mb-2" %>
-          <%= f.date_field :start_date_query, as: :string, required: false, input_html: {class: "datepicker" }, class: "date-input" %>
+          <%= f.date_field :start_date_query, as: :string, required: false, input_html: {class: "datepicker" }, class: "date-input", placeholder: "Select start date" %>
         </div>
 
         <div class="d-flex flex-column w-100">
@@ -40,11 +38,5 @@
         </div>
       <% end %>
     </div>
-  </div>
-
-
-    <!-- Itinerary cards -->
-   <%= render 'list', itineries: @itineraries %>
-
   </div>
 </div>

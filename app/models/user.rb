@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   has_many :itinerary_users
   has_many :itineraries, through: :itinerary_users, dependent: :destroy

@@ -1,11 +1,6 @@
 <!--- Find me in app/views/pages/home.html.erb -->
 <div class="bg-white pb-5">
-  <div class="home-banner">
-    <h1><strong>Discover buddies for your next trip</strong></h1>
-    <div class="banner-text">
-      <p>Chum is an online service that connects travellers in Singapore before they hit the road.</p>
-    </div>
-  </div>
+  <%= render 'banner' %>
 
   <!-- Intro text -->
   <div class="container">
@@ -37,40 +32,56 @@
         <%= link_to "More", itineraries_path, class:"btn-black medium" %>
       </div>
     </div>
-     <!-- Itinerary cards -->
-    <div class="row" data-controller="itinerary-card">
-      <% 3.times do |i| %>
-        <div class="col-12 col-sm-6 col-md-4 mb-4">
-        <%= link_to itinerary_path(@itineraries[i]), class: "text-decoration-none" do %>
-          <div class="card card-trip" data-action='click->itinerary-card#clickCard' data-itinerary-card-target="card" data-itinerary-id="<%= @itineraries[i].id %>">
-            <!-- Image -->
-            <% if @itineraries[i].photo.attached? %>
-              <img class="itinerary-image" src="<%= cl_image_path @itineraries[i].photo.key %>" alt="itinerary image">
-            <% else %>
-              <!-- TODO: This needs to match the itinerary banner image in the show page -->
-              <img src="https://source.unsplash.com/random/430x246/?trip,<%= @itineraries[i].title %>" alt="itinerary image">
-            <% end %>
-            <!-- Info -->
-            <div class="card-trip-infos">
-              <div class="favorite-btn"><i class="far fa-heart"></i></div>
-              <!-- card text desc -->
-              <div class="d-flex align-items-center w-100">
-                <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
-                <div class="mx-3">
-                  <h2><%= @itineraries[i].title %></h2>
-                  <p>by <%= @itineraries[i].user.first_name %> <%= @itineraries[i].user.last_name %></p>
-                </div>
-              </div>
-              <div class="card-trip-desc-container">
-                <p><%= @itineraries[i].description %></p>
-              </div>
 
-              <div class="d-flex justify-content-end w-100">
-                <%= link_to "Details", itinerary_path(@itineraries[i]), class:"btn-black align-right" %>
+    <!-- Itinerary cards -->
+    <div class="row" data-controller="itinerary-card">
+      <% 6.times do |i| %>
+        <div class="col-12 col-md-4 mb-4">
+          <%= link_to itinerary_path(@itineraries[i]), class: "text-decoration-none" do %>
+
+            <div class="trip-card" data-action='click->itinerary-card#clickCard' data-itinerary-card-target="card" data-itinerary-id="<%= @itineraries[i].id %>">
+              <!-- background image -->
+              <div class="trip-card-background">
+                <% if @itineraries[i].photo.attached? %>
+                  <img class="itinerary-image" src="<%= cl_image_path @itineraries[i].photo.key %>" alt="itinerary image">
+                <% else %>
+                  <!-- TODO: This needs to match the itinerary banner image in the show page -->
+                  <img src="https://source.unsplash.com/random/430x246/?trip,<%= @itineraries[i].title %>" alt="itinerary image">
+                <% end %>
+              </div>
+              <div class="black-overlay">
+                <div class="trip-card-content">
+                  <div class="trip-card-destination">
+                    <p><%= @itineraries[i].destination %></p>
+                  </div>
+                  <div class="trip-card-title">
+                    <h2><%= @itineraries[i].title %></h2>
+                    <p>by <%= @itineraries[i].user.first_name %> <%= @itineraries[i].user.last_name %></p>
+                  </div>
+                  <div class="trip-card-specs">
+                    <div class="trip-card-dates">
+                      <div>
+                        <p class="trip-card-date-header">From</p>
+                        <p><%= @itineraries[i].events[0].date_start.strftime('%d %B %Y') %></p>
+                      </div>
+                      <div>
+                        <p class="trip-card-date-header">To</p>
+                        <p><%= @itineraries[i].events[-1].date_end.strftime('%d %B %Y') %></p>
+                      </div>
+                    </div>
+                    <% budget = 0 %>
+                    <% @itineraries[i].events.each { |event| budget += event.cost }%>
+                    <div class="trip-card-budget">
+                      <p class="trip-card-budget-header">Budget</p>
+                      <p>SGD <%= budget.round %></p>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
-            <% end %>
-          </div>
+
+          <% end %>
         </div>
       <% end %>
     </div>

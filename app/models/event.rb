@@ -20,7 +20,18 @@ class Event < ApplicationRecord
   # end
   has_one_attached :photo
 
+
   def duration
     (date_end - date_start) / 3600
+
+  after_commit :set_itinerary_dates
+
+  def set_itinerary_dates
+    itinerary.events.each do |event|
+      itinerary.start_date = date_start if itinerary.start_date.nil? || date_start < itinerary.start_date
+      itinerary.end_date = date_end if itinerary.end_date.nil? || date_end < itinerary.end_date
+    end
+
+    itinerary.save
   end
 end

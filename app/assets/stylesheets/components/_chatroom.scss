@@ -7,14 +7,20 @@
 .chat-sidebar {
   justify-content: space-between;
   height: 100%;
-  background: $jet;
   border-radius: 8px 0px 0px 8px;
-  color: white;
 
   .message-group {
     height: 50%;
-    padding: 16px;
     overflow-y: auto;
+
+    .message-group-title {
+      background: $jet;
+      color: white;
+      padding: 8px;
+      margin-bottom: 0px;
+      border-radius: 8px 0px 0px 8px;
+      font-size: 20px;
+    }
   }
 }
 
@@ -23,9 +29,11 @@
 }
 
 .chat-links {
-  margin-top: 8px;
-  margin-bottom: 8px;
   padding: 12px;
+}
+
+.chat-links:hover {
+  background: $platinum;
 }
 
 .chatroom {
@@ -99,15 +107,10 @@ form {
   border: none;
 }
 
-a {
+.chat-links a {
   text-decoration: none;
-  color: white;
-  font-size: 20px;
-}
-
-a:hover {
-  color: $orange;
-  font-size: 20px;
+  font-size: 16px;
+  color: $jet;
 }
 
 .avatar-bordered {
@@ -116,4 +119,11 @@ a:hover {
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
   margin-right: 4px;
+}
+
+.chatroom-header {
+  text-align: center;
+  font-size: 16px;
+  padding: 8px;
+  border-bottom: 1px solid $platinum;
 }

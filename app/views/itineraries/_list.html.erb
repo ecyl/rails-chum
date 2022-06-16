@@ -7,44 +7,58 @@
     <% end %>
   </p>
 
-    <div class="row mt-5">
+    <!-- Itineraries cards -->
+    <div class="row">
       <% @itineraries.each do |itinerary| %>
-        <div class="col-12 col-sm-6 col-md-4 mb-4">
+        <div class="col-12 col-md-4 mb-4">
           <%= link_to itinerary_path(itinerary), class: "text-decoration-none" do %>
-            <div class="card card-trip">
-              <!-- Image -->
-              <% if itinerary.photo.attached? %>
-                <img class="itinerary-image" src="<%= cl_image_path itinerary.photo.key %>" alt="itinerary image">
 
-              <% else %>
-                <!-- TODO: This needs to match the itinerary banner image in the show page -->
-                <img src="https://source.unsplash.com/random/406x246/?trip,<%= itinerary.title %>" alt="itinerary image">
-              <% end %>
-              <!-- Info -->
-              <div class="card-trip-infos">
-                <div class="favorite-btn"><i class="far fa-heart"></i></div>
-                <!-- card text desc -->
-                <div class="d-flex align-items-center w-100">
-                  <img src="https://kitt.lewagon.com/placeholder/users/rayjosong" class="avatar" />
-                  <div class="mx-3">
+            <div class="trip-card">
+              <!-- background image -->
+              <div class="trip-card-background">
+                <% if itinerary.photo.attached? %>
+                  <img class="itinerary-image" src="<%= cl_image_path itinerary.photo.key %>" alt="itinerary image">
+                <% else %>
+                  <!-- TODO: This needs to match the itinerary banner image in the show page -->
+                  <img src="https://source.unsplash.com/random/430x246/?trip,<%= itinerary.title %>" alt="itinerary image">
+                <% end %>
+              </div>
+              <div class="black-overlay">
+                <div class="trip-card-content">
+                  <div class="trip-card-destination">
+                    <p><%= itinerary.destination %></p>
+                  </div>
+                  <div class="trip-card-title">
                     <h2><%= itinerary.title %></h2>
                     <p>by <%= itinerary.user.first_name %> <%= itinerary.user.last_name %></p>
                   </div>
-                </div>
-                <div class="card-trip-desc-container">
-                  <p><%= itinerary.description %></p>
-                </div>
-
-                <div class="d-flex justify-content-end w-100">
-                  <%= link_to "Details", itinerary_path(itinerary), class:"btn-black align-right" %>
+                  <div class="trip-card-specs">
+                    <div class="trip-card-dates">
+                      <div>
+                        <p class="trip-card-date-header">From</p>
+                        <p><%= itinerary.events[0].date_start.strftime('%d %B %Y') %></p>
+                      </div>
+                      <div>
+                        <p class="trip-card-date-header">To</p>
+                        <p><%= itinerary.events[-1].date_end.strftime('%d %B %Y') %></p>
+                      </div>
+                    </div>
+                    <% budget = 0 %>
+                    <% itinerary.events.each { |event| budget += event.cost }%>
+                    <div class="trip-card-budget">
+                      <p class="trip-card-budget-header">Budget</p>
+                      <p>SGD <%= budget.round %></p>
+                    </div>
+                  </div>
                 </div>
 
               </div>
             </div>
+
           <% end %>
         </div>
-
       <% end %>
     </div>
+
   </div>
 </div>
