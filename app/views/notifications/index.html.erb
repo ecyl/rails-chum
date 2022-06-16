@@ -1,2 +1,7 @@
-<h1>Notifications#index</h1>
-<p>Find me in app/views/notifications/index.html.erb</p>
+<div class="m-5">
+  <div class="container bg-white">
+    <% @notifications.each do |notification| %>
+      <%= render "notification-list", notification: notification %>
+    <% end %>
+  </div>
+</div>

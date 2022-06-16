@@ -7,6 +7,7 @@ class ItineraryUsersController < ApplicationController
     @itinerary = find_itinerary_by_assocation
 
     if @itinerary_user.save
+      new_notification_request_status
       redirect_to itinerary_path(@itinerary), notice: "The user is accepted."
     else
       redirect_to itinerary_path(@itinerary), notice: "Failed to accept user"
@@ -19,6 +20,7 @@ class ItineraryUsersController < ApplicationController
     @itinerary = find_itinerary_by_assocation
 
     if @itinerary_user.save
+      new_notification_request_status
       redirect_to itinerary_path(@itinerary), notice: "The user is rejected."
     else
       redirect_to itinerary_path(@itinerary), notice: "Failed to reject user"
@@ -38,6 +40,7 @@ class ItineraryUsersController < ApplicationController
     @itinerary_user.user = current_user
 
     if @itinerary_user.save!
+      new_notification_pending_user
       redirect_to itinerary_path(@itinerary)
     else
       render :new
@@ -61,5 +64,35 @@ class ItineraryUsersController < ApplicationController
 
   def itinerary_user_params
     params.require(:itinerary_user).permit(:message)
+  end
+
+  def new_notification_pending_user
+    @notification = Notification.new
+    f_name = "#{@itinerary_user.user.first_name} #{@itinerary_user.user.last_name}"
+    @notification.content = "#{f_name} has requested to join your itinerary named '#{@itinerary_user.itinerary.title}'"
+    @notification.notification_type = "new_pending"
+    @notification.user = @itinerary.user
+    @notification.save!
+  end
+
+  def new_notification_request_status
+    organiser = @itinerary_user.itinerary.user
+    organiser_f_name = "#{organiser.first_name} #{organiser.last_name}"
+    case @itinerary_user.status
+    when "accepted"
+      @notification = Notification.new
+      @notification.content = "#{organiser_f_name} has accepted your request to join the itinerary. Click to view"
+      @notification.notification_type = "request_accepted"
+      @notification.user = @itinerary_user.user
+      @notification.save
+    when "rejected"
+      @notification = Notification.new
+      organiser = @itinerary_user.itinerary.user
+      organiser_f_name = "#{organiser.first_name} #{organiser.last_name}"
+      @notification.content = "#{organiser_f_name} has rejected your request to join the itinerary."
+      @notification.notification_type = "request_rejected"
+      @notification.user = @itinerary_user.user
+      @notification.save!
+    end
   end
 end

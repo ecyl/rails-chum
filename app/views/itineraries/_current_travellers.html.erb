@@ -2,7 +2,10 @@
   <div class="container bg-platinum">
     <p class="text-center mt-5 text-l" id='current-travellers-text'>Current travelers in this trip</p>
 
-    <% if itinerary.itinerary_users.where(status:"accepted").empty? %>
+    <% if itinerary.itinerary_users.where(status:"accepted").empty? && current_user == itinerary.user %>
+      <p id="empty-travelers" class='text-center mt-3 mb-5 '>There are currently no travellers on this trip.</p>
+
+    <% elsif itinerary.itinerary_users.where(status:"accepted").empty? && current_user != itinerary.user %>
       <p id="empty-travelers" class='text-center mt-3 mb-5 '>There are currently no travellers on this trip. Send a request to join now!</p>
     <% else %>
       <div class='flex-container-around wrap mt-4 p-5'>
