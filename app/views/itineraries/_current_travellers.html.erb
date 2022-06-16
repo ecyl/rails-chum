@@ -11,12 +11,12 @@
       <div class='flex-container-around wrap mt-4 p-5'>
         <% accepted_users.each do |itinerary_user| %>
           <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
-          <%= link_to user_path(itinerary_user.user) do  %>
+          <%= link_to user_path(itinerary_user.user), class: "text-decoration-none" do  %>
             <div id="current-traveller" class="rayan">
               <div class='d-flex justify-content-center'>
                 <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}", class: "avatar-xl avatar-margin-bottom") %>
               </div>
-              <p class='text-center' style="text-decoration: none;"><%= fname %></p>
+              <p class='text-center' style="text-decoration: none; color: black;"><%= fname %></p>
             </div>
           <% end %>
 
