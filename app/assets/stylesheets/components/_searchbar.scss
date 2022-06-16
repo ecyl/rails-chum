@@ -1,3 +1,19 @@
+/* Home view search*/
+.home-search-card {
+  background: white;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 2px;
+  padding: 1rem;
+  width: 100%;
+}
+
+.home-search-card .form-control {
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* Itineraries index view search */
 .search-container {
   display: flex;
   flex-direction: column;

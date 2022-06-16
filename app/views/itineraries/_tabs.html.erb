@@ -61,7 +61,7 @@
           <strong><p class="mb-3">Trip details</p></strong>
           <p><strong>Dates:</strong> <%= @events.keys.first.strftime("%d %b %Y") %> - <%= @events.keys.last.strftime("%d %b %Y") %></p>
           <p><strong>Budget:</strong> $<%= @itinerary.cost %></p>
-          <p><strong>Participants: </strong><%= @itinerary.itinerary_users.where(status: "accepted").count + 1%>/<%= @itinerary.participant_limit %></p>
+          <p><strong>Participants: </strong><%= @itinerary.itinerary_users.where(status: "accepted").count + 1%>/<%= @itinerary.participant_limit + 1 %></p>
           <%= link_to 'Request to join', new_itinerary_itinerary_user_path(@itinerary), class: "btn-orange-outline" %>
           <%= link_to 'View organiser profile', user_path(@itinerary.user), class: "btn-orange-outline mt-4" %>
         </div>
@@ -108,6 +108,6 @@
 
   <div class="tab-content" data-tabs-target="three content">
     <% organiser_name = "#{@organiser.first_name} #{@organiser.last_name}"  %>
-    <%= render "tab_member", itinerary: @itinerary, organiser: @organiser, organiser_name: organiser_name, pending_users: @pending_users, accepted_users: @accepted_users %>
+    <%= render "tab_member", itinerary: @itinerary, itinerary_user: @itinerary_user, organiser: @organiser, organiser_name: organiser_name, pending_users: @pending_users, accepted_users: @accepted_users %>
   </div>
 </div>

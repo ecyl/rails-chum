@@ -10,6 +10,7 @@
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.2s;
+  border: none;
 }
 
 .btn-orange-outline {
@@ -129,6 +130,24 @@
   transition: background-color 0.2s;
 }
 
+.btn-black-outline {
+  border: solid 1px $jet;
+  color: $jet;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 400;
+  transition: background-color 0.2s;
+}
+
+.btn-black-outline:hover {
+  background-color: #222322;
+  color: white;
+}
+
 .btn-black a {
   text-decoration: none;
   color: white;
@@ -137,6 +156,14 @@
 .btn-black:hover {
   background-color: grey;
   color: white;
+}
+
+.btn-black-outline.long {
+  width: 300px;
+}
+
+.btn-black-outline.medium {
+  width: 215px;
 }
 
 .btn-black.big {
