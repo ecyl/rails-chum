@@ -42,3 +42,19 @@
   background-color: $jet;
   color: white;
 }
+
+.grey-border-form {
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 50px;
+
+  a {
+    text-decoration: none;
+    color: #0254EC;
+  }
+
+  a:hover {
+    color: #00266B;
+  }
+
+}
