@@ -2,6 +2,10 @@ class ChatroomsController < ApplicationController
   def index
     @chatrooms = policy_scope(Chatroom).where(id: current_user.chatroom_ids)
     @message = Message.new
+
+    # navbar styles
+    @static_navbar = true
+    @banner_navbar = false
   end
 
   def create
