@@ -111,6 +111,10 @@ class ItinerariesController < ApplicationController
     end
   end
 
+  def mytrips
+    raise
+  end
+
   private
 
   def itinerary_params
