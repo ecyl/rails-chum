@@ -5,7 +5,7 @@
     <% if itinerary.itinerary_users.where(status:"accepted").empty? %>
       <p id="empty-travelers" class='text-center mt-3 mb-5 '>There are currently no travellers on this trip. Send a request to join now!</p>
     <% else %>
-      <div class='flex-container-around wrap mt-4'>
+      <div class='flex-container-around wrap mt-4 p-5'>
         <% accepted_users.each do |itinerary_user| %>
           <% fname = "#{itinerary_user.user.first_name} #{itinerary_user.user.last_name}" %>
           <%= link_to user_path(itinerary_user.user) do  %>
