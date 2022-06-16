@@ -54,3 +54,14 @@
   align-items: center;
   padding: 40px;
 }
+
+.sample-events {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sample-events.container {
+  display: flex;
+  flex-direction: column;
+
+}
