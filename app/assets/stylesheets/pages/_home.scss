@@ -40,5 +40,17 @@
 
 .filler-container {
   display: flex;
-  background: #6857CA;
+  background: #F9F2E8;
+
+  h3 {
+    color: black;
+    font-family: 'Charis SIL', serif;
+  }
+}
+
+.text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
 }
