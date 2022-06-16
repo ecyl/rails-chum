@@ -27,11 +27,14 @@
             </span>
 
             <!-- Avatar & name -->
-            <a class="nav-link dropdown-toggle <%= 'nav-text-black' if @black_text_navbar %>" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a style="width:145; height: 56" class="nav-link dropdown-toggle <%= 'nav-text-black' if @black_text_navbar %>" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-controller="notification-badge-subscription" data-notification-badge-subscription-user-id-value="<%= current_user.id %>">
               <% if current_user.photo.attached? %>
-                <%= cl_image_path current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <%= cl_image_path current_user.photo.key, class: "avatar dropdown-toggle position-relative", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% else %>
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <span class="position-relative">
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <div id="notification-badges" class="text-center ml-3 position-absolute" style="" data-notification-badge-subscription-target="badge"><%= current_user.notifications.where(read:false).count %></div>
+              </span>
               <% end %>
               <span class="username-display <%= 'nav-text-black' if @black_text_navbar %>"><%= current_user.first_name %></span>
             </a>
@@ -49,6 +52,12 @@
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "My Trips", mytrips_path, class: "dropdown-item" %></li>
               <li><%= link_to "My Messages", chatrooms_path, class: "dropdown-item" %></li>
+              <li>
+                <%= link_to notifications_path, class:"dropdown-item" do %>
+                  <p class="position-relative m-0">My Notifications</p>
+
+                <% end %>
+              </li>
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>

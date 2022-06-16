@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get 'events/create'
   get 'events/new'
   get 'notifications/show'
-  get 'notifications/index'
   # get 'messages/create'
   get 'announcements/create'
   # get 'chatroom/show'
@@ -32,6 +31,8 @@ Rails.application.routes.draw do
       patch :reject
     end
   end
+
+  resources :notifications, only: :index
 
   # to allow users to check on all of their chatrooms
   resources :chatrooms, only: [ :index, :show, :create ] do
