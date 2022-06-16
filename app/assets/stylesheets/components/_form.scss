@@ -42,3 +42,23 @@
   background-color: $jet;
   color: white;
 }
+
+.box-shadow-form {
+  border-radius: 5px;
+  padding: 50px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+  .form-control {
+    background-color: white;
+  }
+
+  a {
+    text-decoration: none;
+    color: #0254EC;
+  }
+
+  a:hover {
+    color: #00266B;
+  }
+
+}
