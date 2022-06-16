@@ -114,6 +114,24 @@
   width: 135px;
 }
 
+.btn-platinum-outline {
+  border: solid 1px $platinum;
+  color: $platinum;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 400;
+  transition: background-color 0.2s;
+}
+
+.btn-platinum-outline:hover {
+  background-color: $platinum;
+  color: $jet;
+}
+
 //Black Buttons//
 .btn-black {
   background-color: $jet;

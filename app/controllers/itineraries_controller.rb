@@ -124,6 +124,14 @@ class ItinerariesController < ApplicationController
     end
   end
 
+  def mytrips
+    @itineraries = authorize Itinerary.all
+
+    # navbar style
+    @banner_navbar = false
+    @static_navbar = true
+  end
+
   private
 
   def itinerary_params
