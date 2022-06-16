@@ -15,7 +15,8 @@
     <div class="itinerary-calendar">
       <div class="week-headers">
         <% date_range.slice(0, 7).each do |day| %>
-          <div class="week-header"><%= t('date.abbr_day_names')[day.wday] %></div>
+
+          <div class="week-header"><%= t('date.abbr_day_names')[day.wday] %> - <%= day %></div>
         <% end %>
       </div>
       <div class="calendar-time-sidebar">

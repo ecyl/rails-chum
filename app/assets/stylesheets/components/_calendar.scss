@@ -11,13 +11,13 @@
 
 .itinerary-calendar {
   display: grid;
-  grid-template-columns: repeat(8, 140px);
-  grid-template-rows: repeat(25, 80px);
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(25, 1fr);
   height: 800px;
   width: 800px;
   border: 1px solid #DBDDE0;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
 }
 
 .calendar-time-sidebar {
