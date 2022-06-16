@@ -31,8 +31,10 @@
               <% if current_user.photo.attached? %>
                 <%= cl_image_path current_user.photo.key, class: "avatar dropdown-toggle position-relative", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% else %>
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                <span id="notification-badges" class="text-center ml-3 position-absolute" style="right:100px; bottom:9px;" data-notification-badge-subscription-target="badge"><%= current_user.notifications.where(read:false).count %></span>
+              <span class="position-relative">
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <div id="notification-badges" class="text-center ml-3 position-absolute" style="" data-notification-badge-subscription-target="badge"><%= current_user.notifications.where(read:false).count %></div>
+              </span>
               <% end %>
               <span class="username-display <%= 'nav-text-black' if @black_text_navbar %>"><%= current_user.first_name %></span>
             </a>
