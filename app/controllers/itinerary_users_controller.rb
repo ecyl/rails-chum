@@ -1,6 +1,6 @@
 class ItineraryUsersController < ApplicationController
   before_action :find_itinerary_users, only: [:accept, :reject]
-  before_action :find_itinerary, only: [:new, :create]
+  before_action :find_itinerary, only: [:new, :create, :accept, :reject]
 
   def accept
     @itinerary_user.status = "accepted"
@@ -72,6 +72,7 @@ class ItineraryUsersController < ApplicationController
     @notification.content = "#{f_name} has requested to join your itinerary named '#{@itinerary_user.itinerary.title}'"
     @notification.notification_type = "new_pending"
     @notification.user = @itinerary.user
+    @notification.itinerary = @itinerary
     if @notification.save
       ActionCable.server.broadcast(
         "notification-badge-#{@notification.user.id}",
@@ -93,13 +94,15 @@ class ItineraryUsersController < ApplicationController
       @notification.content = "#{organiser_f_name} has accepted your request to join the itinerary. Click to view"
       @notification.notification_type = "request_accepted"
       @notification.user = @itinerary_user.user
+      @notification.itinerary = @itinerary
     when "rejected"
       organiser = @itinerary_user.itinerary.user
-      organiser_f_name = "#{organiser.first_name} #{organiser.last_name}"
-      @notification.content = "#{organiser_f_name} has rejected your request to join the itinerary."
+      @notification.content = "#{@organiser_f_name} has rejected your request to join the itinerary."
       @notification.notification_type = "request_rejected"
       @notification.user = @itinerary_user.user
+      @notification.itinerary = @itinerary
     end
+
     if @notification.save
       ActionCable.server.broadcast(
         "notification-badge-#{@notification.user.id}",
