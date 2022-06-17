@@ -20,12 +20,6 @@
         </ul>
 
         <div class="navbar-nav ms-auto d-flex align-items-center">
-            <!-- Plan new trip button -->
-            <span class="btn btn-orange tall">
-              <%= link_to "Plan new trip", itineraries_new_path, class:"mx-1" %>
-              <i class="fas fa-plus fa-fw"></i>
-            </span>
-
             <!-- Avatar & name -->
             <a style="width:145; height: 56" class="nav-link dropdown-toggle <%= 'nav-text-black' if @black_text_navbar %>" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-controller="notification-badge-subscription" data-notification-badge-subscription-user-id-value="<%= current_user.id %>">
               <% if current_user.photo.attached? %>
@@ -55,7 +49,6 @@
               <li>
                 <%= link_to notifications_path, class:"dropdown-item" do %>
                   <p class="position-relative m-0">My Notifications</p>
-
                 <% end %>
               </li>
               <li><hr class="dropdown-divider"></li>

@@ -1,3 +1,38 @@
+// Disabled buttons
+
+.disabled {
+  background-color: #b3b2b2;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  border: none;
+}
+
+// confirmed button
+
+#confirmed-btn {
+  text-align: center;
+  padding: 1rem;
+  margin: 2rem 0;
+  color: green;
+  // border: 1px solid green;
+  background-color: rgba(6, 151, 6, 0.3);
+}
+
+#rejected-btn {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: #cc2c2c;
+  /* border: 1px solid rgba(0, 172, 0, 0.3); */
+  background-color: rgba(172, 0, 0, 0.3);
+}
 // Purple buttons
 
 .btn-purple {
@@ -309,4 +344,64 @@
 
 .full-width {
   width: 100%;
+}
+
+
+// purple buttons
+.btn-purple {
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: auto;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  padding: 0 24px;
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.btn-purple:hover {
+  background-color: $dark-purple;
+  color: white;
+
+  a {
+    color: white;
+  }
+}
+
+.btn-purple-outline {
+  border: solid 1px $purple;
+  color: $purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: auto;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  padding: 0 24px;
+}
+
+.btn-purple-outline:hover {
+  background-color: $dark-purple;
+  border: solid 1px $dark-purple;
+  color: white;
+}
+
+.plan-trip-btn {
+  font-size: 2rem;
+  width: 210px;
+  padding: 30px;
+  border-radius: 50px;
 }

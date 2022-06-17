@@ -1,6 +1,6 @@
 class ChatroomsController < ApplicationController
   def index
-    @chatrooms = policy_scope(Chatroom).where(id: current_user.chatroom_ids)
+    @chatrooms = policy_scope(Chatroom).where(id: current_user.chatroom_ids).order(created_at: :desc)
     @message = Message.new
 
     # navbar styles
