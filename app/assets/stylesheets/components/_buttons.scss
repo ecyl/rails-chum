@@ -314,14 +314,12 @@
 
 // purple buttons
 .btn-purple {
-  border: solid 3px $purple;
   color: $white;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 40px;
   width: auto;
-  border: solid 3px $purple;
   border-radius: 20px;
   text-decoration: none;
   font-size: 1.3rem;
@@ -338,7 +336,6 @@
 .btn-purple:hover {
   background-color: $dark-purple;
   color: white;
-  border: solid 3px $dark-purple;
 
   a {
     color: white;
