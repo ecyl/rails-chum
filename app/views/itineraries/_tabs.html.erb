@@ -68,9 +68,10 @@
 
 
           <div class="trip-buttons mt-5">
-            <%= link_to 'Request to join', new_itinerary_itinerary_user_path(@itinerary), class: "btn-purple-outline" %>
             <%= link_to 'View organiser profile', user_path(@itinerary.user), class: "btn-purple-outline mt-4" %>
-            <%= link_to 'Publish itinerary', publish_itinerary_path(@itinerary), class: "btn-purple-outline mt-4", method: :patch unless @itinerary.published = true %>
+            <%# link_to 'Request to join', new_itinerary_itinerary_user_path(@itinerary), class: "btn-purple-outline" %>
+            <%= render "req-to-join-button", itinerary: @itinerary, itinerary_user: @itinerary_user %>
+            <%# <%= link_to 'Publish itinerary', publish_itinerary_path(@itinerary), class: "btn-purple-outline mt-4", method: :patch unless @itinerary.published = true %>
           </div>
 
         </div>
