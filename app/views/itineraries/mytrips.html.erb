@@ -15,7 +15,7 @@
       <%# If empty render no trips %>
       <% if @completed.length.zero? %>
         <h1>Oops. Looks like you haven't completed any trips yet.</h1>
-        <%= link_to 'Browse itineraries', itineraries_index_path, class: "btn-orange-outline" %>
+        <%= link_to 'Browse itineraries', itineraries_index_path, class: "btn-orange-outline`" %>
       <% else %>
 
       <% end %>
@@ -40,7 +40,7 @@
                 </div>
 
                 <%# leave a review %>
-                <%= link_to "Leave a review", new_itinerary_review_path(itinerary.id), class: "btn-platinum-outline"%>
+                <%= link_to "Leave a review", "#", method: :post, class: "btn-platinum-outline"%>
               </div>
             </div>
         </div>
