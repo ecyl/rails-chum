@@ -22,7 +22,7 @@
 
 //Orange Buttons//
 .btn-orange {
-  background-color: $orange;
+  background-color: $dark-purple;
   color: white;
   display: flex;
   align-items: center;
@@ -35,9 +35,9 @@
   border: none;
 }
 
-.btn-orange-outline {
-  border: solid 1px $orange;
-  color: $orange;
+.btn-purple-outline {
+  border: solid 1px $dark-purple;
+  color: $dark-purple;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,14 +50,14 @@
 }
 
 .btn-orange-outline:hover {
-  background-color: $orange;
+  background-color: $dark-purple;
   color: $alabaster;
   font-weight: bold;
 }
 
-.btn-orange-medium-outline {
-  border: solid 1px $orange;
-  color: $orange;
+.btn-purple-medium-outline {
+  border: solid 1px $dark-purple;
+  color: $dark-purple;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,8 +70,8 @@
   width: 150px;
 }
 
-.btn-orange-medium-outline:hover {
-  background-color: $orange;
+.btn-purple-medium-outline:hover {
+  background-color: $dark-purple;
   color: $alabaster;
   font-weight: bold;
 }
@@ -82,7 +82,7 @@
 }
 
 .btn-orange:hover {
-  background-color: #ff8a2b;
+  background-color: $dark-purple;
   color: white;
 }
 
