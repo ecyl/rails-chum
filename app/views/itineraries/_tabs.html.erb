@@ -68,6 +68,7 @@
 
           <%= link_to 'Request to join', new_itinerary_itinerary_user_path(@itinerary), class: "btn-orange-outline" %>
           <%= link_to 'View organiser profile', user_path(@itinerary.user), class: "btn-orange-outline mt-4" %>
+          <%= link_to 'Publish itinerary', publish_itinerary_path(@itinerary), class: "btn-orange-outline mt-4", method: :patch unless @itinerary.published = true %>
         </div>
       <% else %>
         <%# Does not exist. Should be visible only for the itinerary creator when they first create itinerary %>

@@ -119,7 +119,7 @@ class ItinerariesController < ApplicationController
   def publish
     # PATCH action to update finalised => true
     @itinerary.published = true
-
+    authorize @itinerary
     if @itinerary.save
       # insert flash confirmation
       redirect_to itinerary_path(@itinerary), notice: "The itinerary is published!"
