@@ -78,6 +78,10 @@ raymond_itinerary = Itinerary.new(
   deadline: Date.today() + 5
 )
 
+chatroom = Chatroom.new(
+  name: "Summer in Korea"
+)
+raymond_itinerary.chatroom = chatroom
 raymond_itinerary.save!
 
 raymond_event1 = Event.new(
