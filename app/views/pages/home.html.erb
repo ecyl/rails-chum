@@ -35,8 +35,11 @@
 
     <!-- Itinerary cards -->
     <div class="row" data-controller="itinerary-card">
-      <% @itineraries.where(published: true).order(created_at: :desc).first(6).each do |itinerary| %>
+      <% @itineraries.published.order(created_at: :desc).first(6).each do |itinerary| %>
+      <% if itinerary.participant_limit > (itinerary.itinerary_users.where(status:"accepted").count + 1) %>
         <%= render "cards", itinerary: itinerary %>
+      <% end %>
+
       <% end %>
     </div>
   </div>

@@ -406,13 +406,13 @@ bika = User.new(
   password: '12345678'
 )
 bika.save!
-5.times do
-  notification = Notification.new(
-    content: Faker::Quote.yoda
-  )
-  bika.notifications << notification
-  notification.save!
-end
+# 5.times do
+#   notification = Notification.new(
+#     content: Faker::Quote.yoda
+#   )
+#   bika.notifications << notification
+#   notification.save!
+# end
 bika_chat = Chatroom.new(name: 'bikaTime')
 bika_chat.save!
 
@@ -432,84 +432,84 @@ users = User.all.sample(5) # include interested users
 accepted_user = users.pop
 
 # Save pending and their status
-users.each do |person|
-  new = ItineraryUser.new
-  new.itinerary = bika_iti
-  new.user = person
-  new.save!
-end
+# users.each do |person|
+#   new = ItineraryUser.new
+#   new.itinerary = bika_iti
+#   new.user = person
+#   new.save!
+# end
 
-# Save accepted and their status
-new = ItineraryUser.new
-new.itinerary = bika_iti
-new.user = accepted_user
-new.save!
+# # Save accepted and their status
+# new = ItineraryUser.new
+# new.itinerary = bika_iti
+# new.user = accepted_user
+# new.save!
 
-bika_iti.save!
+# bika_iti.save!
 
-bika_chat.users << accepted_user
-bika_chat.users << bika
-bika_chat.save!
+# bika_chat.users << accepted_user
+# bika_chat.users << bika
+# bika_chat.save!
 
-bika_event_1 = Event.new(
-  title: 'Bika walk',
-  description: Faker::TvShows::StrangerThings.quote,
-  date_start: DateTime.new(2022,6,15,8,10),
-  date_end: DateTime.new(2022,6,16,9,0),
-  location: 'Bondi beach',
-  cost: (50..1000).to_a.sample
-)
-bika_event_1.itinerary = bika_iti
-bika_event_1.save!
-#get_address(bika_event_1)
+# bika_event_1 = Event.new(
+#   title: 'Bika walk',
+#   description: Faker::TvShows::StrangerThings.quote,
+#   date_start: DateTime.new(2022,6,15,8,10),
+#   date_end: DateTime.new(2022,6,16,9,0),
+#   location: 'Bondi beach',
+#   cost: (50..1000).to_a.sample
+# )
+# bika_event_1.itinerary = bika_iti
+# bika_event_1.save!
+# #get_address(bika_event_1)
 
-bika_event_2 = Event.new(
-  title: 'Bika run',
-  description: Faker::TvShows::StrangerThings.quote,
-  date_start: DateTime.new(2022,6,15,10,15),
-  date_end: DateTime.new(2022,6,15,11,15),
-  location: 'Coogee beach',
-  cost: (50..1000).to_a.sample
-)
-bika_event_2.itinerary = bika_iti
-bika_event_2.save!
-#get_address(bika_event_2)
+# bika_event_2 = Event.new(
+#   title: 'Bika run',
+#   description: Faker::TvShows::StrangerThings.quote,
+#   date_start: DateTime.new(2022,6,15,10,15),
+#   date_end: DateTime.new(2022,6,15,11,15),
+#   location: 'Coogee beach',
+#   cost: (50..1000).to_a.sample
+# )
+# bika_event_2.itinerary = bika_iti
+# bika_event_2.save!
+# #get_address(bika_event_2)
 
-bika_event_3 = Event.new(
-  title: 'Bika beg for food',
-  description: 'Fatso begs for dinner scraps',
-  date_start: DateTime.new(2022,6,15,12),
-  date_end: DateTime.new(2022,6,15,13),
-  location: 'Sydney opera house',
-  cost: (50..1000).to_a.sample
-)
-bika_event_3.itinerary = bika_iti
-bika_event_3.save!
-get_address(bika_event_3)
+# bika_event_3 = Event.new(
+#   title: 'Bika beg for food',
+#   description: 'Fatso begs for dinner scraps',
+#   date_start: DateTime.new(2022,6,15,12),
+#   date_end: DateTime.new(2022,6,15,13),
+#   location: 'Sydney opera house',
+#   cost: (50..1000).to_a.sample
+# )
+# bika_event_3.itinerary = bika_iti
+# bika_event_3.save!
+# # get_address(bika_event_3)
 
-bika_event_4 = Event.new(
-  title: 'Bika is grumpy',
-  description: 'Needs a fat nap',
-  date_start: DateTime.new(2022,6,16,8),
-  date_end: DateTime.new(2022,6,16,9),
-  location: 'Royal Botanic Garden Sydney',
-  cost: (50..1000).to_a.sample
-)
-bika_event_4.itinerary = bika_iti
-bika_event_4.save!
-#get_address(bika_event_4)
+# bika_event_4 = Event.new(
+#   title: 'Bika is grumpy',
+#   description: 'Needs a fat nap',
+#   date_start: DateTime.new(2022,6,16,8),
+#   date_end: DateTime.new(2022,6,16,9),
+#   location: 'Royal Botanic Garden Sydney',
+#   cost: (50..1000).to_a.sample
+# )
+# bika_event_4.itinerary = bika_iti
+# bika_event_4.save!
+# #get_address(bika_event_4)
 
-bika_final = Event.new(
-  title: 'Vecna please do not eat me',
-  description: 'Be running up that hill, be running up that building',
-  date_start: DateTime.new(2022,6,17,12),
-  date_end: DateTime.new(2022,6,17,15),
-  location: 'Sydney Zoo',
-  cost: (50..1000).to_a.sample
-)
-bika_final.itinerary = bika_iti
-bika_final.save!
-#get_address(bika_final)
+# bika_final = Event.new(
+#   title: 'Vecna please do not eat me',
+#   description: 'Be running up that hill, be running up that building',
+#   date_start: DateTime.new(2022,6,17,12),
+#   date_end: DateTime.new(2022,6,17,15),
+#   location: 'Sydney Zoo',
+#   cost: (50..1000).to_a.sample
+# )
+# bika_final.itinerary = bika_iti
+# bika_final.save!
+# #get_address(bika_final)
 
 
 puts "Creating restrictions..."
