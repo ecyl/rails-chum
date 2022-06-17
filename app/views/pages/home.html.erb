@@ -85,9 +85,33 @@
                     <p class="trip-card-date-header">From</p>
                     <p><%= event.date_start.strftime('%d %B %Y') %></p>
                   </div>
-                  <div>
-                    <p class="trip-card-date-header">To</p>
-                    <p><%= event.date_end.strftime('%d %B %Y') %></p>
+
+                  <div class="trip-card-specs">
+                    <div class="trip-card-dates">
+                      <div>
+                        <p class="trip-card-date-header">From</p>
+                          <% if @itineraries[i].events.count == 0 %>
+                            <p>TBC</p>
+                          <% else %>
+                            <p><%= @itineraries[i].events[0].date_start.strftime('%d %B %Y') %></p>
+                          <% end %>
+                      </div>
+                      <div>
+                        <p class="trip-card-date-header">To</p>
+                        <% if @itineraries[i].events.count == 0 %>
+                          <p>TBC</p>
+                        <% else %>
+                          <p><%= @itineraries[i].events[-1].date_end.strftime('%d %B %Y') %></p>
+                        <% end %>
+                      </div>
+                    </div>
+                    <% budget = 0 %>
+                    <% @itineraries[i].events.each { |event| budget += event.cost }%>
+                    <div class="trip-card-budget">
+                      <p class="trip-card-budget-header">Budget</p>
+                      <p>SGD <%= budget.round %></p>
+                    </div>
+
                   </div>
                 </div>
               </div>

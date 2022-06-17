@@ -14,6 +14,8 @@ class Itinerary < ApplicationRecord
   has_many :itinerary_restrictions, dependent: :destroy
   has_many :restrictions, through: :itinerary_restrictions
 
+  has_many :reviews
+
   # Validations
   validates :title, presence: true
   validates :participant_limit, presence: true
