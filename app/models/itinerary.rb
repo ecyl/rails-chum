@@ -1,4 +1,7 @@
 class Itinerary < ApplicationRecord
+  scope :published, -> { where(published: true) }
+  # scope :participant_within_limit, -> { where(' participant_limit < ? ', itinerary_users.where(status: accepted).count) }
+
   belongs_to :user
   belongs_to :chatroom
 
