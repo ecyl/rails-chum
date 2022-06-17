@@ -38,12 +38,32 @@
                       <% else %>
                         <img class="modal-image" src="https://source.unsplash.com/random/?trip,<%= event.location %>" alt="modal image">
                       <% end %>
-                      <div class="modal-event-details ps-3">
-                        <p><%= event.date_start.strftime("%A") %>, <%= event.date_start.strftime("%d %b %Y") %></p>
-                        <h5 class="modal-title" id="eventModal-<%= event.id %>Label" style="font-weight: 700;"><%= event.title %></h5>
-                      </div>
+
+
+                      <%# If event spans multiple days %>
+                      <% time_diff = (event.date_end - event.date_start) / 60 / 60 %>
+                      <% if time_diff >= 24 %>
+                        <div class="modal-event-details ps-3">
+                          <p><%= event.date_start.strftime("%d %b %Y") %> to <%= event.date_end.strftime("%d %b %Y") %></p>
+                          <h5 class="modal-title" id="eventModal-<%= event.id %>Label" style="font-weight: 700;"><%= event.title %></h5>
+                        </div>
+                      <% else %>
+                        <div class="modal-event-details ps-3">
+                          <p><%= event.date_start.strftime("%A") %>, <%= event.date_start.strftime("%d %b %Y") %></p>
+                          <h5 class="modal-title" id="eventModal-<%= event.id %>Label" style="font-weight: 700;"><%= event.title %></h5>
+                        </div>
+                      <% end %>
                     </div>
                     <div class="modal-body">
+                      <%# Description modal body %>
+                      <div class="modal-event-description">
+                        <div class="description">
+                          <strong><p>Description:</p></strong>
+                          <p><%= event.description %></p>
+                        </div>
+                      </div>
+
+                      <%# Address time info modal %>
                       <div class="modal-event-address-time">
                         <div class="event-address">
                           <% if event.address.nil? %>
@@ -59,12 +79,6 @@
                         </div>
                       </div>
 
-                      <div class="modal-event-description">
-                        <div class="description">
-                          <strong><p>Description:</p></strong>
-                          <p><%= event.description %></p>
-                        </div>
-                      </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
