@@ -3,7 +3,7 @@
   <h1>My Trips</h1>
 </div>
 
-<div class="container">
+<div class="container my-trips">
   <%# div - completed %>
   <div class="completed-trips">
     <div class="section-header mt-3">
@@ -14,8 +14,10 @@
       <%# trip cards %>
       <%# If empty render no trips %>
       <% if @completed.length.zero? %>
-        <h1>Oops. Looks like you haven't completed any trips yet.</h1>
-        <%= link_to 'Browse itineraries', itineraries_index_path, class: "btn-orange-outline`" %>
+        <div class="zero-trips container">
+          <h5 class="mb-4">Oops. Looks like you haven't completed any trips yet.</h5>
+          <%= link_to 'Browse itineraries', itineraries_index_path, class: "btn-orange-outline" %>
+        </div>
       <% else %>
 
       <% end %>
