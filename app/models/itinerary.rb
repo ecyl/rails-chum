@@ -11,6 +11,8 @@ class Itinerary < ApplicationRecord
   has_many :itinerary_restrictions, dependent: :destroy
   has_many :restrictions, through: :itinerary_restrictions
 
+  has_many :reviews
+
   # Validations
   validates :title, presence: true
   validates :participant_limit, presence: true
@@ -18,6 +20,8 @@ class Itinerary < ApplicationRecord
   validates :deadline, presence: true
   validates :chatroom_id, presence: true
   validates :destination, presence: true
+
+  has_many :notification
 
   has_one_attached :photo
 

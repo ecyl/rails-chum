@@ -2,12 +2,14 @@
   justify-content: space-evenly;
   height: 80vh;
   display: flex;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .chat-sidebar {
   justify-content: space-between;
   height: 100%;
   border-radius: 8px 0px 0px 8px;
+  border-right: 1px solid #e8e8e8;
 
   .message-group {
     height: 50%;
@@ -18,7 +20,15 @@
       color: white;
       padding: 8px;
       margin-bottom: 0px;
-      border-radius: 8px 0px 0px 8px;
+      border-radius: 8px 0px 0px 0px;
+      font-size: 20px;
+    }
+
+    .message-direct-title {
+      background: $jet;
+      color: white;
+      padding: 8px;
+      margin-bottom: 0px;
       font-size: 20px;
     }
   }
