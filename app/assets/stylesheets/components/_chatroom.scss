@@ -1,6 +1,6 @@
 .chat-body {
   justify-content: space-evenly;
-  height: 80vh;
+  height: 60vh;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
@@ -42,7 +42,7 @@
   padding: 12px;
 }
 
-.chat-links:hover {
+.chat-links.active {
   background: $platinum;
 }
 
