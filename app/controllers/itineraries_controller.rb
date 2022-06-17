@@ -1,5 +1,5 @@
 class ItinerariesController < ApplicationController
-  before_action :set_itinerary, only: [:show, :confirm, :finalise, :publish]
+  before_action :set_itinerary, only: [:show, :confirm, :finalise, :publish, :unpublish]
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
@@ -126,10 +126,23 @@ class ItinerariesController < ApplicationController
     authorize @itinerary
     if @itinerary.save
       # insert flash confirmation
-      redirect_to itinerary_path(@itinerary), notice: "The itinerary is published!"
+      redirect_to itinerary_path(@itinerary), notice: "You have unpublished the itinerary successfully!"
     else
       # insert flash confirmation
       redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to publish"
+    end
+  end
+
+  def unpublish
+    # PATCH action to update finalised => true
+    @itinerary.published = false
+    authorize @itinerary
+    if @itinerary.save
+      # insert flash confirmation
+      redirect_to itinerary_path(@itinerary), notice: "You have unpublished the itinerary successfully!"
+    else
+      # insert flash confirmation
+      redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to be unpublished"
     end
   end
 

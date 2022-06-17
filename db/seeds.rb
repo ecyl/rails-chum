@@ -49,7 +49,16 @@ germaine.save!
 
 puts "Test user: Eunice, Helen, Germaine, Raymond created"
 
-
+raymond = User.new(
+  first_name: "Raymond",
+  last_name: "Ong",
+  email: "raymondong@gmail.com",
+  password: 12345678,
+  age: 18,
+  gender: "M",
+  languages: "English, Chinese, French"
+)
+raymond.save!
 
 # Create Raymond's itinerary
 
@@ -814,4 +823,3 @@ create_one_itinerary("Summer in Korea!",
 # end
 
 # puts "Done with all models"
-
