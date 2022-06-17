@@ -336,12 +336,12 @@
 }
 
 .btn-purple:hover {
-  background-color: white;
-  color: $purple;
-  border: solid 3px $purple;
+  background-color: $dark-purple;
+  color: white;
+  border: solid 3px $dark-purple;
 
   a {
-    color: $purple;
+    color: white;
   }
 }
 
@@ -362,7 +362,8 @@
 }
 
 .btn-purple-outline:hover {
-  background-color: $purple;
+  background-color: $dark-purple;
+  border: solid 3px $dark-purple;
   color: white;
 }
 
