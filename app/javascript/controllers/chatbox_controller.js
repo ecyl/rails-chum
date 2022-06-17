@@ -11,6 +11,12 @@ export default class extends Controller {
     event.preventDefault();
 
     console.log(event.currentTarget.dataset)
+    console.log(this.linkTargets);
+
+    this.linkTargets.forEach((link) => {
+      link.classList.remove('active')
+    })
+
     const chatLink = event.currentTarget;
     chatLink.classList.add('active');
 

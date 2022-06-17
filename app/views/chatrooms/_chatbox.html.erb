@@ -14,21 +14,31 @@
             <% chatroom.users.each do |user| %>
               <%= user.first_name %>
             <% end %>
-        <% else chatroom.itinerary == nil %>
+        <% else %>
         <%# to display the recipient's name %>
           <% chatroom.users.each do |user| %>
               <% if user.id != current_user.id %>
-              <strong>You are talking to:</strong> <% user.first_name %>
+              <strong>You are talking to:</strong> <%= user.first_name %>
               <% end %>
             <% end %>
         <% end %>
       </div>
 
     <div class="messages" data-chatroom-subscription-target="messages">
-      <% chatroom.messages.each do |message| %>
-      <div class="message-content">
-        <%= render "messages/message", message: message %>
-      </div>
+      <%# to check if there are any messages in the chat %>
+      <% if chatroom.messages.length == 0 %>
+        <div class="no-messages">
+          <em>No messages here yet...</em> <br>
+          <em>Send a message!</em> <br>
+          <i class="fa-solid fa-cow"></i>
+        </div>
+      <% else %>
+      <%# display the messages %>
+        <% chatroom.messages.each do |message| %>
+        <div class="message-content">
+          <%= render "messages/message", message: message %>
+        </div>
+        <% end %>
       <% end %>
     </div>
 
@@ -45,7 +55,7 @@
         wrapper_html: {class: "flex-grow-1"}
       %>
 
-      <%= f.submit "Send", class: "btn-black" %>
+      <%= f.submit "Send", class: "btn-purple" %>
       <% end %>
     </div>
   </div>

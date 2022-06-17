@@ -13,6 +13,7 @@
           </div>
         <% else %>
           <%# for personal chatrooms %>
+          <% @sender = current_user %>
             <% chatroom.users.each do |user| %>
               <% if user.id != @sender.id %>
                 <% @recipient = user %>
