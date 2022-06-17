@@ -36,6 +36,7 @@
 
 .modal-body {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .modal-event-address-time {
@@ -69,4 +70,8 @@
   height: 380px;
   overflow: hidden;
   // background-color: black;
+}
+
+.modal-event-description {
+  width: 250px;
 }

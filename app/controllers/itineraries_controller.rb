@@ -69,7 +69,6 @@ class ItinerariesController < ApplicationController
 
     @first_event = @itinerary.events.order(date_start: :asc).first
     @calendar_start_date = params[:start_date] || @first_event.date_start
-
     # For calendar
     authorize @itinerary
   end
