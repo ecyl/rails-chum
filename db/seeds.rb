@@ -69,45 +69,45 @@ puts "Test user: Eunice, Helen, Germaine, Raymond created"
 
 # Create Raymond's itinerary
 
-raymond_itinerary = Itinerary.new(
-  title: "Summer in Korea",
-  participant_limit: 3,
-  description: "Superb time in Korea!",
-  destination: "Korea",
-  published: true,
-  deadline: Date.today() + 5
-)
+# raymond_itinerary = Itinerary.new(
+#   title: "Summer in Korea",
+#   participant_limit: 3,
+#   description: "Superb time in Korea!",
+#   destination: "Korea",
+#   published: true,
+#   deadline: Date.today() + 5
+# )
 
-chatroom = Chatroom.new(
-  name: "Summer in Korea"
-)
+# chatroom = Chatroom.new(
+#   name: "Summer in Korea"
+# )
 
-raymond_itinerary.user = raymond
-chatroom.save!
-raymond_itinerary.chatroom = chatroom
-raymond_itinerary.save!
+# raymond_itinerary.user = raymond
+# chatroom.save!
+# raymond_itinerary.chatroom = chatroom
+# raymond_itinerary.save!
 
-raymond_event1 = Event.new(
-  description: "Lotte World for fun people",
-  address: "Lotte World",
-  location: "Lotte World",
-  title: "Fun night at Lotte World",
-  cost: 50
-)
+# raymond_event1 = Event.new(
+#   description: "Lotte World for fun people",
+#   address: "Lotte World",
+#   location: "Lotte World",
+#   title: "Fun night at Lotte World",
+#   cost: 50
+# )
 
-raymond_event1.itinerary = raymond_itinerary
-raymond_event1.save!
+# raymond_event1.itinerary = raymond_itinerary
+# raymond_event1.save!
 
-raymond_event2 = Event.new(
-  description: "Blackpink Concert with the Blinks",
-  address: "Korea DMZ",
-  location: "Korea DMZ",
-  title: "Super electrifying concert atmosphere!",
-  cost: 300
-)
+# raymond_event2 = Event.new(
+#   description: "Blackpink Concert with the Blinks",
+#   address: "Korea DMZ",
+#   location: "Korea DMZ",
+#   title: "Super electrifying concert atmosphere!",
+#   cost: 300
+# )
 
-raymond_event2.itinerary = raymond_itinerary
-raymond_event2.save!
+# raymond_event2.itinerary = raymond_itinerary
+# raymond_event2.save!
 
 
 def get_address(event)
