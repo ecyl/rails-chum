@@ -136,6 +136,13 @@ class ItinerariesController < ApplicationController
   def mytrips
     @itineraries = authorize Itinerary.all
 
+    # Display only trips that the user went on
+    @completed = []
+    @itineraries.each do |itinerary|
+      if (itinerary.itinerary_users.where(status: "accepted").include?(current_user)) || (itinerary.user == current_user)
+        @completed << itinerary
+      end
+    end
     # navbar style
     @banner_navbar = false
     @static_navbar = true
