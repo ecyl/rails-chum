@@ -23,7 +23,7 @@
             <!-- Avatar & name -->
             <a style="width:145; height: 56" class="nav-link dropdown-toggle <%= 'nav-text-black' if @black_text_navbar %>" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-controller="notification-badge-subscription" data-notification-badge-subscription-user-id-value="<%= current_user.id %>">
               <% if current_user.photo.attached? %>
-                <%= cl_image_path current_user.photo.key, class: "avatar dropdown-toggle position-relative", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle position-relative", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% else %>
               <span class="position-relative">
                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -58,7 +58,6 @@
       </div>
     </div>
   </div>
-
 
 <!-- Not Logged-in -->
 <% else %>
