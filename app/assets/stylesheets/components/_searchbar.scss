@@ -23,7 +23,7 @@
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 2px;
   padding: 1rem;
-  max-width: 100%;
+  width: 100%;
 
   .form-control {
     background-color: white;
@@ -36,12 +36,20 @@
   }
 }
 
-.search-container {
+.home-search-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 150px 0 100px 0;
+}
+
+.index-search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
 }
 
 .search-itineraries-card {
