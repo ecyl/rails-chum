@@ -3,7 +3,7 @@
   <!-- background image -->
     <div class="trip-card-background">
       <% if itinerary.photo.attached? %>
-        <img class="itinerary-image" src="<%= cl_image_path itinerary[i].photo.key %>" alt="itinerary image">
+        <img class="itinerary-image" src="<%= cl_image_path itinerary.photo.key %>" alt="itinerary image">
       <% else %>
         <!-- TODO: This needs to match the itinerary banner image in the show page -->
         <img src="https://source.unsplash.com/random/430x246/?trip,<%= itinerary.title %>" alt="itinerary image">
