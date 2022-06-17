@@ -18,6 +18,18 @@ UserChatroom.destroy_all
 
 # HARDCODE USERS
 
+suansen = User.new(
+  first_name: "Suan sen",
+  last_name: "Tan",
+  email: "suansen@gmail.com",
+  password: 12345678,
+  age: 14,
+  gender: "M",
+  languages: "English, Chinese"
+)
+file = URI.open("https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80")
+suansen.photo.attach(io: file, filename: "#{suansen.email}-avatar")
+
 raymond = User.new(
   first_name: "Raymond",
   last_name: "Ong",
