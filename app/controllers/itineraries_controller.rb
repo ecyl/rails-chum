@@ -1,5 +1,6 @@
 class ItinerariesController < ApplicationController
   before_action :set_itinerary, only: [:show, :confirm, :finalise, :publish]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
     # @itineraries = Itinerary.all
@@ -68,7 +69,13 @@ class ItinerariesController < ApplicationController
     @events = @events.sort.to_h
 
     @first_event = @itinerary.events.order(date_start: :asc).first
-    @calendar_start_date = params[:start_date] || @first_event.date_start
+
+    if @first_event.nil?
+      @calendar_start_date = DateTime.now
+    else
+      @calendar_start_date = params[:start_date] || @first_event.date_start
+    end
+
 
     # For calendar
     authorize @itinerary
@@ -88,7 +95,7 @@ class ItinerariesController < ApplicationController
       @itinerary = Itinerary.new(itinerary_params)
       @itinerary.user = current_user
       @itinerary_user = ItineraryUser.new(
-        status: "organiser",
+        status: "organiser"
       )
       @itinerary_user.user = current_user
       @itinerary_user.itinerary = @itinerary
@@ -110,29 +117,16 @@ class ItinerariesController < ApplicationController
     render :new
   end
 
-  def finalise
-    # PATCH action to update finalised => true
-    @itinerary.finalised = true
-
-    if @itinerary.save
-      # insert flash confirmation
-      redirect_to itinerary_path(@itinerary), notice: "The itinerary is finalised"
-    else
-      # insert flash confirmation
-      redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to finalise"
-    end
-  end
-
   def publish
     # PATCH action to update finalised => true
     @itinerary.published = true
-
+    authorize @itinerary
     if @itinerary.save
       # insert flash confirmation
       redirect_to itinerary_path(@itinerary), notice: "The itinerary is published!"
     else
       # insert flash confirmation
-      redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to finalise"
+      redirect_to itinerary_path(@itinerary), notice: "The itinerary failed to publish"
     end
   end
 

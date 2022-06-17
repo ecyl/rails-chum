@@ -1,3 +1,25 @@
+// Purple buttons
+
+.btn-purple {
+  background-color: $purple;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  border: none;
+}
+
+.btn-purple:hover {
+  background-color: #5a49b7;
+  color: white;
+  font-weight: bold;
+}
+
 //Orange Buttons//
 .btn-orange {
   background-color: $orange;

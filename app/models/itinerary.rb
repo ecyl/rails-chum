@@ -21,6 +21,8 @@ class Itinerary < ApplicationRecord
   validates :chatroom_id, presence: true
   validates :destination, presence: true
 
+  has_many :notification
+
   has_one_attached :photo
 
   def organiser

@@ -64,6 +64,21 @@ germaine.save!
 
 puts "Test user: Eunice, Helen, Germaine, Raymond created"
 
+
+
+# Create Raymond's itinerary
+
+# raymond_itinerary = Itinerary.new(
+#   title: "itinerary_title",
+#   participant_limit: accepted_users.size + 3,
+#   description: description.sample,
+#   destination: destination,
+#   published: false,
+#   deadline: date_start - 10
+# )
+
+
+
 def get_address(event)
   if event.valid?
     endpoint = 'mapbox.places'
@@ -71,7 +86,7 @@ def get_address(event)
     latitude = event.latitude
     url = "https://api.mapbox.com/geocoding/v5/#{endpoint}/#{longitude},#{latitude}.json?access_token=pk.eyJ1IjoiZ2VybWFpbmV3b25nZyIsImEiOiJjbDM4Y29vMngwMDlvM2ltZ3Eza3A0ano4In0.pI8jmt7xFxWsty2RwV2XLw"
     mapbox_call = URI.open(url).read
-    address = JSON.parse(mapbox_call)['features'][1]['place_name'];
+    address = JSON.parse(mapbox_call)['features'][1]['place_name']
     event.address = address
   end
   event.save!

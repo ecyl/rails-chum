@@ -1,5 +1,18 @@
 <div class="d-flex m-3">
-  <p>
-    <%= notification.content %>
+  <div id="notification-avatar" class="mx-3">
+    <% if current_user.photo.attached? %>
+      <%= cl_image_path current_user.photo.key, class: "avatar dropdown-toggle position-relative", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <% else %>
+      <span class="position-relative">
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <%# <i class="fa-solid fa-circle-chevron-left fa-rotate-by position-absolute" style="--fa-rotate-angle: -45deg"></i> %>
+      </span>
+    <% end %>
+  </div>
+  <p class="text-padding-top">
+    <%= link_to itinerary_path(notification.itinerary) do  %>
+      <strong><%= notification.content %></strong>
+    <% end %>
+
   </p>
 </div>
