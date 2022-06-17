@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :find_organiser
+  before_action :find_itinerary
 
   def new
     @review = authorize Review.new
@@ -9,9 +9,14 @@ class ReviewsController < ApplicationController
 
   def create
     @review = authorize Review.new(review_params)
-    @sender = current_user
-    @review.user = @sender
-    @review.organiser_id = @organiser.id
+
+    # author of the review
+    @review.user = current_user
+
+    # review for the itinerary
+    @review.itinerary = @itinerary
+    # @organiser = @itinerary.itinerary_users.where(status: "organiser")
+    @organiser = User.find(@itinerary.user_id)
 
     if @review.save
       redirect_to user_path(@organiser)
@@ -22,8 +27,8 @@ class ReviewsController < ApplicationController
 
   private
 
-  def find_organiser
-    @organiser = User.find(params[:user_id])
+  def find_itinerary
+    @itinerary = Itinerary.find(params[:itinerary_id])
   end
 
   def review_params

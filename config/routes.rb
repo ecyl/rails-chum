@@ -42,7 +42,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :chatrooms, only: :create
+  end
+
+  resources :itineraries, only: :show do
     resources :reviews, only: [:new, :create]
   end
-  # resources :itinerary_users, only: --> accept/reject
+  # resources :itinerary_users, only: --> accept/rejectresources :reviews, only: [:new, :create]
 end
