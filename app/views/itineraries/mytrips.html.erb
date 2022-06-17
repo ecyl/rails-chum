@@ -3,7 +3,7 @@
   <h1>My Trips</h1>
 </div>
 
-<div class="container">
+<div class="container my-trips">
   <%# div - completed %>
   <div class="completed-trips">
     <div class="section-header mt-3">
@@ -12,7 +12,17 @@
 
     <div class="section-body">
       <%# trip cards %>
-      <% @itineraries.each do |itinerary| %>
+      <%# If empty render no trips %>
+      <% if @completed.length.zero? %>
+        <div class="zero-trips container">
+          <h5 class="mb-4">Oops. Looks like you haven't completed any trips yet.</h5>
+          <%= link_to 'Browse itineraries', itineraries_index_path, class: "btn-orange-outline" %>
+        </div>
+      <% else %>
+
+      <% end %>
+
+      <% @completed.each do |itinerary| %>
         <div class="trip-card">
             <!-- background image -->
             <div class="trip-card-background">
@@ -32,7 +42,7 @@
                 </div>
 
                 <%# leave a review %>
-                <%= link_to "Leave a review", new_itinerary_review_path(itinerary.id), class: "btn-platinum-outline"%>
+                <%= link_to "Leave a review", "#", method: :post, class: "btn-platinum-outline"%>
               </div>
             </div>
         </div>

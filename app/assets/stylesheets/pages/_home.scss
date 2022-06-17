@@ -9,21 +9,17 @@
 
 .intro-container p {
   max-width: 70%;
-  font-size: 16px;
+  font-size: 1.3rem;
   text-align: center;
   margin-top: 16px;
   line-height: 2rem;
-}
-
-.itineraries-container {
-  margin: 0 100px;
 }
 
 .section-header {
   height: 40px;
   display: flex;
   align-items: center;
-  border-left: 6px solid $orange;
+  border-left: 6px solid $purple;
   padding: 24px;
   margin-bottom: 16px;
 }
@@ -32,6 +28,16 @@
   font-size: 26px;
 }
 
+.explore-iti-desc {
+  font-size: 1.3rem;
+}
+
+.itineraries-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
 
 .home-image {
   width: 50vw;
