@@ -33,8 +33,8 @@
   /* border: 1px solid rgba(0, 172, 0, 0.3); */
   background-color: rgba(172, 0, 0, 0.3);
 }
-// Purple buttons
 
+// Purple buttons
 .btn-purple {
   background-color: $purple;
   color: white;
@@ -50,24 +50,9 @@
 }
 
 .btn-purple:hover {
-  background-color: #5a49b7;
-  color: white;
-  font-weight: bold;
-}
-
-//Orange Buttons//
-.btn-orange {
   background-color: $dark-purple;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  border-radius: 5px;
-  text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.2s;
-  border: none;
 }
 
 .btn-purple-outline {
@@ -84,7 +69,7 @@
   border-radius: 20px;
 }
 
-.btn-orange-outline:hover {
+.btn-purple-outline:hover {
   background-color: $dark-purple;
   color: $alabaster;
   font-weight: bold;
@@ -111,82 +96,31 @@
   font-weight: bold;
 }
 
-.btn-orange a {
+.btn-purple a {
   text-decoration: none;
   color: white;
 }
 
-.btn-orange:hover {
-  background-color: $dark-purple;
-  color: white;
-}
-
-.btn-orange.big {
+.btn-purple.big {
   width: 350px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.btn-orange.medium {
+.btn-purple.medium {
   width: 200px;
 }
 
-.btn-orange.normal {
+.btn-purple.normal {
   width: 100px;
 }
 
-.btn-orange.rounded {
+.btn-purple.rounded {
   width: 300px;
   border-radius: 15px !important;
 }
 
-.btn.orange.tall {
+.btn-purple.tall {
   height: 60px;
-}
-
-// platinum buttons
-
-.btn-platinum-request {
-  background-color: $platinum;
-  color: $blue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 47px;
-  border-radius: 5px;
-  padding: 1rem;
-  font-weight: bold;
-  transition: background-color 0.2s;
-}
-
-.btn-platinum:hover {
-  background-color: #bebebe;
-  color: $blue;
-}
-
-.btn-platinum.normal {
-  width: 100px;
-}
-
-.btn-platinum.long {
-  width: 135px;
-}
-
-.btn-platinum-outline {
-  border: solid 1px $platinum;
-  color: $platinum;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 400;
-  transition: background-color 0.2s;
-}
-
-.btn-platinum-outline:hover {
-  background-color: $platinum;
-  color: $jet;
 }
 
 //Black Buttons//
@@ -263,45 +197,6 @@
   height: 60px;
 }
 
-// Crimson buttons
-
-.btn-crimson {
-  background-color: $crimson;
-  color: white;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 16px;
-  transition: background-color 0.2s;
-}
-
-.btn-crimson:hover {
-  background-color: #6c1a15;
-  color: white;
-}
-
-.btn-crimson.long {
-  width: 300px;
-}
-
-.btn-crimson.rounded {
-  width: 300px;
-  border-radius: 15px !important;
-}
-
-.btn-crimson.medium {
-  width: 215px;
-}
-
-.btn-crimson.short {
-  width: 145px;
-}
-
 .transparent-btn {
   opacity: 0.5;
 }
@@ -346,61 +241,16 @@
   width: 100%;
 }
 
-
-// purple buttons
-.btn-purple {
-  color: $white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  width: auto;
-  border-radius: 20px;
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: 600;
-  transition: background-color 0.2s;
-  padding: 0 24px;
-
-  a {
-    text-decoration: none;
-    color: white;
-  }
-}
-
-.btn-purple:hover {
-  background-color: $dark-purple;
-  color: white;
-
-  a {
-    color: white;
-  }
-}
-
-.btn-purple-outline {
-  border: solid 1px $purple;
-  color: $purple;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  width: auto;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: 500;
-  transition: background-color 0.2s;
-  padding: 0 24px;
-}
-
-.btn-purple-outline:hover {
-  background-color: $dark-purple;
-  border: solid 1px $dark-purple;
-  color: white;
+.search-btn {
+  height: 45px;
 }
 
 .plan-trip-btn {
-  font-size: 1.5rem;
-  width: 210px;
-  border-radius: 50px;
+  font-size: 1.3rem;
+  width: 140px;
+  padding: 25px 0;
+}
+
+.search-btn {
+  height: 45px;
 }
