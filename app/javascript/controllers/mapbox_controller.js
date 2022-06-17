@@ -22,7 +22,7 @@ export default class extends Controller {
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       new mapboxgl.Marker({
-        color: '#F19143',
+        color: '#4120BC',
         draggable: false,
         anchor: 'center'
       })
