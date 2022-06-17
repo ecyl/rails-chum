@@ -63,7 +63,7 @@
         <div class="trip-key-details">
           <div class="d-flex justify-content-between">
             <strong><p class="mb-3">Trip details</p></strong>
-            <div class="form-check form-switch" data-controller="toggle">
+            <div class="form-check form-switch" data-controller="toggle" data-toggle-itinerary-id-value="<%= @itinerary.id %>">
               <input class="form-check-input published-toggle" data-toggle-target="switch" data-action="click->toggle#toggle" type="checkbox" role="switch" id="flexSwitchCheckChecked">
               <p class="form-check-label toggle-label-text label-opaque" data-toggle-target="label" for="flexSwitchCheckChecked">Published</p>
             </div>
