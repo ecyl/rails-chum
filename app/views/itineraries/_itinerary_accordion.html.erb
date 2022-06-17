@@ -44,6 +44,15 @@
                       </div>
                     </div>
                     <div class="modal-body">
+                      <%# Description modal body %>
+                      <div class="modal-event-description">
+                        <div class="description">
+                          <strong><p>Description:</p></strong>
+                          <p><%= event.description %></p>
+                        </div>
+                      </div>
+
+                      <%# Address time info modal %>
                       <div class="modal-event-address-time">
                         <div class="event-address">
                           <% if event.address.nil? %>
@@ -59,12 +68,6 @@
                         </div>
                       </div>
 
-                      <div class="modal-event-description">
-                        <div class="description">
-                          <strong><p>Description:</p></strong>
-                          <p><%= event.description %></p>
-                        </div>
-                      </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
