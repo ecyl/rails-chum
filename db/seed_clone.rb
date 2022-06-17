@@ -16,14 +16,44 @@ Chatroom.destroy_all
 Message.destroy_all
 UserChatroom.destroy_all
 
+# HARDCODE USERS
 
-# CODE YOUR USER IN HERE
+suansen = User.new(
+  first_name: "Suan sen",
+  last_name: "Tan",
+  email: "suansen@gmail.com",
+  password: 12345678,
+  age: 14,
+  gender: "M",
+  languages: "English, Chinese"
+)
+file = URI.open("https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80")
+suansen.photo.attach(io: file, filename: "#{suansen.email}-avatar")
+suansen.save
 
 
-# REPEAT AS MANY TIMES AS NEEDED
+raymond = User.new(
+  first_name: "Raymond",
+  last_name: "Ong",
+  email: "raymondong@gmail.com",
+  password: 12345678,
+  age: 18,
+  gender: "M",
+  languages: "English, Chinese, French"
+)
+raymond.save!
 
-  # CODE YOUR ITINERARY HERE
 
+eunice = User.new(
+  first_name: "Eunice",
+  last_name: "Chin",
+  email: "ecyl@gmail.com",
+  age: 21,
+  gender: "F",
+  password: 12345678,
+  languages: "Nonsense, English, basic Chinese"
+)
+eunice.save!
 
 helen = User.new(
   first_name: "Helen",
@@ -53,8 +83,6 @@ puts "Test user: Eunice, Helen, Germaine, Raymond created"
 
 # Create Raymond's itinerary
 
-date_start = Date.today() + 10
-
 raymond_itinerary = Itinerary.new(
   title: "Summer in Korea",
   participant_limit: 3,
@@ -64,13 +92,6 @@ raymond_itinerary = Itinerary.new(
   deadline: Date.today() + 5
 )
 
-chatroom = Chatroom.new(
-  name: "Summer in Korea"
-)
-
-raymond_itinerary.user = raymond
-chatroom.save!
-raymond_itinerary.chatroom = chatroom
 raymond_itinerary.save!
 
 raymond_event1 = Event.new(
@@ -78,9 +99,7 @@ raymond_event1 = Event.new(
   address: "Lotte World",
   location: "Lotte World",
   title: "Fun night at Lotte World",
-  cost: 50,
-  date_start: date_start + 11,
-  date_end: date_start + 12
+  cost: 50
 )
 
 raymond_event1.itinerary = raymond_itinerary
@@ -91,9 +110,7 @@ raymond_event2 = Event.new(
   address: "Korea DMZ",
   location: "Korea DMZ",
   title: "Super electrifying concert atmosphere!",
-  cost: 300,
-  date_start: date_start + 12,
-  date_end: date_start + 13
+  cost: 300
 )
 
 raymond_event2.itinerary = raymond_itinerary
@@ -814,4 +831,3 @@ create_one_itinerary("Summer in Korea!",
 # end
 
 # puts "Done with all models"
-
