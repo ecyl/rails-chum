@@ -12,7 +12,15 @@
 
     <div class="section-body">
       <%# trip cards %>
-      <% @itineraries.each do |itinerary| %>
+      <%# If empty render no trips %>
+      <% if @completed.length.zero? %>
+        <h1>Oops. Looks like you haven't completed any trips yet.</h1>
+        <%= link_to 'Browse itineraries', itineraries_index_path, class: "btn-orange-outline" %>
+      <% else %>
+
+      <% end %>
+
+      <% @completed.each do |itinerary| %>
         <div class="trip-card">
             <!-- background image -->
             <div class="trip-card-background">
