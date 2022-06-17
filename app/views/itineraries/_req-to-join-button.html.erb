@@ -1,6 +1,6 @@
  <%# Unless current user is the organiser && I have not created a request, show ==>  %>
 <% unless itinerary.user == current_user %>
-  <% if itinerary.itinerary_users.where(user_id: current_user.id).empty? %>
+  <% if itinerary.itinerary_users.where(user: current_user).empty? %>
     <div id="request-join">
       <button type="button" style="border: none;" class="btn-purple full-width mt-3" data-bs-toggle="modal" data-bs-target="#requestModal">
         Request to join
@@ -38,20 +38,18 @@
 <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div id="modal-container" class="modal-content">
-      <div class="modal-body">
+      <div class="modal-body d-flex flex-column">
         <div class="d-flex justify-content-between">
           <h3 class="modal-title mt-2" id="requestModalTitle" style="font-weight: 500;">Send a request to join this trip</h3>
-            <button type="button" data-bs-dismiss="modal" class="btn-close mt-2" aria-label="Close">
-            </button>
+          <button type="button" data-bs-dismiss="modal" class="btn-close mt-2" aria-label="Close"></button>
         </div>
 
-         <%= simple_form_for([itinerary, itinerary_user]) do |f| %>
-            <%= f.input :message, label: "Send the organizer a message", label_html:{ class: "text-white mb-1" }, placeholder: "I would like to join because..." %>
-            <div class="d-flex">
-              <%= f.button :submit, "Send request", class:"p-2 btn-orange-outline btn-padding-small text-center"%>
+        <%= simple_form_for([itinerary, itinerary_user]) do |f| %>
+          <%= f.input :message, label: "Send the organizer a message", label_html:{ class: "text-white mb-1" }, placeholder: "I would like to join because..." %>
+          <div class="d-flex">
+            <%= f.button :submit, "Send request", class:"p-2 btn-orange-outline btn-padding-small text-center"%>
           </div>
-          <% end %>
-
+        <% end %>
       </div>
     </div>
   </div>
