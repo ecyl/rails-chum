@@ -81,6 +81,8 @@ raymond_itinerary = Itinerary.new(
 chatroom = Chatroom.new(
   name: "Summer in Korea"
 )
+
+raymond_itinerary.user = raymond
 chatroom.save!
 raymond_itinerary.chatroom = chatroom
 raymond_itinerary.save!
