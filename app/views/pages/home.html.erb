@@ -9,8 +9,8 @@
         <div class="intro-container">
           <h3><strong>A New Adventure Awaits</strong></h3>
           <p>Can’t get your family or friends to travel together because everyone’s too busy?
-          You don't have to give up on your travel plans, for ready-made itineraries are just a click away.</p>
-          <p>Join trips organized by solo-travellers, or be an organizer and plan trips for others to join</p>
+          You don't have to give up on your travel plans, with ready-made itineraries just a click away.</p>
+          <p>Join trips organized by solo-travellers, or be an organizer and plan trips for others to join.</p>
         </div>
       </div>
     </div>
@@ -40,4 +40,60 @@
       <% end %>
     </div>
   </div>
+
+  <div class="filler-container mt-5">
+    <%= image_tag '/assets/tori_gate_fushimi.jpg', class: "home-image"%>
+
+    <div class="text-container">
+      <h3>
+        A unique travel experience like no other.
+      </h3>
+    </div>
+  </div>
+
+  <div class="sample-events container mt-5">
+    <div class="sample-events-text">
+      <h6>Check out some of the events being organised by travelers.</h6>
+    </div>
+
+    <div class="sample-events">
+      <% @sample_events.each do |event| %>
+        <div class="trip-card">
+              <!-- background image -->
+          <div class="trip-card-background">
+            <% if event.photo.attached? %>
+              <img class="itinerary-image" src="<%= cl_image_path event.photo.key %>" alt="itinerary image">
+            <% else %>
+              <!-- TODO: This needs to match the itinerary banner image in the show page -->
+              <img src="https://source.unsplash.com/random/430x246/?trip,<%= event.title %>" alt="itinerary image">
+            <% end %>
+          </div>
+          <div class="black-overlay">
+            <div class="trip-card-content">
+              <div class="trip-card-destination">
+                <p><%= event.location %></p>
+              </div>
+              <div class="trip-card-title">
+                <h2><%= event.title %></h2>
+              </div>
+              <div class="trip-card-specs">
+                <div class="trip-card-dates">
+                  <div>
+                    <p class="trip-card-date-header">From</p>
+                    <p><%= event.date_start.strftime('%d %B %Y') %></p>
+                  </div>
+                  <div>
+                    <p class="trip-card-date-header">To</p>
+                    <p><%= event.date_end.strftime('%d %B %Y') %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
 </div>

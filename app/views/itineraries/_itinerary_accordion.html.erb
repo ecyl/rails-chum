@@ -39,14 +39,18 @@
                         <img class="modal-image" src="https://source.unsplash.com/random/?trip,<%= event.location %>" alt="modal image">
                       <% end %>
                       <div class="modal-event-details ps-3">
-                        <p><%= event.date_start.strftime("%A") %>, <%= event.date_start.strftime("%w %b %Y") %></p>
+                        <p><%= event.date_start.strftime("%A") %>, <%= event.date_start.strftime("%d %b %Y") %></p>
                         <h5 class="modal-title" id="eventModal-<%= event.id %>Label" style="font-weight: 700;"><%= event.title %></h5>
                       </div>
                     </div>
                     <div class="modal-body">
                       <div class="modal-event-address-time">
                         <div class="event-address">
-                          <strong>Address:</strong><p id="location-address"> <%= event.address %></p>
+                          <% if event.address.nil? %>
+                            <strong>Address:</strong><p id="location-address"> <%= event.location %></p>
+                          <% else %>
+                            <strong>Address:</strong><p id="location-address"> <%= event.address %></p>
+                          <% end %>
                         </div>
 
                         <div class="event-time">
@@ -59,10 +63,6 @@
                         <div class="description">
                           <strong><p>Description:</p></strong>
                           <p><%= event.description %></p>
-                        </div>
-
-                        <div class="timezone">
-                          <p><%= event.date_start.strftime("%Z") %> <%= event.date_start %></p>
                         </div>
                       </div>
                     </div>
