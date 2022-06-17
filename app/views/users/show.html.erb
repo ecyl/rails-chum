@@ -64,12 +64,16 @@
     <div class="user-reviews">
       <div class="user-description-title"><i class="fa-solid fa-star"></i> 6 reviews</div>
       <%# iterate through reviews %>
-      <% @user.reviews.each do |review| %>
-        <%# display the review content %>
-        <%= review.content %> <br>
-        <%# display the author of the review %>
-        <% sender = User.find(review.user_id) %>
-        <%= sender.first_name %>
+      <% @user.itineraries.each do |itinerary| %>
+        <% itinerary.reviews.each do |review| %>
+          <div class="review-content">
+          <%# display the review content %>
+          <%= review.content %> <br>
+          <%# display the author of the review %>
+          <% sender = User.find(review.user_id) %>
+          From: <%= sender.first_name %>
+          </div>
+        <% end %>
       <% end %>
     </div>
 

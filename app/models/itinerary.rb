@@ -1,4 +1,7 @@
 class Itinerary < ApplicationRecord
+  scope :published, -> { where(published: true) }
+  # scope :participant_within_limit, -> { where(' participant_limit < ? ', itinerary_users.where(status: accepted).count) }
+
   belongs_to :user
   belongs_to :chatroom
 
@@ -10,6 +13,8 @@ class Itinerary < ApplicationRecord
 
   has_many :itinerary_restrictions, dependent: :destroy
   has_many :restrictions, through: :itinerary_restrictions
+
+  has_many :reviews
 
   # Validations
   validates :title, presence: true

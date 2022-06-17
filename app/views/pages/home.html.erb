@@ -35,12 +35,15 @@
     </div>
   </div>
 
-  <!-- Itinerary cards -->
-  <div class="container">
-    <div class="itineraries-container">
-      <% @itineraries.where(published: true).order(created_at: :desc).first(6).each do |itinerary| %>
+    <!-- Itinerary cards -->
+    <div class="row" data-controller="itinerary-card">
+      <% @itineraries.published.order(created_at: :desc).first(6).each do |itinerary| %>
+      <% if itinerary.participant_limit > (itinerary.itinerary_users.where(status:"accepted").count + 1) %>
         <%= render "cards", itinerary: itinerary %>
+      <% end %>
+
       <% end %>
     </div>
   </div>
+
 </div>
