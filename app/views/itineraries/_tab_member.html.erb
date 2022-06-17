@@ -19,15 +19,7 @@
           <%= link_to "Find out more about me", user_path(organiser.id), class: "btn-black-outline full-width" unless current_user == organiser %>
           <%= link_to "Send message", user_chatrooms_path(organiser.id), method: :post, class: "btn-black-outline full-width mt-3" unless current_user == organiser %>
 
-          <% if itinerary.user != current_user %>
-            <div id="request-join">
-              <button type="button" style="border: none;" class="btn-purple full-width mt-3" data-bs-toggle="modal" data-bs-target="#requestModal">
-                Request to join
-              </button>
-            <%# <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
-            </div>
 
-          <% end %>
 
 
         </div>

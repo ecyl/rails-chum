@@ -1,10 +1,10 @@
 class ItineraryUsersController < ApplicationController
   before_action :find_itinerary_users, only: [:accept, :reject]
-  before_action :find_itinerary, only: [:new, :create, :accept, :reject]
+  before_action :find_itinerary, only: [:new, :create]
 
   def accept
     @itinerary_user.status = "accepted"
-    @itinerary = find_itinerary_by_assocation
+    @itinerary = @itinerary_user.itinerary
 
     if @itinerary_user.save
       new_notification_request_status
@@ -17,7 +17,7 @@ class ItineraryUsersController < ApplicationController
 
   def reject
     @itinerary_user.status = "rejected"
-    @itinerary = find_itinerary_by_assocation
+    @itinerary = @itinerary_user.itinerary
 
     if @itinerary_user.save
       new_notification_request_status
@@ -39,11 +39,12 @@ class ItineraryUsersController < ApplicationController
     @itinerary_user.itinerary = @itinerary
     @itinerary_user.user = current_user
 
-    if @itinerary_user.save!
+    if @itinerary_user.save
       new_notification_pending_user
       redirect_to itinerary_path(@itinerary)
     else
-      render :new
+      flash[:alert] = "You can only make a request to join an itinerary once."
+      redirect_to itinerary_path(@itinerary)
     end
     authorize @itinerary_user
   end

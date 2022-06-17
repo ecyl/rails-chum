@@ -1,0 +1,33 @@
+ <%# Unless current user is the organiser && I have not created a request, show ==>  %>
+          <% unless itinerary.user == current_user %>
+            <% if itinerary.itinerary_users.where(user_id: current_user.id).empty? %>
+              <div id="request-join">
+                <button type="button" style="border: none;" class="btn-purple full-width mt-3" data-bs-toggle="modal" data-bs-target="#requestModal">
+                  Request to join
+                </button>
+              <%# <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
+              </div>
+            <% elsif itinerary.itinerary_users.find_by(user_id: current_user.id).status == "pending" %>
+              <div id="request-join">
+                <button disabled type="button" style="border: none;" class="disabled full-width mt-3" data-bs-toggle="modal" data-bs-target="#requestModal">
+                  Request pending approval
+                </button>
+              <%# <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
+              </div>
+            <% elsif itinerary.itinerary_users.find_by(user_id: current_user.id).status == "accepted" %>
+              <div id="request-join">
+                <button disabled type="button" style="border: none;" class="disabled full-width mt-3" data-bs-toggle="modal" data-bs-target="#requestModal">
+                  Request accepted
+                </button>
+              <%# <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
+              </div>
+
+            <% elsif itinerary.itinerary_users.find_by(user_id: current_user.id).status == "rejected" %>
+              <div id="request-join">
+                <button disabled type="button" style="border: none;" class="disabled full-width mt-3" data-bs-toggle="modal" data-bs-target="#requestModal">
+                  Request rejected
+                </button>
+              <%# <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
+              </div>
+            <% end %>
+          <% end %>
