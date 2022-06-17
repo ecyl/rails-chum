@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     member do
       patch :finalise
       patch :publish, only: [:publish]
+      patch :unpublish, only: [:unpublish]
     end
     # accept and reject actions
   end

@@ -61,7 +61,10 @@
       <% if !@itinerary.events.length.zero? %>
         <%# If event exists in itinerary %>
         <div class="trip-key-details">
-          <strong><p class="mb-3">Trip details</p></strong>
+          <div class="d-flex justify-content-between">
+            <strong><p class="mb-3">Trip details</p></strong>
+            <%= render "published-toggle", itinerary: @itinerary %>
+          </div>
 
           <p><strong><i class="fa-solid fa-calendar fa-lg"></i>&nbsp;&nbsp;  Dates:</strong> <%= @events.keys.first.strftime("%d %b %Y") %> - <%= @events.keys.last.strftime("%d %b %Y") %></p>
           <p><strong><i class="fa-solid fa-sack-dollar fa-lg"></i></i>&nbsp;&nbsp; Budget:</strong> $<%= @itinerary.cost %></p>
