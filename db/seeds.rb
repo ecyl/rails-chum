@@ -73,7 +73,7 @@ raymond_itinerary = Itinerary.new(
   title: "Summer in Korea",
   participant_limit: 3,
   description: "Superb time in Korea!",
-  destination: destination,
+  destination: "Korea",
   published: true,
   deadline: Date.today() + 5
 )
