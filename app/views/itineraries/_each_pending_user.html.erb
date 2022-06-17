@@ -1,6 +1,6 @@
 <div class="container bg-white my-3">
   <%# side-by-side: avatar, name & message %>
-  <div id='request-message' class='p-4 d-flex'>
+  <div id='request-message' class='p-4 d-flex position-relative'>
     <div id='avatar-name' class="d-flex flex-column">
       <%# insert link_to to get p_user profile %>
         <% fname = "#{p_user.user.first_name} #{p_user.user.last_name}" %>
@@ -19,7 +19,7 @@
         </div>
       <% end %>
       <%# side-by-side: buttons %>
-      <div class="d-flex justify-content-center mx-3 flex-start">
+      <div class="d-flex justify-content-center mx-3 flex-start position-absolute" style="right: 14px;bottom: 90px;">
       <%= link_to accept_itinerary_user_path(p_user), class: "text-decoration-none", method: :patch do %>
         <p class="mt-1 accept-reject-btn accept">Accept</p>
 
