@@ -64,6 +64,21 @@ germaine.save!
 
 puts "Test user: Eunice, Helen, Germaine, Raymond created"
 
+
+
+# Create Raymond's itinerary
+
+# raymond_itinerary = Itinerary.new(
+#   title: "itinerary_title",
+#   participant_limit: accepted_users.size + 3,
+#   description: description.sample,
+#   destination: destination,
+#   published: false,
+#   deadline: date_start - 10
+# )
+
+
+
 def get_address(event)
   if event.valid?
     endpoint = 'mapbox.places'
