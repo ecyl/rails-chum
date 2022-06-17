@@ -32,4 +32,8 @@ class ItineraryPolicy < ApplicationPolicy
   def mytrips?
     true
   end
+
+  def publish?
+    true
+  end
 end
