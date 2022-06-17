@@ -69,45 +69,51 @@ puts "Test user: Eunice, Helen, Germaine, Raymond created"
 
 # Create Raymond's itinerary
 
-# raymond_itinerary = Itinerary.new(
-#   title: "Summer in Korea",
-#   participant_limit: 3,
-#   description: "Superb time in Korea!",
-#   destination: "Korea",
-#   published: true,
-#   deadline: Date.today() + 5
-# )
+date_start = Date.today() + 10
 
-# chatroom = Chatroom.new(
-#   name: "Summer in Korea"
-# )
+raymond_itinerary = Itinerary.new(
+  title: "Summer in Korea",
+  participant_limit: 3,
+  description: "Superb time in Korea!",
+  destination: "Korea",
+  published: true,
+  deadline: Date.today() + 5
+)
 
-# raymond_itinerary.user = raymond
-# chatroom.save!
-# raymond_itinerary.chatroom = chatroom
-# raymond_itinerary.save!
+chatroom = Chatroom.new(
+  name: "Summer in Korea"
+)
 
-# raymond_event1 = Event.new(
-#   description: "Lotte World for fun people",
-#   address: "Lotte World",
-#   location: "Lotte World",
-#   title: "Fun night at Lotte World",
-#   cost: 50
-# )
+raymond_itinerary.user = raymond
+chatroom.save!
+raymond_itinerary.chatroom = chatroom
+raymond_itinerary.save!
 
-# raymond_event1.itinerary = raymond_itinerary
-# raymond_event1.save!
+raymond_event1 = Event.new(
+  description: "Lotte World for fun people",
+  address: "Lotte World",
+  location: "Lotte World",
+  title: "Fun night at Lotte World",
+  cost: 50,
+  date_start: date_start + 11,
+  date_end: date_start + 12
+)
 
-# raymond_event2 = Event.new(
-#   description: "Blackpink Concert with the Blinks",
-#   address: "Korea DMZ",
-#   location: "Korea DMZ",
-#   title: "Super electrifying concert atmosphere!",
-#   cost: 300
-# )
+raymond_event1.itinerary = raymond_itinerary
+raymond_event1.save!
 
-# raymond_event2.itinerary = raymond_itinerary
-# raymond_event2.save!
+raymond_event2 = Event.new(
+  description: "Blackpink Concert with the Blinks",
+  address: "Korea DMZ",
+  location: "Korea DMZ",
+  title: "Super electrifying concert atmosphere!",
+  cost: 300,
+  date_start: date_start + 12,
+  date_end: date_start + 13
+)
+
+raymond_event2.itinerary = raymond_itinerary
+raymond_event2.save!
 
 
 def get_address(event)
