@@ -38,3 +38,36 @@
   gap: 16px;
   justify-content: center;
 }
+
+.home-image {
+  width: 50vw;
+  height: 80vh;
+}
+
+.filler-container {
+  display: flex;
+  background: #F9F2E8;
+
+  h3 {
+    color: black;
+    font-family: 'Charis SIL', serif;
+  }
+}
+
+.text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.sample-events {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sample-events.container {
+  display: flex;
+  flex-direction: column;
+
+}
