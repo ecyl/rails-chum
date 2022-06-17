@@ -1,6 +1,6 @@
 .chat-body {
   justify-content: space-evenly;
-  height: 80vh;
+  height: 60vh;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
@@ -42,8 +42,13 @@
   padding: 12px;
 }
 
-.chat-links:hover {
-  background: $platinum;
+.chat-links.active {
+  background: $purple;
+  color: white;
+
+  a {
+    color: white;
+  }
 }
 
 .chatroom {
@@ -77,6 +82,25 @@
     padding-bottom: 0px;
     flex-grow: 1;
     overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+
+    .no-messages {
+      border: 1px solid $platinum;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+
+      .fa-solid {
+        font-size: 40px;
+        margin: 12px;
+        color: $purple;
+      }
+    }
+
+    .no-messages.active {
+      display: none;
+    }
   }
 }
 
@@ -111,8 +135,9 @@ form {
   border-radius: 4px;
 }
 
-.btn-black {
+.btn-purple {
   height: 62px;
+  width: 70px;
   border-radius: 4px;
   border: none;
 }
