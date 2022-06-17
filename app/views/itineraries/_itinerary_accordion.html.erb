@@ -42,17 +42,9 @@
 
                       <%# If event spans multiple days %>
                       <% time_diff = (event.date_end - event.date_start) / 60 / 60 %>
-                      <% if time_diff >= 24 %>
-                        <div class="modal-event-details ps-3">
-                          <p><%= event.date_start.strftime("%d %b %Y") %> to <%= event.date_end.strftime("%d %b %Y") %></p>
-                          <h5 class="modal-title" id="eventModal-<%= event.id %>Label" style="font-weight: 700;"><%= event.title %></h5>
-                        </div>
-                      <% else %>
-                        <div class="modal-event-details ps-3">
-                          <p><%= event.date_start.strftime("%A") %>, <%= event.date_start.strftime("%d %b %Y") %></p>
-                          <h5 class="modal-title" id="eventModal-<%= event.id %>Label" style="font-weight: 700;"><%= event.title %></h5>
-                        </div>
-                      <% end %>
+                      <div class="modal-event-details ps-3 mt-2">
+                        <h5 class="modal-title" id="eventModal-<%= event.id %>Label" style="font-weight: 700;"><%= event.title %></h5>
+                      </div>
                     </div>
                     <div class="modal-body">
                       <%# Description modal body %>
@@ -65,18 +57,27 @@
 
                       <%# Address time info modal %>
                       <div class="modal-event-address-time">
+
                         <div class="event-address">
                           <% if event.address.nil? %>
-                            <strong>Address:</strong><p id="location-address"> <%= event.location %></p>
+                            <p id="location-address"><i class="fa-solid fa-location-dot"></i>&nbsp; <%= event.location %></p>
                           <% else %>
-                            <strong>Address:</strong><p id="location-address"> <%= event.address %></p>
+                            <p id="location-address"><i class="fa-solid fa-location-dot"></i>&nbsp; <%= event.address %></p>
                           <% end %>
                         </div>
 
-                        <div class="event-time">
-                          <p><strong>Start Time:</strong> <%= event.date_start.strftime("%I %M %P") %></p>
-                          <p><strong>End Time:</strong> <%= event.date_end.strftime("%I %M %P") %></p>
-                        </div>
+                        <% if time_diff >= 24 %>
+                          <div class="event-time">
+                            <p><i class="fa-solid fa-sack-dollar fa-lg"></i>&nbsp; $<%= event.cost %></p>
+                            <p> <i class="fa-solid fa-clock"></i> &nbsp; <%= event.date_start.strftime("%H:%M%P %d %B") %>&nbsp; - &nbsp;<%= event.date_end.strftime("%H:%M%P %d %B") %></p>
+                          </div>
+                        <% else %>
+                          <div class="event-time">
+                            <p><i class="fa-solid fa-sack-dollar fa-lg"></i>&nbsp;$<%= event.cost %></p>
+                            <p><i class="fa-solid fa-clock"></i> &nbsp; <%= event.date_start.strftime("%I %M %P") %>&nbsp; - &nbsp;<%= event.date_end.strftime("%I %M %P") %></p>
+                          </div>
+
+                        <% end %>
                       </div>
 
                     </div>
