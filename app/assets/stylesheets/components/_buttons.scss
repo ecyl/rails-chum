@@ -349,14 +349,12 @@
 
 // purple buttons
 .btn-purple {
-  border: solid 3px $purple;
   color: $white;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 40px;
   width: auto;
-  border: solid 3px $purple;
   border-radius: 20px;
   text-decoration: none;
   font-size: 1.3rem;
@@ -371,17 +369,16 @@
 }
 
 .btn-purple:hover {
-  background-color: white;
-  color: $purple;
-  border: solid 3px $purple;
+  background-color: $dark-purple;
+  color: white;
 
   a {
-    color: $purple;
+    color: white;
   }
 }
 
 .btn-purple-outline {
-  border: solid 3px $purple;
+  border: solid 1px $purple;
   color: $purple;
   display: flex;
   align-items: center;
@@ -391,13 +388,14 @@
   border-radius: 5px;
   text-decoration: none;
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 500;
   transition: background-color 0.2s;
   padding: 0 24px;
 }
 
 .btn-purple-outline:hover {
-  background-color: $purple;
+  background-color: $dark-purple;
+  border: solid 1px $dark-purple;
   color: white;
 }
 

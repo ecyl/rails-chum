@@ -1,17 +1,15 @@
-.footer {
-  height: 340px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #EBECF0;
-}
+.footer-container {
+  background-color: #23272A;
+  color: white;
+  font-size: 1.3rem;
+  padding: 0 2rem;
 
+  h4 {
+    color: $purple;
+  }
 
-.chum-left {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #4120BC;
+  hr {
+    color: $purple;
+    height: 2px;
+  }
 }
