@@ -1,8 +1,8 @@
 <div class="tabs container col-8 mx-auto mt-4 mb-5" data-controller="tabs">
   <div class="tabs-head mb-5">
     <span data-tabs-target="tabHeader" data-tab="one" data-action="click->tabs#toggleTab" class="tabs_toggle active">Overview</span>
-    <% if @itinerary.itinerary_users.where(status: "accepted").include?(current_user) %>
-      <span data-tabs-target="tabHeader" data-tab="two" data-action="click->tabs#toggleTab" class="tabs_toggle">Announcement</span>
+    <% if @itinerary.itinerary_users.where(status: "accepted").include?(current_user) || @itinerary.itinerary_users.where(status: "organiser") %>
+      <span data-tabs-target="tabHeader" data-tab="two" data-action="click->tabs#toggleTab" class="tabs_toggle">Announcements</span>
     <% end %>
     <span data-tabs-target="tabHeader" data-tab="three" data-action="click->tabs#toggleTab" class="tabs_toggle">Members</span>
   </div>
@@ -93,11 +93,6 @@
     </div>
 
     <%# SECTION 3 CALENDAR %>
-    <div class="sections section-three mt-5">
-      <div class="calendar container mb-5">
-        <%= week_calendar(start_date: @calendar_start_date, events: @itinerary.events, attribute: :date_start, end_attribute: :date_end) {} %>
-      </div>
-      </div>
 
   </div>
 
