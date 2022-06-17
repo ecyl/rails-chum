@@ -19,18 +19,21 @@
           </li>
         </ul>
 
-        <div class="navbar-nav ms-auto d-flex align-items-center">
+        <div class="navbar-nav ms-auto d-flex align-items-center" data-controller="notification-badge-subscription" data-notification-badge-subscription-user-id-value="<%= current_user.id %>">
+            <span class="position-relative">
+              <i class="fa-solid fa-bell nav-link notification-bell" style="font-size: 25px"></i>
+              <div id="notification-badges" class="text-center ml-3 position-absolute" style="" data-notification-badge-subscription-target="badge"><%= current_user.notifications.where(read:false).count %></div>
+            </span>
             <!-- Avatar & name -->
-            <a style="width:145; height: 56" class="nav-link dropdown-toggle <%= 'nav-text-black' if @black_text_navbar %>" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-controller="notification-badge-subscription" data-notification-badge-subscription-user-id-value="<%= current_user.id %>">
+            <a style="width:145; height: 56" class="nav-link dropdown-toggle <%= 'nav-text-black' if @black_text_navbar %>" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+              <span class="username-display mx-2 <%= 'nav-text-black' if @black_text_navbar %>"><%= current_user.first_name %></span>
               <% if current_user.photo.attached? %>
                 <%= cl_image_path current_user.photo.key, class: "avatar dropdown-toggle position-relative", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% else %>
-              <span class="position-relative">
+              <span class="">
                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                <div id="notification-badges" class="text-center ml-3 position-absolute" style="" data-notification-badge-subscription-target="badge"><%= current_user.notifications.where(read:false).count %></div>
               </span>
               <% end %>
-              <span class="username-display <%= 'nav-text-black' if @black_text_navbar %>"><%= current_user.first_name %></span>
             </a>
 
             <!-- User dropdown -->
