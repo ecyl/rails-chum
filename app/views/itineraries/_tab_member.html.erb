@@ -2,7 +2,7 @@
 
 <div class="d-flex flex-column">
   <%# card 1: Who organised it %>
-  <div class="container d-flex mx-auto">
+  <div class="container d-flex mx-auto position-relative">
     <div class="container border-black-large d-flex">
       <div class="container m-3 d-flex justify-content-start align-items-center">
         <%= image_tag "https://kitt.lewagon.com/placeholder/users/hahaha", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
@@ -18,6 +18,7 @@
           <p id="languages" class="text-m"><strong>Languages: </strong><%= @organiser.languages %></p>
           <%= link_to "Find out more about me", user_path(organiser.id), class: "btn-black-outline full-width" unless current_user == organiser %>
           <%= link_to "Send message", user_chatrooms_path(organiser.id), method: :post, class: "btn-black-outline full-width mt-3" unless current_user == organiser %>
+          <%= render "published-toggle-on-member-page", itinerary: @itinerary %>
         </div>
       </div>
     </div>
