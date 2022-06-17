@@ -1,33 +1,30 @@
 .home-banner {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('https://source.unsplash.com/zGhDVMgmjIU');
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)), url('https://source.unsplash.com/bPsY__UVZHA');
   background-size: cover;
-  background-position: center center;
-  top: 10px;
+  background-position: top center;
   height: auto;
   color: $black;
-  // text-align: center;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  align-items: center;
-  padding-top: 20vh;
+  // padding-top: 20vh;
 }
 
-.home-banner h1 {
-  font-size: 3.2rem;
-  text-align: center;
-}
+.home-banner-text {
+  margin: 0 150px;
+  margin-top: 25vh;
 
-.banner-text {
-  text-align: center;
-  max-width: 70%;
-}
+  h1 {
+    font-size: 4.5rem;
+    margin-bottom: 24px;
+  }
 
-.banner-text p {
-  font-weight: 600;
-  color: $jet;
-  font-size: 1.3rem;
-  line-height: 2rem;
+  p {
+    font-weight: 600;
+    color: $jet;
+    font-size: 2.5rem;
+    line-height: 2rem;
+    margin-bottom: 32px;
+  }
 }
 
 .all-trips-banner {

@@ -4,7 +4,26 @@
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 2px;
   padding: 1rem;
-  width: 100%;
+  max-width: 80%;
+
+  .form-control {
+    background-color: white;
+    border-radius: 2px;
+    font-size: 1.3rem;
+  }
+
+  p, label {
+    font-size: 1.3rem;
+  }
+}
+
+.index-search-card {
+  background: white;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 2px;
+  padding: 1rem;
+  max-width: 100%;
 
   .form-control {
     background-color: white;
