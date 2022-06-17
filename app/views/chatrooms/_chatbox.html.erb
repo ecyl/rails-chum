@@ -27,7 +27,7 @@
     <div class="messages" data-chatroom-subscription-target="messages">
       <%# to check if there are any messages in the chat %>
       <% if chatroom.messages.length == 0 %>
-        <div class="no-messages">
+        <div class="no-messages" data-chatroom-subscription-target="content">
           <em>No messages here yet...</em> <br>
           <em>Send a message!</em> <br>
           <i class="fa-solid fa-cow"></i>

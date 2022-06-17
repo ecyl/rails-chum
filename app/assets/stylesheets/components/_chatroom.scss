@@ -45,6 +45,10 @@
 .chat-links.active {
   background: $purple;
   color: white;
+
+  a {
+    color: white;
+  }
 }
 
 .chatroom {
@@ -92,6 +96,10 @@
         margin: 12px;
         color: $purple;
       }
+    }
+
+    .no-messages.active {
+      display: none;
     }
   }
 }

@@ -6,7 +6,7 @@ export default class extends Controller {
     chatroomId: Number,
     currentUserId: Number,
   };
-  static targets = ["messages"];
+  static targets = ["messages", "content"];
 
   connect() {
     this.channel = consumer.subscriptions.create(
@@ -41,6 +41,8 @@ export default class extends Controller {
 
     // Remove message-sender-class from the element, if current user is the same user as the sender
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
+
+    this.contentTarget.classList.add('active')
   }
 
   disconnect() {
