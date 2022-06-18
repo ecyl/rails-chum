@@ -10,6 +10,8 @@
   border-radius: 12px;
   padding: 24px;
   width: 30%;
+  height: 70vh;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   .avatar {
     height: 128px;
@@ -53,4 +55,12 @@
 .user-description-title {
   font-size: 20px;
   font-weight: bold;
+
+}
+
+.reviews {
+  margin-top: 8px;
+  padding: 8px;
+  font-size: 18px;
+
 }

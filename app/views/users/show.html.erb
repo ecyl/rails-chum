@@ -5,25 +5,33 @@
     <div class="profile-details">
       <%# avatar %>
       <div class="user-avatar center">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar", 'aria-haspopup': true, 'aria-expanded': false %>
-        <div class="center">
-          <p><em>Update photo</em></p>
-        </div>
+        <%= cl_image_tag @user.photo.key, class: "avatar", 'aria-haspopup': true, 'aria-expanded': false %>
       </div>
 
       <%# verification information %>
       <div class="user-verification">
+        <% @user.itineraries.each do |itinerary| %>
         <div class="user-verification info">
-          <i class="fa-solid fa-star"></i> 6 reviews
+          <% if itinerary.reviews.length == 0 %>
+            <em>There are no reviews for <%= @user.first_name %> yet</em>
+          <% else %>
+            <i class="fa-solid fa-star"></i> <%= pluralize itinerary.reviews.length, 'reviews' %>
+          <% end %>
         </div>
         <div class="user-verification info">
-          <i class="fa-solid fa-globe"></i> Organised 2 trips
+            <% organised_trips = itinerary.itinerary_users.where(status: "organiser") %>
+            <% if organised_trips.length == 0 %>
+              <em><%= @user.first_name %> has not organised any trips yet</em>
+              <% else %>
+              <i class="fa-solid fa-globe"></i> Organised <%= pluralize organised_trips.length, 'trips' %>
+            <% end %>
+          <% end %>
         </div>
       </div>
 
       <%# Send message %>
       <div class="message">
-        <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post, class: "btn-black-outline long mt-3"%></span>
+        <span><%= link_to "Send message", user_chatrooms_path(@user.id), method: :post, class: "btn-purple"%></span>
       </div>
     </div>
   </div>
@@ -50,32 +58,31 @@
     <div class="line-break">
     </div>
 
-    <%# Some decription %>
-    <div class="user-description">
-      <div class="user-description-title">About Me:</div>
-      I love travelling and meeting new people. I also love food so, my trips are usually quite food-centered. <br>
-      I love blackpink as well
-    </div>
-
-    <div class="line-break">
-    </div>
-
     <%# Reviews %>
     <div class="user-reviews">
-      <div class="user-description-title"><i class="fa-solid fa-star"></i> 6 reviews</div>
+      <div class="user-description-title">
+        <% @user.itineraries.each do |itinerary| %>
+          <% if itinerary.reviews.length == 0 %>
+              <em>There are no reviews for <%= @user.first_name %> yet</em>
+            <% else %>
+              <i class="fa-solid fa-star"></i> <%= pluralize itinerary.reviews.length, 'reviews' %>
+            <% end %>
+      </div>
       <%# iterate through reviews %>
-      <% @user.itineraries.each do |itinerary| %>
         <% itinerary.reviews.each do |review| %>
-          <div class="review-content">
-          <%# display the review content %>
-          <%= review.content %> <br>
-          <%# display the author of the review %>
-          <% sender = User.find(review.user_id) %>
-          From: <%= sender.first_name %>
-          </div>
+      <div class="reviews">
+            <div class="review-content">
+              <%# display the review content %>
+              <em>"<%= review.content %>"</em>
+            </div>
+            <div class="review-author">
+             <%# display the author of the review %>
+              <% sender = User.find(review.user_id) %>
+              <%= cl_image_tag sender.photo.key, class: "avatar-bordered", alt: "avatar-bordered" %> <%= sender.first_name %>
+            </div>
+      </div>
+          <% end %>
         <% end %>
-      <% end %>
     </div>
-
   </div>
 </div>
