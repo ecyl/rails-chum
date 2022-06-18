@@ -263,7 +263,7 @@ suansen_event3.save!
 
 
 # GERMAINE
-
+puts "––––––––––––––––––––––––––CREATING US ITINERARIES––––––––––––––––––––––––––"
 jamieson = User.new(
   first_name: "Jamieson",
   last_name: "Walker",
@@ -534,8 +534,8 @@ washington.save!
 
 # RAYMOND
 
+puts "––––––––––––––––––––––––––CREATING KOREA ITINERARIES––––––––––––––––––––––––––"
 ## Raymond - Itinerary one
-
 jisoo = User.new(
   first_name: "Kim",
   last_name: "Jisoo",
@@ -851,9 +851,9 @@ bus_journey = Event.new(
   date_start: DateTime.new(2022, 9, 10, 9, 0),
   date_end: DateTime.new(2022, 9, 10, 18, 0)
 )
-mizugaki_camping.itinerary = mtmizugaki
-if mizugaki_camping.valid?
-  mizugaki_camping.save!
+bus_journey.itinerary = mtmizugaki
+if bus_journey.valid?
+  bus_journey.save!
 end
 puts "1 event created"
 
@@ -1113,7 +1113,7 @@ end
 puts "4 events created"
 
 osaka.published = true
-osakai.save!
+osaka.save!
 
 puts "Events for 'Osaka Adventure' were created"
 
