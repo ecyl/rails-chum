@@ -36,4 +36,11 @@ class ItineraryPolicy < ApplicationPolicy
   def publish?
     true
   end
+
+  def update?
+    true
+  end
+  def unpublish?
+    true
+  end
 end
