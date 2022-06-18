@@ -38,11 +38,19 @@
                       <div class="trip-card-dates">
                         <div>
                           <p class="trip-card-date-header">From</p>
-                          <p><%= itinerary.events[0].date_start.strftime('%d %B %Y') %></p>
+                            <% if itinerary.events.count == 0 %>
+                              <p>TBC</p>
+                            <% else %>
+                              <p><%= itinerary.events[0].date_start.strftime('%d %B %Y') %></p>
+                            <% end %>
                         </div>
                         <div>
                           <p class="trip-card-date-header">To</p>
-                          <p><%= itinerary.events[-1].date_end.strftime('%d %B %Y') %></p>
+                            <% if itinerary.events.count == 0 %>
+                              <p>TBC</p>
+                            <% else %>
+                              <p><%= itinerary.events[-1].date_end.strftime('%d %B %Y') %></p>
+                            <% end %>
                         </div>
                       </div>
                       <% budget = 0 %>
