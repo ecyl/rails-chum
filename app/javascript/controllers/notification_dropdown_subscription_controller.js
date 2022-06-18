@@ -16,7 +16,10 @@ export default class extends Controller {
         id: this.userIdValue,
       },
       {
-        received: (data) => this.#insertNotificationAndScrollUp(data),
+        received: (data) => {
+          console.log(data);
+          this.#insertNotificationAndScrollUp(data);
+        },
       }
     );
 
@@ -26,6 +29,5 @@ export default class extends Controller {
 
   #insertNotificationAndScrollUp(data) {
     this.rowTarget.insertAdjacentHTML("afterbegin", data);
-    this.rowTarget.scrollTo(0, this.rowTarget.scrollHeight);
   }
 }
