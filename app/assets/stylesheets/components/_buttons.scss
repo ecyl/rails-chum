@@ -23,6 +23,7 @@
   color: green;
   // border: 1px solid green;
   background-color: rgba(6, 151, 6, 0.3);
+  border-radius: 12px;
 }
 
 #rejected-btn {
@@ -32,6 +33,7 @@
   color: #cc2c2c;
   /* border: 1px solid rgba(0, 172, 0, 0.3); */
   background-color: rgba(172, 0, 0, 0.3);
+  border-radius: 12px;
 }
 
 // Purple buttons
@@ -66,7 +68,6 @@
   text-decoration: none;
   font-weight: 400;
   transition: background-color 0.2s;
-  border-radius: 20px;
 }
 
 .btn-purple-outline:hover {
