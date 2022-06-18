@@ -8,11 +8,11 @@
   </p>
 
     <!-- Itineraries cards -->
-    <div class="row">
+    <div class="itineraries-container">
       <% @itineraries.published.order(created_at: :desc).each do |itinerary| %>
 
         <% if itinerary.participant_limit > (itinerary.itinerary_users.where(status:"accepted").count + 1) %>
-          <div class="col-12 col-md-4 mb-4">
+
             <%= link_to itinerary_path(itinerary), class: "text-decoration-none" do %>
 
               <div class="trip-card">
@@ -64,9 +64,10 @@
                 </div>
               </div>
             <% end %>
-          </div>
+
         <% end %>
       <% end %>
+
     </div>
   </div>
 </div>
