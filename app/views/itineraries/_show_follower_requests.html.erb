@@ -1,6 +1,6 @@
 <% if current_user == organiser %>
     <div class="container d-flex mx-auto">
-      <div class="container bg-platinum overflow-auto" style="height:70vh;">
+      <div class="container bg-platinum overflow-auto" style="height:100%; max-height: 70vh">
         <p class="text-l text-center m-3">Follower Requests</p>
         <% unless pending_users.count.zero? %>
           <% pending_users.each do |p_user| %>
