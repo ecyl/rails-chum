@@ -263,7 +263,7 @@ suansen_event3.save!
 
 
 # GERMAINE
-
+puts "––––––––––––––––––––––––––CREATING US ITINERARIES––––––––––––––––––––––––––"
 jamieson = User.new(
   first_name: "Jamieson",
   last_name: "Walker",
@@ -534,8 +534,8 @@ washington.save!
 
 # RAYMOND
 
+puts "––––––––––––––––––––––––––CREATING KOREA ITINERARIES––––––––––––––––––––––––––"
 ## Raymond - Itinerary one
-
 jisoo = User.new(
   first_name: "Kim",
   last_name: "Jisoo",
