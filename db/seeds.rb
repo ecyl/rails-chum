@@ -109,6 +109,27 @@ raymond_event2 = Event.new(
 raymond_event2.itinerary = raymond_itinerary
 raymond_event2.save!
 
+raymond_event3 = Event.new(
+  description: "Bask in the busking culture, cheap and nice clothes, and some really good Korean BBQ",
+  address: "Hongdae",
+  location: "Hongdae",
+  title: "Eat, shop, repeat",
+  cost: 10,
+  date_start: date_start + 13,
+  date_end: date_start + 14
+)
+
+raymond_event3.itinerary = raymond_itinerary
+raymond_event3.save!
+
+raymond_notification1 = Notification.new(
+  user: raymond,
+  content: "John Doe wants to join your itinerary",
+  itinerary: raymond_itinerary
+)
+
+raymond_notification1.save!
+
 
 def get_address(event)
   if event.valid?
