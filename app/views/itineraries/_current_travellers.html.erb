@@ -14,7 +14,13 @@
           <% if itinerary_user.user == current_user %>
               <div id="current-traveller" class="rayan">
               <div class='d-flex justify-content-center'>
-                <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}", class: "avatar-xl avatar-margin-bottom") %>
+                <% if itinerary_user.user.photo.attached? %>
+                  <%= cl_image_tag itinerary_user.user.photo.key, class: "avatar-xl avatar-margin-bottom" %>
+                <% else %>
+                <span class="">
+                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", class: "avatar-xl avatar-margin-bottom" %>
+                </span>
+                <% end %>
               </div>
               <p class='text-center' style="text-decoration: none; color: black; font-weight: 700;"><u>You</u></p>
             </div>
@@ -24,7 +30,13 @@
           <%= link_to user_path(itinerary_user.user), class: "text-decoration-none" do  %>
             <div id="current-traveller" class="rayan">
               <div class='d-flex justify-content-center'>
-                <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}", class: "avatar-xl avatar-margin-bottom") %>
+                <% if itinerary_user.user.photo.attached? %>
+                  <%= cl_image_tag itinerary_user.user.photo.key, class: "avatar-xl avatar-margin-bottom" %>
+                <% else %>
+                <span class="">
+                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", class: "avatar-xl avatar-margin-bottom" %>
+                </span>
+                <% end %>
               </div>
               <p class='text-center' style="text-decoration: none; color: black;"><%= fname %></p>
             </div>

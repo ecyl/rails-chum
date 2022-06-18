@@ -27,6 +27,10 @@ helen = User.new(
 )
 helen.save!
 
+file = URI.open("https://kitt.lewagon.com/placeholder/users/helen-tan")
+helen.photo.attach(io: file, filename: "#{helen.email}-avatar")
+helen.save
+
 germaine = User.new(
   first_name: "Germaine",
   last_name: "Wong",
@@ -37,6 +41,9 @@ germaine = User.new(
   languages: "English, limited Chinese, GenZ"
 )
 germaine.save!
+file = URI.open("https://avatars.githubusercontent.com/u/64523208?v=4")
+germaine.photo.attach(io: file, filename: "#{germaine.email}-avatar")
+germaine.save
 
 puts "Test user: Eunice, Helen, Germaine, Raymond created"
 
@@ -50,6 +57,9 @@ eunice = User.new(
   languages: "Nonsense, English, basic Chinese"
 )
 eunice.save!
+file = URI.open("https://kitt.lewagon.com/placeholder/users/ecyl")
+eunice.photo.attach(io: file, filename: "#{eunice.email}-avatar")
+eunice.save
 
 #  RAYMOND'S SEEDS
 # RAYMOND
@@ -63,6 +73,10 @@ raymond = User.new(
   languages: "English, Chinese, French"
 )
 raymond.save!
+
+file = URI.open("https://kitt.lewagon.com/placeholder/users/rayjosong")
+raymond.photo.attach(io: file, filename: "#{raymond.email}-avatar")
+raymond.save
 
 # Create Raymond's itinerary
 

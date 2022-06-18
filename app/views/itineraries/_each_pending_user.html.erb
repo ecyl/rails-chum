@@ -4,9 +4,18 @@
     <div id='avatar-name' class="d-flex flex-column">
       <%# insert link_to to get p_user profile %>
         <% fname = "#{p_user.user.first_name} #{p_user.user.last_name}" %>
-        <%= link_to user_path(p_user.user) do %>
+        <%= link_to user_path(p_user.user), class: "text-decoration-none", style: "color:black;" do %>
+
+
           <div class="d-flex justify-content-center text-decoration-none ">
-              <%= image_tag("https://kitt.lewagon.com/placeholder/users/#{fname}", class: "avatar-larger mb-3") %>
+              <% if p_user.user.photo.attached? %>
+                <%= cl_image_tag p_user.user.photo.key, class: "avatar-larger mb-3" %>
+              <% else %>
+              <span class="">
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", class: "avatar-larger mb-3" %>
+              </span>
+              <% end %>
+
             </div>
             <p class="text-center text-decoration-none "><%=fname %></p>
           </div>
