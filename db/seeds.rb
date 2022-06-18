@@ -1144,7 +1144,7 @@ kutabeach= Itinerary.new(
   description: "Kuta Beach is one of the best places to enjoy Bali’s famous sunsets.
                 Located on the island’s southwestern coast, we will be surfing all day long!",
   published: false,
-  destination: "Bali",
+  destination: "Indonesia",
   deadline: DateTime.new(2022, 7, 23, 12, 0, 0)
 )
 
@@ -1234,7 +1234,7 @@ ubud_retreat = Itinerary.new(
   description: "It has been a very stressfull month and I have planned this beautiful
                 Ubud retreat to just detox and relax the mind.",
   published: false,
-  destination: "Bali",
+  destination: "Indonesia",
   deadline: DateTime.new(2022, 6, 30, 12, 0, 0)
 )
 
@@ -1355,7 +1355,7 @@ bali_party = Itinerary.new(
   participant_limit: 8,
   description: "This trip is going to be so lit, we are going to eat, sleep, party and repeat!",
   published: false,
-  destination: "Bali",
+  destination: "Indonesia",
   deadline: DateTime.new(2022, 7, 1, 12, 0, 0)
 )
 
