@@ -1,16 +1,18 @@
 <div class="container col-6 mx-auto" style="margin-top: 100px">
   <div class="box-shadow-form">
-    <h2>Log in</h2>
+    <h2 class="mb-4">Log in</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
         <%= f.input :email,
                     required: false,
                     autofocus: true,
-                    input_html: { autocomplete: "email" } %>
+                    input_html: { autocomplete: "email" },
+                    label_html: { class: "label-bold"} %>
         <%= f.input :password,
                     required: false,
-                    input_html: { autocomplete: "current-password" } %>
+                    input_html: { autocomplete: "current-password" },
+                    label_html: { class: "label-bold"} %>
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       </div>
 
