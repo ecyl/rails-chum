@@ -131,8 +131,7 @@ class ItineraryUsersController < ApplicationController
       notification_initiator.save
       ActionCable.server.broadcast(
         "notification-badge-#{@notification.user.id}",
-        render_to_string(partial:
-        "notifications/badge-number", locals: { user: @itinerary_user.user })
+        render_to_string(partial:"shared/each-notification-row", locals: { notification: @notification })
       )
     end
   end
