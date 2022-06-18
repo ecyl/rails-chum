@@ -178,20 +178,22 @@ file = URI.open("https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ix
 suansen.photo.attach(io: file, filename: "#{suansen.email}-avatar")
 suansen.save
 
-suansen_date_start = Date.today() + 20
+puts "Creating Germany itinerary"
 
-suansen_itinerary = Itinerary.new(
+germany_date_start = Date.today() + 20
+
+germany_itinerary = Itinerary.new(
   title: "Trip to Germany",
   participant_limit: 3,
   description: "I've visited Germany many times, trust me!",
   destination: "Germany",
   published: true,
-  deadline: suansen_date_start + 5
+  deadline: germany_date_start + 5
 )
 
 file = URI.open("https://images.unsplash.com/photo-1554072675-66db59dba46f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80")
-suansen.photo.attach(io: file, filename: "#{suansen_itinerary.title}-itinerary")
-suansen.save
+germany_itinerary.photo.attach(io: file, filename: "#{germany_itinerary.title}-itinerary")
+germany_itinerary.save
 
 # raymond_notification1 = Notification.new(
 #   user: raymond,
@@ -202,49 +204,56 @@ chatroom = Chatroom.new(
   name: "Trip to Germany"
 )
 
-suansen_itinerary.user = suansen
+germany_itinerary.user = raymond
 chatroom.save!
-suansen_itinerary.chatroom = chatroom
-suansen_itinerary.save!
+germany_itinerary.chatroom = chatroom
+germany_itinerary.save!
 
-suansen_event1 = Event.new(
+raymond_itinerary_user2 = ItineraryUser.new(
+  user: raymond,
+  status: "organiser"
+)
+
+raymond_itinerary_user2
+
+germany_event1 = Event.new(
   description: "Dresden Royal Palace for the cultured people",
   address: "Dresden Royal Palace",
   location: "Dresden Royal Palace",
   title: "Enriching time at the Dresden Royal Palace",
   cost: 50,
-  date_start: suansen_date_start + 11,
-  date_end: suansen_date_start + 12
+  date_start: germany_date_start + 11,
+  date_end: germany_date_start + 12
 )
 
-suansen_event1.itinerary = suansen_itinerary
-suansen_event1.save!
+germany_event1.itinerary = germany_itinerary
+germany_event1.save!
 
-suansen_event2 = Event.new(
+germany_event2 = Event.new(
   description: "Dresden Transport Museum – super interesting history!",
   address: "Dresden Transport Museum",
   location: "Dresden Transport Museum",
   title: "Dresden Transport Museum!",
   cost: 300,
-  date_start: suansen_date_start + 12,
-  date_end: suansen_date_start + 13
+  date_start: germany_date_start + 12,
+  date_end: germany_date_start + 13
 )
 
-suansen_event2.itinerary = suansen_itinerary
-suansen_event2.save!
+germany_event2.itinerary = germany_itinerary
+germany_event2.save!
 
-suansen_event3 = Event.new(
+germany_event3 = Event.new(
   description: "Enjoy the serenity of the Frankfurt Cathedral",
   address: "Frankfurt Cathedral",
   location: "Frankfurt Cathedral",
   title: "Good Hollywood filming location",
   cost: 10,
-  date_start: suansen_date_start + 13,
-  date_end: suansen_date_start + 14
+  date_start: germany_date_start + 13,
+  date_end: germany_date_start + 14
 )
 
-suansen_event3.itinerary = suansen_itinerary
-suansen_event3.save!
+germany_event3.itinerary = germany_itinerary
+germany_event3.save!
 
 # HARDCODE NOTIFICATION (SO NOTIFICATION DROPDOWN WONT BE EMPTY) -- DO NOT DELETE PLEASE
 # hardcode_notification = Notification.new(
@@ -537,8 +546,8 @@ washington.save!
 puts "––––––––––––––––––––––––––CREATING KOREA ITINERARIES––––––––––––––––––––––––––"
 ## Raymond - Itinerary one
 jisoo = User.new(
-  first_name: "Kim",
-  last_name: "Jisoo",
+  first_name: "Jisoo",
+  last_name: "Kim",
   email: "kimjisoo@gmail.com",
   password: 12345678,
   age: 27,
@@ -622,8 +631,8 @@ jeju.save!
 # busan tower, gamcheon culture village, jagalchi fish market, gwangbokdong food street
 
 jennie = User.new(
-  first_name: "Kim",
-  last_name: "Jennie",
+  first_name: "Jennie",
+  last_name: "Kim",
   email: "jenniekim@gmail.com",
   age: 26,
   gender: "F",
@@ -708,14 +717,18 @@ busan.save!
 
 ## Raymond - Itinerary three
 chaeyoung = User.new(
-  first_name: "Park",
-  last_name: "Chaeyoung",
+  first_name: "Chaeyoung",
+  last_name: "Park",
   email: "parkchaeyoung@gmail.com",
   password: 12345678,
   age: 25,
   gender: "F",
   languages: "Korean, English, Japanese"
 )
+
+file = URI.open("https://i.pinimg.com/564x/a4/3f/dd/a43fddec6c2655865ab5c3730f5e0775.jpg")
+chaeyoung.photo.attach(io: file, filename: "#{chaeyoung.email}-avatar")
+chaeyoung.save
 
 seoul_tour = Itinerary.new(
   title: "Cafe hopping, KBBQ and more in South Korea",
@@ -1430,7 +1443,7 @@ ray_review_one = Review.new(
 )
 
 ray_review_one.itinerary = mtmizugaki
-ray_review_one.user = jennie
+ray_review_one.user = chaeyoung
 ray_review_one.save!
 
 ray_review_two = Review.new(
