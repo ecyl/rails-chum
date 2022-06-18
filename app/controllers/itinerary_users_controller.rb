@@ -70,7 +70,7 @@ class ItineraryUsersController < ApplicationController
   def new_notification_pending_user
     @notification = Notification.new
     f_name = "#{@itinerary_user.user.first_name} #{@itinerary_user.user.last_name}"
-    @notification.content = " has requested to join your itinerary. Click to view'"
+    @notification.content = " has requested to join your itinerary. Click to view"
     @notification.notification_type = "new_pending"
     @notification.user = @itinerary.user # recipient
 
