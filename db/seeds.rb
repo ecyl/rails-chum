@@ -937,66 +937,68 @@ ubud_retreat_itinerary_user.save!
 puts "Itinerary 'Relaxing 3D2N Ubud Retreat' was created"
 
 puts "Creating events for 'Relaxing 3D2N Ubud Retreat'..."
-tokyo_station = Event.new(
-  description: "Explore the area around the the historic Tokyo Station",
-  cost: 100,
-  location: "1 Chome Marunouchi, Chiyoda City, Tokyo 100-0005, Japan",
-  title: "Tokyo Station",
-  date_start: DateTime.new(2022, 8, 20, 9, 0),
-  date_end: DateTime.new(2022, 8, 20, 14, 0)
+yoga = Event.new(
+  description: "Relax the body and mind by doing some relaxing yoga at Ubud's most popular yoga studio",
+  cost: 20,
+  location: "Jl. Hanoman Jl. Raya Pengosekan Ubud, Peliatan, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+  title: "Yoga",
+  date_start: DateTime.new(2022, 7, 2, 9, 0),
+  date_end: DateTime.new(2022, 7, 2, 10, 0)
 )
-tokyo_station.itinerary = tokyogetaway
-if tokyo_station.valid?
-  tokyo_station.save!
+yoga.itinerary = ubud_retreat
+if yoga.valid?
+  yoga.save!
 end
 puts "1 event created"
 
-imperial_palace = Event.new(
-  description: "Let's explore the nearby Tokyo Imperial Palace",
-  cost: 100,
-  location: "1-1 Chiyoda, Chiyoda City, Tokyo 100-8111, Japan",
-  title: "Tokyo Imperial Palace",
-  date_start: DateTime.new(2022, 8, 20, 14, 0),
-  date_end: DateTime.new(2022, 8, 20, 16, 0)
+lunch = Event.new(
+  description: "Let's have a nice healthy lunch after class",
+  cost: 25,
+  location: "Jl. Jembawan, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+  title: "Healthy Lunch",
+  date_start: DateTime.new(2022, 7, 2, 12, 0),
+  date_end: DateTime.new(2022, 7, 2, 14, 0)
 )
-imperial_palace.itinerary = tokyogetaway
-if imperial_palace.valid?
-  imperial_palace.save!
+lunch.itinerary = ubud_retreat
+if lunch.valid?
+  lunch.save!
 end
 puts "2 events created"
 
-sensoji = Event.new(
-  description: "Let's visit the oldest Buddhist temple in Tokyo.",
+monkey_forest = Event.new(
+  description: "Let's visit the Ubud's monkey forest, home to over 700 long-tailed macaques.",
   cost: 10,
-  location: "2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan",
-  title: "Senso-ji Temple",
-  date_start: DateTime.new(2022, 8, 21, 9, 0),
-  date_end: DateTime.new(2022, 8, 21, 12, 0)
+  location: "Jalan Monkey Forest, Ubud, Gianyar, Bali 80571, Indonesia",
+  title: "Ubud Monkey Forest",
+  date_start: DateTime.new(2022, 7, 3, 9, 0),
+  date_end: DateTime.new(2022, 7, 3, 12, 0)
 )
-sensoji.itinerary = tokyogetaway
-if sensoji.valid?
-  sensoji.save!
+monkey_forest.itinerary = ubud_retreat
+if monkey_forest.valid?
+  monkey_forest.save!
 end
 puts "3 events created"
 
-tsutaya = Event.new(
-  description: "Relax at this aesthetic looking bookstore",
-  cost: 100,
-  location: "17-5 Sarugaku-cho, Shibuya-ku, Tokyo 150-0033",
-  title: "Tsutaya Books Daikanyama",
-  date_start: DateTime.new(2022, 8, 22, 9, 0),
-  date_end: DateTime.new(2022, 8, 22, 12, 0)
+rice_terrace = Event.new(
+  description: "The Tegallang rice terrace is famous for its scenic landscape.
+                There is a quaint villeage of Pakudui, close to the rice terrace,
+                where you can shop for some ornamental woodwork and various carvings of mythical figures",
+  cost: 50,
+  location: "Jalan Raya Tegallalang, Tegallalang, Gianyar, Bali 80561, Indonesia",
+  title: "Day trip to Tegallang Rice Terrace",
+  date_start: DateTime.new(2022, 7, 4, 9, 0),
+  date_end: DateTime.new(2022, 7, 4, 16, 0)
 )
-tsutaya.itinerary = tokyogetaway
-if tsutaya.valid?
-  tsutaya.save!
+rice_terrace.itinerary = ubud_retreat
+if rice_terrace.valid?
+  rice_terrace.save!
 end
 puts "4 events created"
 
-tokyogetaway.published = true
-tokyogetaway.save!
+ubud_retreat.published = true
+ubud_retreat.save!
 
-puts "Events for 'Quick 3D2N Tokyo Getaway' were created"
+puts "Completed creating itinerary 'Relaxing 3D2N Ubud Retreat'"
 
 # Itinerary 3
 puts "OSAKA ADVENTURE:"
