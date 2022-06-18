@@ -8,7 +8,6 @@ export default class extends Controller {
   connect() {
     console.log(`Subscribe to the chatroom with the id ${this.userIdValue}.`);
     console.log(this.badgeTarget);
-    console.log(this.bellTarget);
 
     this.channel = consumer.subscriptions.create(
       {
