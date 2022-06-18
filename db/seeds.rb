@@ -1116,8 +1116,6 @@ osaka.published = true
 osaka.save!
 
 puts "Events for 'Osaka Adventure' were created"
-<<<<<<< HEAD
-=======
 
 # Eunice
 
@@ -1438,4 +1436,3 @@ bali_party.published = true
 bali_party.save!
 
 puts "Events for 'Bali Party' were created"
->>>>>>> master

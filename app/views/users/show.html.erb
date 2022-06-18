@@ -5,11 +5,7 @@
     <div class="profile-details">
       <%# avatar %>
       <div class="user-avatar center">
-      <% raise %>
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar", 'aria-haspopup': true, 'aria-expanded': false %>
-        <div class="center">
-          <p><em>Update photo</em></p>
-        </div>
+        <%= cl_image_tag @user.photo.key, class: "avatar", 'aria-haspopup': true, 'aria-expanded': false %>
       </div>
 
       <%# verification information %>
