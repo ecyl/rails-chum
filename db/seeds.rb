@@ -101,6 +101,7 @@ raymond_event2.itinerary = raymond_itinerary
 raymond_event2.save!
 
 
+
 # CODE YOUR USER IN HERE
 jamieson = User.new(
   first_name: "Jamieson",
@@ -336,18 +337,3 @@ if washington_monument.valid?
   washington_monument.save!
 end
 
-capitol_building = Event.new(
-  description: "Lets go politician sightseeing. Maybe we'll catch some famous figures on the steps of the capitol",
-  cost: 0,
-  location: "Capitol Building",
-  title: "Capitol building exploration",
-  date_start: DateTime.new(2022, 11, 19, 10,15),
-  date_end: DateTime.new(2022, 11, 19, 11,15)
-)
-capitol_building.itinerary = washington
-if capitol_building.valid?
-  capitol_building.save!
-end
-
-washington.published = true
-washington.save!

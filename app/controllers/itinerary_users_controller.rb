@@ -70,15 +70,31 @@ class ItineraryUsersController < ApplicationController
   def new_notification_pending_user
     @notification = Notification.new
     f_name = "#{@itinerary_user.user.first_name} #{@itinerary_user.user.last_name}"
-    @notification.content = "#{f_name} has requested to join your itinerary named '#{@itinerary_user.itinerary.title}'"
+    @notification.content = " has requested to join your itinerary. Click to view'"
     @notification.notification_type = "new_pending"
-    @notification.user = @itinerary.user
+    @notification.user = @itinerary.user # recipient
+
+    notification_initiator = NotificationInitiator.new(
+      user: @itinerary_user.user, # initiator
+      itinerary: @itinerary
+    )
+
+
+    # @notification.notification_initiator = @itinerary_user.user # initiator
+    # @notification.notification_initiator.itinerary = @itinerary
     @notification.itinerary = @itinerary
     if @notification.save
+      notification_initiator.notification = @notification
+      notification_initiator.notification.save
       ActionCable.server.broadcast(
         "notification-badge-#{@notification.user.id}",
         render_to_string(partial:
         "notifications/badge-number", locals: { user: @itinerary.user})
+      )
+
+      ActionCable.server.broadcast(
+        "notification-dropdown-#{@notification.user.id}",
+        render_to_string(partial:"shared/each-notification-row", locals: { notification: @notification })
       )
     else
       flash[:alert] = "You have already indicated your interest to join the trip."
@@ -90,25 +106,32 @@ class ItineraryUsersController < ApplicationController
     organiser = @itinerary_user.itinerary.user
     organiser_f_name = "#{organiser.first_name} #{organiser.last_name}"
     @notification = Notification.new
+    notification_initiator = NotificationInitiator.new(
+      user: organiser, # initiator = organiser
+      itinerary: @itinerary
+    )
     case @itinerary_user.status
     when "accepted"
-      @notification.content = "#{organiser_f_name} has accepted your request to join the itinerary. Click to view"
+      @notification.content = " has accepted your request to join the itinerary. Click to view."
       @notification.notification_type = "request_accepted"
-      @notification.user = @itinerary_user.user
+      @notification.user = @itinerary_user.user # recipient = itinerary_user
+
+
       @notification.itinerary = @itinerary
     when "rejected"
       organiser = @itinerary_user.itinerary.user
-      @notification.content = "#{@organiser_f_name} has rejected your request to join the itinerary."
+      @notification.content = " has rejected your request to join the itinerary. Click to view."
       @notification.notification_type = "request_rejected"
       @notification.user = @itinerary_user.user
       @notification.itinerary = @itinerary
     end
 
     if @notification.save
+      notification_initiator.notification = @notification
+      notification_initiator.save
       ActionCable.server.broadcast(
         "notification-badge-#{@notification.user.id}",
-        render_to_string(partial:
-        "notifications/badge-number", locals: { user: @itinerary_user.user })
+        render_to_string(partial:"shared/each-notification-row", locals: { notification: @notification })
       )
     end
   end
