@@ -11,9 +11,14 @@
       <%# verification information %>
       <div class="user-verification">
         <div class="user-verification info">
-          <i class="fa-solid fa-star"></i> 6 reviews
+          <% if @user.reviews.length == 0 %>
+            <em>There are no reviews for this user yet</em>
+          <% else %>
+            <i class="fa-solid fa-star"></i> <%= @user.review.length %>
+          <% end %>
         </div>
         <div class="user-verification info">
+        <% raise %>
           <i class="fa-solid fa-globe"></i> Organised 2 trips
         </div>
       </div>
@@ -42,16 +47,6 @@
         <i class="fa-solid fa-house"></i>
         <span>Lives in Singapore</span>
       </div>
-    </div>
-
-    <div class="line-break">
-    </div>
-
-    <%# Some decription %>
-    <div class="user-description">
-      <div class="user-description-title">About Me:</div>
-      I love travelling and meeting new people. I also love food so, my trips are usually quite food-centered. <br>
-      I love blackpink as well
     </div>
 
     <div class="line-break">
