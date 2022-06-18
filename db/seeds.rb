@@ -1471,6 +1471,6 @@ eun_review_three = Review.new(
   content: "Eunice was such a joy to be with! She really made the whole trip very enjoyable"
 )
 
-eun_review_three.itinerary = mtmizugaki
+eun_review_three.itinerary = ubud_retreat
 eun_review_three.user = helen
 eun_review_three.save!

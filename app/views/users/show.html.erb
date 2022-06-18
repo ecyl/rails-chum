@@ -69,8 +69,8 @@
             <% end %>
       </div>
       <%# iterate through reviews %>
+        <% itinerary.reviews.each do |review| %>
       <div class="reviews">
-          <% itinerary.reviews.each do |review| %>
             <div class="review-content">
               <%# display the review content %>
               <em>"<%= review.content %>"</em>
@@ -80,9 +80,9 @@
               <% sender = User.find(review.user_id) %>
               <%= cl_image_tag sender.photo.key, class: "avatar-bordered", alt: "avatar-bordered" %> <%= sender.first_name %>
             </div>
+      </div>
           <% end %>
         <% end %>
-      </div>
     </div>
   </div>
 </div>
