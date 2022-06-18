@@ -211,10 +211,11 @@ germany_itinerary.save!
 
 raymond_itinerary_user2 = ItineraryUser.new(
   user: raymond,
-  status: "organiser"
+  status: "organiser",
+  itinerary: germany_itinerary
 )
 
-raymond_itinerary_user2
+raymond_itinerary_user2.save!
 
 germany_event1 = Event.new(
   description: "Dresden Royal Palace for the cultured people",
