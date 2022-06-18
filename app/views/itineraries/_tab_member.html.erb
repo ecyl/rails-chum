@@ -5,7 +5,14 @@
   <div class="container d-flex mx-auto position-relative">
     <div class="container border-black-large d-flex">
       <div class="container m-3 d-flex justify-content-start align-items-center">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/hahaha", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
+
+        <% if @organiser.photo.attached? %>
+                <%= cl_image_tag @organiser.photo.key, class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
+              <% else %>
+              <span class="">
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", class: "avatar-xxl m-4", 'aria-haspopup': true, 'aria-expanded': false %>
+              </span>
+        <% end %>
         <div class="p-2">
           <p class="text-xl">Organised by: <br><%= organiser_name %></p>
           <i id="location-symbol" class="fa-solid fa-location-dot"></i>
