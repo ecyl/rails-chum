@@ -10,16 +10,15 @@
 
       <%# verification information %>
       <div class="user-verification">
+        <% @user.itineraries.each do |itinerary| %>
         <div class="user-verification info">
-          <% if @user.reviews.length == 0 %>
+          <% if itinerary.reviews.length == 0 %>
             <em>There are no reviews for <%= @user.first_name %> yet</em>
           <% else %>
-            <i class="fa-solid fa-star"></i> <%= @user.review.length %>
+            <i class="fa-solid fa-star"></i> <%= itinerary.reviews.length %> reviews
           <% end %>
         </div>
         <div class="user-verification info">
-
-          <% @user.itineraries.each do |itinerary| %>
             <% organised_trips = itinerary.itinerary_users.where(status: "organiser") %>
             <% if organised_trips.length == 0 %>
               <em><%= @user.first_name %> has not organised any trips yet</em>
@@ -62,24 +61,28 @@
     <%# Reviews %>
     <div class="user-reviews">
       <div class="user-description-title">
-        <% if @user.reviews.length == 0 %>
-            <em>There are no reviews for <%= @user.first_name %> yet</em>
-          <% else %>
-            <i class="fa-solid fa-star"></i> <%= @user.review.length %>
-          <% end %>
+        <% @user.itineraries.each do |itinerary| %>
+          <% if itinerary.reviews.length == 0 %>
+              <em>There are no reviews for <%= @user.first_name %> yet</em>
+            <% else %>
+              <i class="fa-solid fa-star"></i> <%= itinerary.reviews.length %> reviews
+            <% end %>
       </div>
       <%# iterate through reviews %>
-        <% @user.itineraries.each do |itinerary| %>
+      <div class="reviews">
           <% itinerary.reviews.each do |review| %>
             <div class="review-content">
               <%# display the review content %>
-              <%= review.content %> <br>
-              <%# display the author of the review %>
+              <em>"<%= review.content %>"</em>
+            </div>
+            <div class="review-author">
+             <%# display the author of the review %>
               <% sender = User.find(review.user_id) %>
-              From: <%= sender.first_name %>
+              <%= cl_image_tag sender.photo.key, class: "avatar-bordered", alt: "avatar-bordered" %> <%= sender.first_name %>
             </div>
           <% end %>
         <% end %>
+      </div>
     </div>
   </div>
 </div>

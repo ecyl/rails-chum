@@ -1425,20 +1425,52 @@ puts "Events for 'Bali Party' were created"
 
 puts "Creating reviews for Raymond"
 
-review_one = Review.new(
+ray_review_one = Review.new(
   content: "Raymond was such a joy to travel with, he took care of our group. Highly recommend joining his trip!"
 )
 
-review_one.itinerary = mtmizugaki
-review_one.user = mingfu
-review_one.save!
+ray_review_one.itinerary = mtmizugaki
+ray_review_one.user = jennie
+ray_review_one.save!
+
+ray_review_two = Review.new(
+  content: "Raymond was very organised and he led the group really well. Would love to travel with him again"
+)
+
+ray_review_two.itinerary = mtmizugaki
+ray_review_two.user = jisoo
+ray_review_two.save!
+
+ray_review_three = Review.new(
+  content: "Really enjoyed the trip that Raymond have planned for, can't wait for him to organise another one!"
+)
+
+ray_review_three.itinerary = mtmizugaki
+ray_review_three.user = ashleyyeo
+ray_review_three.save!
 
 puts "Creating reviews for Eunice"
 
-review_two = Review.new(
+eun_review_one = Review.new(
   content: "Eunice is such a fun person! Very easy going and super spontaneous. Great travel buddy!"
 )
 
-review_two.itinerary = ubud_retreat
-review_two.user = justinnleong
-review_two.save!
+eun_review_one.itinerary = ubud_retreat
+eun_review_one.user = justinnleong
+eun_review_one.save!
+
+eun_review_two = Review.new(
+  content: "Had one of the best trips to Bali thanks to Eunice. Highly recommend her!"
+)
+
+eun_review_two.itinerary = ubud_retreat
+eun_review_two.user = germaine
+eun_review_two.save!
+
+eun_review_three = Review.new(
+  content: "Eunice was such a joy to be with! She really made the whole trip very enjoyable"
+)
+
+eun_review_three.itinerary = mtmizugaki
+eun_review_three.user = helen
+eun_review_three.save!
