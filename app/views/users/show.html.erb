@@ -12,14 +12,21 @@
       <div class="user-verification">
         <div class="user-verification info">
           <% if @user.reviews.length == 0 %>
-            <em>There are no reviews for this user yet</em>
+            <em>There are no reviews for <%= @user.first_name %> yet</em>
           <% else %>
             <i class="fa-solid fa-star"></i> <%= @user.review.length %>
           <% end %>
         </div>
         <div class="user-verification info">
-        <% raise %>
-          <i class="fa-solid fa-globe"></i> Organised 2 trips
+
+          <% @user.itineraries.each do |itinerary| %>
+            <% organised_trips = itinerary.itinerary_users.where(status: "organiser") %>
+            <% if organised_trips.length == 0 %>
+              <em><%= @user.first_name %> has not organised any trips yet</em>
+              <% else %>
+              <i class="fa-solid fa-globe"></i> Organised <%= organised_trips.length %> trips
+            <% end %>
+          <% end %>
         </div>
       </div>
 
