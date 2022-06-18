@@ -24,6 +24,179 @@ UserChatroom.destroy_all
 # REPEAT AS MANY TIMES AS NEEDED
 
   # CODE YOUR ITINERARY HERE
+# RAYMOND
+  raymond = User.new(
+    first_name: "Raymond",
+    last_name: "Ong",
+    email: "raymondong@gmail.com",
+    password: 12345678,
+    age: 18,
+    gender: "M",
+    languages: "English, Chinese, French"
+  )
+  raymond.save!
+
+  # Create Raymond's itinerary
+
+  date_start = Date.today() + 10
+
+  raymond_itinerary = Itinerary.new(
+    title: "Summer in Korea",
+    participant_limit: 3,
+    description: "Superb time in Korea!",
+    destination: "Korea",
+    published: true,
+    deadline: Date.today() + 5
+  )
+
+  # raymond_notification1 = Notification.new(
+  #   user: raymond,
+
+  # )
+
+  chatroom = Chatroom.new(
+    name: "Summer in Korea"
+  )
+
+  raymond_itinerary.user = raymond
+  chatroom.save!
+  raymond_itinerary.chatroom = chatroom
+  raymond_itinerary.save!
+
+  raymond_event1 = Event.new(
+    description: "Lotte World for fun people",
+    address: "Lotte World",
+    location: "Lotte World",
+    title: "Fun night at Lotte World",
+    cost: 50,
+    date_start: date_start + 11,
+    date_end: date_start + 12
+  )
+
+  raymond_event1.itinerary = raymond_itinerary
+  raymond_event1.save!
+
+  raymond_event2 = Event.new(
+    description: "Blackpink Concert with the Blinks",
+    address: "Korea DMZ",
+    location: "Korea DMZ",
+    title: "Super electrifying concert atmosphere!",
+    cost: 300,
+    date_start: date_start + 12,
+    date_end: date_start + 13
+  )
+
+  raymond_event2.itinerary = raymond_itinerary
+  raymond_event2.save!
+
+  raymond_event3 = Event.new(
+    description: "Bask in the busking culture, cheap and nice clothes, and some really good Korean BBQ",
+    address: "Hongdae",
+    location: "Hongdae",
+    title: "Eat, shop, repeat",
+    cost: 10,
+    date_start: date_start + 13,
+    date_end: date_start + 14
+  )
+
+  raymond_event3.itinerary = raymond_itinerary
+  raymond_event3.save!
+
+# SUANSEN
+  suansen = User.new(
+    first_name: "Suan Sen",
+    last_name: "Tan",
+    email: "suansen@gmail.com",
+    password: 12345678,
+    age: 14,
+    gender: "M",
+    languages: "English, Chinese"
+  )
+  file = URI.open("https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80")
+  suansen.photo.attach(io: file, filename: "#{suansen.email}-avatar")
+  suansen.save
+
+  suansen_date_start = Date.today() + 20
+
+  suansen_itinerary = Itinerary.new(
+    title: "Trip to Germany",
+    participant_limit: 3,
+    description: "I've visited Germany many times, trust me!",
+    destination: "Germany",
+    published: true,
+    deadline: suansen_date_start + 5
+  )
+
+  # raymond_notification1 = Notification.new(
+  #   user: raymond,
+
+  # )
+
+  chatroom = Chatroom.new(
+    name: "Trip to Germany"
+  )
+
+  suansen_itinerary.user = suansen
+  chatroom.save!
+  suansen_itinerary.chatroom = chatroom
+  suansen_itinerary.save!
+
+  suansen_event1 = Event.new(
+    description: "Dresden Royal Palace for the cultured people",
+    address: "Dresden Royal Palace",
+    location: "Dresden Royal Palace",
+    title: "Enriching time at the Dresden Royal Palace",
+    cost: 50,
+    date_start: suansen_date_start + 11,
+    date_end: suansen_date_start + 12
+  )
+
+  suansen_event1.itinerary = suansen_itinerary
+  suansen_event1.save!
+
+  suansen_event2 = Event.new(
+    description: "Dresden Transport Museum – super interesting history!",
+    address: "Dresden Transport Museum",
+    location: "Dresden Transport Museum",
+    title: "Dresden Transport Museum!",
+    cost: 300,
+    date_start: suansen_date_start + 12,
+    date_end: suansen_date_start + 13
+  )
+
+  suansen_event2.itinerary = suansen_itinerary
+  suansen_event2.save!
+
+  suansen_event3 = Event.new(
+    description: "Enjoy the serenity of the Frankfurt Cathedral",
+    address: "Frankfurt Cathedral",
+    location: "Frankfurt Cathedral",
+    title: "Good Hollywood filming location",
+    cost: 10,
+    date_start: suansen_date_start + 13,
+    date_end: suansen_date_start + 14
+  )
+
+  suansen_event3.itinerary = suansen_itinerary
+  suansen_event3.save!
+
+
+
+
+  # HARDCODE NOTIFICATION (SO NOTIFICATION DROPDOWN WONT BE EMPTY) -- DO NOT DELETE PLEASE
+  hardcode_notification = Notification.new(
+    user: raymond,
+    content: " has accepted your request to join the itinerary. Click to view.",
+    itinerary: suansen_itinerary,
+    notification_type: "request_accepted"
+  )
+  hardcode_initiator = NotificationInitiator.new(
+    user: suansen,
+    itinerary: suansen_itinerary,
+    notification: hardcode_notification
+  )
+
+  hardcode_notification.save!
 
 
 helen = User.new(
@@ -49,91 +222,6 @@ germaine = User.new(
 germaine.save!
 
 puts "Test user: Eunice, Helen, Germaine, Raymond created"
-
-raymond = User.new(
-  first_name: "Raymond",
-  last_name: "Ong",
-  email: "raymondong@gmail.com",
-  password: 12345678,
-  age: 18,
-  gender: "M",
-  languages: "English, Chinese, French"
-)
-raymond.save!
-
-# Create Raymond's itinerary
-
-date_start = Date.today() + 10
-
-raymond_itinerary = Itinerary.new(
-  title: "Summer in Korea",
-  participant_limit: 3,
-  description: "Superb time in Korea!",
-  destination: "Korea",
-  published: true,
-  deadline: Date.today() + 5
-)
-
-# raymond_notification1 = Notification.new(
-#   user: raymond,
-
-# )
-
-chatroom = Chatroom.new(
-  name: "Summer in Korea"
-)
-
-raymond_itinerary.user = raymond
-chatroom.save!
-raymond_itinerary.chatroom = chatroom
-raymond_itinerary.save!
-
-raymond_event1 = Event.new(
-  description: "Lotte World for fun people",
-  address: "Lotte World",
-  location: "Lotte World",
-  title: "Fun night at Lotte World",
-  cost: 50,
-  date_start: date_start + 11,
-  date_end: date_start + 12
-)
-
-raymond_event1.itinerary = raymond_itinerary
-raymond_event1.save!
-
-raymond_event2 = Event.new(
-  description: "Blackpink Concert with the Blinks",
-  address: "Korea DMZ",
-  location: "Korea DMZ",
-  title: "Super electrifying concert atmosphere!",
-  cost: 300,
-  date_start: date_start + 12,
-  date_end: date_start + 13
-)
-
-raymond_event2.itinerary = raymond_itinerary
-raymond_event2.save!
-
-raymond_event3 = Event.new(
-  description: "Bask in the busking culture, cheap and nice clothes, and some really good Korean BBQ",
-  address: "Hongdae",
-  location: "Hongdae",
-  title: "Eat, shop, repeat",
-  cost: 10,
-  date_start: date_start + 13,
-  date_end: date_start + 14
-)
-
-raymond_event3.itinerary = raymond_itinerary
-raymond_event3.save!
-
-raymond_notification1 = Notification.new(
-  user: raymond,
-  content: "John Doe wants to join your itinerary",
-  itinerary: raymond_itinerary
-)
-
-raymond_notification1.save!
 
 
 def get_address(event)
