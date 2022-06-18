@@ -14,7 +14,7 @@ florenceloy = User.new(
   languages: "English, Chinese"
 )
 file = URI.open("https://source.unsplash.com/cOe0L1Yp2UA")
-florenceloy.photo.attach(io: file, filename: "#{suansen.email}-avatar")
+florenceloy.photo.attach(io: file, filename: "#{florenceloy.email}-avatar")
 florenceloy.save
 puts "User Florence created"
 
@@ -89,23 +89,236 @@ climbing_time.itinerary = mtmizugaki
 if climbing_time.valid?
   climbing_time.save!
 end
-puts "2 events created"
+puts "3 events created"
 
 mizugaki_sansou = Event.new(
   description: "Stay at Mizugaki-sansou",
   cost: 100,
   location: "8861 Sutamacho Obi, Hokuto, Yamanashi 408-0101, Japan",
   title: "Stay at Mizugaki-Sansou (guesthouse)",
-  date_start: DateTime.new(2022,8,8, 7,15),
-  date_end: DateTime.new(2022,8,8,8,15)
+  date_start: DateTime.new(2022,9,13, 9,0),
+  date_end: DateTime.new(2022,9,13,20,0)
 )
 mizugaki_sansou.itinerary = mtmizugaki
 if mizugaki_sansou.valid?
   mizugaki_sansou.save!
 end
-puts "3 events created"
+puts "4 events created"
 
 mtmizugaki.published = true
 mtmizugaki.save!
 
 puts "Events for 'A Climbing Trip to Mizugaki' were created"
+
+
+puts "QUICK 3D2N TOKYO GETAWAY:"
+puts "Creating a user - Kenny..."
+kennywong = User.new(
+  first_name: "Kenny",
+  last_name: "Wong",
+  email: "kennywong@gmail.com",
+  password: 12345678,
+  age: 27,
+  gender: "M",
+  languages: "English, Chinese"
+)
+file = URI.open("https://kitt.lewagon.com/placeholder/users/cookinlima")
+kennywong.photo.attach(io: file, filename: "#{kennywong.email}-avatar")
+kennywong.save
+puts "User Kenny created"
+
+puts "Creating Itinerary: 'Quick 3D2N Tokyo Getaway'..."
+tokyogetaway = Itinerary.new(
+  title: "Quick 3D2N Tokyo Getaway",
+  participant_limit: 2,
+  description: "Is anyone interested in going for a weekend trip to Tokyo in Auguest?
+                I'm open to having 2 more people join me on this trip!",
+  published: false,
+  destination: "Japan",
+  deadline: DateTime.new(2022, 7, 20, 12, 0, 0)
+)
+
+tokyogetaway.user = kennywong;
+
+tokyogetaway_chatroom = Chatroom.new(
+  name: "Quick 3D2N Tokyo Getaway"
+)
+
+tokyogetaway_chatroom.save!
+tokyogetaway.chatroom = tokyogetaway_chatroom
+tokyogetaway_itinerary_user = ItineraryUser.new(
+  status: "organiser"
+)
+tokyogetaway_itinerary_user.user = kennywong
+tokyogetaway_itinerary_user.itinerary = tokyogetaway
+tokyogetaway_itinerary_user.save!
+puts "Itinerary 'Quick 3D2N Tokyo Getaway' was created"
+
+puts "Creating events for 'Quick 3D2N Tokyo Getaway'..."
+tokyo_station = Event.new(
+  description: "Explore the area around the the historic Tokyo Station",
+  cost: 100,
+  location: "1 Chome Marunouchi, Chiyoda City, Tokyo 100-0005, Japan",
+  title: "Tokyo Station",
+  date_start: DateTime.new(2022, 8, 20, 9, 0),
+  date_end: DateTime.new(2022, 8, 20, 14, 0)
+)
+tokyo_station.itinerary = tokyogetaway
+if tokyo_station.valid?
+  tokyo_station.save!
+end
+puts "1 event created"
+
+imperial_palace = Event.new(
+  description: "Let's explore the nearby Tokyo Imperial Palace",
+  cost: 100,
+  location: "1-1 Chiyoda, Chiyoda City, Tokyo 100-8111, Japan",
+  title: "Tokyo Imperial Palace",
+  date_start: DateTime.new(2022, 8, 20, 14, 0),
+  date_end: DateTime.new(2022, 8, 20, 16, 0)
+)
+imperial_palace.itinerary = tokyogetaway
+if imperial_palace.valid?
+  imperial_palace.save!
+end
+puts "2 events created"
+
+sensoji = Event.new(
+  description: "Let's visit the oldest Buddhist temple in Tokyo.",
+  cost: 10,
+  location: "2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan",
+  title: "Senso-ji Temple",
+  date_start: DateTime.new(2022, 8, 21, 9, 0),
+  date_end: DateTime.new(2022, 8, 21, 12, 0)
+)
+sensoji.itinerary = tokyogetaway
+if sensoji.valid?
+  sensoji.save!
+end
+puts "3 events created"
+
+tsutaya = Event.new(
+  description: "Relax at this aesthetic looking bookstore",
+  cost: 100,
+  location: "17-5 Sarugaku-cho, Shibuya-ku, Tokyo 150-0033",
+  title: "Tsutaya Books Daikanyama",
+  date_start: DateTime.new(2022, 8, 22, 9, 0),
+  date_end: DateTime.new(2022, 8, 22, 12, 0)
+)
+tsutaya.itinerary = tokyogetaway
+if tsutaya.valid?
+  tsutaya.save!
+end
+puts "4 events created"
+
+tokyogetaway.published = true
+tokyogetaway.save!
+
+puts "Events for 'Quick 3D2N Tokyo Getaway' were created"
+
+
+puts "OSAKA ADVENTURE:"
+puts "Creating a user - Ashley..."
+ashleyyeo = User.new(
+  first_name: "Ashley",
+  last_name: "Yeo",
+  email: "ashleyyeo@gmail.com",
+  password: 12345678,
+  age: 25,
+  gender: "M",
+  languages: "English, Chinese"
+)
+file = URI.open("https://kitt.lewagon.com/placeholder/users/ashignyeo")
+ashleyyeo.photo.attach(io: file, filename: "#{ashleyyeo.email}-avatar")
+ashleyyeo.save
+puts "User Ashley created"
+
+puts "Creating Itinerary: 'Osaka Adventure'..."
+osaka = Itinerary.new(
+  title: "Osaka Adventure",
+  participant_limit: 2,
+  description: "Is anyone interested in going for a weekend trip to Osaka in Auguest?
+                I'm open to having 2 more people join me on this trip!",
+  published: false,
+  destination: "Japan",
+  deadline: DateTime.new(2022, 7, 20, 12, 0, 0)
+)
+
+osaka.user = ashleyyeo;
+
+osaka_chatroom = Chatroom.new(
+  name: "Osaka Adventure"
+)
+
+osaka_chatroom.save!
+osaka.chatroom = osaka_chatroom
+osaka_itinerary_user = ItineraryUser.new(
+  status: "organiser"
+)
+osaka_itinerary_user.user = ashleyyeo
+osaka_itinerary_user.itinerary = osaka
+osaka_itinerary_user.save!
+puts "Itinerary 'Osaka Adventure' was created"
+
+
+puts "Creating events for 'Osaka Adventure'..."
+cat_cafe = Event.new(
+  description: "Let's play with cute kitties",
+  cost: 20,
+  location: "3 Chome-1-24 Higashinakahama, Joto Ward, Osaka, 536-0023, Japan",
+  title: "Neko no Jikan",
+  date_start: DateTime.new(2022, 8, 20, 9, 0),
+  date_end: DateTime.new(2022, 8, 20, 12, 0)
+)
+cat_cafe.itinerary = osaka
+if cat_cafe.valid?
+  cat_cafe.save!
+end
+puts "1 event created"
+
+cat_cafe = Event.new(
+  description: "Let's play with cute kitties",
+  cost: 20,
+  location: "3 Chome-1-24 Higashinakahama, Joto Ward, Osaka, 536-0023, Japan",
+  title: "Neko no Jikan",
+  date_start: DateTime.new(2022, 8, 20, 9, 0),
+  date_end: DateTime.new(2022, 8, 20, 12, 0)
+)
+cat_cafe.itinerary = osaka
+if cat_cafe.valid?
+  cat_cafe.save!
+end
+puts "2 events created"
+
+tsubomi = Event.new(
+  description: "Coffee time",
+  cost: 50,
+  location: "1-8 Rokumantaicho, Tennoji Ward, Osaka, 543-0074, Japan",
+  title: "Tsubomi Coffee",
+  date_start: DateTime.new(2022, 8, 21, 9, 0),
+  date_end: DateTime.new(2022, 8, 21, 12, 0)
+)
+tsubomi.itinerary = osaka
+if tsubomi.valid?
+  tsubomi.save!
+end
+puts "3 events created"
+
+denden = Event.new(
+  description: "Shopping for tech stuff",
+  cost: 200,
+  location: "Nipponbashi, Naniwa-ku, Osaka-shi, Osaka 3-5, 556-0005",
+  title: "Nipponbashi Den Den Town",
+  date_start: DateTime.new(2022, 8, 22, 9, 0),
+  date_end: DateTime.new(2022, 8, 22, 20, 0)
+)
+denden.itinerary = osaka
+if denden.valid?
+  denden.save!
+end
+puts "4 events created"
+
+osaka.published = true
+osakai.save!
+
+puts "Events for 'Osaka Adventure' were created"
