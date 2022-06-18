@@ -17,6 +17,7 @@ Message.destroy_all
 UserChatroom.destroy_all
 
 
+
 # CODE YOUR USER IN HERE
 
 
@@ -844,3 +845,6 @@ create_one_itinerary("Summer in Korea!",
 # end
 
 # puts "Done with all models"
+
+# HARDCODE USERS
+
