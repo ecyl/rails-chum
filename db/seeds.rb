@@ -174,19 +174,19 @@ suansen_event3.itinerary = suansen_itinerary
 suansen_event3.save!
 
 # HARDCODE NOTIFICATION (SO NOTIFICATION DROPDOWN WONT BE EMPTY) -- DO NOT DELETE PLEASE
-hardcode_notification = Notification.new(
-  user: raymond,
-  content: " has accepted your request to join the itinerary. Click to view.",
-  itinerary: suansen_itinerary,
-  notification_type: "request_accepted"
-)
-hardcode_initiator = NotificationInitiator.new(
-  user: suansen,
-  itinerary: suansen_itinerary,
-  notification: hardcode_notification
-)
+# hardcode_notification = Notification.new(
+#   user: raymond,
+#   content: " has accepted your request to join the itinerary. Click to view.",
+#   itinerary: suansen_itinerary,
+#   notification_type: "request_accepted"
+# )
+# hardcode_initiator = NotificationInitiator.new(
+#   user: suansen,
+#   itinerary: suansen_itinerary,
+#   notification: hardcode_notification
+# )
 
-hardcode_notification.save!
+# hardcode_notification.save!
 
 
 # GERMAINE
@@ -424,4 +424,3 @@ washington_monument.itinerary = washington
 if washington_monument.valid?
   washington_monument.save!
 end
-
