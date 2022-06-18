@@ -1,8 +1,9 @@
-<% @notifications = Notification.where(user: current_user).order(created_at: :desc) %>
-<% @notifications.each do |notification| %>
-  <%= render "shared/each-notification-row", notification: notification %>
-<% end %>
-
+<ul class="dropdown-menu dropdown-menu-lg-end notification-dropdown" data-controller="notification-dropdown-subscription" data-notification-dropdown-subscription-user-id-value="<%= current_user.id %>" data-notification-dropdown-subscription-target="row">
+  <% @notifications = Notification.where(user: current_user).order(created_at: :desc) %>
+  <% @notifications.each do |notification| %>
+    <%= render "shared/each-notification-row", notification: notification %>
+  <% end %>
+</ul>
 <%# HARDCODE: get suansen's notification %>
 <%# suansen = User.find_by(email: "suansen@gmail.com") %>
 <%# suansen_itinerary = Itinerary.find_by(user: suansen) %>

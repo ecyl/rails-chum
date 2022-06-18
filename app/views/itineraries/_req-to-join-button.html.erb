@@ -16,17 +16,17 @@
     </div>
   <% elsif itinerary.itinerary_users.find_by(user_id: current_user.id).status == "accepted" %>
     <div id="request-join">
-      <p id="confirmed-btn" class="disabled full-width mt-3" >
+      <div id="confirmed-btn" class="disabled full-width mt-3" >
         You are accepted ✅
-      </p>
+      </div>
     <%# <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
     </div>
 
   <% elsif itinerary.itinerary_users.find_by(user_id: current_user.id).status == "rejected" %>
     <div id="request-join">
-      <p id="rejected-btn" class="disabled full-width mt-3" >
+      <div id="rejected-btn" class="disabled full-width mt-3" >
         You are rejected ❌
-      </p>
+      </div>
     <%# <%= link_to "Request to join", new_itinerary_itinerary_user_path(itinerary), class: "btn-crimson rounded long mt-3" unless current_user == organiser%>
     </div>
   <% end %>
