@@ -60,3 +60,10 @@
     font-size: 16px;
   }
 }
+
+// Everything to do with notification bell + dropdown
+
+.notification-dropdown {
+  max-height: 410px;
+  overflow: scroll;
+}

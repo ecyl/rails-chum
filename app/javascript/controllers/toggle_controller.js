@@ -15,6 +15,7 @@ export default class extends Controller {
     if (this.switchTarget.checked) {
       // if target.checked -> send AJAX request to publish + remove classlist
       this.labelTarget.classList.remove("label-opaque");
+      this.labelTarget.classList.add("published-bold");
       const url = `/itineraries/${this.itineraryIdValue}/publish`;
       const options = {
         method: "PATCH",
@@ -26,6 +27,7 @@ export default class extends Controller {
         .then((data) => console.log("published"));
     } else {
       this.labelTarget.classList.add("label-opaque");
+      this.labelTarget.classList.remove("published-bold");
       // else -> send AJAX request to unpublish + add classlist
       const url = `/itineraries/${this.itineraryIdValue}/unpublish`;
       const options = {

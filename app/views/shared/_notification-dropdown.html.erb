@@ -1,0 +1,11 @@
+<% @notifications = Notification.where(user: current_user).order(created_at: :desc) %>
+<% @notifications.each do |notification| %>
+  <%# get full name of notification_initiator %>
+  <% initiator_f_name = notification.notification_initiator %>
+  <%# get photo of notification-initiator %>
+  <%= link_to itinerary_path(notification.itinerary), class: "dropdown-item" do%>
+    <li>
+      <div class="my-1"><%= notification.content %></div>
+    </li>
+  <% end %>
+<% end %>
