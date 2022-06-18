@@ -16,6 +16,41 @@ Chatroom.destroy_all
 Message.destroy_all
 UserChatroom.destroy_all
 
+helen = User.new(
+  first_name: "Helen",
+  last_name: "Tan",
+  email: "helentan@gmail.com",
+  age: 21,
+  gender: "F",
+  password: 12345678,
+  languages: "English, Chinese, UIUX"
+)
+helen.save!
+
+germaine = User.new(
+  first_name: "Germaine",
+  last_name: "Wong",
+  email: "germainewong@gmail.com",
+  age: 21,
+  gender: "F",
+  password: 12345678,
+  languages: "English, limited Chinese, GenZ"
+)
+germaine.save!
+
+puts "Test user: Eunice, Helen, Germaine, Raymond created"
+
+eunice = User.new(
+  first_name: "Eunice",
+  last_name: "Chin",
+  email: "ecyl@gmail.com",
+  age: 21,
+  gender: "F",
+  password: 12345678,
+  languages: "Nonsense, English, basic Chinese"
+)
+eunice.save!
+
 #  RAYMOND'S SEEDS
 # RAYMOND
 raymond = User.new(
