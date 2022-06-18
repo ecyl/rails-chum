@@ -66,11 +66,6 @@
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "My Trips", mytrips_path, class: "dropdown-item" %></li>
               <li><%= link_to "My Messages", chatrooms_path, class: "dropdown-item" %></li>
-              <li>
-                <%= link_to notifications_path, class:"dropdown-item" do %>
-                  <p class="position-relative m-0">My Notifications</p>
-                <% end %>
-              </li>
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>

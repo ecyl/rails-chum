@@ -3,7 +3,7 @@ import consumer from "../channels/consumer";
 
 export default class extends Controller {
   static values = { userId: Number };
-  static targets = ["row"];
+  static targets = ["row", "eachrow"];
 
   connect() {
     console.log(
@@ -26,5 +26,6 @@ export default class extends Controller {
 
   #insertNotificationAndScrollUp(data) {
     this.rowTarget.insertAdjacentHTML("afterbegin", data);
+    this.rowTarget.scrollTo(0, this.rowTarget.scrollHeight);
   }
 }

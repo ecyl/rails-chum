@@ -5,7 +5,7 @@
 
 <%# get photo of notification-initiator %>
 <%= link_to itinerary_path(notification.itinerary), class: "dropdown-item" do%>
-  <li class="d-flex justify-space-between p-1">
+  <li class="d-flex justify-space-between p-1" >
     <div class="position-relative" style="margin-right: 1rem;">
       <% if notif_initiator.photo.attached? %>
         <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle position-relative", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

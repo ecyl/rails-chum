@@ -34,7 +34,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :notifications, only: :index
+  resources :notifications, only: :index do
+    member do
+      patch :mark, only: [:mark]
+    end
+  end
 
   # to allow users to check on all of their chatrooms
   resources :chatrooms, only: [ :index, :show, :create ] do
