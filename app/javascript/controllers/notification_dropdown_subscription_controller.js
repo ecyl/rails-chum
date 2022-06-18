@@ -17,6 +17,7 @@ export default class extends Controller {
       },
       {
         received: (data) => {
+          console.log("I have received the data from the broadcast");
           console.log(data);
           this.#insertNotificationAndScrollUp(data);
         },
@@ -25,9 +26,12 @@ export default class extends Controller {
 
     console.log("I am still connected");
     console.log(this.rowTarget);
+    console.log(this.channel);
   }
 
   #insertNotificationAndScrollUp(data) {
+    console.log("Here's the data that I am receiving. Check it out");
+    console.log(data);
     this.rowTarget.insertAdjacentHTML("afterbegin", data);
   }
 }
