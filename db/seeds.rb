@@ -1138,7 +1138,7 @@ justinnleong.save
 puts "User Justinn created"
 
 puts "Creating Itinerary: '2D1N Surf Trip to Kuta Beach'..."
-kutabeach= Itinerary.new(
+kutabeach = Itinerary.new(
   title: "2D1N Surf Trip to Kuta Beach",
   participant_limit: 3,
   description: "Kuta Beach is one of the best places to enjoy Bali’s famous sunsets.
@@ -1232,6 +1232,7 @@ ubud_retreat_chatroom = Chatroom.new(
 
 ubud_retreat_chatroom.save!
 ubud_retreat.chatroom = ubud_retreat_chatroom
+
 ubud_retreat_itinerary_user = ItineraryUser.new(
   status: "organiser"
 )
