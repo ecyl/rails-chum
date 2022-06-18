@@ -555,7 +555,7 @@ jeju = Itinerary.new(
   participant_limit: 6,
   description: "There's nothing like being in Jeju, people here boast of living a long age due to the stressful environment",
   published: false,
-  destination: "Jeju Island",
+  destination: "South Korea",
   deadline: DateTime.new(2022, 8, 10, 12, 0)
 )
 
@@ -640,7 +640,7 @@ busan = Itinerary.new(
   participant_limit: 6,
   description: "From beautiful beaches and succulent seafood to traditional markets and mural villages, Busan is a must-visit.",
   published: false,
-  destination: "Busan",
+  destination: "South Korea",
   deadline: DateTime.new(2022, 9, 8, 12, 0)
 )
 
@@ -722,7 +722,7 @@ seoul_tour = Itinerary.new(
   participant_limit: 5,
   description: "You've never truly been to South Korea if you haven't done these things in my itinerary!",
   published: false,
-  destination: "Busan",
+  destination: "South Korea",
   deadline: DateTime.new(2022, 9, 8, 12, 0)
 )
 
