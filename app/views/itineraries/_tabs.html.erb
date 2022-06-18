@@ -15,7 +15,7 @@
     <%# SECTION ONE LOOK PROPERLY %>
     <div class="sections section-one">
       <div class="trip-overview">
-        <h5>Trip overview</h5>
+        <p class="overview-text">Trip overview</p>
         <p><%= @itinerary.description %></p>
 
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -62,7 +62,7 @@
         <%# If event exists in itinerary %>
         <div class="trip-key-details">
           <div class="d-flex justify-content-between">
-            <strong><p class="mb-3">Trip details</p></strong>
+            <strong><p class="mb-3 overview-trip-details-text">Trip details</p></strong>
             <%= render "published-toggle", itinerary: @itinerary %>
           </div>
 
