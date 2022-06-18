@@ -74,6 +74,11 @@ raymond_itinerary = Itinerary.new(
   deadline: Date.today() + 5
 )
 
+# raymond_notification1 = Notification.new(
+#   user: raymond,
+
+# )
+
 chatroom = Chatroom.new(
   name: "Summer in Korea"
 )
@@ -826,4 +831,3 @@ create_one_itinerary("Summer in Korea!",
 # puts "Done with all models"
 
 # HARDCODE USERS
-

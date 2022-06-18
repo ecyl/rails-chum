@@ -65,5 +65,22 @@
 
 .notification-dropdown {
   max-height: 410px;
+  width: 430px;
   overflow: scroll;
+  border-radius: 6px;
+}
+
+#notification-emoji {
+  top: 27px;
+  right: -2px;
+  font-size: 11px;
+}
+
+ul.dropdown-menu {
+  max-width: 640px;
+}
+
+#text-wrapper-max-width {
+  max-width: 545px;
+  white-space: initial;
 }
