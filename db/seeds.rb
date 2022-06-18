@@ -16,6 +16,90 @@ Chatroom.destroy_all
 Message.destroy_all
 UserChatroom.destroy_all
 
+#  RAYMOND'S SEEDS
+helen = User.new(
+  first_name: "Helen",
+  last_name: "Tan",
+  email: "helentan@gmail.com",
+  age: 21,
+  gender: "F",
+  password: 12345678,
+  languages: "English, Chinese, UIUX"
+)
+helen.save!
+
+germaine = User.new(
+  first_name: "Germaine",
+  last_name: "Wong",
+  email: "germainewong@gmail.com",
+  age: 21,
+  gender: "F",
+  password: 12345678,
+  languages: "English, limited Chinese, GenZ"
+)
+germaine.save!
+
+puts "Test user: Eunice, Helen, Germaine, Raymond created"
+
+raymond = User.new(
+  first_name: "Raymond",
+  last_name: "Ong",
+  email: "raymondong@gmail.com",
+  password: 12345678,
+  age: 18,
+  gender: "M",
+  languages: "English, Chinese, French"
+)
+raymond.save!
+
+# Create Raymond's itinerary
+
+date_start = Date.today() + 10
+
+raymond_itinerary = Itinerary.new(
+  title: "Summer in Korea",
+  participant_limit: 3,
+  description: "Superb time in Korea!",
+  destination: "Korea",
+  published: true,
+  deadline: Date.today() + 5
+)
+
+chatroom = Chatroom.new(
+  name: "Summer in Korea"
+)
+
+raymond_itinerary.user = raymond
+chatroom.save!
+raymond_itinerary.chatroom = chatroom
+raymond_itinerary.save!
+
+raymond_event1 = Event.new(
+  description: "Lotte World for fun people",
+  address: "Lotte World",
+  location: "Lotte World",
+  title: "Fun night at Lotte World",
+  cost: 50,
+  date_start: date_start + 11,
+  date_end: date_start + 12
+)
+
+raymond_event1.itinerary = raymond_itinerary
+raymond_event1.save!
+
+raymond_event2 = Event.new(
+  description: "Blackpink Concert with the Blinks",
+  address: "Korea DMZ",
+  location: "Korea DMZ",
+  title: "Super electrifying concert atmosphere!",
+  cost: 300,
+  date_start: date_start + 12,
+  date_end: date_start + 13
+)
+
+raymond_event2.itinerary = raymond_itinerary
+raymond_event2.save!
+
 
 # CODE YOUR USER IN HERE
 jamieson = User.new(
@@ -34,7 +118,7 @@ jamieson.save
 newyork = Itinerary.new(
   title: "2 days in New York",
   participant_limit: 5,
-  description: "I wanna go where culture is ~ ladybird. Let's go see why ladybird was making such a fuss about new york.",
+  description: "I wanna go where culture is ~ ladybird. Let's go see why ladybirdI was making such a fuss about new york.",
   published: false,
   destination: "New York",
   deadline: DateTime.new(2022, 8, 5, 12,0)
