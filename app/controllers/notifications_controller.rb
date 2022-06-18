@@ -10,9 +10,10 @@ class NotificationsController < ApplicationController
     authorize @notifications
   end
 
-  private
-
-  def mark_as_read!(notification)
-    notification.read = true
+  def mark
+    @notification = Notification.find(params[:id])
+    @notification.read = true
+    @notification.save
   end
+
 end

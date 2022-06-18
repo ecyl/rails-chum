@@ -2,7 +2,7 @@
   <% if itinerary.user == current_user && itinerary.published %>
     <div class="form-check form-switch" data-controller="toggle" data-toggle-itinerary-id-value="<%= itinerary.id %>">
       <input class="form-check-input published-toggle" data-toggle-target="switch" data-action="click->toggle#toggle" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-      <p class="form-check-label toggle-label-text" data-toggle-target="label" for="flexSwitchCheckChecked">Published</p>
+      <p class="form-check-label toggle-label-text published-bold" data-toggle-target="label" for="flexSwitchCheckChecked">Published</p>
     </div>
 
   <% elsif itinerary.user == current_user && itinerary.published == false %>

@@ -1,0 +1,33 @@
+<%# get full name of notification_initiator %>
+<% notif_initiator = notification.notification_initiator.user %>
+<% notif_initiator_fname = "#{notif_initiator.first_name} #{notif_initiator.last_name}" %>
+
+
+<%# get photo of notification-initiator %>
+<%= link_to itinerary_path(notification.itinerary), class: "dropdown-item" do%>
+  <li class="d-flex justify-space-between p-1" >
+    <div class="position-relative" style="margin-right: 1rem;">
+      <% if notif_initiator.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle position-relative", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% else %>
+      <span class="">
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      </span>
+      <div id="notification-emoji" class="position-absolute">
+        <% if notification.notification_type == "request_accepted" %>
+            ✅
+        <% elsif notification.notification_type == "request_rejected" %>
+            ❌
+        <% elsif notification.notification_type == "new_pending" %>
+            ↖️
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <div id="text-wrapper-max-width" class="my-1">
+      <strong><%= notif_initiator_fname %></strong> <%= notification.content %>
+    </div>
+
+
+  </li>
+<% end %>

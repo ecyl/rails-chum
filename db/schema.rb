@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_17_003149) do
+ActiveRecord::Schema.define(version: 2022_06_18_012635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,17 @@ ActiveRecord::Schema.define(version: 2022_06_17_003149) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notification_initiators", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "itinerary_id", null: false
+    t.bigint "notification_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["itinerary_id"], name: "index_notification_initiators_on_itinerary_id"
+    t.index ["notification_id"], name: "index_notification_initiators_on_notification_id"
+    t.index ["user_id"], name: "index_notification_initiators_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.text "content"
     t.boolean "read", default: false
@@ -196,6 +207,9 @@ ActiveRecord::Schema.define(version: 2022_06_17_003149) do
   add_foreign_key "itinerary_users", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "notification_initiators", "itineraries"
+  add_foreign_key "notification_initiators", "notifications"
+  add_foreign_key "notification_initiators", "users"
   add_foreign_key "notifications", "itineraries"
   add_foreign_key "notifications", "users"
   add_foreign_key "reviews", "itineraries"
