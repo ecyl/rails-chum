@@ -1116,3 +1116,326 @@ osaka.published = true
 osaka.save!
 
 puts "Events for 'Osaka Adventure' were created"
+<<<<<<< HEAD
+=======
+
+# Eunice
+
+puts "––––––––––––––––––––––––––CREATING BALI ITINERARIES––––––––––––––––––––––––––"
+# Itinerery 1
+puts "A SURFING TRIP TO KUTA BEACH:"
+puts "Creating a user - Justinn..."
+justinnleong = User.new(
+  first_name: "Justinn",
+  last_name: "Leong",
+  email: "justinnleong@gmail.com",
+  password: 12345678,
+  age: 32,
+  gender: "M",
+  languages: "English, Chinese"
+)
+file = URI.open("https://kitt.lewagon.com/placeholder/users/justinnjamesleong")
+justinnleong.photo.attach(io: file, filename: "#{justinnleong.email}-avatar")
+justinnleong.save
+puts "User Justinn created"
+
+puts "Creating Itinerary: '2D1N Surf Trip to Kuta Beach'..."
+kutabeach= Itinerary.new(
+  title: "2D1N Surf Trip to Kuta Beach",
+  participant_limit: 3,
+  description: "Kuta Beach is one of the best places to enjoy Bali’s famous sunsets.
+                Located on the island’s southwestern coast, we will be surfing all day long!",
+  published: false,
+  destination: "Bali",
+  deadline: DateTime.new(2022, 7, 23, 12, 0, 0)
+)
+
+kutabeach.user = justinnleong;
+
+kutabeach_chatroom = Chatroom.new(
+  name: "2D1N Surf Trip to Kuta Beach"
+)
+
+kutabeach_chatroom.save!
+kutabeach.chatroom = kutabeach_chatroom
+kutabeach_itinerary_user = ItineraryUser.new(
+  status: "organiser"
+)
+kutabeach_itinerary_user.user = justinnleong
+kutabeach_itinerary_user.itinerary = kutabeach
+kutabeach_itinerary_user.save!
+puts "Itinerary '2D1N Surf Trip to Kuta Beach' was created"
+
+puts "Creating events for '2D1N Surf Trip to Kuta Beach'..."
+surf = Event.new(
+  description: "Waves are gonna be so perfect for surfing especially for beginners. Don't worry about not having a surfboard
+                because there are many rental shops nearby.",
+  cost: 20,
+  location: "Jl. Pantai Kuta No.99, Legian, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
+  title: "Surf Day 1",
+  date_start: DateTime.new(2022, 8, 8, 9, 0),
+  date_end: DateTime.new(2022, 8, 8, 15, 0)
+)
+surf.itinerary = kutabeach
+if surf.valid?
+  surf.save!
+end
+puts "1 event created"
+
+dinner_one = Event.new(
+  description: "We will be having a nice sunset dinner along the beach",
+  cost: 50,
+  location: "Beachwalk Shopping Center, Jl. Pantai Kuta, Kuta, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
+  title: "Dinner with a sunset view along the beach",
+  date_start: DateTime.new(2022, 8, 8, 18, 0),
+  date_end: DateTime.new(2022, 8, 8, 22, 0)
+)
+dinner_one.itinerary = kutabeach
+if dinner_one.valid?
+  dinner_one.save!
+end
+puts "2 events created"
+
+surf_again = Event.new(
+  description: "Today, will be the second day and sadly the last day where we will catch some awesome waves",
+  cost: 20,
+  location: "Jl. Pantai Kuta, Kuta, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
+  title: "Surf Day 2",
+  date_start: DateTime.new(2022, 8, 9, 9, 0),
+  date_end: DateTime.new(2022, 8, 9, 15, 0)
+)
+surf_again.itinerary = kutabeach
+if surf_again.valid?
+  surf_again.save!
+end
+puts "3 events created"
+
+puts "Completed creating itinerary: '2D1N Surf Trip to Kuta Beach'"
+
+# Itinerary 2
+puts "RELAXING 3D2N UBUD RETREAT:"
+puts "Creating a user - Zack..."
+zack = User.new(
+  first_name: "Zack",
+  last_name: "Foo",
+  email: "zackfoo@gmail.com",
+  password: 12345678,
+  age: 27,
+  gender: "M",
+  languages: "English, Chinese"
+)
+file = URI.open("https://kitt.lewagon.com/placeholder/users/zackfoo95")
+zack.photo.attach(io: file, filename: "#{zack.email}-avatar")
+zack.save
+puts "User Zack created"
+
+puts "Creating Itinerary: 'Relaxing 3D2N Ubud Retreat'..."
+ubud_retreat = Itinerary.new(
+  title: "Relaxing 3D2N Ubud Retreat",
+  participant_limit: 4,
+  description: "It has been a very stressfull month and I have planned this beautiful
+                Ubud retreat to just detox and relax the mind.",
+  published: false,
+  destination: "Bali",
+  deadline: DateTime.new(2022, 6, 30, 12, 0, 0)
+)
+
+ubud_retreat.user = zack;
+
+ubud_retreat_chatroom = Chatroom.new(
+  name: "Relaxing 3D2N Ubud Retreat"
+)
+
+ubud_retreat_chatroom.save!
+ubud_retreat.chatroom = ubud_retreat_chatroom
+ubud_retreat_itinerary_user = ItineraryUser.new(
+  status: "organiser"
+)
+ubud_retreat_itinerary_user.user = zack
+ubud_retreat_itinerary_user.itinerary = ubud_retreat
+ubud_retreat_itinerary_user.save!
+puts "Itinerary 'Relaxing 3D2N Ubud Retreat' was created"
+
+puts "Creating events for 'Relaxing 3D2N Ubud Retreat'..."
+yoga = Event.new(
+  description: "Relax the body and mind by doing some relaxing yoga at Ubud's most popular yoga studio",
+  cost: 20,
+  location: "Jl. Hanoman Jl. Raya Pengosekan Ubud, Peliatan, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+  title: "Yoga",
+  date_start: DateTime.new(2022, 7, 2, 9, 0),
+  date_end: DateTime.new(2022, 7, 2, 10, 0)
+)
+yoga.itinerary = ubud_retreat
+if yoga.valid?
+  yoga.save!
+end
+puts "1 event created"
+
+lunch = Event.new(
+  description: "Let's have a nice healthy lunch after class",
+  cost: 25,
+  location: "Jl. Jembawan, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+  title: "Healthy Lunch",
+  date_start: DateTime.new(2022, 7, 2, 12, 0),
+  date_end: DateTime.new(2022, 7, 2, 14, 0)
+)
+lunch.itinerary = ubud_retreat
+if lunch.valid?
+  lunch.save!
+end
+puts "2 events created"
+
+monkey_forest = Event.new(
+  description: "Let's visit the Ubud's monkey forest, home to over 700 long-tailed macaques.",
+  cost: 10,
+  location: "Jalan Monkey Forest, Ubud, Gianyar, Bali 80571, Indonesia",
+  title: "Ubud Monkey Forest",
+  date_start: DateTime.new(2022, 7, 3, 9, 0),
+  date_end: DateTime.new(2022, 7, 3, 12, 0)
+)
+monkey_forest.itinerary = ubud_retreat
+if monkey_forest.valid?
+  monkey_forest.save!
+end
+puts "3 events created"
+
+dinner = Event.new(
+  description: "Let's have a nice dinner with some cocktails",
+  cost: 50,
+  location: "Jl. Hanoman, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+  title: "Dinner with cocktails",
+  date_start: DateTime.new(2022, 7, 3, 18, 0),
+  date_end: DateTime.new(2022, 7, 3, 22, 0)
+)
+monkey_forest.itinerary = ubud_retreat
+if monkey_forest.valid?
+  monkey_forest.save!
+end
+puts "4 events created"
+
+rice_terrace = Event.new(
+  description: "The Tegallang rice terrace is famous for its scenic landscape.
+                There is a quaint villeage of Pakudui, close to the rice terrace,
+                where you can shop for some ornamental woodwork and various carvings of mythical figures",
+  cost: 50,
+  location: "Jalan Raya Tegallalang, Tegallalang, Gianyar, Bali 80561, Indonesia",
+  title: "Day trip to Tegallang Rice Terrace",
+  date_start: DateTime.new(2022, 7, 4, 9, 0),
+  date_end: DateTime.new(2022, 7, 4, 16, 0)
+)
+rice_terrace.itinerary = ubud_retreat
+if rice_terrace.valid?
+  rice_terrace.save!
+end
+puts "5 events created"
+
+ubud_retreat.published = true
+ubud_retreat.save!
+
+puts "Completed creating itinerary 'Relaxing 3D2N Ubud Retreat'"
+
+# Itinerary 3
+puts "BALI PARTY:"
+puts "Creating a user - Ming Fu..."
+mingfu = User.new(
+  first_name: "Ming Fu",
+  last_name: "Poh",
+  email: "pohmingfu@gmail.com",
+  password: 12345678,
+  age: 28,
+  gender: "M",
+  languages: "English, Chinese"
+)
+file = URI.open("https://kitt.lewagon.com/placeholder/users/sllow718")
+mingfu.photo.attach(io: file, filename: "#{mingfu.email}-avatar")
+mingfu.save
+puts "User Ming Fu created"
+
+puts "Creating Itinerary: 'Bali Party'..."
+bali_party = Itinerary.new(
+  title: "Bali Party",
+  participant_limit: 8,
+  description: "This trip is going to be so lit, we are going to eat, sleep, party and repeat!",
+  published: false,
+  destination: "Bali",
+  deadline: DateTime.new(2022, 7, 1, 12, 0, 0)
+)
+
+bali_party.user = mingfu
+
+bali_party_chatroom = Chatroom.new(
+  name: "Bali Party"
+)
+
+bali_party_chatroom.save!
+bali_party.chatroom = bali_party_chatroom
+bali_party_itinerary_user = ItineraryUser.new(
+  status: "organiser"
+)
+bali_party_itinerary_user.user = mingfu
+bali_party_itinerary_user.itinerary = bali_party
+bali_party_itinerary_user.save!
+puts "Itinerary 'Bali Party' was created"
+
+puts "Creating events for 'Bali Party'..."
+island_hopping = Event.new(
+  description: "Let's not restrict ourselves to the mainland, let's go island hopping!",
+  cost: 70,
+  location: "Nusa Lembongan, Jungutbatu, Kec. Nusa Penida, Kabupaten Klungkung, Bali 80771, Indonesia",
+  title: "Island Hopping to Nusa Lembongan",
+  date_start: DateTime.new(2022, 8, 20, 9, 0),
+  date_end: DateTime.new(2022, 8, 20, 18, 0)
+)
+island_hopping.itinerary = bali_party
+if island_hopping.valid?
+  island_hopping.save!
+end
+puts "1 event created"
+
+party_one = Event.new(
+  description: "Let's partayeeee!! We will go bar hopping so get ready to get lit!!",
+  cost: 100,
+  location: "Jl. Pantai Berawa No.99, Tibubeneng, Badung, Kabupaten Badung, Bali 80361, Indonesia",
+  title: "Bar Hopping",
+  date_start: DateTime.new(2022, 8, 21, 17, 0),
+  date_end: DateTime.new(2022, 8, 21, 23, 0)
+)
+party_one.itinerary = bali_party
+if party_one.valid?
+  party_one.save!
+end
+puts "2 events created"
+
+beach = Event.new(
+  description: "Time to relax and wind down at the beach club",
+  cost: 50,
+  location: "Petitenget St No.51B, Seminyak, Kuta Utara, Badung Regency, Bali 80361, Indonesia",
+  title: "Relax at the Beach",
+  date_start: DateTime.new(2022, 8, 22, 11, 0),
+  date_end: DateTime.new(2022, 8, 22, 15, 0)
+)
+beach.itinerary = bali_party
+if beach.valid?
+  beach.save!
+end
+puts "3 events created"
+
+party_two = Event.new(
+  description: "More bar hopping and more drinking!",
+  cost: 100,
+  location: "Jln Legian No.71, Kuta, Badung Regency, Bali 80361, Indonesia",
+  title: "More drunken nights",
+  date_start: DateTime.new(2022, 8, 23, 18, 0),
+  date_end: DateTime.new(2022, 8, 23, 23, 0)
+)
+party_two.itinerary = bali_party
+if party_two.valid?
+  party_two.save!
+end
+puts "4 events created"
+
+bali_party.published = true
+bali_party.save!
+
+puts "Events for 'Bali Party' were created"
+>>>>>>> master
