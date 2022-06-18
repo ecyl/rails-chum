@@ -28,13 +28,13 @@
                 </a>
 
                 <%# DROPDOWN MENU %>
-                <ul class="dropdown-menu dropdown-menu-lg-end notification-dropdown" data-controller="notification-dropdown-subscription" data-notification-dropdown-subscription-user-id-value="<%= current_user.id %>" data-notification-dropdown-subscription-target="row">
-                    <%# get all notifications for current_user %>
-                    <%= render "shared/notification-dropdown" %>
-                </ul>
-
-                <%# DROPDOWN MENU %>
-
+                <%# only show dropdown menu is notification is not empty %>
+                <% unless current_user.notifications.empty? %>
+                  <ul class="dropdown-menu dropdown-menu-lg-end notification-dropdown" data-controller="notification-dropdown-subscription" data-notification-dropdown-subscription-user-id-value="<%= current_user.id %>" data-notification-dropdown-subscription-target="row">
+                      <%# get all notifications for current_user %>
+                      <%= render "shared/notification-dropdown" %>
+                  </ul>
+                <% end %>
               </div>
 
 
