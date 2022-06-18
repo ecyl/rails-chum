@@ -94,7 +94,7 @@ class ItineraryUsersController < ApplicationController
 
       ActionCable.server.broadcast(
         "notification-dropdown-#{@notification.user.id}",
-        render_to_string(partial:"shared/each-notification-row", locals: { notification: @notification })
+        render_to_string(partial: "shared/each-notification-row", locals: { notification: @notification })
       )
     else
       flash[:alert] = "You have already indicated your interest to join the trip."
@@ -131,7 +131,7 @@ class ItineraryUsersController < ApplicationController
       notification_initiator.save
       ActionCable.server.broadcast(
         "notification-badge-#{@notification.user.id}",
-        render_to_string(partial:"shared/each-notification-row", locals: { notification: @notification })
+        render_to_string(partial: "shared/each-notification-row", locals: { notification: @notification })
       )
     end
   end
