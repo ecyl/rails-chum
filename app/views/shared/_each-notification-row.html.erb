@@ -13,6 +13,7 @@
       <span class="">
         <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       </span>
+      <% end %>
       <div id="notification-emoji" class="position-absolute">
         <% if notification.notification_type == "request_accepted" %>
             ✅
@@ -22,7 +23,6 @@
             ↖️
         <% end %>
       </div>
-      <% end %>
     </div>
     <div id="text-wrapper-max-width" class="my-1">
       <strong><%= notif_initiator_fname %></strong> <%= notification.content %>
