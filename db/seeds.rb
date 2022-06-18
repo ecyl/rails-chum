@@ -798,3 +798,309 @@ osaka.published = true
 osakai.save!
 
 puts "Events for 'Osaka Adventure' were created"
+
+# Eunice
+
+puts "––––––––––––––––––––––––––CREATING BALI ITINERARIES––––––––––––––––––––––––––"
+# Itinerery 1
+puts "A SURFING TRIP TO KUTA BEACH:"
+puts "Creating a user - Justinn..."
+justinnleong = User.new(
+  first_name: "Justinn",
+  last_name: "Leong",
+  email: "justinnleong@gmail.com",
+  password: 12345678,
+  age: 32,
+  gender: "M",
+  languages: "English, Chinese"
+)
+file = URI.open("https://kitt.lewagon.com/placeholder/users/justinnjamesleong")
+justinnleong.photo.attach(io: file, filename: "#{justinnleong.email}-avatar")
+justinnleong.save
+puts "User Justinn created"
+
+puts "Creating Itinerary: '2D1N Surf Trip to Kuta Beach'..."
+kutabeach= Itinerary.new(
+  title: "2D1N Surf Trip to Kuta Beach",
+  participant_limit: 3,
+  description: "Kuta Beach is one of the best places to enjoy Bali’s famous sunsets.
+                Located on the island’s southwestern coast, we will be surfing all day long!",
+  published: false,
+  destination: "Bali",
+  deadline: DateTime.new(2022, 7, 23, 12, 0, 0)
+)
+
+kutabeach.user = justinnleong;
+
+kutabeach_chatroom = Chatroom.new(
+  name: "2D1N Surf Trip to Kuta Beach"
+)
+
+kutabeach_chatroom.save!
+kutabeach.chatroom = kutabeach_chatroom
+kutabeach_itinerary_user = ItineraryUser.new(
+  status: "organiser"
+)
+kutabeach_itinerary_user.user = justinnleong
+kutabeach_itinerary_user.itinerary = kutabeach
+kutabeach_itinerary_user.save!
+puts "Itinerary '2D1N Surf Trip to Kuta Beach' was created"
+
+puts "Creating events for '2D1N Surf Trip to Kuta Beach'..."
+surf = Event.new(
+  description: "Waves are gonna be so perfect for surfing especially for beginners. Don't worry about not having a surfboard
+                because there are many rental shops nearby.",
+  cost: 20,
+  location: "Jl. Pantai Kuta No.99, Legian, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
+  title: "Surf Day 1",
+  date_start: DateTime.new(2022, 8, 8, 9, 0),
+  date_end: DateTime.new(2022, 8, 8, 15, 0)
+)
+surf.itinerary = kutabeach
+if surf.valid?
+  surf.save!
+end
+puts "1 event created"
+
+dinner_one = Event.new(
+  description: "We will be having a nice sunset dinner along the beach",
+  cost: 50,
+  location: "Beachwalk Shopping Center, Jl. Pantai Kuta, Kuta, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
+  title: "Dinner with a sunset view along the beach",
+  date_start: DateTime.new(2022, 8, 8, 18, 0),
+  date_end: DateTime.new(2022, 8, 8, 22, 0)
+)
+dinner_one.itinerary = kutabeach
+if dinner_one.valid?
+  dinner_one.save!
+end
+puts "2 events created"
+
+surf_again = Event.new(
+  description: "Today, will be the second day and sadly the last day where we will catch some awesome waves",
+  cost: 20,
+  location: "Jl. Pantai Kuta, Kuta, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
+  title: "Surf Day 2",
+  date_start: DateTime.new(2022, 8, 9, 9, 0),
+  date_end: DateTime.new(2022, 8, 9, 15, 0)
+)
+surf_again.itinerary = kutabeach
+if surf_again.valid?
+  surf_again.save!
+end
+puts "3 events created"
+
+puts "Completed creating itinerary: '2D1N Surf Trip to Kuta Beach'"
+
+# Itinerary 2
+puts "RELAXING 3D2N UBUD RETREAT:"
+puts "Creating a user - Zack..."
+zack = User.new(
+  first_name: "Zack",
+  last_name: "Foo",
+  email: "zackfoo@gmail.com",
+  password: 12345678,
+  age: 27,
+  gender: "M",
+  languages: "English, Chinese"
+)
+file = URI.open("https://kitt.lewagon.com/placeholder/users/zackfoo95")
+zack.photo.attach(io: file, filename: "#{zack.email}-avatar")
+zack.save
+puts "User Zack created"
+
+puts "Creating Itinerary: 'Relaxing 3D2N Ubud Retreat'..."
+ubud_retreat = Itinerary.new(
+  title: "Relaxing 3D2N Ubud Retreat",
+  participant_limit: 4,
+  description: "It has been a very stressfull month and I have planned this beautiful
+                Ubud retreat to just detox and relax the mind.",
+  published: false,
+  destination: "Bali",
+  deadline: DateTime.new(2022, 6, 30, 12, 0, 0)
+)
+
+ubud_retreat.user = zack;
+
+ubud_retreat_chatroom = Chatroom.new(
+  name: "Relaxing 3D2N Ubud Retreat"
+)
+
+ubud_retreat_chatroom.save!
+ubud_retreat.chatroom = ubud_retreat_chatroom
+ubud_retreat_itinerary_user = ItineraryUser.new(
+  status: "organiser"
+)
+ubud_retreat_itinerary_user.user = zack
+ubud_retreat_itinerary_user.itinerary = ubud_retreat
+ubud_retreat_itinerary_user.save!
+puts "Itinerary 'Relaxing 3D2N Ubud Retreat' was created"
+
+puts "Creating events for 'Relaxing 3D2N Ubud Retreat'..."
+tokyo_station = Event.new(
+  description: "Explore the area around the the historic Tokyo Station",
+  cost: 100,
+  location: "1 Chome Marunouchi, Chiyoda City, Tokyo 100-0005, Japan",
+  title: "Tokyo Station",
+  date_start: DateTime.new(2022, 8, 20, 9, 0),
+  date_end: DateTime.new(2022, 8, 20, 14, 0)
+)
+tokyo_station.itinerary = tokyogetaway
+if tokyo_station.valid?
+  tokyo_station.save!
+end
+puts "1 event created"
+
+imperial_palace = Event.new(
+  description: "Let's explore the nearby Tokyo Imperial Palace",
+  cost: 100,
+  location: "1-1 Chiyoda, Chiyoda City, Tokyo 100-8111, Japan",
+  title: "Tokyo Imperial Palace",
+  date_start: DateTime.new(2022, 8, 20, 14, 0),
+  date_end: DateTime.new(2022, 8, 20, 16, 0)
+)
+imperial_palace.itinerary = tokyogetaway
+if imperial_palace.valid?
+  imperial_palace.save!
+end
+puts "2 events created"
+
+sensoji = Event.new(
+  description: "Let's visit the oldest Buddhist temple in Tokyo.",
+  cost: 10,
+  location: "2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan",
+  title: "Senso-ji Temple",
+  date_start: DateTime.new(2022, 8, 21, 9, 0),
+  date_end: DateTime.new(2022, 8, 21, 12, 0)
+)
+sensoji.itinerary = tokyogetaway
+if sensoji.valid?
+  sensoji.save!
+end
+puts "3 events created"
+
+tsutaya = Event.new(
+  description: "Relax at this aesthetic looking bookstore",
+  cost: 100,
+  location: "17-5 Sarugaku-cho, Shibuya-ku, Tokyo 150-0033",
+  title: "Tsutaya Books Daikanyama",
+  date_start: DateTime.new(2022, 8, 22, 9, 0),
+  date_end: DateTime.new(2022, 8, 22, 12, 0)
+)
+tsutaya.itinerary = tokyogetaway
+if tsutaya.valid?
+  tsutaya.save!
+end
+puts "4 events created"
+
+tokyogetaway.published = true
+tokyogetaway.save!
+
+puts "Events for 'Quick 3D2N Tokyo Getaway' were created"
+
+# Itinerary 3
+puts "OSAKA ADVENTURE:"
+puts "Creating a user - Ashley..."
+ashleyyeo = User.new(
+  first_name: "Ashley",
+  last_name: "Yeo",
+  email: "ashleyyeo@gmail.com",
+  password: 12345678,
+  age: 25,
+  gender: "M",
+  languages: "English, Chinese"
+)
+file = URI.open("https://kitt.lewagon.com/placeholder/users/ashignyeo")
+ashleyyeo.photo.attach(io: file, filename: "#{ashleyyeo.email}-avatar")
+ashleyyeo.save
+puts "User Ashley created"
+
+puts "Creating Itinerary: 'Osaka Adventure'..."
+osaka = Itinerary.new(
+  title: "Osaka Adventure",
+  participant_limit: 2,
+  description: "Is anyone interested in going for a weekend trip to Osaka in Auguest?
+                I'm open to having 2 more people join me on this trip!",
+  published: false,
+  destination: "Japan",
+  deadline: DateTime.new(2022, 7, 20, 12, 0, 0)
+)
+
+osaka.user = ashleyyeo;
+
+osaka_chatroom = Chatroom.new(
+  name: "Osaka Adventure"
+)
+
+osaka_chatroom.save!
+osaka.chatroom = osaka_chatroom
+osaka_itinerary_user = ItineraryUser.new(
+  status: "organiser"
+)
+osaka_itinerary_user.user = ashleyyeo
+osaka_itinerary_user.itinerary = osaka
+osaka_itinerary_user.save!
+puts "Itinerary 'Osaka Adventure' was created"
+
+
+puts "Creating events for 'Osaka Adventure'..."
+cat_cafe = Event.new(
+  description: "Let's play with cute kitties",
+  cost: 20,
+  location: "3 Chome-1-24 Higashinakahama, Joto Ward, Osaka, 536-0023, Japan",
+  title: "Neko no Jikan",
+  date_start: DateTime.new(2022, 8, 20, 9, 0),
+  date_end: DateTime.new(2022, 8, 20, 12, 0)
+)
+cat_cafe.itinerary = osaka
+if cat_cafe.valid?
+  cat_cafe.save!
+end
+puts "1 event created"
+
+cat_cafe = Event.new(
+  description: "Let's play with cute kitties",
+  cost: 20,
+  location: "3 Chome-1-24 Higashinakahama, Joto Ward, Osaka, 536-0023, Japan",
+  title: "Neko no Jikan",
+  date_start: DateTime.new(2022, 8, 20, 9, 0),
+  date_end: DateTime.new(2022, 8, 20, 12, 0)
+)
+cat_cafe.itinerary = osaka
+if cat_cafe.valid?
+  cat_cafe.save!
+end
+puts "2 events created"
+
+tsubomi = Event.new(
+  description: "Coffee time",
+  cost: 50,
+  location: "1-8 Rokumantaicho, Tennoji Ward, Osaka, 543-0074, Japan",
+  title: "Tsubomi Coffee",
+  date_start: DateTime.new(2022, 8, 21, 9, 0),
+  date_end: DateTime.new(2022, 8, 21, 12, 0)
+)
+tsubomi.itinerary = osaka
+if tsubomi.valid?
+  tsubomi.save!
+end
+puts "3 events created"
+
+denden = Event.new(
+  description: "Shopping for tech stuff",
+  cost: 200,
+  location: "Nipponbashi, Naniwa-ku, Osaka-shi, Osaka 3-5, 556-0005",
+  title: "Nipponbashi Den Den Town",
+  date_start: DateTime.new(2022, 8, 22, 9, 0),
+  date_end: DateTime.new(2022, 8, 22, 20, 0)
+)
+denden.itinerary = osaka
+if denden.valid?
+  denden.save!
+end
+puts "4 events created"
+
+osaka.published = true
+osakai.save!
+
+puts "Events for 'Osaka Adventure' were created"
