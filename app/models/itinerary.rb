@@ -16,6 +16,8 @@ class Itinerary < ApplicationRecord
 
   has_many :reviews
 
+  has_many :notification_initiators
+
   # Validations
   validates :title, presence: true
   validates :participant_limit, presence: true

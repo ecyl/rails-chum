@@ -1,3 +1,12 @@
+.overview-text {
+  font-size: 31px;
+  font-weight: 600;
+}
+
+.overview-trip-details-text {
+  font-size: 25px;
+}
+
 .tabs-head {
   display: flex;
 }
@@ -40,9 +49,9 @@
 
 .trip-key-details {
   width: 450px;
-  height: 380px;
+  height: 100%;
   border-radius: 6px;
-  background-color: #FEFEFE;
+  background-color: #fefefe;
   padding: 40px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -57,24 +66,13 @@
 
 .fa-calendar {
   font-size: 10px;
-  color: #4120BC;
-
+  color: #4120bc;
 }
-
 
 .fa-people-pulling:before {
-  color: #4120BC;
+  color: #4120bc;
   font-size: 20px;
 }
-
-
-
-
-
-
-
-
-
 
 // // .nav-tabs > button {
 // //   color: #333533;

@@ -4,13 +4,12 @@
     <div class="container-fluid">
       <!-- Logo -->
       <%= link_to root_path, class: "navbar-brand" do %>
-        <%= image_tag "chum-logo-transparent-orange.png", height: "40px" %>
+        <h4 class="text-uppercase">CHUM</h4>
       <% end %>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <!-- Navlinks for logged-in user -->
@@ -19,18 +18,38 @@
           </li>
         </ul>
 
-        <div class="navbar-nav ms-auto d-flex align-items-center">
+        <div class="navbar-nav ms-auto d-flex align-items-center" data-controller="notification-badge-subscription" data-notification-badge-subscription-user-id-value="<%= current_user.id %>">
+            <span class="position-relative">
+
+              <%# DROPDOWN BUTTON - NOTIFICATION BELL %>
+              <div class="btn-group">
+                <a class="" type="button" id="" data-notification-badge-subscription-target="bell" data-action="click->notification-badge-subscription#reset" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa-solid fa-bell nav-link notification-bell <%= 'nav-text-black' if @black_text_navbar %>" style="font-size: 25px"></i>
+                </a>
+
+                <%# DROPDOWN MENU %>
+                <ul class="dropdown-menu dropdown-menu-lg-end notification-dropdown" data-controller="notification-dropdown-subscription" data-notification-dropdown-subscription-user-id-value="<%= current_user.id %>" data-notification-dropdown-subscription-target="row">
+                    <%# get all notifications for current_user %>
+                    <%= render "shared/notification-dropdown" %>
+                </ul>
+
+                <%# DROPDOWN MENU %>
+
+              </div>
+
+
+              <div id="notification-badges" class="text-center ml-3 position-absolute" style="" data-notification-badge-subscription-target="badge"><%= current_user.notifications.where(read:false).count %></div>
+            </span>
             <!-- Avatar & name -->
-            <a style="width:145; height: 56" class="nav-link dropdown-toggle <%= 'nav-text-black' if @black_text_navbar %>" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-controller="notification-badge-subscription" data-notification-badge-subscription-user-id-value="<%= current_user.id %>">
+            <a style="width:145; height: 56" class="nav-link dropdown-toggle <%= 'nav-text-black' if @black_text_navbar %>" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+              <span class="username-display mx-2 <%= 'nav-text-black' if @black_text_navbar %>"><%= current_user.first_name %></span>
               <% if current_user.photo.attached? %>
                 <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle position-relative", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% else %>
-              <span class="position-relative">
+              <span class="">
                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/rayjosong", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                <div id="notification-badges" class="text-center ml-3 position-absolute" style="" data-notification-badge-subscription-target="badge"><%= current_user.notifications.where(read:false).count %></div>
               </span>
               <% end %>
-              <span class="username-display <%= 'nav-text-black' if @black_text_navbar %>"><%= current_user.first_name %></span>
             </a>
 
             <!-- User dropdown -->
@@ -46,11 +65,6 @@
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "My Trips", mytrips_path, class: "dropdown-item" %></li>
               <li><%= link_to "My Messages", chatrooms_path, class: "dropdown-item" %></li>
-              <li>
-                <%= link_to notifications_path, class:"dropdown-item" do %>
-                  <p class="position-relative m-0">My Notifications</p>
-                <% end %>
-              </li>
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
@@ -65,7 +79,7 @@
     <div class="container-fluid">
       <!-- Logo -->
       <%= link_to root_path, class: "navbar-brand" do %>
-        <%= image_tag "chum-logo-transparent-orange.png", height: "40px" %>
+        <h4 class="text-uppercase">CHUM</h4>
       <% end %>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,0 +1,22 @@
+.published-toggle {
+  transform: scale(1.4);
+  margin-top: 0.2rem;
+  margin-right: 0.3rem;
+  box-shadow: none;
+}
+
+.toggle-label-text {
+  margin-left: 0.4rem;
+}
+
+.form-check-input:checked {
+  background-color: $dark-purple;
+}
+
+.label-opaque {
+  opacity: 0.5;
+}
+
+.published-bold {
+  font-weight: 600;
+}

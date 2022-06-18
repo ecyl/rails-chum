@@ -1,3 +1,12 @@
 .text-padding-top {
   padding-top: 0.5rem;
 }
+
+.dropdown-item:hover {
+  background-color: #9c8bd8ab;
+}
+
+.dropdown-item:hover:active {
+  background-color: $purple;
+  color: white;
+}

@@ -209,21 +209,23 @@ suansen_event3.itinerary = suansen_itinerary
 suansen_event3.save!
 
 # HARDCODE NOTIFICATION (SO NOTIFICATION DROPDOWN WONT BE EMPTY) -- DO NOT DELETE PLEASE
-hardcode_notification = Notification.new(
-  user: raymond,
-  content: " has accepted your request to join the itinerary. Click to view.",
-  itinerary: suansen_itinerary,
-  notification_type: "request_accepted"
-)
-hardcode_initiator = NotificationInitiator.new(
-  user: suansen,
-  itinerary: suansen_itinerary,
-  notification: hardcode_notification
-)
+# hardcode_notification = Notification.new(
+#   user: raymond,
+#   content: " has accepted your request to join the itinerary. Click to view.",
+#   itinerary: suansen_itinerary,
+#   notification_type: "request_accepted"
+# )
+# hardcode_initiator = NotificationInitiator.new(
+#   user: suansen,
+#   itinerary: suansen_itinerary,
+#   notification: hardcode_notification
+# )
 
-hardcode_notification.save!
+# hardcode_notification.save!
+
 
 # GERMAINE
+
 jamieson = User.new(
   first_name: "Jamieson",
   last_name: "Walker",
@@ -457,19 +459,3 @@ washington_monument.itinerary = washington
 if washington_monument.valid?
   washington_monument.save!
 end
-
-capitol_building = Event.new(
-  description: "Lets go politician sightseeing. Maybe we'll catch some famous figures on the steps of the capitol",
-  cost: 0,
-  location: "Capitol Building",
-  title: "Capitol building exploration",
-  date_start: DateTime.new(2022, 11, 19, 10,15),
-  date_end: DateTime.new(2022, 11, 19, 11,15)
-)
-capitol_building.itinerary = washington
-if capitol_building.valid?
-  capitol_building.save!
-end
-
-washington.published = true
-washington.save!

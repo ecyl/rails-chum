@@ -1,7 +1,7 @@
 <div class="tabs container col-8 mx-auto mt-4 mb-5" data-controller="tabs">
   <div class="tabs-head mb-5">
     <span data-tabs-target="tabHeader" data-tab="one" data-action="click->tabs#toggleTab" class="tabs_toggle active">Overview</span>
-    <% if (@itinerary.itinerary_users.where(status: "accepted").include?(current_user)) || (@itinerary.itinerary_users.find_by(status: "organiser").user == current_user) %>
+    <% if (@itinerary.itinerary_users.where(status: "accepted").include?(current_user)) || (@itinerary.user == current_user) %>
       <span data-tabs-target="tabHeader" data-tab="two" data-action="click->tabs#toggleTab" class="tabs_toggle">Announcements</span>
     <% end %>
     <span data-tabs-target="tabHeader" data-tab="three" data-action="click->tabs#toggleTab" class="tabs_toggle">Members</span>
@@ -15,7 +15,7 @@
     <%# SECTION ONE LOOK PROPERLY %>
     <div class="sections section-one">
       <div class="trip-overview">
-        <h5>Trip overview</h5>
+        <p class="overview-text">Trip overview</p>
         <p><%= @itinerary.description %></p>
 
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -61,7 +61,10 @@
       <% if !@itinerary.events.length.zero? %>
         <%# If event exists in itinerary %>
         <div class="trip-key-details">
-          <strong><p class="mb-3">Trip details</p></strong>
+          <div class="d-flex justify-content-between">
+            <strong><p class="mb-3 overview-trip-details-text">Trip details</p></strong>
+            <%= render "published-toggle", itinerary: @itinerary %>
+          </div>
 
           <p><strong><i class="fa-solid fa-calendar fa-lg"></i>&nbsp;&nbsp;  Dates:</strong> <%= @events.keys.first.strftime("%d %b %Y") %> - <%= @events.keys.last.strftime("%d %b %Y") %></p>
           <p><strong><i class="fa-solid fa-sack-dollar fa-lg"></i></i>&nbsp;&nbsp; Budget:</strong> $<%= @itinerary.cost %></p>
@@ -69,9 +72,10 @@
 
 
           <div class="trip-buttons mt-5">
-            <%= link_to 'Request to join', new_itinerary_itinerary_user_path(@itinerary), class: "btn-purple-outline" %>
             <%= link_to 'View organiser profile', user_path(@itinerary.user), class: "btn-purple-outline mt-4" %>
-            <%= link_to 'Publish itinerary', publish_itinerary_path(@itinerary), class: "btn-purple-outline mt-4", method: :patch unless @itinerary.published = true %>
+            <%# link_to 'Request to join', new_itinerary_itinerary_user_path(@itinerary), class: "btn-purple-outline" %>
+            <%= render "req-to-join-button", itinerary: @itinerary, itinerary_user: @itinerary_user %>
+            <%# <%= link_to 'Publish itinerary', publish_itinerary_path(@itinerary), class: "btn-purple-outline mt-4", method: :patch unless @itinerary.published = true %>
           </div>
 
         </div>

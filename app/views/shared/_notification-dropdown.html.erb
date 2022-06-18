@@ -1,0 +1,10 @@
+<% @notifications = Notification.where(user: current_user).order(created_at: :desc) %>
+<% @notifications.each do |notification| %>
+  <%= render "shared/each-notification-row", notification: notification %>
+<% end %>
+
+<%# HARDCODE: get suansen's notification %>
+<%# suansen = User.find_by(email: "suansen@gmail.com") %>
+<%# suansen_itinerary = Itinerary.find_by(user: suansen) %>
+<%# hardcode_notification = Notification.find_by(itinerary: suansen_itinerary) %>
+<%# render "shared/each-notification-row", notification: hardcode_notification %>
