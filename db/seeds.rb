@@ -797,20 +797,20 @@ seoul_tour.save!
 puts "––––––––––––––––––––––––––CREATING JAPAN ITINERARIES––––––––––––––––––––––––––"
 # Itinerery 1
 puts "A CLIMBING TRIP TO MIZUGAKI:"
-puts "Creating a user - Florence..."
-florenceloy = User.new(
-  first_name: "Florence",
-  last_name: "Loy",
-  email: "florenceloy@gmail.com",
-  password: 12345678,
-  age: 27,
-  gender: "F",
-  languages: "English, Chinese"
-)
-file = URI.open("https://source.unsplash.com/cOe0L1Yp2UA")
-florenceloy.photo.attach(io: file, filename: "#{florenceloy.email}-avatar")
-florenceloy.save
-puts "User Florence created"
+# puts "Creating a user - Florence..."
+# florenceloy = User.new(
+#   first_name: "Florence",
+#   last_name: "Loy",
+#   email: "florenceloy@gmail.com",
+#   password: 12345678,
+#   age: 27,
+#   gender: "F",
+#   languages: "English, Chinese"
+# )
+# file = URI.open("https://source.unsplash.com/cOe0L1Yp2UA")
+# florenceloy.photo.attach(io: file, filename: "#{florenceloy.email}-avatar")
+# florenceloy.save
+# puts "User Florence created"
 
 puts "Creating Itinerary: 'A Climbing Trip to Mizugaki'..."
 mtmizugaki = Itinerary.new(
@@ -826,7 +826,7 @@ mtmizugaki = Itinerary.new(
   deadline: DateTime.new(2022, 7, 20, 12, 0, 0)
 )
 
-mtmizugaki.user = florenceloy;
+mtmizugaki.user = raymond
 
 mtmizugaki_chatroom = Chatroom.new(
   name: "A Climbing Trip to Mizugaki"
@@ -837,7 +837,7 @@ mtmizugaki.chatroom = mtmizugaki_chatroom
 mtmizugaki_itinerary_user = ItineraryUser.new(
   status: "organiser"
 )
-mtmizugaki_itinerary_user.user = florenceloy
+mtmizugaki_itinerary_user.user = raymond
 mtmizugaki_itinerary_user.itinerary = mtmizugaki
 mtmizugaki_itinerary_user.save!
 puts "Itinerary 'A Climbing Trip to Mizugaki' was created"
@@ -1212,20 +1212,6 @@ puts "Completed creating itinerary: '2D1N Surf Trip to Kuta Beach'"
 
 # Itinerary 2
 puts "RELAXING 3D2N UBUD RETREAT:"
-puts "Creating a user - Zack..."
-zack = User.new(
-  first_name: "Zack",
-  last_name: "Foo",
-  email: "zackfoo@gmail.com",
-  password: 12345678,
-  age: 27,
-  gender: "M",
-  languages: "English, Chinese"
-)
-file = URI.open("https://kitt.lewagon.com/placeholder/users/zackfoo95")
-zack.photo.attach(io: file, filename: "#{zack.email}-avatar")
-zack.save
-puts "User Zack created"
 
 puts "Creating Itinerary: 'Relaxing 3D2N Ubud Retreat'..."
 ubud_retreat = Itinerary.new(
@@ -1238,7 +1224,7 @@ ubud_retreat = Itinerary.new(
   deadline: DateTime.new(2022, 6, 30, 12, 0, 0)
 )
 
-ubud_retreat.user = zack;
+ubud_retreat.user = eunice
 
 ubud_retreat_chatroom = Chatroom.new(
   name: "Relaxing 3D2N Ubud Retreat"
@@ -1249,7 +1235,7 @@ ubud_retreat.chatroom = ubud_retreat_chatroom
 ubud_retreat_itinerary_user = ItineraryUser.new(
   status: "organiser"
 )
-ubud_retreat_itinerary_user.user = zack
+ubud_retreat_itinerary_user.user = eunice
 ubud_retreat_itinerary_user.itinerary = ubud_retreat
 ubud_retreat_itinerary_user.save!
 puts "Itinerary 'Relaxing 3D2N Ubud Retreat' was created"
@@ -1436,3 +1422,23 @@ bali_party.published = true
 bali_party.save!
 
 puts "Events for 'Bali Party' were created"
+
+puts "Creating reviews for Raymond"
+
+review_one = Review.new(
+  content: "Raymond was such a joy to travel with, he took care of our group. Highly recommend joining his trip!"
+)
+
+review_one.itinerary = mtmizugaki
+review_one.user = mingfu
+review_one.save!
+
+puts "Creating reviews for Eunice"
+
+review_two = Review.new(
+  content: "Eunice is such a fun person! Very easy going and super spontaneous. Great travel buddy!"
+)
+
+review_two.itinerary = ubud_retreat
+review_two.user = justinnleong
+review_two.save!
