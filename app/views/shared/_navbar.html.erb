@@ -28,10 +28,8 @@
                 </a>
 
                 <%# DROPDOWN MENU %>
-                  <ul class="dropdown-menu dropdown-menu-lg-end notification-dropdown" data-controller="notification-dropdown-subscription" data-notification-dropdown-subscription-user-id-value="<%= current_user.id %>" data-notification-dropdown-subscription-target="row">
-                      <%# get all notifications for current_user %>
-                      <%= render "shared/notification-dropdown" %>
-                  </ul>
+                <%# get all notifications for current_user %>
+                <%= render "shared/notification-dropdown" %>
               </div>
 
 
