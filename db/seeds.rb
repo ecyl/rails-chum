@@ -979,6 +979,20 @@ if monkey_forest.valid?
 end
 puts "3 events created"
 
+dinner = Event.new(
+  description: "Let's have a nice dinner with some cocktails",
+  cost: 50,
+  location: "Jl. Hanoman, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+  title: "Dinner with cocktails",
+  date_start: DateTime.new(2022, 7, 3, 18, 0),
+  date_end: DateTime.new(2022, 7, 3, 22, 0)
+)
+monkey_forest.itinerary = ubud_retreat
+if monkey_forest.valid?
+  monkey_forest.save!
+end
+puts "4 events created"
+
 rice_terrace = Event.new(
   description: "The Tegallang rice terrace is famous for its scenic landscape.
                 There is a quaint villeage of Pakudui, close to the rice terrace,
@@ -993,7 +1007,7 @@ rice_terrace.itinerary = ubud_retreat
 if rice_terrace.valid?
   rice_terrace.save!
 end
-puts "4 events created"
+puts "5 events created"
 
 ubud_retreat.published = true
 ubud_retreat.save!
@@ -1001,108 +1015,106 @@ ubud_retreat.save!
 puts "Completed creating itinerary 'Relaxing 3D2N Ubud Retreat'"
 
 # Itinerary 3
-puts "OSAKA ADVENTURE:"
-puts "Creating a user - Ashley..."
-ashleyyeo = User.new(
-  first_name: "Ashley",
-  last_name: "Yeo",
-  email: "ashleyyeo@gmail.com",
+puts "BALI PARTY:"
+puts "Creating a user - Ming Fu..."
+mingfu = User.new(
+  first_name: "Ming Fu",
+  last_name: "Poh",
+  email: "pohmingfu@gmail.com",
   password: 12345678,
-  age: 25,
+  age: 28,
   gender: "M",
   languages: "English, Chinese"
 )
-file = URI.open("https://kitt.lewagon.com/placeholder/users/ashignyeo")
-ashleyyeo.photo.attach(io: file, filename: "#{ashleyyeo.email}-avatar")
-ashleyyeo.save
-puts "User Ashley created"
+file = URI.open("https://kitt.lewagon.com/placeholder/users/sllow718")
+mingfu.photo.attach(io: file, filename: "#{mingfu.email}-avatar")
+mingfu.save
+puts "User Ming Fu created"
 
-puts "Creating Itinerary: 'Osaka Adventure'..."
-osaka = Itinerary.new(
-  title: "Osaka Adventure",
-  participant_limit: 2,
-  description: "Is anyone interested in going for a weekend trip to Osaka in Auguest?
-                I'm open to having 2 more people join me on this trip!",
+puts "Creating Itinerary: 'Bali Party'..."
+bali_party = Itinerary.new(
+  title: "Bali Party",
+  participant_limit: 8,
+  description: "This trip is going to be so lit, we are going to eat, sleep, party and repeat!",
   published: false,
-  destination: "Japan",
-  deadline: DateTime.new(2022, 7, 20, 12, 0, 0)
+  destination: "Bali",
+  deadline: DateTime.new(2022, 7, 1, 12, 0, 0)
 )
 
-osaka.user = ashleyyeo;
+bali_party.user = mingfu
 
-osaka_chatroom = Chatroom.new(
-  name: "Osaka Adventure"
+bali_party_chatroom = Chatroom.new(
+  name: "Bali Party"
 )
 
-osaka_chatroom.save!
-osaka.chatroom = osaka_chatroom
-osaka_itinerary_user = ItineraryUser.new(
+bali_party_chatroom.save!
+bali_party.chatroom = bali_party_chatroom
+bali_party_itinerary_user = ItineraryUser.new(
   status: "organiser"
 )
-osaka_itinerary_user.user = ashleyyeo
-osaka_itinerary_user.itinerary = osaka
-osaka_itinerary_user.save!
-puts "Itinerary 'Osaka Adventure' was created"
+bali_party_itinerary_user.user = mingfu
+bali_party_itinerary_user.itinerary = bali_party
+bali_party_itinerary_user.save!
+puts "Itinerary 'Bali Party' was created"
 
-
-puts "Creating events for 'Osaka Adventure'..."
-cat_cafe = Event.new(
-  description: "Let's play with cute kitties",
-  cost: 20,
-  location: "3 Chome-1-24 Higashinakahama, Joto Ward, Osaka, 536-0023, Japan",
-  title: "Neko no Jikan",
+puts "Creating events for 'Bali Party'..."
+island_hopping = Event.new(
+  description: "Let's not restrict ourselves to the mainland, let's go island hopping!",
+  cost: 70,
+  location: "Nusa Lembongan, Jungutbatu, Kec. Nusa Penida, Kabupaten Klungkung, Bali 80771, Indonesia",
+  title: "Island Hopping to Nusa Lembongan",
   date_start: DateTime.new(2022, 8, 20, 9, 0),
-  date_end: DateTime.new(2022, 8, 20, 12, 0)
+  date_end: DateTime.new(2022, 8, 20, 18, 0)
 )
-cat_cafe.itinerary = osaka
-if cat_cafe.valid?
-  cat_cafe.save!
+island_hopping.itinerary = bali_party
+if island_hopping.valid?
+  island_hopping.save!
 end
 puts "1 event created"
 
-cat_cafe = Event.new(
-  description: "Let's play with cute kitties",
-  cost: 20,
-  location: "3 Chome-1-24 Higashinakahama, Joto Ward, Osaka, 536-0023, Japan",
-  title: "Neko no Jikan",
-  date_start: DateTime.new(2022, 8, 20, 9, 0),
-  date_end: DateTime.new(2022, 8, 20, 12, 0)
+party_one = Event.new(
+  description: "Let's partayeeee!! We will go bar hopping so get ready to get lit!!",
+  cost: 100,
+  location: "Jl. Pantai Berawa No.99, Tibubeneng, Badung, Kabupaten Badung, Bali 80361, Indonesia",
+  title: "Bar Hopping",
+  date_start: DateTime.new(2022, 8, 21, 17, 0),
+  date_end: DateTime.new(2022, 8, 21, 23, 0)
 )
-cat_cafe.itinerary = osaka
-if cat_cafe.valid?
-  cat_cafe.save!
+party_one.itinerary = bali_party
+if party_one.valid?
+  party_one.save!
 end
 puts "2 events created"
 
-tsubomi = Event.new(
-  description: "Coffee time",
+beach = Event.new(
+  description: "Time to relax and wind down at the beach club",
   cost: 50,
-  location: "1-8 Rokumantaicho, Tennoji Ward, Osaka, 543-0074, Japan",
-  title: "Tsubomi Coffee",
-  date_start: DateTime.new(2022, 8, 21, 9, 0),
-  date_end: DateTime.new(2022, 8, 21, 12, 0)
+  location: "Petitenget St No.51B, Seminyak, Kuta Utara, Badung Regency, Bali 80361, Indonesia",
+  title: "Relax at the Beach",
+  date_start: DateTime.new(2022, 8, 22, 11, 0),
+  date_end: DateTime.new(2022, 8, 22, 15, 0)
 )
-tsubomi.itinerary = osaka
-if tsubomi.valid?
-  tsubomi.save!
+beach.itinerary = bali_party
+if beach.valid?
+  beach.save!
 end
 puts "3 events created"
 
-denden = Event.new(
-  description: "Shopping for tech stuff",
-  cost: 200,
-  location: "Nipponbashi, Naniwa-ku, Osaka-shi, Osaka 3-5, 556-0005",
-  title: "Nipponbashi Den Den Town",
-  date_start: DateTime.new(2022, 8, 22, 9, 0),
-  date_end: DateTime.new(2022, 8, 22, 20, 0)
+party_two = Event.new(
+  description: "More bar hopping and more drinking!",
+  cost: 100,
+  location: "Jln Legian No.71, Kuta, Badung Regency, Bali 80361, Indonesia",
+  title: "More drunken nights",
+  date_start: DateTime.new(2022, 8, 23, 18, 0),
+  date_end: DateTime.new(2022, 8, 23, 23, 0)
 )
-denden.itinerary = osaka
-if denden.valid?
-  denden.save!
+party_two.itinerary = bali_party
+if party_two.valid?
+  party_two.save!
 end
 puts "4 events created"
 
-osaka.published = true
-osakai.save!
+bali_party.published = true
+bali_party.save!
 
-puts "Events for 'Osaka Adventure' were created"
+puts "Events for 'Bali Party' were created"
