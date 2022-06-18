@@ -189,6 +189,10 @@ suansen_itinerary = Itinerary.new(
   deadline: suansen_date_start + 5
 )
 
+file = URI.open("https://images.unsplash.com/photo-1554072675-66db59dba46f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80")
+suansen.photo.attach(io: file, filename: "#{suansen_itinerary.title}-itinerary")
+suansen.save
+
 # raymond_notification1 = Notification.new(
 #   user: raymond,
 
