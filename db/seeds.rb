@@ -248,6 +248,8 @@ newyork = Itinerary.new(
   deadline: DateTime.new(2022, 8, 5, 12,0)
 )
 newyork.user = jamieson
+file = URI.open("https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
+newyork.photo.attach(io: file, filename: "newyork")
 
 nyc_chatroom = Chatroom.new(
   name: "2 days in New York"
@@ -272,6 +274,9 @@ hamilton = Event.new(
   date_end: DateTime.new(2022, 8, 6, 22,15)
 )
 hamilton.itinerary = newyork
+file = URI.open("https://images.unsplash.com/photo-1568650436496-a2a288c7be3f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
+hamilton.photo.attach(io: file, filename: "hamilton")
+
 if hamilton.valid?
   hamilton.save!
 end
@@ -285,6 +290,8 @@ kats = Event.new(
   date_end: DateTime.new(2022, 8, 6, 14, 15)
 )
 kats.itinerary = newyork
+file = URI.open("https://images.unsplash.com/photo-1548528761-ce696bd1b70d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80")
+kats.photo.attach(io: file, filename: "katz-deli")
 if kats.valid?
   kats.save!
 end
@@ -298,6 +305,8 @@ brooklyn = Event.new(
   date_end: DateTime.new(2022,8,8,8,15)
 )
 brooklyn.itinerary = newyork
+file = URI.open("https://images.unsplash.com/photo-1578059474177-88fb974a2d15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80")
+brooklyn.photo.attach(io: file, filename: "brooklyn")
 if brooklyn.valid?
   brooklyn.save!
 end
@@ -311,6 +320,8 @@ central_park = Event.new(
   date_end: DateTime.new(2022,8,8,11,30)
 )
 central_park.itinerary = newyork
+file = URI.open("https://images.unsplash.com/photo-1631729779674-1f369e1116b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2012&q=80")
+central_park.photo.attach(io: file, filename: "Central-park")
 if central_park.valid?
   central_park.save!
 end
@@ -334,6 +345,8 @@ utah_chatroom = Chatroom.new(
 )
 utah_chatroom.save!
 utah.chatroom = utah_chatroom
+file = URI.open("https://images.unsplash.com/photo-1504281490492-090c5c169650?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80")
+utah.photo.attach(io: file, filename: "utah")
 utah.save!
 
 utah_itinerary_user = ItineraryUser.new(
@@ -352,6 +365,8 @@ zion_national = Event.new(
   date_end: DateTime.new(2022, 10, 1, 16, 30)
 )
 zion_national.itinerary = utah
+file = URI.open("https://images.unsplash.com/photo-1584528606063-2d14ed9b26a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80")
+zion_national.photo.attach(io: file, filename: "zion-national")
 if zion_national.valid?
   zion_national.save!
 end
@@ -365,6 +380,8 @@ monument_valley = Event.new(
   date_end: DateTime.new(2022, 10, 2, 16, 30)
 )
 monument_valley.itinerary = utah
+file = URI.open("https://images.unsplash.com/photo-1480004902249-cdb28d6a01a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2211&q=80")
+monument_valley.photo.attach(io: file, filename: "monument_valley")
 if monument_valley.valid?
   monument_valley.save!
 end
@@ -378,6 +395,8 @@ soda_shop = Event.new(
   date_end: DateTime.new(2022, 10, 3, 11, 50)
 )
 soda_shop.itinerary = utah
+file = URI.open("https://images.unsplash.com/photo-1602361063465-0cf8b388a257?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1015&q=80")
+soda_shop.photo.attach(io: file, filename: "soda-saltlake")
 if soda_shop.valid?
   soda_shop.save!
 end
@@ -390,6 +409,8 @@ temple_square = Event.new(
   date_end: DateTime.new(2022, 10, 3, 13)
 )
 temple_square.itinerary = utah
+file = URI.open("https://images.unsplash.com/photo-1561475463-bf5feec154a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80")
+temple_square.photo.attach(io: file, filename: "temple_square")
 if temple_square.valid?
   temple_square.save!
 end
@@ -410,6 +431,8 @@ washington.user = jamieson
 washington_chatroom = Chatroom.new(
   name: washington.title
 )
+file = URI.open("https://images.unsplash.com/photo-1543107076-8f86ee268706?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2128&q=80")
+washington.photo.attach(io: file, filename: "Washington_state")
 washington_chatroom.save!
 washington.chatroom = washington_chatroom
 washington.save!
@@ -430,32 +453,40 @@ forks = Event.new(
   date_end: DateTime.new(2022, 11,18, 15)
 )
 forks.itinerary = washington
+file = URI.open("https://images.unsplash.com/photo-1623281857914-60b90678a296?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
+forks.photo.attach(io: file, filename: "forks_washington")
 if forks.valid?
   forks.save!
 end
 
-lincoln_memorial = Event.new(
-  description: "Let's go see the iconic abraham lincoln statue and learn more about this great historical figure",
+space_needle = Event.new(
+  description: "Calling all greys anatomy lovers.",
   cost: 15,
-  location: "Lincoln Memorial",
-  title: "Abraham lincoln galore",
+  location: "400 Broad St, Seattle, WA 98109, United States",
+  title: "Space needle and fairy boats",
   date_start: DateTime.new(2022, 11, 19, 8),
   date_end: DateTime.new(2022, 11, 19, 9)
 )
-lincoln_memorial.itinerary = washington
-if lincoln_memorial.valid?
-  lincoln_memorial.save!
+space_needle.itinerary = washington
+file = URI.open("https://images.unsplash.com/photo-1438401171849-74ac270044ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2235&q=80")
+space_needle.photo.attach(io: file, filename: "space_needle")
+if space_needle.valid?
+  space_needle.save!
 end
 
-washington_monument = Event.new(
-  description: "Read Dan Brown's book on the freemasons? You won't want to miss visiting this eye-catching structure.",
+mount_rainier = Event.new(
+  description: "Spend some time in the great outdoors. We can hike and see the spectacular views of mount rainier.",
   cost: 0,
-  location: "Washington Monument",
-  title: "Washington monument exploration",
+  location: "Mount Rainier",
+  title: "Hiking at mount rainier",
   date_start: DateTime.new(2022, 11, 19, 9, 30),
   date_end: DateTime.new(2022, 11, 19, 10)
 )
-washington_monument.itinerary = washington
-if washington_monument.valid?
-  washington_monument.save!
+file = URI.open('https://images.unsplash.com/photo-1549769311-eb1f5f68d838?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
+mount_rainier.photo.attach(io: file, filename: "mount_rainier")
+mount_rainier.itinerary = washington
+if mount_rainier.valid?
+  mount_rainier.save!
 end
+washington.published = true
+washington.save!
