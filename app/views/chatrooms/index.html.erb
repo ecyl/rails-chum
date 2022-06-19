@@ -6,7 +6,7 @@
   <div class="chat-body" data-controller="chatbox" >
     <div class="chat-sidebar">
       <% @chatrooms.each_with_index do |chatroom, index| %>
-        <% if chatroom.itinerary %>
+        <% if chatroom.itinerary%>
         <%# for itinerary chatrooms to display the itinerary titles %>
           <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
             Itinerary: <%= link_to chatroom.itinerary.title, chatroom_path(chatroom) %>
