@@ -7,7 +7,7 @@ class UserChatroom < ApplicationRecord
 
   # if private, max of 2 participants
   validate :max_two_participants, if: :chatroom_is_private?
-  validate :private_chat_uniqueness
+  # validate :private_chat_uniqueness
   # VALIDATION HELPER METHODS
   def max_two_participants
     # chatroom.user_chatrooms.select(&:persisted?).size >= 2
