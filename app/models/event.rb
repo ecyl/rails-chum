@@ -11,7 +11,7 @@ class Event < ApplicationRecord
 
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
-  before_validation :update_location
+  # before_validation :update_location
   before_save :reverse_geocode
   # after_save :calculate_itinerary_cost, if: :saved_change_to_cost?
 
