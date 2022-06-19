@@ -37,27 +37,27 @@
     </div>
   </div>
 
-  <%# content %>
-  <div class="user-content">
-    <%# About Me %>
-    <div class="about-me">
-      <%# Name %>
-      <div class="about-me content">
-        <h2>Hi, I'm <%= @user.first_name %></h2>
-      </div>
-      <%# Age, Gender %>
-      <div class="about-me content">
-        <span><%= @user.age %>, <%= @user.gender %></span>
-      </div>
-      <%# lives in XX %>
-      <div class="about-me content">
-        <i class="fa-solid fa-house"></i>
-        <span>Lives in Singapore</span>
-      </div>
-    </div>
+</div>
 
-    <div class="line-break">
+<%# content %>
+<div class="user-content">
+  <%# About Me %>
+  <div class="about-me">
+    <%# Name %>
+    <div class="about-me content">
+      <h2>Hi, I'm <%= @user.first_name %></h2>
     </div>
+    <%# Age, Gender %>
+    <div class="about-me content">
+      <span><%= @user.age %>, <%= @user.gender %></span>
+    </div>
+    <%# lives in XX %>
+    <div class="about-me content">
+      <i class="fa-solid fa-house"></i>
+      <span>Lives in Singapore</span>
+    </div>
+  </div>
+
 
     <%# Reviews %>
     <div class="user-reviews">
@@ -82,5 +82,6 @@
         <% end %>
       <% end %>
     </div>
+
   </div>
 </div>

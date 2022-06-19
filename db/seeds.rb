@@ -83,7 +83,7 @@ raymond.save
 
 raymond_itinerary1 = Itinerary.new(
   title: "Summer in Korea",
-  participant_limit: 3,
+  participant_limit: 4,
   description: "Superb time in Korea!",
   destination: "Korea",
   published: true,
@@ -106,6 +106,7 @@ chatroom = Chatroom.new(
 raymond_itinerary1.user = raymond
 chatroom.save!
 raymond_itinerary1.chatroom = chatroom
+raymond.chatrooms << chatroom
 raymond_itinerary1.save!
 
 raymond_event1 = Event.new(
@@ -207,6 +208,10 @@ chatroom = Chatroom.new(
 germany_itinerary.user = raymond
 chatroom.save!
 germany_itinerary.chatroom = chatroom
+suansen.chatrooms << chatroom
+germany_itinerary.save!
+
+germany_itinerary.chatroom = chatroom
 germany_itinerary.save!
 
 raymond_itinerary_user2 = ItineraryUser.new(
@@ -304,6 +309,7 @@ nyc_chatroom = Chatroom.new(
 )
 nyc_chatroom.save!
 newyork.chatroom = nyc_chatroom
+jamieson.chatrooms << nyc_chatroom
 newyork.save!
 
 nyc_itinerary_user = ItineraryUser.new(
@@ -388,6 +394,8 @@ utah_chatroom = Chatroom.new(
 )
 utah_chatroom.save!
 utah.chatroom = utah_chatroom
+jamieson.chatrooms << utah_chatroom
+
 file = URI.open("https://images.unsplash.com/photo-1504281490492-090c5c169650?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80")
 utah.photo.attach(io: file, filename: "utah")
 utah.save!
@@ -475,6 +483,7 @@ file = URI.open("https://images.unsplash.com/photo-1543107076-8f86ee268706?ixlib
 washington.photo.attach(io: file, filename: "Washington_state")
 washington_chatroom.save!
 washington.chatroom = washington_chatroom
+jamieson.chatrooms << washington_chatroom
 washington.save!
 
 washington_itinerary_user = ItineraryUser.new(
@@ -568,6 +577,7 @@ jeju_chatroom = Chatroom.new(
 
 jeju_chatroom.save!
 jeju.chatroom = jeju_chatroom
+jisoo.chatrooms << jeju_chatroom
 jeju.save!
 
 jeju_itinerary_user = ItineraryUser.new(
@@ -652,6 +662,7 @@ busan_chatroom = Chatroom.new(
 
 busan_chatroom.save!
 busan.chatroom = busan_chatroom
+jennie.chatrooms << busan_chatroom
 busan.save!
 
 file = URI.open("https://images.unsplash.com/photo-1575907794679-016b6bd90285?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80")
@@ -735,6 +746,7 @@ seoul_tour_chatroom = Chatroom.new(
 
 seoul_tour_chatroom.save!
 seoul_tour.chatroom = seoul_tour_chatroom
+chaeyoung.chatrooms << seoul_tour_chatroom
 
 seoul_tour_itinerary_user = ItineraryUser.new(
   status: "organiser"
@@ -833,6 +845,8 @@ mtmizugaki_chatroom = Chatroom.new(
 
 mtmizugaki_chatroom.save!
 mtmizugaki.chatroom = mtmizugaki_chatroom
+raymond.chatrooms << mtmizugaki_chatroom
+
 mtmizugaki_itinerary_user = ItineraryUser.new(
   status: "organiser"
 )
@@ -935,6 +949,8 @@ tokyogetaway_chatroom = Chatroom.new(
 
 tokyogetaway_chatroom.save!
 tokyogetaway.chatroom = tokyogetaway_chatroom
+kennywong.chatrooms << tokyogetaway_chatroom
+
 tokyogetaway_itinerary_user = ItineraryUser.new(
   status: "organiser"
 )
@@ -1036,6 +1052,8 @@ osaka_chatroom = Chatroom.new(
 
 osaka_chatroom.save!
 osaka.chatroom = osaka_chatroom
+ashleyyeo.chatrooms << osaka_chatroom
+
 osaka_itinerary_user = ItineraryUser.new(
   status: "organiser"
 )
@@ -1123,7 +1141,7 @@ justinnleong.save
 puts "User Justinn created"
 
 puts "Creating Itinerary: '2D1N Surf Trip to Kuta Beach'..."
-kutabeach= Itinerary.new(
+kutabeach = Itinerary.new(
   title: "2D1N Surf Trip to Kuta Beach",
   participant_limit: 3,
   description: "Kuta Beach is one of the best places to enjoy Bali’s famous sunsets.
@@ -1141,6 +1159,8 @@ kutabeach_chatroom = Chatroom.new(
 
 kutabeach_chatroom.save!
 kutabeach.chatroom = kutabeach_chatroom
+justinnleong.chatrooms << kutabeach_chatroom
+
 kutabeach_itinerary_user = ItineraryUser.new(
   status: "organiser"
 )
@@ -1214,6 +1234,8 @@ ubud_retreat_chatroom = Chatroom.new(
 
 ubud_retreat_chatroom.save!
 ubud_retreat.chatroom = ubud_retreat_chatroom
+eunice.chatrooms << ubud_retreat_chatroom
+
 ubud_retreat_itinerary_user = ItineraryUser.new(
   status: "organiser"
 )
@@ -1330,6 +1352,8 @@ bali_party_chatroom = Chatroom.new(
 
 bali_party_chatroom.save!
 bali_party.chatroom = bali_party_chatroom
+mingfu.chatrooms << bali_party_chatroom
+
 bali_party_itinerary_user = ItineraryUser.new(
   status: "organiser"
 )
