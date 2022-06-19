@@ -94,6 +94,8 @@ file = URI.open("https://images.unsplash.com/photo-1517154421773-0529f29ea451?ix
 raymond_itinerary1.photo.attach(io: file, filename: "#{raymond_itinerary1.destination}-itinerary")
 raymond_itinerary1.save
 
+
+
 # raymond_notification1 = Notification.new(
 #   user: raymond,
 
@@ -108,6 +110,26 @@ chatroom.save!
 raymond_itinerary1.chatroom = chatroom
 raymond.chatrooms << chatroom
 raymond_itinerary1.save!
+
+helen_itinerary_user = ItineraryUser.new(
+  itinerary: raymond_itinerary1,
+  user: helen,
+  status: "accepted"
+)
+
+germaine_itinerary_user = ItineraryUser.new(
+  itinerary: raymond_itinerary1,
+  user: germaine,
+  status: "accepted"
+)
+
+helen_itinerary_user.save!
+germaine_itinerary_user.save!
+raymond_itinerary1.chatroom.users << helen_itinerary_user.user
+raymond_itinerary1.chatroom.users << germaine_itinerary_user.user
+raymond_itinerary1.chatroom.save!
+
+puts "added germaine and helen into the chatroom for raymond itinerary summer in korea"
 
 raymond_event1 = Event.new(
   description: "Lotte World for fun people",
@@ -128,13 +150,17 @@ raymond_event1.save
 
 raymond_event2 = Event.new(
   description: "Blackpink Concert with the Blinks",
-  address: "Korea DMZ",
-  location: "Korea DMZ",
+  address: "662, Gyeongin-ro, Guro-gu",
+  location: "D-Cube Art Centre",
   title: "Super electrifying concert atmosphere!",
   cost: 300,
   date_start: DateTime.new(2022, 7, 21, 18, 10),
   date_end: DateTime.new(2022, 7, 21, 22, 10)
 )
+
+file = URI.open("https://source.unsplash.com/photos/U7HLzMO4SIY")
+raymond_event2.photo.attach(io: file, filename: "#{raymond_event2.location}-event")
+raymond_event2.save
 
 raymond_event2.itinerary = raymond_itinerary1
 raymond_event2.save!
