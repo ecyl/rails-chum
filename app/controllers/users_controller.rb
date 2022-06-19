@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       end
 
       if itinerary.itinerary_users.where(status: "organiser").include?(@user)
-        @oragnised_trips << itinerary
+        @organised_trips << itinerary
       end
     end
   end
