@@ -6,7 +6,7 @@
   <div class="chat-body" data-controller="chatbox" >
     <div class="chat-sidebar">
       <% @chatrooms.each_with_index do |chatroom, index| %>
-        <% if chatroom.itinerary %>
+        <% if chatroom.itinerary%>
         <%# for itinerary chatrooms to display the itinerary titles %>
           <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
             Itinerary: <%= link_to chatroom.itinerary.title, chatroom_path(chatroom) %>
@@ -19,7 +19,7 @@
                 <% @recipient = user %>
                 <div class="chat-links", data-action="click->chatbox#displayChat", data-chatbox-target="link" data-chatbox-id="chatroom-<%= chatroom.id %>">
                   <%# placeholder to show the avatar of the recipient %>
-                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/krokrob", class: "avatar-bordered", alt: "avatar-bordered" %>
+                  <%= cl_image_tag @recipient.photo.key, class: "avatar-bordered", alt: "avatar-bordered" %>
                   <%= link_to @recipient.first_name, chatroom_path(chatroom) %>
                 </div>
               <% end %>

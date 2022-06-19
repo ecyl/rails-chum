@@ -20,6 +20,8 @@ export default class extends Controller {
           console.log("I have received the data from the broadcast");
           console.log(data);
           this.#insertNotificationAndScrollUp(data);
+
+          // upon receiving pending data, I want to insert each pending user into DOM
         },
       }
     );
