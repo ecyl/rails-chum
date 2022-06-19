@@ -61,17 +61,17 @@
 
     <%# Reviews %>
     <div class="user-reviews">
-      <div class="user-description-title">
-        <% @user.itineraries.each do |itinerary| %>
+      <% @user.itineraries.each do |itinerary| %>
+        <div class="user-description-title">
           <% if itinerary.reviews.length == 0 %>
-              <em>There are no reviews for <%= @user.first_name %> yet</em>
-            <% else %>
-              <i class="fa-solid fa-star"></i> <%= pluralize itinerary.reviews.length, 'reviews' %>
-            <% end %>
-      </div>
-      <%# iterate through reviews %>
+            <em>There are no reviews for <%= @user.first_name %> yet</em>
+          <% else %>
+            <i class="fa-solid fa-star"></i> <%= pluralize itinerary.reviews.length, 'reviews' %>
+          <% end %>
+        </div>
+        <%# iterate through reviews %>
         <% itinerary.reviews.each do |review| %>
-      <div class="reviews">
+          <div class="reviews">
             <div class="review-content">
               <%# display the review content %>
               <em>"<%= review.content %>"</em>
@@ -81,9 +81,9 @@
               <% sender = User.find(review.user_id) %>
               <%= cl_image_tag sender.photo.key, class: "avatar-bordered", alt: "avatar-bordered" %> <%= sender.first_name %>
             </div>
-      </div>
-          <% end %>
+         </div>
         <% end %>
+      <% end %>
     </div>
   </div>
 </div>
