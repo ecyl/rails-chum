@@ -330,10 +330,8 @@ hamilton = Event.new(
 hamilton.itinerary = newyork
 file = URI.open("https://images.unsplash.com/photo-1568650436496-a2a288c7be3f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
 hamilton.photo.attach(io: file, filename: "hamilton")
+hamilton.save!
 
-if hamilton.valid?
-  hamilton.save!
-end
 
 kats = Event.new(
   description: "Eat a pastrami and rye sandwich from the iconic Kat's deli.",
@@ -346,9 +344,7 @@ kats = Event.new(
 kats.itinerary = newyork
 file = URI.open("https://images.unsplash.com/photo-1548528761-ce696bd1b70d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80")
 kats.photo.attach(io: file, filename: "katz-deli")
-if kats.valid?
-  kats.save!
-end
+kats.save!
 
 brooklyn = Event.new(
   description: "Let's go for a run across the brooklyn bridge",
@@ -361,9 +357,8 @@ brooklyn = Event.new(
 brooklyn.itinerary = newyork
 file = URI.open("https://images.unsplash.com/photo-1578059474177-88fb974a2d15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80")
 brooklyn.photo.attach(io: file, filename: "brooklyn")
-if brooklyn.valid?
-  brooklyn.save!
-end
+brooklyn.save!
+
 
 central_park = Event.new(
   description: "Frolicking around central park. Catch some squirrels and maybe have a picnic.",
@@ -423,9 +418,8 @@ zion_national = Event.new(
 zion_national.itinerary = utah
 file = URI.open("https://images.unsplash.com/photo-1584528606063-2d14ed9b26a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80")
 zion_national.photo.attach(io: file, filename: "zion-national")
-if zion_national.valid?
-  zion_national.save!
-end
+zion_national.save!
+
 
 monument_valley = Event.new(
   description: "Always wanted to imagine yourself in django unchained? Come with me to monument valley where the scenery is a scene right out of a tarantino movie.",
@@ -438,9 +432,8 @@ monument_valley = Event.new(
 monument_valley.itinerary = utah
 file = URI.open("https://images.unsplash.com/photo-1480004902249-cdb28d6a01a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2211&q=80")
 monument_valley.photo.attach(io: file, filename: "monument_valley")
-if monument_valley.valid?
-  monument_valley.save!
-end
+monument_valley.save!
+
 
 soda_shop = Event.new(
   description: "Curious about soda shops in salt lake city? So am I! Let's go try some of the interesting sodas together.",
@@ -453,23 +446,22 @@ soda_shop = Event.new(
 soda_shop.itinerary = utah
 file = URI.open("https://images.unsplash.com/photo-1602361063465-0cf8b388a257?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1015&q=80")
 soda_shop.photo.attach(io: file, filename: "soda-saltlake")
-if soda_shop.valid?
-  soda_shop.save!
-end
+soda_shop.save!
+
 
 temple_square = Event.new(
   description: "Curious about the church of jesus christ of the latter-day saints? Well me too. Let's go check out the symbolic heart of the church temple square.",
   cost: 5,
   location: "Temple Square",
   date_start: DateTime.new(2022, 10, 3, 12, 10),
-  date_end: DateTime.new(2022, 10, 3, 13)
+  date_end: DateTime.new(2022, 10, 3, 13),
+  title: "LAter day dudes"
 )
 temple_square.itinerary = utah
 file = URI.open("https://images.unsplash.com/photo-1561475463-bf5feec154a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80")
 temple_square.photo.attach(io: file, filename: "temple_square")
-if temple_square.valid?
-  temple_square.save!
-end
+temple_square.save!
+
 
 utah.published = true
 utah.save!
@@ -512,9 +504,8 @@ forks = Event.new(
 forks.itinerary = washington
 file = URI.open("https://images.unsplash.com/photo-1623281857914-60b90678a296?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
 forks.photo.attach(io: file, filename: "forks_washington")
-if forks.valid?
-  forks.save!
-end
+forks.save!
+
 
 space_needle = Event.new(
   description: "Calling all greys anatomy lovers.",
@@ -527,9 +518,8 @@ space_needle = Event.new(
 space_needle.itinerary = washington
 file = URI.open("https://images.unsplash.com/photo-1438401171849-74ac270044ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2235&q=80")
 space_needle.photo.attach(io: file, filename: "space_needle")
-if space_needle.valid?
-  space_needle.save!
-end
+space_needle.save!
+
 
 mount_rainier = Event.new(
   description: "Spend some time in the great outdoors. We can hike and see the spectacular views of mount rainier.",
@@ -542,9 +532,8 @@ mount_rainier = Event.new(
 file = URI.open('https://images.unsplash.com/photo-1549769311-eb1f5f68d838?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
 mount_rainier.photo.attach(io: file, filename: "mount_rainier")
 mount_rainier.itinerary = washington
-if mount_rainier.valid?
-  mount_rainier.save!
-end
+mount_rainier.save!
+
 
 washington.published = true
 washington.save!
@@ -608,31 +597,33 @@ mount_hallasan = Event.new(
 )
 
 mount_hallasan.itinerary = jeju
-mount_hallasan.save! if mount_hallasan.valid?
+mount_hallasan.save!
 
 cheonjeyeon_waterfalls = Event.new(
   description: "",
   cost: 15,
   location: "Cheonjeyeon Waterfalls",
+  description: "See waterfall together",
   title: "Cheonjeyeon Waterfalls – Paradise for nature lovers",
   date_start: DateTime.new(2022, 10, 6, 14, 0),
   date_end: DateTime.new(2022, 10, 6, 16, 0)
 )
 
 cheonjeyeon_waterfalls.itinerary = jeju
-cheonjeyeon_waterfalls.save! if cheonjeyeon_waterfalls.valid?
+cheonjeyeon_waterfalls.save!
 
 jeju_waterworld = Event.new(
   description: "",
   cost: 26,
   location: "Jeju Waterworld",
+  description: "Splish splash waterworld",
   title: "Time for a splash! @ Jeju Waterworld",
   date_start: DateTime.new(2022, 10, 7, 15, 5),
   date_end: DateTime.new(2022, 10, 7, 18, 5)
 )
 
 jeju_waterworld.itinerary = jeju
-jeju_waterworld.save! if jeju_waterworld.valid?
+jeju_waterworld.save!
 
 jeju.published = true
 jeju.save!
@@ -694,9 +685,8 @@ busan_tower = Event.new(
   date_end: DateTime.new(2022, 11, 1, 16, 30)
 )
 busan_tower.itinerary = busan
-if busan_tower.valid?
-  busan_tower.save!
-end
+busan_tower.save!
+
 
 haeundae_beach = Event.new(
   description: "A ridiculously gorgeous beach that you can barely believe is at the edge of such a massive city.",
@@ -707,9 +697,8 @@ haeundae_beach = Event.new(
   date_end: DateTime.new(2022, 11, 2, 12, 30)
 )
 haeundae_beach.itinerary = busan
-if haeundae_beach.valid?
-  haeundae_beach.save!
-end
+haeundae_beach.save!
+
 
 gamcheon_culture_village = Event.new(
   description: "A stunning, kaleidoscopically coloured village. If it had the means, your Instagram would pat you on the back for the gift of this picture.",
@@ -720,9 +709,8 @@ gamcheon_culture_village = Event.new(
   date_end: DateTime.new(2022, 11, 3, 17, 30)
 )
 gamcheon_culture_village.itinerary = busan
-if gamcheon_culture_village.valid?
-  gamcheon_culture_village.save!
-end
+gamcheon_culture_village.save!
+
 
 busan.published = true
 busan.save!
@@ -783,9 +771,8 @@ myeong_dong = Event.new(
   date_end: DateTime.new(2022, 10, 1, 21, 30)
 )
 myeong_dong.itinerary = seoul_tour
-if myeong_dong.valid?
-  myeong_dong.save!
-end
+myeong_dong.save!
+
 
 namdaemun = Event.new(
   description: "Shake Shack at Namdaemun, then shopping for more clothes",
@@ -797,9 +784,8 @@ namdaemun = Event.new(
 )
 
 namdaemun.itinerary = seoul_tour
-if namdaemun.valid?
-  namdaemun.save!
-end
+namdaemun.save!
+
 
 bukcheon_hanok_village = Event.new(
   description: "Cultural tour & immeresing yourself in rural life",
@@ -811,9 +797,8 @@ bukcheon_hanok_village = Event.new(
 )
 
 bukcheon_hanok_village.itinerary = seoul_tour
-if bukcheon_hanok_village.valid?
-  bukcheon_hanok_village.save!
-end
+bukcheon_hanok_village.save!
+
 
 seoul_tour.published = true
 seoul_tour.save!
@@ -880,9 +865,8 @@ bus_journey = Event.new(
   date_end: DateTime.new(2022, 9, 10, 18, 0)
 )
 bus_journey.itinerary = mtmizugaki
-if bus_journey.valid?
-  bus_journey.save!
-end
+bus_journey.save!
+
 puts "1 event created"
 
 mizugaki_camping = Event.new(
@@ -894,9 +878,8 @@ mizugaki_camping = Event.new(
   date_end: DateTime.new(2022, 9, 11, 12, 0)
 )
 mizugaki_camping.itinerary = mtmizugaki
-if mizugaki_camping.valid?
-  mizugaki_camping.save!
-end
+mizugaki_camping.save!
+
 puts "2 events created"
 
 climbing_time = Event.new(
@@ -908,9 +891,8 @@ climbing_time = Event.new(
   date_end: DateTime.new(2022, 9, 12, 20, 0)
 )
 climbing_time.itinerary = mtmizugaki
-if climbing_time.valid?
-  climbing_time.save!
-end
+climbing_time.save!
+
 puts "3 events created"
 
 mizugaki_sansou = Event.new(
@@ -922,9 +904,8 @@ mizugaki_sansou = Event.new(
   date_end: DateTime.new(2022,9,13,20,0)
 )
 mizugaki_sansou.itinerary = mtmizugaki
-if mizugaki_sansou.valid?
-  mizugaki_sansou.save!
-end
+mizugaki_sansou.save!
+
 puts "4 events created"
 
 mtmizugaki.published = true
@@ -988,9 +969,8 @@ tokyo_station = Event.new(
   date_end: DateTime.new(2022, 8, 20, 14, 0)
 )
 tokyo_station.itinerary = tokyogetaway
-if tokyo_station.valid?
-  tokyo_station.save!
-end
+tokyo_station.save!
+
 puts "1 event created"
 
 imperial_palace = Event.new(
@@ -1002,9 +982,8 @@ imperial_palace = Event.new(
   date_end: DateTime.new(2022, 8, 20, 16, 0)
 )
 imperial_palace.itinerary = tokyogetaway
-if imperial_palace.valid?
-  imperial_palace.save!
-end
+imperial_palace.save!
+
 puts "2 events created"
 
 sensoji = Event.new(
@@ -1016,9 +995,8 @@ sensoji = Event.new(
   date_end: DateTime.new(2022, 8, 21, 12, 0)
 )
 sensoji.itinerary = tokyogetaway
-if sensoji.valid?
-  sensoji.save!
-end
+sensoji.save!
+
 puts "3 events created"
 
 tsutaya = Event.new(
@@ -1030,9 +1008,7 @@ tsutaya = Event.new(
   date_end: DateTime.new(2022, 8, 22, 12, 0)
 )
 tsutaya.itinerary = tokyogetaway
-if tsutaya.valid?
-  tsutaya.save!
-end
+tsutaya.save!
 puts "4 events created"
 
 tokyogetaway.published = true
@@ -1097,9 +1073,8 @@ cat_cafe = Event.new(
   date_end: DateTime.new(2022, 8, 20, 12, 0)
 )
 cat_cafe.itinerary = osaka
-if cat_cafe.valid?
-  cat_cafe.save!
-end
+cat_cafe.save!
+
 puts "1 event created"
 
 cat_cafe = Event.new(
@@ -1111,9 +1086,7 @@ cat_cafe = Event.new(
   date_end: DateTime.new(2022, 8, 20, 12, 0)
 )
 cat_cafe.itinerary = osaka
-if cat_cafe.valid?
-  cat_cafe.save!
-end
+cat_cafe.save!
 puts "2 events created"
 
 tsubomi = Event.new(
@@ -1125,9 +1098,8 @@ tsubomi = Event.new(
   date_end: DateTime.new(2022, 8, 21, 12, 0)
 )
 tsubomi.itinerary = osaka
-if tsubomi.valid?
-  tsubomi.save!
-end
+tsubomi.save!
+
 puts "3 events created"
 
 denden = Event.new(
@@ -1139,9 +1111,8 @@ denden = Event.new(
   date_end: DateTime.new(2022, 8, 22, 20, 0)
 )
 denden.itinerary = osaka
-if denden.valid?
-  denden.save!
-end
+denden.save!
+
 puts "4 events created"
 
 osaka.published = true
@@ -1209,9 +1180,8 @@ surf = Event.new(
   date_end: DateTime.new(2022, 8, 8, 15, 0)
 )
 surf.itinerary = kutabeach
-if surf.valid?
-  surf.save!
-end
+surf.save!
+
 puts "1 event created"
 
 dinner_one = Event.new(
@@ -1223,9 +1193,8 @@ dinner_one = Event.new(
   date_end: DateTime.new(2022, 8, 8, 22, 0)
 )
 dinner_one.itinerary = kutabeach
-if dinner_one.valid?
-  dinner_one.save!
-end
+dinner_one.save!
+
 puts "2 events created"
 
 surf_again = Event.new(
@@ -1237,9 +1206,8 @@ surf_again = Event.new(
   date_end: DateTime.new(2022, 8, 9, 15, 0)
 )
 surf_again.itinerary = kutabeach
-if surf_again.valid?
-  surf_again.save!
-end
+surf_again.save!
+
 puts "3 events created"
 
 puts "Completed creating itinerary: '2D1N Surf Trip to Kuta Beach'"
@@ -1280,35 +1248,32 @@ puts "Creating events for 'Relaxing 3D2N Ubud Retreat'..."
 yoga = Event.new(
   description: "Relax the body and mind by doing some relaxing yoga at Ubud's most popular yoga studio",
   cost: 20,
-  location: "Jl. Hanoman Jl. Raya Pengosekan Ubud, Peliatan, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+  location: "Jl. Hanoman Jl. Raya Pengosekan Ubud, Peliatan, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571",
   title: "Yoga",
   date_start: DateTime.new(2022, 7, 2, 9, 0),
   date_end: DateTime.new(2022, 7, 2, 10, 0)
 )
 yoga.itinerary = ubud_retreat
-if yoga.valid?
-  yoga.save!
-end
+yoga.save!
+
 puts "1 event created"
 
 lunch = Event.new(
   description: "Let's have a nice healthy lunch after class",
   cost: 25,
-  location: "Jl. Jembawan, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+  location: "Jl. Jembawan, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571",
   title: "Healthy Lunch",
   date_start: DateTime.new(2022, 7, 2, 12, 0),
   date_end: DateTime.new(2022, 7, 2, 14, 0)
 )
 lunch.itinerary = ubud_retreat
-if lunch.valid?
-  lunch.save!
-end
+lunch.save!
 puts "2 events created"
 
 monkey_forest = Event.new(
   description: "Let's visit the Ubud's monkey forest, home to over 700 long-tailed macaques.",
   cost: 10,
-  location: "Jalan Monkey Forest, Ubud, Gianyar, Bali 80571, Indonesia",
+  location: "Jalan Monkey Forest, Ubud, Gianyar, Bali 80571",
   title: "Ubud Monkey Forest",
   date_start: DateTime.new(2022, 7, 3, 9, 0),
   date_end: DateTime.new(2022, 7, 3, 12, 0)
@@ -1322,15 +1287,14 @@ puts "3 events created"
 dinner = Event.new(
   description: "Let's have a nice dinner with some cocktails",
   cost: 50,
-  location: "Jl. Hanoman, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+  location: "Jl. Hanoman, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571",
   title: "Dinner with cocktails",
   date_start: DateTime.new(2022, 7, 3, 18, 0),
   date_end: DateTime.new(2022, 7, 3, 22, 0)
 )
 monkey_forest.itinerary = ubud_retreat
-if monkey_forest.valid?
-  monkey_forest.save!
-end
+monkey_forest.save!
+
 puts "4 events created"
 
 rice_terrace = Event.new(
@@ -1338,15 +1302,14 @@ rice_terrace = Event.new(
                 There is a quaint villeage of Pakudui, close to the rice terrace,
                 where you can shop for some ornamental woodwork and various carvings of mythical figures",
   cost: 50,
-  location: "Jalan Raya Tegallalang, Tegallalang, Gianyar, Bali 80561, Indonesia",
+  location: "Jalan Raya Tegallalang, Tegallalang, Gianyar, Bali 80561",
   title: "Day trip to Tegallang Rice Terrace",
   date_start: DateTime.new(2022, 7, 4, 9, 0),
   date_end: DateTime.new(2022, 7, 4, 16, 0)
 )
 rice_terrace.itinerary = ubud_retreat
-if rice_terrace.valid?
-  rice_terrace.save!
-end
+rice_terrace.save!
+
 puts "5 events created"
 
 ubud_retreat.published = true
@@ -1403,57 +1366,52 @@ puts "Creating events for 'Bali Party'..."
 island_hopping = Event.new(
   description: "Let's not restrict ourselves to the mainland, let's go island hopping!",
   cost: 70,
-  location: "Nusa Lembongan, Jungutbatu, Kec. Nusa Penida, Kabupaten Klungkung, Bali 80771, Indonesia",
+  location: "Nusa Lembongan, Jungutbatu, Kec. Nusa Penida, Kabupaten Klungkung, Bali 80771",
   title: "Island Hopping to Nusa Lembongan",
   date_start: DateTime.new(2022, 8, 20, 9, 0),
   date_end: DateTime.new(2022, 8, 20, 18, 0)
 )
 island_hopping.itinerary = bali_party
-if island_hopping.valid?
-  island_hopping.save!
-end
+island_hopping.save!
+
 puts "1 event created"
 
 party_one = Event.new(
   description: "Let's partayeeee!! We will go bar hopping so get ready to get lit!!",
   cost: 100,
-  location: "Jl. Pantai Berawa No.99, Tibubeneng, Badung, Kabupaten Badung, Bali 80361, Indonesia",
+  location: "Jl. Pantai Berawa No.99, Tibubeneng, Badung, Kabupaten Badung, Bali 80361",
   title: "Bar Hopping",
   date_start: DateTime.new(2022, 8, 21, 17, 0),
   date_end: DateTime.new(2022, 8, 21, 23, 0)
 )
 party_one.itinerary = bali_party
-if party_one.valid?
-  party_one.save!
-end
+party_one.save!
+
 puts "2 events created"
 
 beach = Event.new(
   description: "Time to relax and wind down at the beach club",
   cost: 50,
-  location: "Petitenget St No.51B, Seminyak, Kuta Utara, Badung Regency, Bali 80361, Indonesia",
+  location: "Petitenget St No.51B, Seminyak, Kuta Utara, Badung Regency, Bali 80361",
   title: "Relax at the Beach",
   date_start: DateTime.new(2022, 8, 22, 11, 0),
   date_end: DateTime.new(2022, 8, 22, 15, 0)
 )
 beach.itinerary = bali_party
-if beach.valid?
-  beach.save!
-end
+beach.save!
 puts "3 events created"
 
 party_two = Event.new(
   description: "More bar hopping and more drinking!",
   cost: 100,
-  location: "Jln Legian No.71, Kuta, Badung Regency, Bali 80361, Indonesia",
+  location: "Jln Legian No.71, Kuta, Badung Regency, Bali 80361",
   title: "More drunken nights",
   date_start: DateTime.new(2022, 8, 23, 18, 0),
   date_end: DateTime.new(2022, 8, 23, 23, 0)
 )
 party_two.itinerary = bali_party
-if party_two.valid?
-  party_two.save!
-end
+party_two.save!
+
 puts "4 events created"
 
 bali_party.published = true

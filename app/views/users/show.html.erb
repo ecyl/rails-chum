@@ -63,11 +63,11 @@
     <div class="user-reviews">
       <% @user.itineraries.each do |itinerary| %>
         <div class="user-description-title">
-          <% if itinerary.reviews.length == 0 %>
-            <em>There are no reviews for <%= @user.first_name %> yet</em>
-          <% else %>
-            <i class="fa-solid fa-star"></i> <%= pluralize itinerary.reviews.length, 'reviews' %>
-          <% end %>
+            <% if itinerary.reviews.length == 0 %>
+              <em>There are no reviews for <%= @user.first_name %> yet</em>
+            <% else %>
+              <i class="fa-solid fa-star"></i> <%= pluralize itinerary.reviews.length, 'reviews' %>
+            <% end %>
         </div>
         <%# iterate through reviews %>
         <% itinerary.reviews.each do |review| %>
