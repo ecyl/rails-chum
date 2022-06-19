@@ -35,7 +35,8 @@
 .user-content {
   margin-left: 32px;
   width: 70%;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .center {
