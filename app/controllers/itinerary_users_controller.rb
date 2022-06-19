@@ -5,7 +5,8 @@ class ItineraryUsersController < ApplicationController
   def accept
     @itinerary_user.status = "accepted"
     @itinerary = @itinerary_user.itinerary
-
+    @itinerary.chatroom.users << @itinerary_user.user
+    @itinerary.save
     if @itinerary_user.save
       new_notification_request_status
       redirect_to itinerary_path(@itinerary), notice: "The user is accepted."
