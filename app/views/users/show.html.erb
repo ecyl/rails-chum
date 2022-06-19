@@ -10,19 +10,19 @@
       <%# verification information %>
       <div class="user-verification">
         <div class="user-verification info">
-          <% if @review.length.zero? %>
+          <% if @reviews.length.zero? %>
             <em>There are no reviews for <%= @user.first_name %> yet</em>
           <% else %>
-            <i class="fa-solid fa-star"></i> <%= pluralize itinerary.reviews.length, 'reviews' %>
+            <i class="fa-solid fa-star"></i> <%= pluralize @reviews.length, 'reviews' %>
           <% end %>
         </div>
         <div class="user-verification info">
-          <% organised_trips = itinerary.itinerary_users.where(status: "organiser") %>
+
           <%# organised_trips = ItineraryUser.where(user: @user).where(status:"organiser") %>
-          <% if organised_trips.length == 0 %>
+          <% if @organised_trips.length.zero? %>
             <em><%= @user.first_name %> has not organised any trips yet</em>
           <% else %>
-            <i class="fa-solid fa-globe"></i> Organised <%= pluralize organised_trips.length, 'trips' %>
+            <i class="fa-solid fa-globe"></i> Organised <%= pluralize @organised_trips.length, 'trips' %>
           <% end %>
         </div>
       </div>
