@@ -69,17 +69,17 @@
         <div class="user-description-title">
           <i class="fa-solid fa-star"></i> <%= pluralize @reviews.length, 'reviews' %>
         </div>
-        <div class="reviews">
-          <% @reviews.each do |review| %>
-            <div class="review-content">
-              <em><%= review.content %></em>
-            </div>
+        <% @reviews.each do |review| %>
+          <div class="reviews">
             <div class="review-author">
               <% sender = User.find(review.user_id) %>
               <%= cl_image_tag sender.photo.key, class: "avatar-bordered", alt: "avatar-bordered" %> <%= sender.first_name %>
             </div>
-          <% end %>
-        </div>
+            <div class="review-content">
+              <em><%= review.content %></em>
+            </div>
+         </div>
+        <% end %>
       <% end %>
     </div>
 
