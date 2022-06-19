@@ -149,16 +149,16 @@ raymond_event1.photo.attach(io: file, filename: "#{raymond_event1.location}-even
 raymond_event1.save
 
 raymond_event2 = Event.new(
-  description: "Blackpink Concert with the Blinks",
+  description: "Super electrifying concert atmosphere!",
   address: "662, Gyeongin-ro, Guro-gu",
   location: "D-Cube Art Centre",
-  title: "Super electrifying concert atmosphere!",
+  title: "Blackpink Concert with the Blinks",
   cost: 300,
   date_start: DateTime.new(2022, 7, 21, 18, 10),
   date_end: DateTime.new(2022, 7, 21, 22, 10)
 )
 
-file = URI.open("https://source.unsplash.com/photos/U7HLzMO4SIY")
+file = URI.open("https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80")
 raymond_event2.photo.attach(io: file, filename: "#{raymond_event2.location}-event")
 raymond_event2.save
 
