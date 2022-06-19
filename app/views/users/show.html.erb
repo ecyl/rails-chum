@@ -11,23 +11,23 @@
       <%# verification information %>
       <div class="user-verification">
         <% @user.itineraries.each do |itinerary| %>
-        <div class="user-verification info">
-          <% if itinerary.reviews.length == 0 %>
-            <em>There are no reviews for <%= @user.first_name %> yet</em>
-          <% else %>
-            <i class="fa-solid fa-star"></i> <%= pluralize itinerary.reviews.length, 'reviews' %>
-          <% end %>
-        </div>
-        <div class="user-verification info">
+          <div class="user-verification info">
+            <% if itinerary.reviews.length == 0 %>
+              <em>There are no reviews for <%= @user.first_name %> yet</em>
+            <% else %>
+              <i class="fa-solid fa-star"></i> <%= pluralize itinerary.reviews.length, 'reviews' %>
+            <% end %>
+          </div>
+          <div class="user-verification info">
             <% organised_trips = itinerary.itinerary_users.where(status: "organiser") %>
             <%# organised_trips = ItineraryUser.where(user: @user).where(status:"organiser") %>
             <% if organised_trips.length == 0 %>
               <em><%= @user.first_name %> has not organised any trips yet</em>
-              <% else %>
+            <% else %>
               <i class="fa-solid fa-globe"></i> Organised <%= pluralize organised_trips.length, 'trips' %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
 
       <%# Send message %>
@@ -61,29 +61,29 @@
 
     <%# Reviews %>
     <div class="user-reviews">
-      <% @user.itineraries.each do |itinerary| %>
+      <% if @reviews.length.zero? %>
         <div class="user-description-title">
-            <% if itinerary.reviews.length == 0 %>
-              <em>There are no reviews for <%= @user.first_name %> yet</em>
-            <% else %>
-              <i class="fa-solid fa-star"></i> <%= pluralize itinerary.reviews.length, 'reviews' %>
-            <% end %>
+          <em>There are no reviews for <%= @user.first_name %> yet</em>
         </div>
-        <%# iterate through reviews %>
-        <% itinerary.reviews.each do |review| %>
-          <div class="reviews">
+      <% else %>
+        <div class="user-description-title">
+          <i class="fa-solid fa-star"></i> <%= pluralize @reviews.length, 'reviews' %>
+        </div>
+        <div class="reviews">
+          <% @reviews.each do |review| %>
             <div class="review-content">
-              <%# display the review content %>
-              <em>"<%= review.content %>"</em>
+              <em><%= review.content %></em>
             </div>
             <div class="review-author">
-             <%# display the author of the review %>
               <% sender = User.find(review.user_id) %>
               <%= cl_image_tag sender.photo.key, class: "avatar-bordered", alt: "avatar-bordered" %> <%= sender.first_name %>
             </div>
-         </div>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
+
+
+
   </div>
 </div>
