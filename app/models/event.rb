@@ -15,6 +15,7 @@ class Event < ApplicationRecord
   before_save :reverse_geocode
   # after_save :calculate_itinerary_cost, if: :saved_change_to_cost?
 
+
   # For use if the cost column is added to the itinerary table
   # def calculate_itinerary_cost
   #   self.itinerary.cost = self.itinerary.events.pluck(:cost).sum
