@@ -207,14 +207,12 @@ chatroom = Chatroom.new(
 
 germany_itinerary.user = raymond
 chatroom.save!
-<<<<<<< HEAD
-suansen_itinerary.chatroom = chatroom
+germany_itinerary.chatroom = chatroom
 suansen.chatrooms << chatroom
-suansen_itinerary.save!
-=======
+germany_itinerary.save!
+
 germany_itinerary.chatroom = chatroom
 germany_itinerary.save!
->>>>>>> master
 
 raymond_itinerary_user2 = ItineraryUser.new(
   user: raymond,
