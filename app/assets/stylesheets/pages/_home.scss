@@ -1,4 +1,8 @@
 // Specific CSS for your home-page
+.bg-light-blue {
+  background-color: #F8FAFB;
+}
+
 .intro-container {
   display: flex;
   flex-direction: column;
@@ -30,13 +34,6 @@
 
 .explore-iti-desc {
   font-size: 1.3rem;
-}
-
-.itineraries-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
 }
 
 .home-image {
