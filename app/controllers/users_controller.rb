@@ -12,9 +12,11 @@ class UsersController < ApplicationController
         end
       end
 
-      if itinerary.itinerary_users.where(status: "organiser").include?(@user)
+      if itinerary.itinerary_users.where(status: "organiser").first.user_id == @user.id
         @organised_trips << itinerary
       end
     end
+
+
   end
 end
