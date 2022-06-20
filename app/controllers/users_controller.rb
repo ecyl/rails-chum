@@ -11,8 +11,8 @@ class UsersController < ApplicationController
           @reviews << review
         end
       end
-
-      if itinerary.itinerary_users.where(status: "organiser").first.user_id == @user.id
+      raise
+      if itinerary.itinerary_users.where(status: "organiser").include?(@user)
         @organised_trips << itinerary
       end
     end
