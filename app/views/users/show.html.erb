@@ -19,11 +19,7 @@
         <div class="user-verification info">
 
           <%# organised_trips = ItineraryUser.where(user: @user).where(status:"organiser") %>
-          <% if @organised_trips.length.zero? %>
-            <em><%= @user.first_name %> has not organised any trips yet</em>
-          <% else %>
-            <i class="fa-solid fa-globe"></i> Organised 3 trips
-          <% end %>
+          <i class="fa-solid fa-globe"></i> Organised 3 trips
         </div>
       </div>
       <%# Send message %>
