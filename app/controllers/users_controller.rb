@@ -11,10 +11,7 @@ class UsersController < ApplicationController
           @reviews << review
         end
       end
-      raise
-      if itinerary.itinerary_users.where(status: "organiser").include?(@user)
-        @organised_trips << itinerary
-      end
+
     end
 
 
