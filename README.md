@@ -38,7 +38,7 @@ You may get a local copy of this project by cloning this project by running thes
 ```
 git clone https://github.com/rayjosong/rails-chum.git
 ```
-2. Install Ruby gems and node packages
+3. Install Ruby gems and node packages
 ```
 bundle install
 yarn install
@@ -52,11 +52,11 @@ touch .env
 MAPBOX_API_KEY= ENTER YOUR MAPBOX API
 CLOUDINARY_URL= ENTER YOUR CLOUDINARY API
 ```
-6. Create the database and seed the files
+5. Create the database and seed the files
 ```
 rails db:drop db:create db:migrate db:seed
 ```
-7. Launch the project on your local machine in the browser
+6. Launch the project on your local machine in the browser
 ```
 rails s
 ```
