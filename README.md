@@ -1,5 +1,5 @@
 # CHUM
-CHUM is an application aimed at travellers who want find travel buddies to go on trips together. Users can either list an itinerary for people to follow, or join an existing itinerary posted by others.
+CHUM is an application aimed at travellers who want find travel buddies to go on trips together. Users can either list an itinerary for people to follow, or join an existing itinerary posted by others. CHUM provides users with the flexibility to participate in trips that meet their personal travel needs with the freedom to participate in as many itineraries as the users want. Users can build their own personal trip itinerary by adding various events to their personal schedule. 
 
 This project is a student product created during the Le Wagon Singapore bootcamp (batch #910).
 
